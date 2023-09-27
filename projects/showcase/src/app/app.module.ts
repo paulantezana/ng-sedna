@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SnButtonComponent } from 'projects/ngx-sedna/button';
+import { SnInputComponent } from 'projects/ngx-sedna/input';
 
 @NgModule({
   declarations: [
@@ -10,7 +12,9 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SnButtonComponent,
+    SnInputComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

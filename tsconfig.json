@@ -13,7 +13,7 @@
     "sourceMap": true,
     "paths": {
       "ngx-sedna": [
-        "projects/ngx-sedna/src/public-api.ts"
+        "dist/ngx-sedna"
       ]
     },
     "declaration": false,
