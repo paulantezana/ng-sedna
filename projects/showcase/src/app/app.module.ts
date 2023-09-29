@@ -5,18 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SnButtonDirective } from 'projects/ngx-sedna/button/button.directive';
 import { SnInputDirective } from 'projects/ngx-sedna/input/input.directive';
-import { SnFormControlComponent } from 'projects/ngx-sedna/form';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SnFormModule } from 'projects/ngx-sedna/form';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     SnButtonDirective,
     SnInputDirective,
-    SnFormControlComponent,
+    SnFormModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,3 +4,12 @@
 <sn-form-control>
     <input type="text" sn-input>
 </sn-form-control>
+
+<form [formGroup]="form" action="">
+    <sn-form-item snType="floating">
+        <input type="text" sn-input formControlName="serie">
+        <sn-form-feedback>sssssssss</sn-form-feedback>
+    </sn-form-item>
+    
+    <button sn-button type="button">Guardar</button>
+</form>
