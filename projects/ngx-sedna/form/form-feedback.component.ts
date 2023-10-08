@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 export type SnFormItemStatusType = 'success' | 'danger' | 'warning' | 'validating' | '';
 
@@ -9,13 +9,4 @@ export type SnFormItemStatusType = 'success' | 'danger' | 'warning' | 'validatin
 })
 export class SnFormFeedbackComponent {
   status: SnFormItemStatusType = '';
-  // hasFeedback = false;
-  // withHelpClass = false;
-
-  constructor(private cdr: ChangeDetectorRef) {}
-
-  setStatus(status: SnFormItemStatusType): void {
-    this.status = status;
-    this.cdr.markForCheck();
-  }
 }

@@ -5,11 +5,40 @@
     <input type="text" sn-input>
 </sn-form-control>
 
-<form [formGroup]="form" action="">
-    <sn-form-item snType="floating">
-        <input type="text" sn-input formControlName="serie">
-        <sn-form-feedback>sssssssss</sn-form-feedback>
+<div>
+    <sn-form-item>
+        <label for="userName" sn-label>UserName</label>
+        <input type="text" sn-input id="userName">
     </sn-form-item>
+    <sn-form-item>
+        <label for="password" sn-label>Password</label>
+        <input type="password" sn-input id="password">
+    </sn-form-item>
+    <button sn-button type="button" [snBlock]="true" snType="primary">Login</button>
+</div>
+
+<div class="SnForm horizontal">
+    <sn-form-item>
+        <label for="fullName" sn-label>fullName</label>
+        <input type="text" sn-input id="fullName">
+    </sn-form-item>
+    <sn-form-item>
+        <label for="adress" sn-label>Adress</label>
+        <input type="text" sn-input id="adress">
+    </sn-form-item>
+</div>
     
-    <button sn-button type="button">Guardar</button>
-</form>
+
+
+<div class="SnForm horizontal">
+    <sn-form-item>
+        <label for="fullName" sn-label>fullName</label>
+        <input type="text" sn-input id="fullName">
+    </sn-form-item>
+    <sn-form-item>
+        <label for="adress" sn-label>Adress</label>
+        <input type="text" sn-input id="adress">
+    </sn-form-item>
+</div>
+
+<!-- </form> -->
