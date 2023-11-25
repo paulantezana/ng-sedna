@@ -48,11 +48,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/showcase",
             "index": "projects/showcase/src/index.html",
-            "main": "projects/showcase/src/main.ts",
+            "browser": "projects/showcase/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -84,12 +84,9 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
@@ -98,10 +95,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "showcase:build:production"
+              "buildTarget": "showcase:build:production"
             },
             "development": {
-              "browserTarget": "showcase:build:development"
+              "buildTarget": "showcase:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -109,7 +106,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "showcase:build"
+            "buildTarget": "showcase:build"
           }
         },
         "test": {
@@ -133,8 +130,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }

@@ -1,5 +1,5 @@
 export * from './form.module'
 export * from './form-control.component'
-export * from './form-feedback.component'
+export * from './form-feedback.directive'
 export * from './form-item.component'
 export * from './form-label.directive'
