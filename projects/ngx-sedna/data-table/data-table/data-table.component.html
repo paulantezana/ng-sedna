@@ -1,0 +1,16 @@
+<div class="SnDataTable">
+  <div class="SnDataTable-header"></div>
+  <div class="SnDataTable-body">
+    <div class="SnDataTable-table SnTable-wrapper">
+      <table class="SnTable">
+        <ng-template [ngTemplateOutlet]="contentTemplate"></ng-template>
+      </table>
+    </div>
+    <div class="SnDataTable-pagination"></div>
+  </div>
+  <div class="SnDataTable-footer"></div>
+</div>
+
+<ng-template #contentTemplate>
+  <ng-content></ng-content>
+</ng-template>
