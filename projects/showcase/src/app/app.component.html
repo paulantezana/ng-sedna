@@ -1,5 +1,5 @@
 <div style="padding: 1rem;">
-  <sn-data-table>
+  <sn-data-table (snQueryParams)="onQueryParamsChange($event)">
     <thead>
       <tr>
         <th [snFilterable]="true">Col 1</th>

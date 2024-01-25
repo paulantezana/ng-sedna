@@ -6,7 +6,16 @@
         <ng-template [ngTemplateOutlet]="contentTemplate"></ng-template>
       </table>
     </div>
-    <div class="SnDataTable-pagination"></div>
+    <div class="SnDataTable-pagination">
+
+      <sn-pagination
+      [pageSizeOptions]="snPageSizeOptions"
+      [length]="snTotal"
+      [pageSize]="snPageSize"
+      [pageIndex]="snPageIndex"
+      (pageChange)="onPageChange($event)"
+      />
+    </div>
   </div>
   <div class="SnDataTable-footer"></div>
 </div>

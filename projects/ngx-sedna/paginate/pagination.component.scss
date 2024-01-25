@@ -1,0 +1,12 @@
+// @use 'sedna' as sedna;
+
+.Paginate {
+    display: flex;
+    // flex-direction: column;
+    align-items: center;
+
+    // @include sedna.from(l){
+        flex-direction: row;
+        justify-content: space-between;
+    // }
+}

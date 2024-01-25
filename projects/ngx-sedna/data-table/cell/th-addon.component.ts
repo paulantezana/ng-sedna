@@ -1,9 +1,3 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/LICENSE
- */
-
-/* eslint-disable @angular-eslint/component-selector */
 import { CommonModule, NgIf, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -21,6 +15,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import { CdkMenuModule } from '@angular/cdk/menu';
 
 @Component({
   selector: 'th[snFilterable], th[snSortable]',
@@ -33,10 +28,10 @@ import {
       <ng-template [ngTemplateOutlet]="contentTemplate"></ng-template>
     </div>
     <div>
-      <button></button>
+      <button type="button" class="SnBtn sm icon" [cdkMenuTriggerFor]="tHeaderMenu">D</button>
     </div>
   </div>
-  <input type="text">
+  <input type="text" class="SnForm-control sm">
     <!-- <nz-table-filter
       *ngIf="nzShowFilter || nzCustomFilter; else notFilterTemplate"
       [contentTemplate]="notFilterTemplate"
@@ -60,7 +55,28 @@ import {
         [contentTemplate]="contentTemplate"
       ></nz-table-sorters>
     </ng-template> -->
-    <ng-template #contentTemplate>
+
+    <ng-template #tHeaderMenu>
+      <ul class="SnList menu" cdkMenu>
+        <button class="SnList-item" cdkMenuItem (click)="onTableMenuClick('asc')">
+          <i class="fa-solid fa-arrow-up-wide-short SnMr-2"></i>Ordenar Ascendente
+        </button>
+        <button class="SnList-item" cdkMenuItem (click)="onTableMenuClick('desc')">
+          <i class="fa-solid fa-arrow-down-wide-short SnMr-2"></i>Ordenar Descendente
+        </button>
+        <button class="SnList-item" cdkMenuItem (click)="onTableMenuClick('hideColumn')">
+          <i class="fa-solid fa-table-columns SnMr-2"></i>Ocultar columna
+        </button>
+        <button class="SnList-item" cdkMenuItem (click)="onTableMenuClick('showColumns')">
+          <i class="fa-solid fa-table-columns SnMr-2"></i>Mostrar columnas
+        </button>
+        <!-- <button class="SnList-item" cdkMenuItem [disabled]="!hasFilterByField(column.field)"
+          (click)="onTableMenuClick('clearFilter')">
+          <i class="fa-solid fa-filter-circle-xmark SnMr-2"></i>Borrar filtro
+        </button> -->
+      </ul>
+    </ng-template>
+      <ng-template #contentTemplate>
       <ng-content></ng-content>
     </ng-template>
   `,
@@ -69,7 +85,7 @@ import {
   //   '[class.ant-table-column-sort]': `sortOrder === 'descend' || sortOrder === 'ascend'`
   // },
   // providers: [NzDestroyService],
-  imports: [CommonModule],
+  imports: [CommonModule, CdkMenuModule],
   standalone: true
 })
 export class SnThAddOnComponent<T> {
@@ -104,4 +120,32 @@ export class SnThAddOnComponent<T> {
   // @Output() readonly nzSortOrderChange = new EventEmitter<string | null>();
   // @Output() readonly nzFilterChange = new EventEmitter<NzTableFilterValue>();
 
+
+  onTableMenuClick(key: string) {
+    // const colum = this.columns.find(item => item.field === field);
+    // if (colum === undefined) {
+    //   alert('ERROR: column not found');
+    //   return;
+    // }
+
+    // switch (key) {
+    //   case 'asc':
+    //     this.addNewSort(field, 'asc', false);
+    //     break;
+    //   case 'desc':
+    //     this.addNewSort(field, 'desc', false);
+    //     break;
+    //   case 'hideColumn':
+    //     this.onHideVisibility(colum.field);
+    //     break;
+    //   case 'showColumns':
+    //     this.tableShuffleIsOpen = true;
+    //     break;
+    //   case 'clearFilter':
+    //     this.removeFilter(colum);
+    //     break;
+    //   default:
+    //     break;
+    // }
+  }
 }

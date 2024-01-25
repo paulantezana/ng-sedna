@@ -1,0 +1,41 @@
+<div class="Paginate SnMt-2 SnMb-2">
+  <div class="Paginate-left">Mostrando: {{ pageSize }} de {{ length }}</div>
+  <div class="Paginate-items">
+    <ul class="SnPagination">
+      <li class="SnPagination-item" [class.disabled]="!showPrevious">
+        <span class="SnPagination-link" (click)="navigateToPage(pageIndex - 1)"><i class="fas fa-chevron-left"></i></span>
+      </li>
+      @if (startPage > 0) {
+        <li class="SnPagination-item">
+          <span class="SnPagination-link" (click)="navigateToPage(0)">1</span>
+        </li>
+        <li class="SnPagination-item disabled">
+          <span class="SnPagination-link">...</span>
+        </li>
+      }
+      @for (page of pages; track page) {
+        <li class="SnPagination-item" [class.active]="pageIndex == page">
+          <span class="SnPagination-link" (click)="navigateToPage(page)">{{ page + 1 }}</span>
+        </li>
+      }
+      @if (endPage < totalPages) {
+        <li class="SnPagination-item disabled">
+          <span class="SnPagination-link">...</span>
+        </li>
+        <li class="SnPagination-item">
+          <span class="SnPagination-link" (click)="navigateToPage(totalPages)">{{ totalPages + 1 }}</span>
+        </li>
+      }
+      <li class="SnPagination-item" [class.disabled]="!showNext">
+        <span class="SnPagination-link" (click)="navigateToPage(pageIndex + 1)"><i class="fas fa-chevron-right"></i></span>
+      </li>
+    </ul>
+  </div>
+  <div class="Paginate-right">
+    <select sn-input (change)="onChangePageSize($event)">
+      @for (opt of pageSizeOptions; track opt) {
+        <option [value]="opt">{{ opt }}</option>
+      }
+    </select>
+  </div>
+</div>

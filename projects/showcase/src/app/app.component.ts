@@ -5,7 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SnFormModule } from '../../../ngx-sedna/form';
 import { SnInputDirective } from '../../../ngx-sedna/input';
 import { SnButtonDirective } from '../../../ngx-sedna/button';
-import { DataTableComponent, DataTableModule, SnThAddOnComponent } from '../../../ngx-sedna/data-table';
+import { DataTableComponent, DataTableModule, SnDataTableQueryParams, SnThAddOnComponent } from '../../../ngx-sedna/data-table';
+import { CdkMenuModule } from '@angular/cdk/menu';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ import { DataTableComponent, DataTableModule, SnThAddOnComponent } from '../../.
     DataTableComponent,
     DataTableModule,
     SnThAddOnComponent,
+    CdkMenuModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -37,5 +39,9 @@ export class AppComponent {
       number: ['', Validators.required],
       serie: ['', Validators.required],
     });
+  }
+
+  onQueryParamsChange(params: SnDataTableQueryParams){
+    console.log(params, 'CAMBIOOOOO');
   }
 }
