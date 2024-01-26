@@ -1,0 +1,66 @@
+<div class="SnTable-head-caption">
+  <div class="SnTable-head-caption-title" (click)="onTableSort()">
+    <ng-content></ng-content>
+    @if(sortOrder === 'asc'){
+      <svg xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px" viewBox="0 0 320 512"><path d="M182.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8H288c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z"/></svg>
+    }
+    @if(sortOrder === 'desc'){
+      <svg xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px" viewBox="0 0 320 512"><path d="M182.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8H288c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128z"/></svg>
+    }
+  </div>
+  <div>
+    <button type="button" class="SnBtn sm icon" [cdkMenuTriggerFor]="tHeaderMenu">D</button>
+  </div>
+</div>
+<input type="text" class="SnForm-control sm">
+  <!-- <nz-table-filter
+    *ngIf="nzShowFilter || nzCustomFilter; else notFilterTemplate"
+    [contentTemplate]="notFilterTemplate"
+    [extraTemplate]="extraTemplate"
+    [customFilter]="nzCustomFilter"
+    [filterMultiple]="nzFilterMultiple"
+    [listOfFilter]="nzFilters"
+    (filterChange)="onFilterValueChange($event)"
+  ></nz-table-filter>
+  <ng-template #notFilterTemplate>
+    <ng-template [ngTemplateOutlet]="nzShowSort ? sortTemplate : contentTemplate"></ng-template>
+  </ng-template>
+  <ng-template #extraTemplate>
+    <ng-content select="[nz-th-extra]"></ng-content>
+    <ng-content select="nz-filter-trigger"></ng-content>
+  </ng-template>
+  <ng-template #sortTemplate>
+    <nz-table-sorters
+      [sortOrder]="sortOrder"
+      [sortDirections]="sortDirections"
+      [contentTemplate]="contentTemplate"
+    ></nz-table-sorters>
+  </ng-template> -->
+
+  <ng-template #tHeaderMenu>
+    <ul class="SnList menu" cdkMenu>
+      <button class="SnList-item" cdkMenuItem (click)="onTableMenuClick('asc')">
+        <svg xmlns="http://www.w3.org/2000/svg" class="snx-icon SnMr-2" viewBox="0 0 576 512"><path d="M151.6 42.4C145.5 35.8 137 32 128 32s-17.5 3.8-23.6 10.4l-88 96c-11.9 13-11.1 33.3 2 45.2s33.3 11.1 45.2-2L96 146.3V448c0 17.7 14.3 32 32 32s32-14.3 32-32V146.3l32.4 35.4c11.9 13 32.2 13.9 45.2 2s13.9-32.2 2-45.2l-88-96zM320 480h32c17.7 0 32-14.3 32-32s-14.3-32-32-32H320c-17.7 0-32 14.3-32 32s14.3 32 32 32zm0-128h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H320c-17.7 0-32 14.3-32 32s14.3 32 32 32zm0-128H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H320c-17.7 0-32 14.3-32 32s14.3 32 32 32zm0-128H544c17.7 0 32-14.3 32-32s-14.3-32-32-32H320c-17.7 0-32 14.3-32 32s14.3 32 32 32z"/></svg>
+        Ordenar Ascendente
+      </button>
+      <button class="SnList-item" cdkMenuItem (click)="onTableMenuClick('desc')">
+        <svg xmlns="http://www.w3.org/2000/svg" class="snx-icon SnMr-2" viewBox="0 0 576 512"><path d="M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z"/></svg>
+        Ordenar Descendente
+      </button>
+      <button class="SnList-item" cdkMenuItem (click)="onTableMenuClick('hideColumn')">
+        <svg xmlns="http://www.w3.org/2000/svg" class="snx-icon SnMr-2" viewBox="0 0 512 512"><path d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm64 64V416H224V160H64zm384 0H288V416H448V160z"/></svg>
+        Ocultar columna
+      </button>
+      <button class="SnList-item" cdkMenuItem (click)="onTableMenuClick('showColumns')">
+        <svg xmlns="http://www.w3.org/2000/svg" class="snx-icon SnMr-2" viewBox="0 0 512 512"><path d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm64 64V416H224V160H64zm384 0H288V416H448V160z"/></svg>
+        Mostrar columnas
+      </button>
+      <!-- <button class="SnList-item" cdkMenuItem [disabled]="!hasFilterByField(column.field)"
+        (click)="onTableMenuClick('clearFilter')">
+        <i class="fa-solid fa-filter-circle-xmark SnMr-2"></i>Borrar filtro
+      </button> -->
+    </ul>
+  </ng-template>
+  <!-- <ng-template #contentTemplate>
+    <ng-content></ng-content>
+  </ng-template> -->

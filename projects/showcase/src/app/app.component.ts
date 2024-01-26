@@ -7,6 +7,7 @@ import { SnInputDirective } from '../../../ngx-sedna/input';
 import { SnButtonDirective } from '../../../ngx-sedna/button';
 import { DataTableComponent, DataTableModule, SnDataTableQueryParams, SnThAddOnComponent } from '../../../ngx-sedna/data-table';
 import { CdkMenuModule } from '@angular/cdk/menu';
+import { SnFilter, SnFilterColumn, SnFilterModule } from '../../../ngx-sedna/filter';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ import { CdkMenuModule } from '@angular/cdk/menu';
     DataTableModule,
     SnThAddOnComponent,
     CdkMenuModule,
+    SnFilterModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -24,6 +26,11 @@ import { CdkMenuModule } from '@angular/cdk/menu';
 export class AppComponent {
   title = 'showcase';
 
+  filter:SnFilter[] = []
+  columns: SnFilterColumn[] = [
+    { title: 'Nombre', field: 'name', type: 'text' },
+    { title: 'Edad', field: 'age', type: 'number' }
+  ]
 
 
   form: FormGroup = this.getFormFields();

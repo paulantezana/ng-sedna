@@ -2,15 +2,21 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, combineLatest } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map, skip, switchMap, takeUntil } from 'rxjs/operators';
 import { SnDataTableQueryParams, SnDataTableSortOrder } from './data-table.types';
+import { SnFilter } from '../filter';
 
 @Injectable()
 export class SnDataTableService implements OnDestroy {
   private destroy$ = new Subject<boolean>();
+
   private pageIndex$ = new BehaviorSubject<number>(1);
   private pageSize$ = new BehaviorSubject<number>(10);
+  private filter$ = new BehaviorSubject<SnFilter[]>([]);
+  private sorter$ = new BehaviorSubject<any>([]);
 
   pageIndexDistinct$ = this.pageIndex$.pipe(distinctUntilChanged());
   pageSizeDistinct$ = this.pageSize$.pipe(distinctUntilChanged());
+  filterDistinct$ = this.filter$.pipe(distinctUntilChanged());
+  sorterDistinct$ = this.sorter$.pipe(distinctUntilChanged());
 
   listOfCalcOperator$ = new BehaviorSubject<
     Array<{
@@ -27,25 +33,16 @@ export class SnDataTableService implements OnDestroy {
   queryParams$: Observable<SnDataTableQueryParams> = combineLatest([
     this.pageIndexDistinct$,
     this.pageSizeDistinct$,
-    this.listOfCalcOperator$
+    this.filterDistinct$,
+    this.sorterDistinct$
   ]).pipe(
     debounceTime(0),
     skip(1),
-    map(([pageIndex, pageSize, listOfCalc]) => ({
+    map(([pageIndex, pageSize, filter, sorter]) => ({
       pageIndex,
       pageSize,
-      // sort: listOfCalc
-      //   .filter(item => item.sortFn)
-      //   .map(item => ({
-      //     key: item.key!,
-      //     value: item.sortOrder
-      //   })),
-      // filter: listOfCalc
-      //   .filter(item => item.filterFn)
-      //   .map(item => ({
-      //     key: item.key!,
-      //     value: item.filterValue
-      //   }))
+      filter,
+      sorter
     }))
   );
 
@@ -55,6 +52,14 @@ export class SnDataTableService implements OnDestroy {
 
   updatePageIndex(index: number): void {
     this.pageIndex$.next(index);
+  }
+
+  updateFilter(filter: SnFilter[]): void {
+    this.filter$.next(filter);
+  }
+
+  updateSorter(sorter: any): void {
+    this.sorter$.next(sorter);
   }
 
   ngOnDestroy(): void {

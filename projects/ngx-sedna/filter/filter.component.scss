@@ -1,0 +1,21 @@
+.filter-divider {
+  padding: 1rem 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+.filter-row {
+  display: flex;
+
+  &-close {
+    margin-right: .5rem;
+  }
+
+  &-content {
+    width: 100%;
+  }
+
+  .mat-mdc-form-field {
+    width: 100%;
+  }
+}
