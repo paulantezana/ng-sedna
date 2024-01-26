@@ -1,0 +1,38 @@
+<div class="SnDataTable-header">
+  <div class="SnDataTable-header-left">
+    @for (item of snFilter; track item) {
+      @for (eva of item.eval; track eva) {
+        <span class="SnTag SnMr-2 SnMb-2">
+          <span>{{ eva.prefix }}</span>
+          <span>{{ eva.title }}</span>
+          <strong>{{ eva.operator }}</strong>
+          <span>{{ eva.value1 }}</span>
+          @if (eva.operator === 'se encuentra entre (incluye)') {
+            <span>Y</span>
+            {{ eva.value2 }}
+          }
+          <button class="SnBtn radio icon">D</button>
+        </span>
+      }
+    }
+  </div>
+  <div class="SnDataTable-header-right">
+
+    <div class="SnBtn sm radio jsAction SnMb-2" (click)="openModal()">dd</div>
+
+    <div [ngClass]="{'SnModal-wrapper':true, 'visible': showModal}">
+      <div class="SnModal" style="max-width: 90vw">
+        <div class="SnModal-header"><i class="fa-solid fa-filter SnMr-2"></i>Filtro personalizado</div>
+        <div class="SnModal-body">
+          <sn-filter [snFilter]="snFilter" (snFilterChange)="onFilterChange($event)" [snFilterColumns]="getFilterColumn()"></sn-filter>
+          <div class="SnMt-3">
+            <button sn-button snShape="radio" [snBlock]="true" snType="primary" (click)="closeModal()"><i class="fa-solid fa-check SnMr-2"></i>Aplicar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

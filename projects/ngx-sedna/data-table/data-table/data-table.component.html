@@ -1,5 +1,5 @@
 <div class="SnDataTable">
-  <div class="SnDataTable-header"></div>
+  <sn-data-table-header [snFilter]="snFilter" [snColumns]="snColumns" ></sn-data-table-header>
   <div class="SnDataTable-body">
     <div class="SnDataTable-table SnTable-wrapper">
       <table class="SnTable">
@@ -8,13 +8,13 @@
     </div>
     <div class="SnDataTable-pagination">
 
-      <sn-pagination
+    <sn-pagination
       [pageSizeOptions]="snPageSizeOptions"
       [length]="snTotal"
       [pageSize]="snPageSize"
       [pageIndex]="snPageIndex"
       (pageChange)="onPageChange($event)"
-      />
+    />
     </div>
   </div>
   <div class="SnDataTable-footer"></div>

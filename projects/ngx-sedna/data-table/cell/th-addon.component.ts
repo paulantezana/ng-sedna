@@ -19,6 +19,7 @@ import {
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { Subject, filter, fromEvent, takeUntil } from 'rxjs';
 import { SnDataTableSortOrder } from '../data-table.types';
+import { SnDataTableService } from '../data-table.service';
 
 @Component({
   selector: 'th[snFilterable], th[snSortable]',
@@ -36,6 +37,8 @@ import { SnDataTableSortOrder } from '../data-table.types';
   standalone: true
 })
 export class SnThAddOnComponent<T> {
+  private snDataTableService = inject(SnDataTableService);
+
   private destroy$ = new Subject<boolean>();
 
   private ngZone = inject(NgZone);
@@ -104,6 +107,12 @@ export class SnThAddOnComponent<T> {
   onTableSort(){
     const nextOrder = this.getNextSortDirection(this.sortDirections, this.sortOrder!);
     this.sortOrder = nextOrder;
+  }
+
+  onKeyDownInputSearch(e: any) {
+    if (e.key === 'Enter' && this.snColumnField != undefined) {
+      this.snDataTableService.updateFilterFromTable(this.snColumnField, e?.target?.value || '')
+    }
   }
 
   onTableMenuClick(key: string) {

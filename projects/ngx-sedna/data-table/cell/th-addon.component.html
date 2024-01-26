@@ -12,7 +12,7 @@
     <button type="button" class="SnBtn sm icon" [cdkMenuTriggerFor]="tHeaderMenu">D</button>
   </div>
 </div>
-<input type="text" class="SnForm-control sm">
+<input type="text" class="SnForm-control sm" (keydown)="onKeyDownInputSearch($event)">
   <!-- <nz-table-filter
     *ngIf="nzShowFilter || nzCustomFilter; else notFilterTemplate"
     [contentTemplate]="notFilterTemplate"

@@ -1,11 +1,11 @@
-<sn-filter [snFilters]="filter" [snFilterColumns]="columns"></sn-filter>
+<sn-filter [snFilter]="filter" [snFilterColumns]="columns"></sn-filter>
 <div class="SnDivider"></div>
 <div style="padding: 1rem;">
-  <sn-data-table (snQueryParams)="onQueryParamsChange($event)">
+  <sn-data-table (snQueryParams)="onQueryParamsChange($event)" [snColumns]="dataColumns">
     <thead>
       <tr>
-        <th [snFilterable]="true">Col 1</th>
-        <th [snFilterable]="true">Col 2</th>
+        <th [snFilterable]="true" snColumnField="name">Col 1</th>
+        <th [snFilterable]="true" snColumnField="age">Col 2</th>
       </tr>
     </thead>
     <tbody>

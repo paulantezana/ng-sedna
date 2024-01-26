@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SnFormModule } from '../../../ngx-sedna/form';
 import { SnInputDirective } from '../../../ngx-sedna/input';
 import { SnButtonDirective } from '../../../ngx-sedna/button';
-import { DataTableComponent, DataTableModule, SnDataTableQueryParams, SnThAddOnComponent } from '../../../ngx-sedna/data-table';
+import { DataTableComponent, DataTableModule, SnDataTableColumn, SnDataTableQueryParams, SnThAddOnComponent } from '../../../ngx-sedna/data-table';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { SnFilter, SnFilterColumn, SnFilterModule } from '../../../ngx-sedna/filter';
 
@@ -30,6 +30,11 @@ export class AppComponent {
   columns: SnFilterColumn[] = [
     { title: 'Nombre', field: 'name', type: 'text' },
     { title: 'Edad', field: 'age', type: 'number' }
+  ]
+
+  dataColumns: SnDataTableColumn[] = [
+    { title: 'Nombre', field: 'name', type: 'text', filterable: true, visible: true },
+    { title: 'Edad', field: 'age', type: 'number', filterable: true, visible: true }
   ]
 
 

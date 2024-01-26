@@ -1,14 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges, inject } from '@angular/core';
 import { SnFormModule } from '../form';
 import { SnInputDirective } from '../input';
 import { SnButtonDirective } from '../button';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { SnFilter, SnFilterColumn, SnFilterEvaluation, SnFilterNumericOperator, SnFilterPrefix, SnFilterStringOperator } from './filter.types';
+import { SnFilterService } from './filter.service';
+import { Subject, filter, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'sn-filter',
   standalone: true,
+  providers: [SnFilterService],
   imports: [
     CommonModule,
     SnFormModule,
@@ -21,8 +24,13 @@ import { SnFilter, SnFilterColumn, SnFilterEvaluation, SnFilterNumericOperator, 
   styleUrls: ['./filter.component.scss']
 })
 export class SnFilterComponent {
-  @Input() snFilters: SnFilter[] = [];
+  private snFilterService = inject(SnFilterService);
+  private destroy$ = new Subject<void>();
+
+  @Input() snFilter: SnFilter[] = [];
   @Input() snFilterColumns: SnFilterColumn[] = [];
+
+  @Output() readonly snFilterChange = new EventEmitter<SnFilter[]>();
 
   prefixData: SnFilterPrefix[] = [
     { id: 'DONDE', description: 'Donde' },
@@ -52,13 +60,22 @@ export class SnFilterComponent {
     { id: 'no tiene valor', description: 'no tiene valor' },
   ];
 
+  ngOnInit(): void {
+    const { filterDistinct$, filterParams$ } = this.snFilterService;
+    filterParams$.pipe(takeUntil(this.destroy$)).subscribe(this.snFilterChange);
+    filterDistinct$.pipe(takeUntil(this.destroy$)).subscribe(filter => {
+      if (JSON.stringify(filter) !== JSON.stringify(this.snFilter)) {
+        this.snFilter = filter;
+      }
+    });
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
-    // console.log(changes, '_CAMBIOS_');
-    // if (changes.snFilterColumns) {
-    //   // Aquí puedes realizar las acciones que necesites cuando la propiedad 'snFilterColumns' cambie.
-    //   // Por ejemplo, puedes imprimir los cambios en la consola para depurar:
-    //   console.log('Cambios en la propiedad "snFilterColumns":', changes.snFilterColumns);
-    // }
+    const { snFilters } = changes;
+    if (snFilters) {
+      this.snFilter = this.snFilter || [];
+      this.snFilterService.updateFilter(this.snFilter);
+    }
   }
 
   trackByFn(index: number, item: SnFilter) {
@@ -70,14 +87,14 @@ export class SnFilterComponent {
   }
 
   onRemoveFilter(id: number, parentId: number) {
-    const indexParent = this.snFilters.findIndex(item => item.id === parentId);
+    const indexParent = this.snFilter.findIndex(item => item.id === parentId);
     if (indexParent === -1) {
       alert('ERROR: FIND FILTER PARENT INDEX');
     }
 
-    this.snFilters[indexParent].eval = this.snFilters[indexParent].eval.filter(item => item.id !== id);
-    if (this.snFilters[indexParent].eval.length === 0) {
-      this.snFilters.splice(indexParent, 1);
+    this.snFilter[indexParent].eval = this.snFilter[indexParent].eval.filter(item => item.id !== id);
+    if (this.snFilter[indexParent].eval.length === 0) {
+      this.snFilter.splice(indexParent, 1);
     }
   }
 
@@ -87,7 +104,7 @@ export class SnFilterComponent {
     const currentColumn = this.snFilterColumns.find(item => item.field === selectedValue);
     const type = currentColumn?.type ?? 'text';
 
-    this.updateCustomFilter({
+    this.snFilterService.updateEvalValues({
       field: selectedValue,
       type,
       operator: this.isNumberOperator(type) ? '=' : 'es',
@@ -97,99 +114,33 @@ export class SnFilterComponent {
 
   onSelectOperator(event: Event, id: number, parentId: number) {
     const selectedValue = (event.target as HTMLSelectElement).value;
-    this.updateCustomFilter({
+    this.snFilterService.updateEvalValues({
       operator: selectedValue,
     }, id, parentId);
   }
 
   onChangeValue1(event: any, id: number, parentId: number) {
-    this.updateCustomFilter({
+    this.snFilterService.updateEvalValues({
       value1: event.target.value,
     }, id, parentId);
   }
 
   onChangeValue2(event: any, id: number, parentId: number) {
-    this.updateCustomFilter({
+    this.snFilterService.updateEvalValues({
       value2: event.target.value,
     }, id, parentId);
   }
 
   onAddFilter(key: string, parentId: number) {
-    console.log(this.snFilters, 'FILTROSSSSSSSSSSSSSSSSSSS');
-
-    const firstColumn = this.snFilterColumns[0];
-    if (firstColumn === undefined) {
-      alert('ERROR: Filter add snFilterColumns not found');
-      return;
-    }
-
-    switch (key) {
-      case 'SI': // Si
-      case 'SI_NO': // Si no
-        const indexMatch = this.snFilters.findIndex(item => item.id === parentId);
-        const newfilter: SnFilterEvaluation = {
-          id: this.getNewIndexId(),
-          logicalOperator: 'AND',
-          prefix: key === 'SI' ? 'DONDE' : 'DONDE NO',
-          operator: (firstColumn.type || 'text') === 'text' ? 'contiene' : '=',
-          title: firstColumn.title,
-          field: firstColumn.field,
-          type: firstColumn.type || 'text',
-          value1: '',
-          value2: ''
-        };
-
-        if (indexMatch === -1) {
-          this.snFilters.push({
-            id: this.snFilters.length + 1,
-            logicalOperator: 'AND',
-            prefix: key === 'SI' ? 'DONDE' : 'DONDE NO',
-            eval: [newfilter]
-          });
-        } else {
-          this.snFilters[indexMatch].eval = [...this.snFilters[indexMatch].eval, newfilter];
-        }
-        break;
-      case 'O': // o
-      case 'O_NO': // o no
-        const filterEval: SnFilterEvaluation = {
-          id: this.getNewIndexId(),
-          logicalOperator: 'OR',
-          prefix: key === 'O' ? 'DONDE' : 'DONDE NO',
-          operator: (firstColumn.type || 'text') === 'text' ? 'contiene' : '=',
-          title: firstColumn.title,
-          field: firstColumn.field,
-          type: firstColumn.type || 'text',
-          value1: '',
-          value2: ''
-        };
-        this.snFilters.push({
-          id: this.snFilters.length + 1,
-          logicalOperator: 'OR',
-          prefix: key === 'O' ? 'DONDE' : 'DONDE NO',
-          eval: [filterEval]
-        });
-        break;
-      default:
-        alert('ERROR: FILTER UNSUPPORT');
-        break;
-    }
-  }
-
-  private updateCustomFilter(newValues: any, id: number, parentId: number) {
-    const indexParent = this.snFilters.findIndex(item => item.id === parentId);
-    if (indexParent === -1) {
-      alert('ERROR: FILTER UPDATE');
-    }
-
-    this.snFilters[indexParent].eval = this.snFilters[indexParent].eval.map(item => item.id == id ? ({ ...item, ...newValues }) : item);
-  }
-
-  private getNewIndexId() {
-    return this.snFilters.reduce((a, b) => a + b.eval.length, 0) + 1
+    this.snFilterService.addFilter(key, parentId, this.snFilterColumns);
   }
 
   isNumberOperator(type: string): boolean {
     return type === 'number' || type === 'date' || type === 'datetime-local'
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

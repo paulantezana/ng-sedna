@@ -1,12 +1,12 @@
-@if (snFilters.length > 0) {
-@for (item of snFilters; track trackByFn(i, item); let i = $index) {
+@if (snFilter.length > 0) {
+@for (item of snFilter; track trackByFn(i, item); let i = $index) {
 <div>
-  @if (snFilters.length > 1 && item.logicalOperator === 'OR' && item.prefix === 'DONDE') {
+  @if (snFilter.length > 1 && item.logicalOperator === 'OR' && item.prefix === 'DONDE') {
   <div class="filter-divider">
     {{ i === 0 ? 'Ya sea' : 'O' }}
   </div>
   }
-  @if (snFilters.length > 1 && item.logicalOperator === 'OR' && item.prefix === 'DONDE NO') {
+  @if (snFilter.length > 1 && item.logicalOperator === 'OR' && item.prefix === 'DONDE NO') {
   <div class="filter-divider">
     Ni tampoco
   </div>
