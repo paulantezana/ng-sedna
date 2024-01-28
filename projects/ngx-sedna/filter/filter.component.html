@@ -13,10 +13,7 @@
   }
   @for (eva of item.eval; track trackByFnEval(y, eva); let y = $index) {
   <div class="filter-row">
-    <button sn-button [snIcon]="true" snShape="radio" class="filter-row-close" aria-label="Eliminar filtro"
-      (click)="onRemoveFilter(eva.id, item.id)">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
+    <button sn-button [snIcon]="true" snShape="radio" class="filter-row-close" aria-label="Eliminar filtro"(click)="onRemoveFilter(eva.id, item.id)">X</button>
     <div class="SnGrid m-grid-2 l-grid-3 lg-grid-9 xl-grid-5 col-gap filter-row-content">
       <sn-form-item snType="floating">
         <label sn-label>Negacion</label>
@@ -110,7 +107,7 @@
     </div>
   </div>
   }
-  <button sn-button snShape="radio" [cdkMenuTriggerFor]="addFilter" style="margin-left: 2.5rem;"><i
+  <button sn-button snShape="radio" snSize="small" [cdkMenuTriggerFor]="addFilter" style="margin-left: 2.5rem;"><i
       class="fa-solid fa-plus SnMr-2"></i>Añadir filtro</button>
   <ng-template #addFilter>
     <div class="SnList menu" cdkMenu>
@@ -123,7 +120,7 @@
 </div>
 }
 } @else {
-<button sn-button snShape="radio" [cdkMenuTriggerFor]="addMainFilter"><i class="fa-solid fa-plus SnMr-2"></i>Añadir
+<button sn-button snShape="radio" snSize="small" [cdkMenuTriggerFor]="addMainFilter"><i class="fa-solid fa-plus SnMr-2"></i>Añadir
   filtro</button>
 <ng-template #addMainFilter>
   <div class="SnList menu" cdkMenu>

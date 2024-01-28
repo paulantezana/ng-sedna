@@ -23,8 +23,8 @@ export class DataTableComponent {
 
   private destroy$ = new Subject<void>();
 
-  @Input() snPageSizeOptions = [10, 25, 50, 100, 250, 500, 1000];
-  @Input() snPageSize = 10;
+  @Input() snPageSizeOptions = [10, 20, 30, 50, 100, 250, 500, 1000];
+  @Input() snPageSize = 20;
   @Input() snTotal = 0;
   @Input() snPageIndex = 1;
 
@@ -62,6 +62,7 @@ export class DataTableComponent {
     });
 
     filterDistinct$.pipe(takeUntil(this.destroy$)).subscribe(filter => {
+      console.log({ filter, KLT: this.snFilter }, 'ME_DISPARE_DESDE_LA_TABLA');
       if (JSON.stringify(filter) !== JSON.stringify(this.snFilter)) {
         this.snFilter = filter;
       }
@@ -69,17 +70,24 @@ export class DataTableComponent {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { snColumns } = changes;
+    const { snColumns, snPageSize } = changes;
 
     if (snColumns) {
       this.snColumns = this.snColumns || [];
       this.snDataTableService.updateColumns(this.snColumns);
     }
+
+    if(snPageSize){
+      this.snDataTableService.updatePageSize(this.snPageSize);
+    }
   }
 
+  onFilterChange(filter: SnFilter[]) {
+    console.log(filter, 'CAMBIO_TABLA');
+    this.snDataTableService.updateFilter(filter);
+  }
 
-
-  onPageChange(page:any){
+  onPageChange(page: any) {
     this.snDataTableService.updatePageIndex(page.pageIndex);
     this.snDataTableService.updatePageSize(page.pageSize);
   }

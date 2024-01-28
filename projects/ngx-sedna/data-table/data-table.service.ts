@@ -1,38 +1,38 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, combineLatest } from 'rxjs';
-import { debounceTime, distinct, distinctUntilChanged, filter, map, skip, switchMap, takeUntil } from 'rxjs/operators';
-import { SnDataTableColumn, SnDataTableQueryParams, SnDataTableSortOrder } from './data-table.types';
+import { debounceTime, distinctUntilChanged, map, skip } from 'rxjs/operators';
+import { SnDataTableColumn, SnDataTableQueryParams, SnDataTableSort, SnDataTableSortOrder } from './data-table.types';
 import { SnFilter, SnFilterEvaluation } from '../filter';
+import { filterTableParentId } from './constants';
 
 @Injectable()
 export class SnDataTableService implements OnDestroy {
   private destroy$ = new Subject<boolean>();
 
   private pageIndex$ = new BehaviorSubject<number>(1);
-  private pageSize$ = new BehaviorSubject<number>(10);
+  private pageSize$ = new BehaviorSubject<number>(20);
   private filter$ = new BehaviorSubject<SnFilter[]>([]);
-  private sorter$ = new BehaviorSubject<any>([]);
+  private sort$ = new BehaviorSubject<SnDataTableSort[]>([]);
   private columns$ = new BehaviorSubject<SnDataTableColumn[]>([]);
 
   pageIndexDistinct$ = this.pageIndex$.pipe(distinctUntilChanged());
   pageSizeDistinct$ = this.pageSize$.pipe(distinctUntilChanged());
-  // filterDistinct$ = this.filter$.pipe(distinctUntilChanged((prev, curr) => JSON.stringify(prev) == JSON.stringify(curr)));
-  filterDistinct$ = this.filter$.pipe(distinct(e => JSON.stringify(e)))
-  sorterDistinct$ = this.sorter$.pipe(distinctUntilChanged());
+  filterDistinct$ = this.filter$.pipe(distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)));
+  sortDistinct$ = this.sort$.pipe(distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)));
 
   queryParams$: Observable<SnDataTableQueryParams> = combineLatest([
     this.pageIndexDistinct$,
     this.pageSizeDistinct$,
     this.filterDistinct$,
-    this.sorterDistinct$
+    this.sortDistinct$
   ]).pipe(
     debounceTime(0),
     skip(1),
-    map(([pageIndex, pageSize, filter, sorter]) => ({
+    map(([pageIndex, pageSize, filter, sort]) => ({
       pageIndex,
       pageSize,
       filter,
-      sorter
+      sort: sort.filter(item => !!item.direction)
     }))
   );
 
@@ -52,34 +52,37 @@ export class SnDataTableService implements OnDestroy {
     this.filter$.next(filter);
   }
 
-  updateSorter(sorter: any): void {
-    this.sorter$.next(sorter);
+  updateSorter(field: string, direction: SnDataTableSortOrder): void {
+    // if(!!direction){
+      this.sort$.next([{ field, direction }]);
+    // } else {
+    //   this.sort$.next([]);
+    // }
   }
 
   updateFilterFromTable(field: string, value: string) {
-    const filterParentId = 0;
     const columns = this.columns$.getValue();
 
     //  Get columns
     const column = columns.find(item => item.field === field);
-    if(column === undefined){
+    if (column === undefined) {
       return;
     }
 
     // Get Current Filter
-    let newFilter = this.filter$.getValue();
+    const currentFilter = this.filter$.getValue();
+    const indexMatch = currentFilter.findIndex(item => item.id === filterTableParentId);
+    const columnMatch = currentFilter[indexMatch]?.eval?.find(item => item.field === column.field);
 
-    const indexMatch = newFilter.findIndex(item => item.id === filterParentId);
-    const columnMatch = newFilter[indexMatch]?.eval?.find(item => item.field === column.field);
+    let newFilter: SnFilter[] = [];
 
+    // Remove Is Empty
     if (value.trim() === '') {
-      if (columnMatch !== undefined) {
-        newFilter[indexMatch].eval = newFilter[indexMatch].eval.filter(item => item.field !== column.field); // delete
-        if (newFilter[indexMatch].eval.length === 0) {
-          newFilter.splice(indexMatch, 1);
-        }
-      }
-      // Set next
+      newFilter = currentFilter.map(flt => flt.id === filterTableParentId ? ({
+        ...flt,
+        eval: flt.eval.filter(item => item.field !== field)
+      }) : flt).filter(item => item.eval.length > 1);
+
       this.filter$.next(newFilter);
       return;
     }
@@ -96,21 +99,37 @@ export class SnDataTableService implements OnDestroy {
       value2: ''
     };
 
-    if (columnMatch !== undefined) {
-      newFilter[indexMatch].eval = newFilter[indexMatch].eval.map(item => item.field === column.field ? ({ ...item, value1: value }) : item);
-    } else if (indexMatch !== -1) {
-      newFilter[indexMatch].eval = [...newFilter[indexMatch].eval, newEvaluation];
-    } else {
-      newFilter.push({
-        id: filterParentId,
+    if (columnMatch !== undefined) { // Update
+      newFilter = currentFilter.map(flt => flt.id === filterTableParentId ? ({
+        ...flt,
+        eval: flt.eval.map(item => item.field === field ? ({ ...item, value1: value }) : item)
+      }) : flt);
+    } else if (indexMatch !== -1) { // Add Colum Filter
+      newFilter = currentFilter.map(flt => flt.id === filterTableParentId ? ({
+        ...flt,
+        eval: [...flt.eval, newEvaluation]
+      }) : flt);
+    } else { // First filter
+      newFilter = [...currentFilter, {
+        id: filterTableParentId,
         logicalOperator: 'OR',
         prefix: 'DONDE',
         eval: [newEvaluation]
-      });
+      }];
     }
 
     // Set next
-    console.log({ newFilter }, '_add_filter_');
+    const filter = this.filter$.getValue();
+    console.log({ newFilter, filter }, '_add_filter_from_table');
+    this.filter$.next(newFilter);
+  }
+
+  removeFilterFromTable(id: number, parentId: number){
+    const filter = this.filter$.getValue();
+    const newFilter = filter.map((flt) => flt.id === parentId ? ({
+      ...flt,
+      eval: flt.eval.filter(item => item.id !== id)
+    }) : flt).filter(flt => flt.eval.length > 0);
     this.filter$.next(newFilter);
   }
 
@@ -118,7 +137,6 @@ export class SnDataTableService implements OnDestroy {
     const filter = this.filter$.getValue();
     return filter.reduce((a, b) => a + b.eval.length, 0) + 1
   }
-
 
   ngOnDestroy(): void {
     this.destroy$.next(true);

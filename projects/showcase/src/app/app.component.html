@@ -1,18 +1,30 @@
 <sn-filter [snFilter]="filter" [snFilterColumns]="columns"></sn-filter>
 <div class="SnDivider"></div>
 <div style="padding: 1rem;">
-  <sn-data-table (snQueryParams)="onQueryParamsChange($event)" [snColumns]="dataColumns">
+  <sn-data-table (snQueryParams)="onQueryParamsChange($event)" [snPageIndex]="pageIndex" [snPageSize]="pageSize" [snTotal]="total" [snColumns]="dataColumns">
     <thead>
       <tr>
-        <th [snFilterable]="true" snColumnField="name">Col 1</th>
-        <th [snFilterable]="true" snColumnField="age">Col 2</th>
+        @for (item of dataColumns; track $index) {
+          <th [snFilterable]="item.filterable" [snColumnField]="item.field" [snSortable]="item.sortable">{{ item.title }}</th>
+        }
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Name 1</td>
-        <td>Name 2</td>
-      </tr>
+      @for (row of tableData; track $index) {
+        <tr>
+          @for (item of dataColumns; track $index) {
+            @if (item.field === 'logo') {
+              <td>
+                <div class="SnAvatar" style="width: 28px; height: 28px;">
+                  <img class="SnAvatar-img" src="https://static.facturacionelectronicaperu.com/companies/cp_53/logo_square.jpg" alt="avatar">
+                </div>
+              </td>
+            } @else {
+              <td>{{ row[item.field] }}</td>
+            }
+          }
+        </tr>
+      }
     </tbody>
   </sn-data-table>
 </div>

@@ -1,4 +1,15 @@
-.snx-icon{
-  width: 16px;
-  height: 16px;
+.SnDataTableCaption-right {
+  .SnBtn {
+    border: 0;
+    box-shadow: none;
+    outline: 0;
+
+    &:hover,
+    &:active,
+    &:focus {
+      border: 0;
+      box-shadow: none;
+      outline: 0;
+    }
+  }
 }

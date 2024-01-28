@@ -1,25 +1,19 @@
-import { CommonModule, NgIf, NgTemplateOutlet } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
-  ElementRef,
-  EventEmitter,
   Input,
-  NgZone,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChange,
-  SimpleChanges,
-  ViewEncapsulation,
   inject
 } from '@angular/core';
 
 import { CdkMenuModule } from '@angular/cdk/menu';
-import { Subject, filter, fromEvent, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { SnDataTableSortOrder } from '../data-table.types';
 import { SnDataTableService } from '../data-table.service';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faArrowUpWideShort, faArrowDownWideShort, faTableColumns, faSortUp, faSortDown, faAngleDown, faFilter, faFilterCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { SnFilterEvaluation } from '../../filter';
+import { filterTableParentId } from '../constants';
 
 @Component({
   selector: 'th[snFilterable], th[snSortable]',
@@ -33,7 +27,7 @@ import { SnDataTableService } from '../data-table.service';
   //   '[class.ant-table-column-sort]': `sortOrder === 'descend' || sortOrder === 'ascend'`
   // },
   // providers: [NzDestroyService],
-  imports: [CommonModule, CdkMenuModule],
+  imports: [CommonModule, CdkMenuModule, FontAwesomeModule],
   standalone: true
 })
 export class SnThAddOnComponent<T> {
@@ -41,8 +35,14 @@ export class SnThAddOnComponent<T> {
 
   private destroy$ = new Subject<boolean>();
 
-  private ngZone = inject(NgZone);
-  private host = inject(ElementRef<HTMLElement>);
+  faArrowUpWideShort = faArrowUpWideShort;
+  faArrowDownWideShort = faArrowDownWideShort;
+  faTableColumns = faTableColumns;
+  faSortUp = faSortUp;
+  faSortDown = faSortDown;
+  faAngleDown = faAngleDown;
+  faFilter = faFilter;
+  faFilterCircleXmark = faFilterCircleXmark;
 
   // static ngAcceptInputType_nzShowSort: BooleanInput;
   // static ngAcceptInputType_nzShowFilter: BooleanInput;
@@ -53,6 +53,12 @@ export class SnThAddOnComponent<T> {
   // nzFilterValue: NzTableFilterValue = null;
   sortOrder: SnDataTableSortOrder = null;
   sortDirections: SnDataTableSortOrder[] = ['asc', 'desc', null];
+  filterEvaluation?: SnFilterEvaluation;
+
+
+  // filterValue: string = '';
+  // filterValue: string = '';
+
   // private sortOrderChange$ = new Subject<NzTableSortOrder>();
   // private isNzShowSortChanged = false;
   // private isNzShowFilterChanged = false;
@@ -60,8 +66,8 @@ export class SnThAddOnComponent<T> {
 
   // selector: 'th[snFilterable], th[snSortable]',
 
-  @Input() snFilterable = true;
-  @Input() snSortable = true;
+  @Input() snFilterable?: boolean = true;
+  @Input() snSortable?: boolean = true;
   @Input() snColumnField?: string;
   // @Input() nzSortOrder: NzTableSortOrder = null;
   // @Input() nzSortPriority: number | boolean = false;
@@ -78,21 +84,29 @@ export class SnThAddOnComponent<T> {
 
 
   ngOnInit(): void {
-    // this.ngZone.runOutsideAngular(() =>
-    //   fromEvent(this.host.nativeElement, 'click')
-    //     .pipe(
-    //       // filter(() => this.nzShowSort),
-    //       takeUntil(this.destroy$)
-    //     )
-    //     .subscribe(() => {
-    //       console.log('NANI')
-    //       // const nextOrder = this.getNextSortDirection(this.sortDirections, this.sortOrder!);
-    //       // this.ngZone.run(() => {
-    //       //   this.setSortOrder(nextOrder);
-    //       //   this.manualClickOrder$.next(this);
-    //       // });
-    //     })
-    // );
+    const { sortDistinct$, filterDistinct$ } = this.snDataTableService;
+
+    sortDistinct$.pipe(takeUntil(this.destroy$)).subscribe(sort => {
+      const currentSort = sort.find(item => item.field === this.snColumnField)
+      if (currentSort && currentSort.direction !== this.sortOrder) {
+        this.sortOrder = currentSort.direction;
+      }
+    });
+
+    filterDistinct$.pipe(takeUntil(this.destroy$)).subscribe(filter => {
+      const indexMatch = filter.findIndex(item => item.id === filterTableParentId);
+      const evaluation = filter[indexMatch]?.eval?.find(item => item.field === this.snColumnField);
+
+      // Reset if not exist
+      if (!evaluation) {
+        this.filterEvaluation = undefined;
+      }
+
+      // Set current evaluation
+      if (JSON.stringify(evaluation ?? {}) !== JSON.stringify(this.filterEvaluation ?? {})) {
+        this.filterEvaluation = evaluation;
+      }
+    });
   }
 
   getNextSortDirection(sortDirections: SnDataTableSortOrder[], current: SnDataTableSortOrder): SnDataTableSortOrder {
@@ -104,43 +118,29 @@ export class SnThAddOnComponent<T> {
     }
   }
 
-  onTableSort(){
+  onSortToggle() {
     const nextOrder = this.getNextSortDirection(this.sortDirections, this.sortOrder!);
-    this.sortOrder = nextOrder;
+    if (!!this.snColumnField && this.snSortable) {
+      this.snDataTableService.updateSorter(this.snColumnField, nextOrder);
+    }
+  }
+
+  onSort(direction: SnDataTableSortOrder) {
+    if (!!this.snColumnField) {
+      this.snDataTableService.updateSorter(this.snColumnField, direction);
+    }
   }
 
   onKeyDownInputSearch(e: any) {
-    if (e.key === 'Enter' && this.snColumnField != undefined) {
+    if (e.key === 'Enter' && !!this.snColumnField) {
       this.snDataTableService.updateFilterFromTable(this.snColumnField, e?.target?.value || '')
     }
   }
 
-  onTableMenuClick(key: string) {
-    // const colum = this.columns.find(item => item.field === field);
-    // if (colum === undefined) {
-    //   alert('ERROR: column not found');
-    //   return;
-    // }
-
-    // switch (key) {
-    //   case 'asc':
-    //     this.addNewSort(field, 'asc', false);
-    //     break;
-    //   case 'desc':
-    //     this.addNewSort(field, 'desc', false);
-    //     break;
-    //   case 'hideColumn':
-    //     this.onHideVisibility(colum.field);
-    //     break;
-    //   case 'showColumns':
-    //     this.tableShuffleIsOpen = true;
-    //     break;
-    //   case 'clearFilter':
-    //     this.removeFilter(colum);
-    //     break;
-    //   default:
-    //     break;
-    // }
+  onRemoveFilter(){
+    if(!!this.filterEvaluation){
+      this.snDataTableService.removeFilterFromTable(this.filterEvaluation.id, filterTableParentId);
+    }
   }
 
   ngOnDestroy(): void {

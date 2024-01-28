@@ -71,8 +71,9 @@ export class SnFilterComponent {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { snFilters } = changes;
-    if (snFilters) {
+    const { snFilter } = changes;
+
+    if (snFilter) {
       this.snFilter = this.snFilter || [];
       this.snFilterService.updateFilter(this.snFilter);
     }
@@ -87,15 +88,7 @@ export class SnFilterComponent {
   }
 
   onRemoveFilter(id: number, parentId: number) {
-    const indexParent = this.snFilter.findIndex(item => item.id === parentId);
-    if (indexParent === -1) {
-      alert('ERROR: FIND FILTER PARENT INDEX');
-    }
-
-    this.snFilter[indexParent].eval = this.snFilter[indexParent].eval.filter(item => item.id !== id);
-    if (this.snFilter[indexParent].eval.length === 0) {
-      this.snFilter.splice(indexParent, 1);
-    }
+    this.snFilterService.removeFilter(id, parentId);
   }
 
   onSelectColumn(event: Event, id: number, parentId: number) {

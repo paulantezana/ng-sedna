@@ -1,38 +1,45 @@
-<div class="SnDataTable-header">
-  <div class="SnDataTable-header-left">
-    @for (item of snFilter; track item) {
+<div class="SnDataTable-toolbar">
+  <div class="SnDataTable-toolbar-left">
+    @if (snFilter.length > 0) {
+      <span>Filtro:</span>
+    }
+    @for (item of snFilter; track item; let i = $index) {
+      @if (snFilter.length > 1 && item.logicalOperator === 'OR' && item.prefix === 'DONDE') {
+        <div>{{ i === 0 ? 'Ya sea' : 'O' }}</div>
+      }
+      @if (snFilter.length > 1 && item.logicalOperator === 'OR' && item.prefix === 'DONDE NO') {
+        <div>Ni tampoco</div>
+      }
       @for (eva of item.eval; track eva) {
-        <span class="SnTag SnMr-2 SnMb-2">
-          <span>{{ eva.prefix }}</span>
-          <span>{{ eva.title }}</span>
-          <strong>{{ eva.operator }}</strong>
+        <span class="SnTag SnMr-2 SnMb-2" (click)="openModal()">
+          <span class="SnMr-1">{{ eva.prefix }}</span>
+          <span class="SnMr-1">{{ eva.title }}</span>
+          <strong class="SnMr-1">{{ eva.operator }}</strong>
           <span>{{ eva.value1 }}</span>
           @if (eva.operator === 'se encuentra entre (incluye)') {
             <span>Y</span>
             {{ eva.value2 }}
           }
-          <button class="SnBtn radio icon">D</button>
+          <button class="SnBtn radio icon SnMl-2" (click)="removeFilter($event, eva.id, item.id)">X</button>
         </span>
       }
     }
   </div>
-  <div class="SnDataTable-header-right">
-
-    <div class="SnBtn sm radio jsAction SnMb-2" (click)="openModal()">dd</div>
-
+  <div class="SnDataTable-toolbar-right">
+    <div class="SnBtn sm radio jsAction SnMb-2" (click)="openModal()"><fa-icon [icon]="faFilter"></fa-icon></div>
     <div [ngClass]="{'SnModal-wrapper':true, 'visible': showModal}">
       <div class="SnModal" style="max-width: 90vw">
-        <div class="SnModal-header"><i class="fa-solid fa-filter SnMr-2"></i>Filtro personalizado</div>
+        <div class="SnModal-close" (click)="closeModal()" data-modalclose="saleModalFilter" id="saleModalFilterClose">X</div>
+        <div class="SnModal-header"><i class="fa-solid fa-filter SnMr-2"></i>Filtro</div>
         <div class="SnModal-body">
           <sn-filter [snFilter]="snFilter" (snFilterChange)="onFilterChange($event)" [snFilterColumns]="getFilterColumn()"></sn-filter>
           <div class="SnMt-3">
-            <button sn-button snShape="radio" [snBlock]="true" snType="primary" (click)="closeModal()"><i class="fa-solid fa-check SnMr-2"></i>Aplicar</button>
+            <button sn-button snShape="radio" [snBlock]="true" snType="primary" (click)="closeApplyModal()"><fa-icon [icon]="faCheck" class="SnMr-2"></fa-icon>Aplicar</button>
           </div>
         </div>
       </div>
     </div>
 
+    <div class="SnBtn sm radio jsAction SnMb-2 SnMl-2"><fa-icon [icon]="faTableColumns"></fa-icon></div>
   </div>
-
-
 </div>

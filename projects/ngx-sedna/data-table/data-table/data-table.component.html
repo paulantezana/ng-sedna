@@ -1,21 +1,14 @@
 <div class="SnDataTable">
-  <sn-data-table-header [snFilter]="snFilter" [snColumns]="snColumns" ></sn-data-table-header>
+  <sn-data-table-header [snFilter]="snFilter" [snColumns]="snColumns"
+    (snFilterChange)="onFilterChange($event)"></sn-data-table-header>
   <div class="SnDataTable-body">
     <div class="SnDataTable-table SnTable-wrapper">
       <table class="SnTable">
         <ng-template [ngTemplateOutlet]="contentTemplate"></ng-template>
       </table>
     </div>
-    <div class="SnDataTable-pagination">
-
-    <sn-pagination
-      [pageSizeOptions]="snPageSizeOptions"
-      [length]="snTotal"
-      [pageSize]="snPageSize"
-      [pageIndex]="snPageIndex"
-      (pageChange)="onPageChange($event)"
-    />
-    </div>
+    <sn-pagination [pageSizeOptions]="snPageSizeOptions" [length]="snTotal" [pageSize]="snPageSize"
+      [pageIndex]="snPageIndex" (pageChange)="onPageChange($event)" />
   </div>
   <div class="SnDataTable-footer"></div>
 </div>

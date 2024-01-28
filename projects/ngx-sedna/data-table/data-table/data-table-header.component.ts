@@ -6,13 +6,14 @@ import { SnDataTableColumn, SnDataTableQueryParams } from '../data-table.types';
 import { SnFilter, SnFilterColumn, SnFilterModule } from '../../filter';
 import { SnButtonDirective } from '../../button';
 
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCheck, faFilter, faTableColumns } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'sn-data-table-header',
   standalone: true,
   providers: [SnDataTableService],
-  imports: [CommonModule, CdkMenuModule, SnButtonDirective, SnFilterModule],
+  imports: [CommonModule, CdkMenuModule, SnButtonDirective, SnFilterModule, FontAwesomeModule],
   templateUrl: './data-table-header.component.html',
   styleUrl: './data-table-header.component.scss'
 })
@@ -23,6 +24,9 @@ export class SnDataTableHeaderComponent {
   @Output() readonly snFilterChange = new EventEmitter<SnFilter[]>();
 
   protected showModal: boolean = false;
+  faCheck = faCheck;
+  faFilter = faFilter;
+  faTableColumns = faTableColumns;
 
   getFilterColumn(): SnFilterColumn[] {
     return this.snColumns.filter(item => item.filterable).map(item => ({
@@ -32,8 +36,12 @@ export class SnDataTableHeaderComponent {
     }));
   }
 
+  // snModalFilter: SnFilter[] = [];
+  // snCurrentFilter: SnFilter[] = [];
+
   onFilterChange(filter: SnFilter[]) {
-    // this.snFilterChange
+    console.log('========CAHGE======: ', filter);
+    this.snFilterChange.emit(filter);
   }
 
   openModal() {
@@ -41,6 +49,22 @@ export class SnDataTableHeaderComponent {
   }
 
   closeModal() {
+    this.showModal = false;
+  }
+
+  removeFilter(event:Event, id: number, parentId: number){
+    event.preventDefault();
+    event.stopPropagation();
+
+    const newFilter = this.snFilter.map(filter => filter.id === parentId ? ({
+      ...filter,
+      eval: filter.eval.filter(item => item.id !== id),
+    }) : filter).filter(filter => filter.eval.length > 0);
+
+    this.snFilter = newFilter;
+  }
+
+  closeApplyModal() {
     this.showModal = false;
   }
 }

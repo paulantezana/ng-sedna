@@ -1,3 +1,4 @@
+export * from './constants';
 export * from './data-table.module';
 export * from './data-table.types';
 export * from './data-table/data-table.component';

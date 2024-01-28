@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-// import { SnButtonDirective } from '../button';
 import { SnInputDirective } from '../input';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 export interface paginationData {
   pageSize: number,
@@ -15,25 +17,28 @@ export interface paginationData {
   styleUrls: ['./pagination.component.scss'],
   imports: [
     CommonModule,
-    SnInputDirective
+    SnInputDirective,
+    FontAwesomeModule
   ]
 })
 export class SnPaginationComponent {
   @Input() pageSizeOptions: number[] = [];
   @Input() length: number = 0;
-  @Input() pageSize: number = 0;
-  @Input() pageIndex: number = 0;
+  @Input() pageSize: number = 20;
+  @Input() pageIndex: number = 1;
 
   @Output() pageChange = new EventEmitter<paginationData>();
 
   itemQuantity: number = 1;
+  faChevronLeft = faChevronLeft;
+  faChevronRight = faChevronRight;
 
   get totalPages(): number {
-    return Math.ceil(this.length / this.pageSize) - 1;
+    return Math.ceil(this.length / this.pageSize);
   }
 
   get showPrevious(): boolean {
-    return this.pageIndex > 0;
+    return this.pageIndex > 1;
   }
 
   get showNext(): boolean {
@@ -41,7 +46,7 @@ export class SnPaginationComponent {
   }
 
   get startPage() {
-    return ((this.pageIndex - this.itemQuantity) > 0) ? this.pageIndex - this.itemQuantity : 0
+    return ((this.pageIndex - this.itemQuantity) > 0) ? this.pageIndex - this.itemQuantity : 1
   }
 
   get endPage() {

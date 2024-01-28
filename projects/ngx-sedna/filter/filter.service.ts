@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, combineLatest } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, map, skip, switchMap, takeUntil } from 'rxjs/operators';
+import { debounceTime, distinct, distinctUntilChanged, map, skip, tap } from 'rxjs/operators';
 import { SnFilter, SnFilterColumn, SnFilterEvaluation } from '../filter';
 
 @Injectable()
@@ -8,7 +8,7 @@ export class SnFilterService implements OnDestroy {
   private destroy$ = new Subject<boolean>();
   private filter$ = new BehaviorSubject<SnFilter[]>([]);
 
-  filterDistinct$ = this.filter$.pipe(distinctUntilChanged());
+  filterDistinct$ = this.filter$.pipe(distinctUntilChanged((prev, curr)=> JSON.stringify(prev) === JSON.stringify(curr)))
 
   filterParams$: Observable<SnFilter[]> = combineLatest([
     this.filterDistinct$,
@@ -84,6 +84,15 @@ export class SnFilterService implements OnDestroy {
     }
 
     console.log({newFilter}, 'ADD_FILTER');
+    this.filter$.next(newFilter);
+  }
+
+  removeFilter(id: number, parentId: number){
+    const filter = this.filter$.getValue();
+    const newFilter = filter.map((flt) => flt.id === parentId ? ({
+      ...flt,
+      eval: flt.eval.filter(item => item.id !== id)
+    }) : flt).filter(flt => flt.eval.length > 0);
     this.filter$.next(newFilter);
   }
 
