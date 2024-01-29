@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, combineLatest } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, skip } from 'rxjs/operators';
 import { SnDataTableColumn, SnDataTableQueryParams, SnDataTableSort, SnDataTableSortOrder } from './data-table.types';
-import { SnFilter, SnFilterEvaluation } from '../filter';
+import { SnFilter, SnFilterEvaluation } from 'ngx-sedna/filter';
 import { filterTableParentId } from './constants';
 
 @Injectable()

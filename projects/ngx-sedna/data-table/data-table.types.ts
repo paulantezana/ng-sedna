@@ -1,4 +1,4 @@
-import { SnFilter } from "../filter";
+import { SnFilter } from "ngx-sedna/filter";
 
 export type SnDataTableSortOrder = string | 'asc' | 'desc' | null;
 

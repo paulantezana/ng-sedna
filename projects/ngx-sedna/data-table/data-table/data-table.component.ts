@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CdkMenuModule } from '@angular/cdk/menu';
-import { SnPaginationComponent } from '../../paginate';
+import { SnPaginationComponent } from 'ngx-sedna/paginate';
 import { SnDataTableService } from '../data-table.service';
 import { SnDataTableColumn, SnDataTableQueryParams } from '../data-table.types';
 import { Subject, takeUntil } from 'rxjs';
-import { SnFilter, SnFilterColumn, SnFilterModule } from '../../filter';
+import { SnFilter, SnFilterColumn, SnFilterModule } from 'ngx-sedna/filter';
 import { SnDataTableHeaderComponent } from './data-table-header.component';
 
 

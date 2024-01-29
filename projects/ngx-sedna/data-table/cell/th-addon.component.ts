@@ -12,7 +12,7 @@ import { SnDataTableService } from '../data-table.service';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowUpWideShort, faArrowDownWideShort, faTableColumns, faSortUp, faSortDown, faAngleDown, faFilter, faFilterCircleXmark } from '@fortawesome/free-solid-svg-icons';
-import { SnFilterEvaluation } from '../../filter';
+import { SnFilterEvaluation } from 'ngx-sedna/filter';
 import { filterTableParentId } from '../constants';
 
 @Component({

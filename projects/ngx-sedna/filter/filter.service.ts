@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, combineLatest } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, skip } from 'rxjs/operators';
-import { SnFilter, SnFilterColumn, SnFilterEvaluation } from '../filter';
+import { SnFilter, SnFilterColumn, SnFilterEvaluation } from './filter.types';
 
 @Injectable()
 export class SnFilterService implements OnDestroy {

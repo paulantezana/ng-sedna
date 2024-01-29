@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, SimpleChanges, inject } from '@angular/core';
-import { SnFormModule } from '../form';
-import { SnInputDirective } from '../input';
-import { SnButtonDirective } from '../button';
+import { SnFormModule } from 'ngx-sedna/form';
+import { SnInputDirective } from 'ngx-sedna/input';
+import { SnButtonDirective } from 'ngx-sedna/button';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { SnFilter, SnFilterColumn, SnFilterEvaluation, SnFilterNumericOperator, SnFilterPrefix, SnFilterStringOperator } from './filter.types';
 import { SnFilterService } from './filter.service';

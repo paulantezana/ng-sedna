@@ -2,13 +2,15 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    // "rootDir": ".",
-    // "baseUrl": ".",
+    "rootDir": ".",
     "outDir": "../../out-tsc/lib",
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
-    "types": []
+    "types": [],
+    "paths": {
+      "ngx-sedna/*": ["./*"]
+    }
   },
   "exclude": [
     "**/*.spec.ts"

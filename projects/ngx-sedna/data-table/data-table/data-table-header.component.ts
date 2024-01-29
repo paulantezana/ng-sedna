@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { SnDataTableService } from '../data-table.service';
 import { SnDataTableColumn, SnDataTableQueryParams } from '../data-table.types';
-import { SnFilter, SnFilterColumn, SnFilterModule } from '../../filter';
-import { SnButtonDirective } from '../../button';
+import { SnFilter, SnFilterColumn, SnFilterModule } from 'ngx-sedna/filter';
+import { SnButtonDirective } from 'ngx-sedna/button';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCheck, faFilter, faTableColumns } from '@fortawesome/free-solid-svg-icons';
