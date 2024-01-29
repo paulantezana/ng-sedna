@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, combineLatest } from 'rxjs';
-import { debounceTime, distinct, distinctUntilChanged, map, skip, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, skip } from 'rxjs/operators';
 import { SnFilter, SnFilterColumn, SnFilterEvaluation } from '../filter';
 
 @Injectable()

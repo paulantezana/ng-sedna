@@ -2,6 +2,8 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    // "rootDir": ".",
+    // "baseUrl": ".",
     "outDir": "../../out-tsc/lib",
     "declaration": true,
     "declarationMap": true,

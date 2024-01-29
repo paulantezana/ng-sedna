@@ -6,7 +6,7 @@ import { SnButtonDirective } from '../button';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { SnFilter, SnFilterColumn, SnFilterEvaluation, SnFilterNumericOperator, SnFilterPrefix, SnFilterStringOperator } from './filter.types';
 import { SnFilterService } from './filter.service';
-import { Subject, filter, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'sn-filter',
@@ -16,7 +16,6 @@ import { Subject, filter, takeUntil } from 'rxjs';
     CommonModule,
     SnFormModule,
     SnInputDirective,
-    // MatDatepickerModule,
     SnButtonDirective,
     CdkMenuModule,
   ],
