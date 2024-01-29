@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataTableComponent } from './data-table/data-table.component';
+import { SnDataTableComponent } from './data-table/data-table.component';
 import { SnThAddOnComponent } from './cell/th-addon.component';
 
 
@@ -9,12 +9,12 @@ import { SnThAddOnComponent } from './cell/th-addon.component';
   declarations: [],
   imports: [
     CommonModule,
-    DataTableComponent,
+    SnDataTableComponent,
     SnThAddOnComponent,
   ],
   exports: [
-    DataTableComponent,
+    SnDataTableComponent,
     SnThAddOnComponent,
   ]
 })
-export class DataTableModule { }
+export class SnDataTableModule { }

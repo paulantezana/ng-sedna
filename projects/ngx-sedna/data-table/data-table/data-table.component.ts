@@ -18,7 +18,7 @@ import { SnDataTableHeaderComponent } from './data-table-header.component';
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.scss'
 })
-export class DataTableComponent {
+export class SnDataTableComponent {
   private snDataTableService = inject(SnDataTableService);
 
   private destroy$ = new Subject<void>();
