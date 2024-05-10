@@ -11,9 +11,7 @@
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
     "paths": {
-      "ngx-sedna": [
-        "./dist/ngx-sedna"
-      ]
+      "ngx-sedna/*": ["./projects/ngx-sedna/*/public-api"]
     },
     "sourceMap": true,
     "declaration": false,

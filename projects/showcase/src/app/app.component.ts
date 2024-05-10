@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SnFormModule } from '../../../ngx-sedna/form';
-import { SnInputDirective } from '../../../ngx-sedna/input';
-import { SnButtonDirective } from '../../../ngx-sedna/button';
-import { DataTableComponent, DataTableModule, SnDataTableColumn, SnDataTableQueryParams, SnThAddOnComponent } from '../../../ngx-sedna/data-table';
+import { SnFormModule } from 'ngx-sedna/form';
+import { SnInputDirective } from 'ngx-sedna/input';
+import { SnButtonDirective } from 'ngx-sedna/button';
+import { SnDataTableComponent, SnDataTableModule, SnDataTableColumn, SnDataTableQueryParams, SnThAddOnComponent } from 'ngx-sedna/data-table';
 import { CdkMenuModule } from '@angular/cdk/menu';
-import { SnFilter, SnFilterColumn, SnFilterModule } from '../../../ngx-sedna/filter';
+import { SnFilter, SnFilterColumn, SnFilterModule } from 'ngx-sedna/filter';
 import { ApiService } from './services/api.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -16,8 +16,8 @@ import { HttpClient } from '@angular/common/http';
   standalone: true,
   imports: [
     CommonModule, RouterOutlet, SnButtonDirective, SnInputDirective, SnFormModule,
-    DataTableComponent,
-    DataTableModule,
+    SnDataTableComponent,
+    SnDataTableModule,
     SnThAddOnComponent,
     CdkMenuModule,
     SnFilterModule
