@@ -1,8 +1,3 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
-
 import { BACKSPACE } from '@angular/cdk/keycodes';
 import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import {
@@ -26,17 +21,17 @@ import {
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { NzNoAnimationDirective } from 'ngx-sedna/core/no-animation';
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnNoAnimationDirective } from 'ngx-sedna/core/no-animation';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 
-import { NzSelectItemComponent } from './select-item.component';
-import { NzSelectPlaceholderComponent } from './select-placeholder.component';
-import { NzSelectSearchComponent } from './select-search.component';
-import { NzSelectItemInterface, NzSelectModeType, NzSelectTopControlItemType } from './select.types';
+import { SnSelectItemComponent } from './select-item.component';
+import { SnSelectPlaceholderComponent } from './select-placeholder.component';
+import { SnSelectSearchComponent } from './select-search.component';
+import { SnSelectItemInterface, SnSelectModeType, SnSelectTopControlItemType } from './select.types';
 
 @Component({
-  selector: 'nz-select-top-control',
-  exportAs: 'nzSelectTopControl',
+  selector: 'sn-select-top-control',
+  exportAs: 'snSelectTopControl',
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -44,8 +39,8 @@ import { NzSelectItemInterface, NzSelectModeType, NzSelectTopControlItemType } f
     <!--single mode-->
     <ng-container [ngSwitch]="mode">
       <ng-container *ngSwitchCase="'default'">
-        <nz-select-search
-          [nzId]="nzId"
+        <sn-select-search
+          [snId]="snId"
           [disabled]="disabled"
           [value]="inputValue!"
           [showInput]="showSearch"
@@ -54,31 +49,31 @@ import { NzSelectItemInterface, NzSelectModeType, NzSelectTopControlItemType } f
           [focusTrigger]="open"
           (isComposingChange)="isComposingChange($event)"
           (valueChange)="onInputValueChange($event)"
-        ></nz-select-search>
-        <nz-select-item
+        ></sn-select-search>
+        <sn-select-item
           *ngIf="isShowSingleLabel"
           [deletable]="false"
           [disabled]="false"
           [removeIcon]="removeIcon"
-          [label]="listOfTopItem[0].nzLabel"
+          [label]="listOfTopItem[0].snLabel"
           [contentTemplateOutlet]="customTemplate"
           [contentTemplateOutletContext]="listOfTopItem[0]"
-        ></nz-select-item>
+        ></sn-select-item>
       </ng-container>
       <ng-container *ngSwitchDefault>
         <!--multiple or tags mode-->
-        <nz-select-item
+        <sn-select-item
           *ngFor="let item of listOfSlicedItem; trackBy: trackValue"
           [removeIcon]="removeIcon"
-          [label]="item.nzLabel"
-          [disabled]="item.nzDisabled || disabled"
+          [label]="item.snLabel"
+          [disabled]="item.snDisabled || disabled"
           [contentTemplateOutlet]="item.contentTemplateOutlet"
           [deletable]="true"
           [contentTemplateOutletContext]="item.contentTemplateOutletContext"
           (delete)="onDeleteItem(item.contentTemplateOutletContext)"
-        ></nz-select-item>
-        <nz-select-search
-          [nzId]="nzId"
+        ></sn-select-item>
+        <sn-select-search
+          [snId]="snId"
           [disabled]="disabled"
           [value]="inputValue!"
           [autofocus]="autofocus"
@@ -87,43 +82,43 @@ import { NzSelectItemInterface, NzSelectModeType, NzSelectTopControlItemType } f
           [focusTrigger]="open"
           (isComposingChange)="isComposingChange($event)"
           (valueChange)="onInputValueChange($event)"
-        ></nz-select-search>
+        ></sn-select-search>
       </ng-container>
     </ng-container>
-    <nz-select-placeholder *ngIf="isShowPlaceholder" [placeholder]="placeHolder"></nz-select-placeholder>
+    <sn-select-placeholder *ngIf="isShowPlaceholder" [placeholder]="placeHolder"></sn-select-placeholder>
   `,
   host: { class: 'ant-select-selector' },
   imports: [
     NgSwitch,
-    NzSelectSearchComponent,
+    SnSelectSearchComponent,
     NgSwitchCase,
-    NzSelectItemComponent,
+    SnSelectItemComponent,
     NgIf,
     NgSwitchDefault,
     NgFor,
-    NzSelectPlaceholderComponent
+    SnSelectPlaceholderComponent
   ],
   standalone: true
 })
-export class NzSelectTopControlComponent implements OnChanges, OnInit, OnDestroy {
-  @Input() nzId: string | null = null;
+export class SnSelectTopControlComponent implements OnChanges, OnInit, OnDestroy {
+  @Input() snId: string | null = null;
   @Input() showSearch = false;
-  @Input() placeHolder: string | TemplateRef<NzSafeAny> | null = null;
+  @Input() placeHolder: string | TemplateRef<SnSafeAny> | null = null;
   @Input() open = false;
   @Input() maxTagCount: number = Infinity;
   @Input() autofocus = false;
   @Input() disabled = false;
-  @Input() mode: NzSelectModeType = 'default';
-  @Input() customTemplate: TemplateRef<{ $implicit: NzSelectItemInterface }> | null = null;
-  @Input() maxTagPlaceholder: TemplateRef<{ $implicit: NzSafeAny[] }> | null = null;
-  @Input() removeIcon: TemplateRef<NzSafeAny> | null = null;
-  @Input() listOfTopItem: NzSelectItemInterface[] = [];
+  @Input() mode: SnSelectModeType = 'default';
+  @Input() customTemplate: TemplateRef<{ $implicit: SnSelectItemInterface }> | null = null;
+  @Input() maxTagPlaceholder: TemplateRef<{ $implicit: SnSafeAny[] }> | null = null;
+  @Input() removeIcon: TemplateRef<SnSafeAny> | null = null;
+  @Input() listOfTopItem: SnSelectItemInterface[] = [];
   @Input() tokenSeparators: string[] = [];
   @Output() readonly tokenize = new EventEmitter<string[]>();
   @Output() readonly inputValueChange = new EventEmitter<string>();
-  @Output() readonly deleteItem = new EventEmitter<NzSelectItemInterface>();
-  @ViewChild(NzSelectSearchComponent) nzSelectSearchComponent!: NzSelectSearchComponent;
-  listOfSlicedItem: NzSelectTopControlItemType[] = [];
+  @Output() readonly deleteItem = new EventEmitter<SnSelectItemInterface>();
+  @ViewChild(SnSelectSearchComponent) snSelectSearchComponent!: SnSelectSearchComponent;
+  listOfSlicedItem: SnSelectTopControlItemType[] = [];
   isShowPlaceholder = true;
   isShowSingleLabel = false;
   isComposing = false;
@@ -179,29 +174,29 @@ export class NzSelectTopControlComponent implements OnChanges, OnInit, OnDestroy
   }
 
   clearInputValue(): void {
-    if (this.nzSelectSearchComponent) {
-      this.nzSelectSearchComponent.clearInputValue();
+    if (this.snSelectSearchComponent) {
+      this.snSelectSearchComponent.clearInputValue();
     }
   }
 
   focus(): void {
-    if (this.nzSelectSearchComponent) {
-      this.nzSelectSearchComponent.focus();
+    if (this.snSelectSearchComponent) {
+      this.snSelectSearchComponent.focus();
     }
   }
 
   blur(): void {
-    if (this.nzSelectSearchComponent) {
-      this.nzSelectSearchComponent.blur();
+    if (this.snSelectSearchComponent) {
+      this.snSelectSearchComponent.blur();
     }
   }
 
-  trackValue(_index: number, option: NzSelectTopControlItemType): NzSafeAny {
-    return option.nzValue;
+  trackValue(_index: number, option: SnSelectTopControlItemType): SnSafeAny {
+    return option.snValue;
   }
 
-  onDeleteItem(item: NzSelectItemInterface): void {
-    if (!this.disabled && !item.nzDisabled) {
+  onDeleteItem(item: SnSelectItemInterface): void {
+    if (!this.disabled && !item.snDisabled) {
       this.deleteItem.next(item);
     }
   }
@@ -209,7 +204,7 @@ export class NzSelectTopControlComponent implements OnChanges, OnInit, OnDestroy
   constructor(
     private elementRef: ElementRef<HTMLElement>,
     private ngZone: NgZone,
-    @Host() @Optional() public noAnimation: NzNoAnimationDirective | null
+    @Host() @Optional() public noAnimation: SnNoAnimationDirective | null
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -218,20 +213,20 @@ export class NzSelectTopControlComponent implements OnChanges, OnInit, OnDestroy
       this.updateTemplateVariable();
     }
     if (listOfTopItem || maxTagCount || customTemplate || maxTagPlaceholder) {
-      const listOfSlicedItem: NzSelectTopControlItemType[] = this.listOfTopItem.slice(0, this.maxTagCount).map(o => ({
-        nzLabel: o.nzLabel,
-        nzValue: o.nzValue,
-        nzDisabled: o.nzDisabled,
+      const listOfSlicedItem: SnSelectTopControlItemType[] = this.listOfTopItem.slice(0, this.maxTagCount).map(o => ({
+        snLabel: o.snLabel,
+        snValue: o.snValue,
+        snDisabled: o.snDisabled,
         contentTemplateOutlet: this.customTemplate,
         contentTemplateOutletContext: o
       }));
       if (this.listOfTopItem.length > this.maxTagCount) {
         const exceededLabel = `+ ${this.listOfTopItem.length - this.maxTagCount} ...`;
-        const listOfSelectedValue = this.listOfTopItem.map(item => item.nzValue);
+        const listOfSelectedValue = this.listOfTopItem.map(item => item.snValue);
         const exceededItem = {
-          nzLabel: exceededLabel,
-          nzValue: '$$__nz_exceeded_item',
-          nzDisabled: true,
+          snLabel: exceededLabel,
+          snValue: '$$__sn_exceeded_item',
+          snDisabled: true,
           contentTemplateOutlet: this.maxTagPlaceholder,
           contentTemplateOutletContext: listOfSelectedValue.slice(this.maxTagCount)
         };
@@ -247,8 +242,8 @@ export class NzSelectTopControlComponent implements OnChanges, OnInit, OnDestroy
         .pipe(takeUntil(this.destroy$))
         .subscribe(event => {
           // `HTMLElement.focus()` is a native DOM API which doesn't require Angular to run change detection.
-          if (event.target !== this.nzSelectSearchComponent.inputElement.nativeElement) {
-            this.nzSelectSearchComponent.focus();
+          if (event.target !== this.snSelectSearchComponent.inputElement.nativeElement) {
+            this.snSelectSearchComponent.focus();
           }
         });
 

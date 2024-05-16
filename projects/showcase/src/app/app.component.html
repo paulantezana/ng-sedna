@@ -1,4 +1,34 @@
-<sn-filter [snFilter]="filter" [snFilterColumns]="columns"></sn-filter>
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <!-- <nz-form-item>
+    <nz-form-label [nzSpan]="5" nzRequired nzFor="note">Note</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzErrorTip="Please input your username!">
+      <input id="note" type="text" nz-input formControlName="note" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="5" nzFor="gender" nzRequired>Gender</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzErrorTip="Please select your gender!"> -->
+      <sn-select
+        id="gender"
+        snId="gender"
+        formControlName="gender"
+        snPlaceHolder="Select a option and change input text above"
+        (ngModelChange)="genderChange($event)"
+      >
+        <sn-option snValue="male" snLabel="male"></sn-option>
+        <sn-option snValue="female" snLabel="female"></sn-option>
+      </sn-select>
+    <!-- </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzSpan]="12" [nzOffset]="5">
+      <button nz-button nzType="primary">Submit</button>
+    </nz-form-control>
+  </nz-form-item> -->
+</form>
+
+<!-- horizontal -->
+<!-- <sn-filter [snFilter]="filter" [snFilterColumns]="columns"></sn-filter>
 <div class="SnDivider"></div>
 <div style="padding: 1rem;">
   <sn-data-table (snQueryParams)="onQueryParamsChange($event)" [snPageIndex]="pageIndex" [snPageSize]="pageSize" [snTotal]="total" [snColumns]="dataColumns">
@@ -27,7 +57,9 @@
       }
     </tbody>
   </sn-data-table>
-</div>
+</div> -->
+
+
 <!-- <button sn-button [snLoading]="true" snType="warning">dddddd</button>
 <input type="text" sn-input>
 

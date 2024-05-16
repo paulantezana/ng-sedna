@@ -1,8 +1,3 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
-
 import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -14,21 +9,21 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { NzOutletModule } from 'ngx-sedna/core/outlet';
-import { NzSafeAny } from 'ngx-sedna/core/types';
-import { NzIconModule } from 'ngx-sedna/icon';
+import { SnOutletModule } from 'ngx-sedna/core/outlet';
+import { SnSafeAny } from 'ngx-sedna/core/types';
+import { SnIconModule } from 'ngx-sedna/icon';
 
 @Component({
-  selector: 'nz-select-item',
+  selector: 'sn-select-item',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <ng-container *nzStringTemplateOutlet="contentTemplateOutlet; context: { $implicit: contentTemplateOutletContext }">
+    <ng-container *snStringTemplateOutlet="contentTemplateOutlet; context: { $implicit: contentTemplateOutletContext }">
       <div class="ant-select-selection-item-content" *ngIf="deletable; else labelTemplate">{{ label }}</div>
       <ng-template #labelTemplate>{{ label }}</ng-template>
     </ng-container>
     <span *ngIf="deletable && !disabled" class="ant-select-selection-item-remove" (click)="onDelete($event)">
-      <span nz-icon nzType="close" *ngIf="!removeIcon; else removeIcon"></span>
+      <span sn-icon snType="close" *ngIf="!removeIcon; else removeIcon"></span>
     </span>
   `,
   host: {
@@ -36,16 +31,16 @@ import { NzIconModule } from 'ngx-sedna/icon';
     '[attr.title]': 'label',
     '[class.ant-select-selection-item-disabled]': 'disabled'
   },
-  imports: [NzOutletModule, NgIf, NzIconModule],
+  imports: [SnOutletModule, NgIf, SnIconModule],
   standalone: true
 })
-export class NzSelectItemComponent {
+export class SnSelectItemComponent {
   @Input() disabled = false;
   @Input() label: string | number | null | undefined = null;
   @Input() deletable = false;
-  @Input() removeIcon: TemplateRef<NzSafeAny> | null = null;
-  @Input() contentTemplateOutletContext: NzSafeAny | null = null;
-  @Input() contentTemplateOutlet: string | TemplateRef<NzSafeAny> | null = null;
+  @Input() removeIcon: TemplateRef<SnSafeAny> | null = null;
+  @Input() contentTemplateOutletContext: SnSafeAny | null = null;
+  @Input() contentTemplateOutlet: string | TemplateRef<SnSafeAny> | null = null;
   @Output() readonly delete = new EventEmitter<MouseEvent>();
 
   constructor() {}

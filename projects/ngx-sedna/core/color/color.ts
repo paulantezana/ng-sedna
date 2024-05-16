@@ -1,9 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/LICENSE
- */
-
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 
 export const statusColors = ['success', 'processing', 'error', 'default', 'warning'] as const;
 
@@ -23,13 +18,13 @@ export const presetColors = [
   'lime'
 ] as const;
 
-export type NzPresetColor = (typeof presetColors)[number];
-export type NzStatusColor = (typeof statusColors)[number];
+export type SnPresetColor = (typeof presetColors)[number];
+export type SnStatusColor = (typeof statusColors)[number];
 
-export function isPresetColor(color: string): color is NzPresetColor {
-  return presetColors.indexOf(color as NzSafeAny) !== -1;
+export function isPresetColor(color: string): color is SnPresetColor {
+  return presetColors.indexOf(color as SnSafeAny) !== -1;
 }
 
-export function isStatusColor(color: string): color is NzPresetColor {
-  return statusColors.indexOf(color as NzSafeAny) !== -1;
+export function isStatusColor(color: string): color is SnPresetColor {
+  return statusColors.indexOf(color as SnSafeAny) !== -1;
 }

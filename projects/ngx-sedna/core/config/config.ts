@@ -5,14 +5,14 @@ import { EnvironmentProviders, InjectionToken, makeEnvironmentProviders, Templat
 // import { ThemeType } from '@ant-design/icons-angular';
 
 // import { SnBreakpointEnum } from 'ngx-sedna/core/services';
-// import {
-//   SnSafeAny,
-//   SnShapeSCType,
-//   SnSizeDSType,
-//   SnSizeLDSType,
-//   SnSizeMDSType,
-//   SnTSType
-// } from 'ngx-sedna/core/types';
+import {
+  SnSafeAny,
+  // SnShapeSCType,
+  // SnSizeDSType,
+  // SnSizeLDSType,
+  // SnSizeMDSType,
+  // SnTSType
+} from 'ngx-sedna/core/types';
 
 // interface MonacoEnvironment {
 //   globalAPI?: boolean;
@@ -23,7 +23,7 @@ import { EnvironmentProviders, InjectionToken, makeEnvironmentProviders, Templat
 
 export interface SnConfig {
   // affix?: AffixConfig;
-  // select?: SelectConfig;
+  select?: SelectConfig;
   // alert?: AlertConfig;
   // anchor?: AnchorConfig;
   // avatar?: AvatarConfig;
@@ -40,10 +40,10 @@ export interface SnConfig {
   // descriptions?: DescriptionsConfig;
   // drawer?: DrawerConfig;
   // dropDown?: DropDownConfig;
-  // empty?: EmptyConfig;
+  empty?: EmptyConfig;
   // filterTrigger?: FilterTriggerConfig;
   // form?: FormConfig;
-  // icon?: IconConfig;
+  icon?: IconConfig;
   // message?: MessageConfig;
   // modal?: ModalConfig;
   // notification?: NotificationConfig;
@@ -84,12 +84,12 @@ export interface Theme {
   [key: string]: string | undefined;
 }
 
-// export interface SelectConfig {
-//   snBorderless?: boolean;
-//   snSuffixIcon?: TemplateRef<SnSafeAny> | string | null;
-//   snBackdrop?: boolean;
-//   snOptionHeightPx?: number;
-// }
+export interface SelectConfig {
+  snBorderless?: boolean;
+  snSuffixIcon?: TemplateRef<SnSafeAny> | string | null;
+  snBackdrop?: boolean;
+  snOptionHeightPx?: number;
+}
 
 // export interface AffixConfig {
 //   snOffsetBottom?: number;
@@ -198,9 +198,9 @@ export interface Theme {
 //   snBackdrop?: boolean;
 // }
 
-// export interface EmptyConfig {
-//   snDefaultEmptyContent?: Type<SnSafeAny> | TemplateRef<string> | string | undefined;
-// }
+export interface EmptyConfig {
+  snDefaultEmptyContent?: Type<SnSafeAny> | TemplateRef<string> | string | undefined;
+}
 
 // export interface FilterTriggerConfig {
 //   snBackdrop?: boolean;
@@ -212,10 +212,10 @@ export interface Theme {
 //   snTooltipIcon?: string | { type: string; theme: ThemeType };
 // }
 
-// export interface IconConfig {
-//   snTheme?: 'fill' | 'outline' | 'twotone';
-//   snTwotoneColor?: string;
-// }
+export interface IconConfig {
+  snTheme?: 'fill' | 'outline' | 'twotone';
+  snTwotoneColor?: string;
+}
 
 // export interface MessageConfig {
 //   snAnimate?: boolean;

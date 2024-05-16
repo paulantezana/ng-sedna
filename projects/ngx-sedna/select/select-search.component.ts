@@ -1,8 +1,3 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/LICENSE
- */
-
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { NgIf } from '@angular/common';
 import {
@@ -22,13 +17,13 @@ import {
 import { COMPOSITION_BUFFER_MODE, FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'nz-select-search',
+  selector: 'sn-select-search',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <input
       #inputElement
-      [attr.id]="nzId"
+      [attr.id]="snId"
       autocomplete="off"
       class="ant-select-selection-search-input"
       [ngModel]="value"
@@ -46,8 +41,8 @@ import { COMPOSITION_BUFFER_MODE, FormsModule } from '@angular/forms';
   imports: [FormsModule, NgIf],
   standalone: true
 })
-export class NzSelectSearchComponent implements AfterViewInit, OnChanges {
-  @Input() nzId: string | null = null;
+export class SnSelectSearchComponent implements AfterViewInit, OnChanges {
+  @Input() snId: string | null = null;
   @Input() disabled = false;
   @Input() mirrorSync = false;
   @Input() showInput = true;

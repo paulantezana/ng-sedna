@@ -11,10 +11,10 @@ import {
   dispatchMouseEvent,
   ɵComponentBed as ComponentBed,
   ɵcreateComponentBed as createComponentBed
-} from 'ng-zorro-antd/core/testing';
-import { NzSafeAny, NzStatus } from 'ng-zorro-antd/core/types';
-import { NzFormControlStatusType, NzFormModule } from 'ng-zorro-antd/form';
-import { NzIconTestModule } from 'ng-zorro-antd/icon/testing';
+} from 'ngx-sedna/core/testing';
+import { NzSafeAny, NzStatus } from 'ngx-sedna/core/types';
+import { NzFormControlStatusType, NzFormModule } from 'ngx-sedna/form';
+import { NzIconTestModule } from 'ngx-sedna/icon/testing';
 
 import { NzSelectSearchComponent } from './select-search.component';
 import { NzSelectTopControlComponent } from './select-top-control.component';

@@ -1,8 +1,3 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
-
 import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -14,18 +9,18 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { NzSafeAny } from 'ngx-sedna/core/types';
-import { NzIconModule } from 'ngx-sedna/icon';
+import { SnSafeAny } from 'ngx-sedna/core/types';
+import { SnIconModule } from 'ngx-sedna/icon';
 
 @Component({
-  selector: 'nz-select-clear',
+  selector: 'sn-select-clear',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <span
-      nz-icon
-      nzType="close-circle"
-      nzTheme="fill"
+      sn-icon
+      snType="close-circle"
+      snTheme="fill"
       *ngIf="!clearIcon; else clearIcon"
       class="ant-select-close-icon"
     ></span>
@@ -34,11 +29,11 @@ import { NzIconModule } from 'ngx-sedna/icon';
     class: 'ant-select-clear',
     '(click)': 'onClick($event)'
   },
-  imports: [NzIconModule, NgIf],
+  imports: [SnIconModule, NgIf],
   standalone: true
 })
-export class NzSelectClearComponent {
-  @Input() clearIcon: TemplateRef<NzSafeAny> | null = null;
+export class SnSelectClearComponent {
+  @Input() clearIcon: TemplateRef<SnSafeAny> | null = null;
   @Output() readonly clear = new EventEmitter<MouseEvent>();
 
   constructor() {}

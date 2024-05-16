@@ -1,11 +1,3 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
-
-/**
- * Sync from @ant-design/colors(https://github.com/ant-design/ant-design-colors)
- */
 import { TinyColor } from '@ctrl/tinycolor';
 
 import { generate } from 'ngx-sedna/core/color';
@@ -100,6 +92,6 @@ export function registerTheme(globalPrefixCls: string, theme: Theme, cspNonce: s
     updateCSS(style, `${dynamicStyleMark}-dynamic-theme`, { cspNonce });
   } else {
     // warn(`NzConfigService: SSR do not support dynamic theme with css variables.`);
-    console.log(`NzConfigService: SSR do not support dynamic theme with css variables.`);
+    console.warn(`NzConfigService: SSR do not support dynamic theme with css variables.`);
   }
 }

@@ -87,17 +87,28 @@ export class SnEmbedEmptyComponent implements OnChanges, OnInit, OnDestroy {
     private viewContainerRef: ViewContainerRef,
     private cdr: ChangeDetectorRef,
     private injector: Injector
-  ) {}
+  ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.snComponentName) {
-      this.size = getEmptySize(changes.snComponentName.currentValue);
+    const { snComponentName, specificContent } = changes;
+
+    if (snComponentName) {
+      this.size = getEmptySize(snComponentName.currentValue);
     }
 
-    if (changes.specificContent && !changes.specificContent.isFirstChange()) {
-      this.content = changes.specificContent.currentValue;
+    if (specificContent && !specificContent.isFirstChange()) {
+      this.content = specificContent.currentValue;
       this.renderEmpty();
     }
+
+    // if (changes.snComponentName) {
+    //   this.size = getEmptySize(changes.snComponentName.currentValue);
+    // }
+
+    // if (changes.specificContent && !changes.specificContent.isFirstChange()) {
+    //   this.content = changes.specificContent.currentValue;
+    //   this.renderEmpty();
+    // }
   }
 
   ngOnInit(): void {
