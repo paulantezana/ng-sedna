@@ -9,7 +9,7 @@ import { IndexableObject, SnSafeAny } from 'ngx-sedna/core/types';
 import en_US from './languages/en_US';
 import zh_CN from './languages/zh_CN';
 import { DateLocale, SnI18nInterface } from './sn-i18n.interface';
-import { NZ_DATE_LOCALE, NZ_I18N } from './sn-i18n.token';
+import { SN_DATE_LOCALE, SN_I18N } from './sn-i18n.token';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +24,8 @@ export class SnI18nService {
   }
 
   constructor(
-    @Optional() @Inject(NZ_I18N) locale: SnI18nInterface,
-    @Optional() @Inject(NZ_DATE_LOCALE) dateLocale: DateLocale
+    @Optional() @Inject(SN_I18N) locale: SnI18nInterface,
+    @Optional() @Inject(SN_DATE_LOCALE) dateLocale: DateLocale
   ) {
     this.setLocale(locale || zh_CN);
     this.setDateLocale(dateLocale || null);
@@ -34,7 +34,7 @@ export class SnI18nService {
   // [NOTE] Performance issue: this method may called by every change detections
   // TODO: cache more deeply paths for performance
   translate(path: string, data?: SnSafeAny): string {
-    // this._logger.debug(`[NzI18nService] Translating(${this._locale.locale}): ${path}`);
+    // this._logger.debug(`[SnI18nService] Translating(${this._locale.locale}): ${path}`);
     let content = this._getObjectPath(this._locale, path) as string;
     if (typeof content === 'string') {
       if (data) {
@@ -87,7 +87,7 @@ export class SnI18nService {
 
     if (!result && !defaultValue) {
       warn(`Missing translations for "${path}" in language "${this._locale.locale}".
-You can use "NzI18nService.setLocale" as a temporary fix.
+You can use "SnI18nService.setLocale" as a temporary fix.
 Welcome to submit a pull request to help us optimize the translations!
 https://github.com/NG-ZORRO/ngx-sedna/blob/master/CONTRIBUTING.md`);
     }

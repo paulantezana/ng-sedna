@@ -34,30 +34,30 @@ import { SnOptionGroupComponent } from './option-group.component';
   standalone: true
 })
 export class SnOptionComponent implements OnChanges, OnInit {
-  static ngAcceptInputType_nzDisabled: BooleanInput;
-  static ngAcceptInputType_nzHide: BooleanInput;
-  static ngAcceptInputType_nzCustomContent: BooleanInput;
+  static ngAcceptInputType_snDisabled: BooleanInput;
+  static ngAcceptInputType_snHide: BooleanInput;
+  static ngAcceptInputType_snCustomContent: BooleanInput;
 
   changes = new Subject<void>();
   groupLabel: string | number | TemplateRef<SnSafeAny> | null = null;
   @ViewChild(TemplateRef, { static: true }) template!: TemplateRef<SnSafeAny>;
-  @Input() nzTitle?: string | number | null;
-  @Input() nzLabel: string | number | null = null;
-  @Input() nzValue: SnSafeAny | null = null;
-  @Input() nzKey?: string | number;
-  @Input() @InputBoolean() nzDisabled = false;
-  @Input() @InputBoolean() nzHide = false;
-  @Input() @InputBoolean() nzCustomContent = false;
+  @Input() snTitle?: string | number | null;
+  @Input() snLabel: string | number | null = null;
+  @Input() snValue: SnSafeAny | null = null;
+  @Input() snKey?: string | number;
+  @Input() @InputBoolean() snDisabled = false;
+  @Input() @InputBoolean() snHide = false;
+  @Input() @InputBoolean() snCustomContent = false;
 
   constructor(
-    @Optional() private nzOptionGroupComponent: SnOptionGroupComponent,
+    @Optional() private snOptionGroupComponent: SnOptionGroupComponent,
     private destroy$: SnDestroyService
   ) {}
 
   ngOnInit(): void {
-    if (this.nzOptionGroupComponent) {
-      this.nzOptionGroupComponent.changes.pipe(startWith(true), takeUntil(this.destroy$)).subscribe(() => {
-        this.groupLabel = this.nzOptionGroupComponent.nzLabel;
+    if (this.snOptionGroupComponent) {
+      this.snOptionGroupComponent.changes.pipe(startWith(true), takeUntil(this.destroy$)).subscribe(() => {
+        this.groupLabel = this.snOptionGroupComponent.snLabel;
       });
     }
   }

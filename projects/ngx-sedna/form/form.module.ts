@@ -2,32 +2,32 @@
 
 import { NgModule } from '@angular/core';
 
-import { NzGridModule } from 'ngx-sedna/grid';
+import { SnGridModule } from 'ngx-sedna/grid';
 
-import { NzFormControlComponent } from './form-control.component';
-import { NzFormItemComponent } from './form-item.component';
-import { NzFormLabelComponent } from './form-label.component';
-import { NzFormSplitComponent } from './form-split.component';
-import { NzFormTextComponent } from './form-text.component';
-import { NzFormDirective } from './form.directive';
+import { SnFormControlComponent } from './form-control.component';
+import { SnFormItemComponent } from './form-item.component';
+import { SnFormLabelComponent } from './form-label.component';
+import { SnFormSplitComponent } from './form-split.component';
+import { SnFormTextComponent } from './form-text.component';
+import { SnFormDirective } from './form.directive';
 
 @NgModule({
   imports: [
-    NzFormDirective,
-    NzFormItemComponent,
-    NzFormLabelComponent,
-    NzFormControlComponent,
-    NzFormTextComponent,
-    NzFormSplitComponent
+    SnFormDirective,
+    SnFormItemComponent,
+    SnFormLabelComponent,
+    SnFormControlComponent,
+    SnFormTextComponent,
+    SnFormSplitComponent
   ],
   exports: [
-    NzGridModule,
-    NzFormDirective,
-    NzFormItemComponent,
-    NzFormLabelComponent,
-    NzFormControlComponent,
-    NzFormTextComponent,
-    NzFormSplitComponent
+    SnGridModule,
+    SnFormDirective,
+    SnFormItemComponent,
+    SnFormLabelComponent,
+    SnFormControlComponent,
+    SnFormTextComponent,
+    SnFormSplitComponent
   ]
 })
-export class NzFormModule {}
+export class SnFormModule {}

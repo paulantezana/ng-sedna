@@ -5,7 +5,7 @@ import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { SnScrollService } from './scroll';
 
-describe('NzScrollService', () => {
+describe('SnScrollService', () => {
   const TOP: number = 10;
   let injector: Injector;
   let document: MockDocument;

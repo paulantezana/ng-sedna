@@ -3,11 +3,11 @@ import { TestBed } from '@angular/core/testing';
 
 import { enUS } from 'date-fns/locale';
 
-import { NZ_DATE_CONFIG } from './date-config';
+import { SN_DATE_CONFIG } from './date-config';
 import { DateHelperByDatePipe, DateHelperService } from './date-helper.service';
 import en_US from './languages/en_US';
 import { SnI18nModule } from './sn-i18n.module';
-import { NZ_DATE_LOCALE, NZ_I18N } from './sn-i18n.token';
+import { SN_DATE_LOCALE, SN_I18N } from './sn-i18n.token';
 
 describe('DateHelperService', () => {
   let injector: Injector;
@@ -17,7 +17,7 @@ describe('DateHelperService', () => {
     beforeEach(() => {
       injector = TestBed.configureTestingModule({
         imports: [SnI18nModule],
-        providers: [{ provide: NZ_I18N, useValue: en_US }]
+        providers: [{ provide: SN_I18N, useValue: en_US }]
       });
 
       dateHelper = injector.get(DateHelperService);
@@ -47,7 +47,7 @@ describe('DateHelperService', () => {
     beforeEach(() => {
       injector = TestBed.configureTestingModule({
         imports: [SnI18nModule],
-        providers: [{ provide: NZ_DATE_LOCALE, useValue: enUS }]
+        providers: [{ provide: SN_DATE_LOCALE, useValue: enUS }]
       });
 
       dateHelper = injector.get(DateHelperService);
@@ -74,8 +74,8 @@ describe('DateHelperService', () => {
       injector = TestBed.configureTestingModule({
         imports: [SnI18nModule],
         providers: [
-          { provide: NZ_DATE_LOCALE, useValue: enUS },
-          { provide: NZ_DATE_CONFIG, useValue: { firstDayOfWeek: 4 } }
+          { provide: SN_DATE_LOCALE, useValue: enUS },
+          { provide: SN_DATE_CONFIG, useValue: { firstDayOfWeek: 4 } }
         ]
       });
 

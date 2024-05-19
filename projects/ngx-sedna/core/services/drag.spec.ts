@@ -8,14 +8,14 @@ import { createMouseEvent, createTouchEvent, dispatchMouseEvent, dispatchTouchEv
 @Component({
   template: ''
 })
-export class NzTestDragServiceComponent {
+export class SnTestDragServiceComponent {
   drag$ = new Subject<void>();
   complete$ = new Subject<void>();
 
-  constructor(public readonly nzDragService: SnDragService) {}
+  constructor(public readonly snDragService: SnDragService) {}
 
   drag(event: MouseEvent | TouchEvent): void {
-    this.nzDragService.requestDraggingSequence(event).subscribe({
+    this.snDragService.requestDraggingSequence(event).subscribe({
       next: () => this.drag$.next(),
       complete: () => this.complete$.next()
     });
@@ -23,8 +23,8 @@ export class NzTestDragServiceComponent {
 }
 
 describe('drag service', () => {
-  let fixture: ComponentFixture<NzTestDragServiceComponent>;
-  let component: NzTestDragServiceComponent;
+  let fixture: ComponentFixture<SnTestDragServiceComponent>;
+  let component: SnTestDragServiceComponent;
 
   let completed = false;
   let dragged = false;
@@ -33,7 +33,7 @@ describe('drag service', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [NzTestDragServiceComponent]
+      declarations: [SnTestDragServiceComponent]
     });
 
     TestBed.compileComponents();
@@ -41,7 +41,7 @@ describe('drag service', () => {
 
   describe('basics', () => {
     beforeEach(() => {
-      fixture = TestBed.createComponent(NzTestDragServiceComponent);
+      fixture = TestBed.createComponent(SnTestDragServiceComponent);
       component = fixture.debugElement.componentInstance;
     });
 

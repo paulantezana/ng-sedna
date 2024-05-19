@@ -18,13 +18,13 @@ export const presetColors = [
   'lime'
 ] as const;
 
-export type NzPresetColor = (typeof presetColors)[number];
-export type NzStatusColor = (typeof statusColors)[number];
+export type SnPresetColor = (typeof presetColors)[number];
+export type SnStatusColor = (typeof statusColors)[number];
 
-export function isPresetColor(color: string): color is NzPresetColor {
+export function isPresetColor(color: string): color is SnPresetColor {
   return presetColors.indexOf(color as SnSafeAny) !== -1;
 }
 
-export function isStatusColor(color: string): color is NzPresetColor {
+export function isStatusColor(color: string): color is SnPresetColor {
   return statusColors.indexOf(color as SnSafeAny) !== -1;
 }

@@ -3,32 +3,32 @@ import { Component, DebugElement, Inject, NgModule, TemplateRef, ViewChild } fro
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { SnConfigService, NZ_CONFIG } from 'ngx-sedna/core/config';
+import { SnConfigService, SN_CONFIG } from 'ngx-sedna/core/config';
 
 import { ComponentBed, createComponentBed } from '../core/testing/component-bed';
 import { SnI18nService } from '../i18n';
 import en_US from '../i18n/languages/en_US';
-import { NzListModule } from '../list';
-import { NZ_EMPTY_COMPONENT_NAME } from './config';
-import { NzEmbedEmptyComponent } from './embed-empty.component';
-import { NzEmptyComponent } from './empty.component';
-import { NzEmptyModule } from './empty.module';
+import { SnListModule } from '../list';
+import { SN_EMPTY_COMPONENT_NAME } from './config';
+import { SnEmbedEmptyComponent } from './embed-empty.component';
+import { SnEmptyComponent } from './empty.component';
+import { SnEmptyModule } from './empty.module';
 
-describe('nz-empty', () => {
+describe('sn-empty', () => {
   describe('basic', () => {
-    let testBed: ComponentBed<NzEmptyTestBasicComponent>;
-    let fixture: ComponentFixture<NzEmptyTestBasicComponent>;
-    let testComponent: NzEmptyTestBasicComponent;
+    let testBed: ComponentBed<SnEmptyTestBasicComponent>;
+    let fixture: ComponentFixture<SnEmptyTestBasicComponent>;
+    let testComponent: SnEmptyTestBasicComponent;
     let emptyComponent: DebugElement;
 
     beforeEach(() => {
-      testBed = createComponentBed(NzEmptyTestBasicComponent, {
-        imports: [NzEmptyModule]
+      testBed = createComponentBed(SnEmptyTestBasicComponent, {
+        imports: [SnEmptyModule]
       });
 
       fixture = testBed.fixture;
       testComponent = testBed.component;
-      emptyComponent = fixture.debugElement.query(By.directive(NzEmptyComponent));
+      emptyComponent = fixture.debugElement.query(By.directive(SnEmptyComponent));
 
       fixture.detectChanges();
     });
@@ -40,7 +40,7 @@ describe('nz-empty', () => {
 
       expect(imageEl.tagName).toBe('DIV');
       expect(imageEl.classList.contains('ant-empty-image')).toBe(true);
-      expect(imageEl.firstElementChild.tagName).toBe('NZ-EMPTY-DEFAULT');
+      expect(imageEl.firstElementChild.tagName).toBe('SN-EMPTY-DEFAULT');
 
       const contentEl = emptyComponent.nativeElement.lastElementChild;
       expect(contentEl.tagName).toBe('P');
@@ -119,21 +119,21 @@ describe('nz-empty', () => {
   });
 
   /**
-   * Config default empty content via `NzEmptyService`'s `setDefaultEmptyContent` method.
+   * Config default empty content via `SnEmptyService`'s `setDefaultEmptyContent` method.
    */
   describe('embed', () => {
-    let fixture: ComponentFixture<NzEmptyTestServiceComponent>;
-    let testComponent: NzEmptyTestServiceComponent;
+    let fixture: ComponentFixture<SnEmptyTestServiceComponent>;
+    let testComponent: SnEmptyTestServiceComponent;
     let embedComponent: DebugElement;
     let emptyComponent: DebugElement;
 
     describe('service method', () => {
       beforeEach(() => {
         TestBed.configureTestingModule({
-          imports: [NzEmptyTestServiceModule]
+          imports: [SnEmptyTestServiceModule]
         }).compileComponents();
 
-        fixture = TestBed.createComponent(NzEmptyTestServiceComponent);
+        fixture = TestBed.createComponent(SnEmptyTestServiceComponent);
         testComponent = fixture.debugElement.componentInstance;
       });
 
@@ -143,8 +143,8 @@ describe('nz-empty', () => {
           tick();
           fixture.detectChanges();
 
-          embedComponent = fixture.debugElement.query(By.directive(NzEmbedEmptyComponent));
-          emptyComponent = fixture.debugElement.query(By.directive(NzEmptyComponent));
+          embedComponent = fixture.debugElement.query(By.directive(SnEmbedEmptyComponent));
+          emptyComponent = fixture.debugElement.query(By.directive(SnEmptyComponent));
         };
 
         refresh();
@@ -157,7 +157,7 @@ describe('nz-empty', () => {
         const imageEl = emptyComponent.nativeElement.firstChild;
         expect(imageEl.tagName).toBe('DIV');
         expect(imageEl.classList.contains('ant-empty-image')).toBe(true);
-        expect(imageEl.firstElementChild.tagName).toBe('NZ-EMPTY-SIMPLE');
+        expect(imageEl.firstElementChild.tagName).toBe('SN-EMPTY-SIMPLE');
 
         // Prop.
         testComponent.noResult = 'list';
@@ -180,12 +180,12 @@ describe('nz-empty', () => {
           tick();
           fixture.detectChanges();
 
-          embedComponent = fixture.debugElement.query(By.directive(NzEmbedEmptyComponent));
-          emptyComponent = fixture.debugElement.query(By.directive(NzEmptyComponent));
+          embedComponent = fixture.debugElement.query(By.directive(SnEmbedEmptyComponent));
+          emptyComponent = fixture.debugElement.query(By.directive(SnEmptyComponent));
         };
 
         // String.
-        testComponent.configService.set('empty', { nzDefaultEmptyContent: 'empty' });
+        testComponent.configService.set('empty', { snDefaultEmptyContent: 'empty' });
         refresh();
         expect(embedComponent).toBeTruthy();
         expect(emptyComponent).toBeFalsy();
@@ -209,7 +209,7 @@ describe('nz-empty', () => {
         // expect(emptyComponent).toBeFalsy();
         // const componentEl = embedComponent.nativeElement.nextSibling;
         // expect(componentEl).toBeTruthy();
-        // expect(componentEl.tagName).toBe('NZ-EMPTY-TEST-CUSTOM');
+        // expect(componentEl.tagName).toBe('SN-EMPTY-TEST-CUSTOM');
         // expect(componentEl.innerText).toBe(`I'm in component list`);
 
         // Reset.
@@ -222,7 +222,7 @@ describe('nz-empty', () => {
         const imageEl = emptyComponent.nativeElement.firstChild;
         expect(imageEl.tagName).toBe('DIV');
         expect(imageEl.classList.contains('ant-empty-image')).toBe(true);
-        expect(imageEl.firstElementChild.tagName).toBe('NZ-EMPTY-SIMPLE');
+        expect(imageEl.firstElementChild.tagName).toBe('SN-EMPTY-SIMPLE');
       }));
     });
 
@@ -232,10 +232,10 @@ describe('nz-empty', () => {
     describe('service injection', () => {
       beforeEach(() => {
         TestBed.configureTestingModule({
-          imports: [NzEmptyTestInjectionModule]
+          imports: [SnEmptyTestInjectionModule]
         }).compileComponents();
 
-        fixture = TestBed.createComponent(NzEmptyTestServiceComponent);
+        fixture = TestBed.createComponent(SnEmptyTestServiceComponent);
         testComponent = fixture.debugElement.componentInstance;
       });
 
@@ -245,8 +245,8 @@ describe('nz-empty', () => {
           tick(100);
           fixture.detectChanges();
 
-          embedComponent = fixture.debugElement.query(By.directive(NzEmbedEmptyComponent));
-          emptyComponent = fixture.debugElement.query(By.directive(NzEmptyComponent));
+          embedComponent = fixture.debugElement.query(By.directive(SnEmbedEmptyComponent));
+          emptyComponent = fixture.debugElement.query(By.directive(SnEmptyComponent));
         };
 
         refresh();
@@ -256,7 +256,7 @@ describe('nz-empty', () => {
         expect(emptyComponent).toBeFalsy();
         const componentEl = embedComponent.nativeElement.firstElementChild;
         expect(componentEl).toBeTruthy();
-        expect(componentEl.tagName).toBe('NZ-EMPTY-TEST-CUSTOM');
+        expect(componentEl.tagName).toBe('SN-EMPTY-TEST-CUSTOM');
         expect(componentEl.innerText).toBe(`I'm in component list`);
       }));
     });
@@ -265,14 +265,14 @@ describe('nz-empty', () => {
 
 @Component({
   template: `
-    <nz-empty [nzNotFoundImage]="image" [nzNotFoundContent]="content" [nzNotFoundFooter]="footer">
+    <sn-empty [snNotFoundImage]="image" [snNotFoundContent]="content" [snNotFoundFooter]="footer">
       <ng-template #imageTpl>Image</ng-template>
       <ng-template #contentTpl>Content</ng-template>
       <ng-template #footerTpl>Footer</ng-template>
-    </nz-empty>
+    </sn-empty>
   `
 })
-export class NzEmptyTestBasicComponent {
+export class SnEmptyTestBasicComponent {
   @ViewChild('imageTpl', { static: false }) imageTpl!: TemplateRef<void>;
   @ViewChild('contentTpl', { static: false }) contentTpl!: TemplateRef<void>;
   @ViewChild('footerTpl', { static: false }) footerTpl!: TemplateRef<void>;
@@ -284,13 +284,13 @@ export class NzEmptyTestBasicComponent {
 
 @Component({
   template: `
-    <nz-list [nzDataSource]="[]" [nzNoResult]="noResult"></nz-list>
+    <sn-list [snDataSource]="[]" [snNoResult]="noResult"></sn-list>
     <ng-template #tpl let-component>
       <div>I am in template {{ component }}</div>
     </ng-template>
   `
 })
-export class NzEmptyTestServiceComponent {
+export class SnEmptyTestServiceComponent {
   @ViewChild('tpl', { static: false }) template!: TemplateRef<string>;
 
   noResult?: string | null;
@@ -298,43 +298,43 @@ export class NzEmptyTestServiceComponent {
   constructor(public configService: SnConfigService) {}
 
   reset(): void {
-    this.configService.set('empty', { nzDefaultEmptyContent: undefined });
+    this.configService.set('empty', { snDefaultEmptyContent: undefined });
   }
 
   changeToTemplate(): void {
-    this.configService.set('empty', { nzDefaultEmptyContent: this.template });
+    this.configService.set('empty', { snDefaultEmptyContent: this.template });
   }
 }
 
 @Component({
   // eslint-disable-next-line
-  selector: 'nz-empty-test-custom',
+  selector: 'sn-empty-test-custom',
   template: ` <div>I'm in component {{ name }}</div> `
 })
-export class NzEmptyTestCustomComponent {
-  constructor(@Inject(NZ_EMPTY_COMPONENT_NAME) public name: string) {}
+export class SnEmptyTestCustomComponent {
+  constructor(@Inject(SN_EMPTY_COMPONENT_NAME) public name: string) {}
 }
 
 @NgModule({
-  imports: [CommonModule, NzEmptyModule, NzListModule],
-  declarations: [NzEmptyTestServiceComponent, NzEmptyTestCustomComponent],
-  exports: [NzEmptyTestServiceComponent, NzEmptyTestCustomComponent]
+  imports: [CommonModule, SnEmptyModule, SnListModule],
+  declarations: [SnEmptyTestServiceComponent, SnEmptyTestCustomComponent],
+  exports: [SnEmptyTestServiceComponent, SnEmptyTestCustomComponent]
 })
-export class NzEmptyTestServiceModule {}
+export class SnEmptyTestServiceModule {}
 
 @NgModule({
-  imports: [CommonModule, NzEmptyModule, NzListModule],
-  declarations: [NzEmptyTestServiceComponent, NzEmptyTestCustomComponent],
-  exports: [NzEmptyTestServiceComponent, NzEmptyTestCustomComponent],
+  imports: [CommonModule, SnEmptyModule, SnListModule],
+  declarations: [SnEmptyTestServiceComponent, SnEmptyTestCustomComponent],
+  exports: [SnEmptyTestServiceComponent, SnEmptyTestCustomComponent],
   providers: [
     {
-      provide: NZ_CONFIG,
+      provide: SN_CONFIG,
       useValue: {
         empty: {
-          nzDefaultEmptyContent: NzEmptyTestCustomComponent
+          snDefaultEmptyContent: SnEmptyTestCustomComponent
         }
       }
     }
   ]
 })
-export class NzEmptyTestInjectionModule {}
+export class SnEmptyTestInjectionModule {}

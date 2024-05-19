@@ -48,7 +48,7 @@ import {
   ZoomOutOutline
 } from '@ant-design/icons-angular/icons';
 
-export const NZ_ICONS_USED_BY_ZORRO: IconDefinition[] = [
+export const SN_ICONS_USED_BY_ZORRO: IconDefinition[] = [
   BarsOutline,
   CalendarOutline,
   CaretUpFill,

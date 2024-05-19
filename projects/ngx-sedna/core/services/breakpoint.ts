@@ -18,7 +18,7 @@ export enum SnBreakpointEnum {
 
 export type BreakpointMap = { [key in SnBreakpointEnum]: string };
 export type BreakpointBooleanMap = { [key in SnBreakpointEnum]: boolean };
-export type NzBreakpointKey = keyof typeof SnBreakpointEnum;
+export type SnBreakpointKey = keyof typeof SnBreakpointEnum;
 
 export const gridResponsiveMap: BreakpointMap = {
   xs: '(max-width: 575px)',

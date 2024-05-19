@@ -2,7 +2,7 @@ import { Component, Inject, OnDestroy } from '@angular/core';
 import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { Subscription } from 'rxjs';
 
-import { NZ_I18N, provideNzI18n } from 'ngx-sedna/i18n/nz-i18n.token';
+import { SN_I18N, provideSnI18n } from 'ngx-sedna/i18n/sn-i18n.token';
 
 import cs_CZ from './languages/cs_CZ';
 import de_DE from './languages/de_DE';
@@ -15,21 +15,21 @@ import { SnI18nService } from './sn-i18n.service';
 
 describe('i18n service', () => {
   let srv: SnI18nService;
-  let fixture: ComponentFixture<NzI18nTestComponent>;
-  let testComponent: NzI18nTestComponent;
+  let fixture: ComponentFixture<SnI18nTestComponent>;
+  let testComponent: SnI18nTestComponent;
   const DEFAULT_LAN = zh_CN;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [NzI18nTestComponent],
+      declarations: [SnI18nTestComponent],
       imports: [SnI18nModule],
-      providers: [provideNzI18n(DEFAULT_LAN)]
+      providers: [provideSnI18n(DEFAULT_LAN)]
     }).compileComponents();
   });
 
   describe('#setLocale', () => {
     beforeEach(() => {
-      fixture = TestBed.createComponent(NzI18nTestComponent);
+      fixture = TestBed.createComponent(SnI18nTestComponent);
       testComponent = fixture.debugElement.componentInstance;
     });
 
@@ -46,7 +46,7 @@ describe('i18n service', () => {
     });
 
     it('should be provide interface be right', () => {
-      fixture = TestBed.createComponent(NzI18nTestComponent);
+      fixture = TestBed.createComponent(SnI18nTestComponent);
       expect(fixture.componentInstance.locale === DEFAULT_LAN).toBe(true);
     });
 
@@ -75,7 +75,7 @@ describe('i18n service', () => {
       expect(spy).toHaveBeenCalledWith(
         '[NG-ZORRO]:',
         `Missing translations for "global.placeholder" in language "not_existing_language".
-You can use "NzI18nService.setLocale" as a temporary fix.
+You can use "SnI18nService.setLocale" as a temporary fix.
 Welcome to submit a pull request to help us optimize the translations!
 https://github.com/NG-ZORRO/ngx-sedna/blob/master/CONTRIBUTING.md`
       );
@@ -86,14 +86,14 @@ https://github.com/NG-ZORRO/ngx-sedna/blob/master/CONTRIBUTING.md`
 @Component({
   template: ''
 })
-export class NzI18nTestComponent implements OnDestroy {
+export class SnI18nTestComponent implements OnDestroy {
   private localeSubscription: Subscription;
 
   constructor(
-    private nzI18nService: SnI18nService,
-    @Inject(NZ_I18N) public locale: SnI18nInterface
+    private snI18nService: SnI18nService,
+    @Inject(SN_I18N) public locale: SnI18nInterface
   ) {
-    this.localeSubscription = this.nzI18nService.localeChange.subscribe(locale => {
+    this.localeSubscription = this.snI18nService.localeChange.subscribe(locale => {
       this.updateLocale(locale);
     });
   }

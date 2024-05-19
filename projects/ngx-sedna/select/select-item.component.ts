@@ -13,19 +13,19 @@ import {
 
 import { SnOutletModule } from 'ngx-sedna/core/outlet';
 import { SnSafeAny } from 'ngx-sedna/core/types';
-import { NzIconModule } from 'ngx-sedna/icon';
+import { SnIconModule } from 'ngx-sedna/icon';
 
 @Component({
   selector: 'sn-select-item',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <ng-container *nzStringTemplateOutlet="contentTemplateOutlet; context: { $implicit: contentTemplateOutletContext }">
+    <ng-container *snStringTemplateOutlet="contentTemplateOutlet; context: { $implicit: contentTemplateOutletContext }">
       <div class="ant-select-selection-item-content" *ngIf="deletable; else labelTemplate">{{ label }}</div>
       <ng-template #labelTemplate>{{ label }}</ng-template>
     </ng-container>
     <span *ngIf="deletable && !disabled" class="ant-select-selection-item-remove" (click)="onDelete($event)">
-      <span nz-icon nzType="close" *ngIf="!removeIcon; else removeIcon"></span>
+      <span sn-icon snType="close" *ngIf="!removeIcon; else removeIcon"></span>
     </span>
   `,
   host: {
@@ -33,7 +33,7 @@ import { NzIconModule } from 'ngx-sedna/icon';
     '[attr.title]': 'label',
     '[class.ant-select-selection-item-disabled]': 'disabled'
   },
-  imports: [SnOutletModule, NgIf, NzIconModule],
+  imports: [SnOutletModule, NgIf, SnIconModule],
   standalone: true
 })
 export class SnSelectItemComponent {

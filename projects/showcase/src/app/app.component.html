@@ -1,51 +1,51 @@
-<nz-empty></nz-empty>
+<sn-empty></sn-empty>
 
 
 <sn-select>
-  <sn-option nzValue="jack" nzLabel="Jack"></sn-option>
-  <sn-option nzValue="lucy" nzLabel="Lucy"></sn-option>
-  <sn-option nzValue="disabled" nzLabel="Disabled" nzDisabled></sn-option>
+  <sn-option snValue="jack" snLabel="Jack"></sn-option>
+  <sn-option snValue="lucy" snLabel="Lucy"></sn-option>
+  <sn-option snValue="disabled" snLabel="Disabled" snDisabled></sn-option>
 </sn-select>
-<sn-select nzDisabled>
-  <sn-option nzValue="lucy" nzLabel="Lucy"></sn-option>
+<sn-select snDisabled>
+  <sn-option snValue="lucy" snLabel="Lucy"></sn-option>
 </sn-select>
-<sn-select nzLoading>
-  <sn-option nzValue="lucy" nzLabel="Lucy"></sn-option>
+<sn-select snLoading>
+  <sn-option snValue="lucy" snLabel="Lucy"></sn-option>
 </sn-select>
-<sn-select nzAllowClear nzPlaceHolder="Choose">
-  <sn-option nzValue="lucy" nzLabel="Lucy"></sn-option>
-</sn-select>
-
-<sn-select nzAllowClear nzPlaceHolder="Choose" nzShowSearch>
-  <sn-option-group nzLabel="Manager">
-    <sn-option nzValue="jack" nzLabel="Jack"></sn-option>
-    <sn-option nzValue="lucy" nzLabel="Lucy"></sn-option>
-  </sn-option-group>
-  <sn-option-group nzLabel="Engineer">
-    <sn-option nzValue="tom" nzLabel="Tom"></sn-option>
-  </sn-option-group>
+<sn-select snAllowClear snPlaceHolder="Choose">
+  <sn-option snValue="lucy" snLabel="Lucy"></sn-option>
 </sn-select>
 
-
-<sn-select nzAllowClear nzPlaceHolder="Choose" nzShowSearch>
-  <sn-option-group nzLabel="Manager">
-    <sn-option nzValue="jack" nzLabel="Jack"></sn-option>
-    <sn-option nzValue="lucy" nzLabel="Lucy"></sn-option>
+<sn-select snAllowClear snPlaceHolder="Choose" snShowSearch>
+  <sn-option-group snLabel="Manager">
+    <sn-option snValue="jack" snLabel="Jack"></sn-option>
+    <sn-option snValue="lucy" snLabel="Lucy"></sn-option>
   </sn-option-group>
-  <sn-option-group nzLabel="Engineer">
-    <sn-option nzValue="tom" nzLabel="Tom"></sn-option>
+  <sn-option-group snLabel="Engineer">
+    <sn-option snValue="tom" snLabel="Tom"></sn-option>
+  </sn-option-group>
+</sn-select>
+
+
+<sn-select snAllowClear snPlaceHolder="Choose" snShowSearch>
+  <sn-option-group snLabel="Manager">
+    <sn-option snValue="jack" snLabel="Jack"></sn-option>
+    <sn-option snValue="lucy" snLabel="Lucy"></sn-option>
+  </sn-option-group>
+  <sn-option-group snLabel="Engineer">
+    <sn-option snValue="tom" snLabel="Tom"></sn-option>
   </sn-option-group>
 </sn-select>
 
 
 <sn-select
-  [nzMaxMultipleCount]="3"
-  nzMode="multiple"
-  nzPlaceHolder="Please select"
-  nzAllowClear
-  [nzShowArrow]="true"
+  [snMaxMultipleCount]="3"
+  snMode="multiple"
+  snPlaceHolder="Please select"
+  snAllowClear
+  [snShowArrow]="true"
 >
-  <sn-option *ngFor="let item of listOfOption" [nzLabel]="item" [nzValue]="item"></sn-option>
+  <sn-option *ngFor="let item of listOfOption" [snLabel]="item" [snValue]="item"></sn-option>
 </sn-select>
 
 
@@ -62,18 +62,18 @@
 
 
 <!-- <sn-select>
-  <sn-option nzValue="jack" nzLabel="Jack"></sn-option>
-  <sn-option nzValue="lucy" nzLabel="Lucy"></sn-option>
-  <sn-option nzValue="disabled" nzLabel="Disabled" nzDisabled></sn-option>
+  <sn-option snValue="jack" snLabel="Jack"></sn-option>
+  <sn-option snValue="lucy" snLabel="Lucy"></sn-option>
+  <sn-option snValue="disabled" snLabel="Disabled" snDisabled></sn-option>
 </sn-select>
-<sn-select nzDisabled>
-  <sn-option nzValue="lucy" nzLabel="Lucy"></sn-option>
+<sn-select snDisabled>
+  <sn-option snValue="lucy" snLabel="Lucy"></sn-option>
 </sn-select>
-<sn-select nzLoading>
-  <sn-option nzValue="lucy" nzLabel="Lucy"></sn-option>
+<sn-select snLoading>
+  <sn-option snValue="lucy" snLabel="Lucy"></sn-option>
 </sn-select>
-<sn-select nzAllowClear nzPlaceHolder="Choose">
-  <sn-option nzValue="lucy" nzLabel="Lucy"></sn-option>
+<sn-select snAllowClear snPlaceHolder="Choose">
+  <sn-option snValue="lucy" snLabel="Lucy"></sn-option>
 </sn-select> -->
 
 <!--
@@ -94,16 +94,16 @@
   <sn-option *ngFor="let item of listOfOption" [snLabel]="item" [snValue]="item"></sn-option>
 </sn-select> -->
 
-<!-- <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" style="padding: 3rem;"> -->
-  <!-- <nz-form-item>
-    <nz-form-label [nzSpan]="5" nzRequired nzFor="note">Note</nz-form-label>
-    <nz-form-control [nzSpan]="12" nzErrorTip="Please input your username!">
-      <input id="note" type="text" nz-input formControlName="note" />
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSpan]="5" nzFor="gender" nzRequired>Gender</nz-form-label>
-    <nz-form-control [nzSpan]="12" nzErrorTip="Please select your gender!"> -->
+<!-- <form sn-form [formGroup]="validateForm" (ngSubmit)="submitForm()" style="padding: 3rem;"> -->
+  <!-- <sn-form-item>
+    <sn-form-label [snSpan]="5" snRequired snFor="note">Note</sn-form-label>
+    <sn-form-control [snSpan]="12" snErrorTip="Please input your username!">
+      <input id="note" type="text" sn-input formControlName="note" />
+    </sn-form-control>
+  </sn-form-item>
+  <sn-form-item>
+    <sn-form-label [snSpan]="5" snFor="gender" snRequired>Gender</sn-form-label>
+    <sn-form-control [snSpan]="12" snErrorTip="Please select your gender!"> -->
 
       <!-- <sn-select
         id="gender"
@@ -126,13 +126,13 @@
       <!-- <sn-select *snSpaceItem snStatus="error" style="width: 100%"></sn-select>
       <sn-select *snSpaceItem snStatus="warning" style="width: 100%"></sn-select> -->
 
-    <!-- </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-control [nzSpan]="12" [nzOffset]="5">
-      <button nz-button nzType="primary">Submit</button>
-    </nz-form-control>
-  </nz-form-item> -->
+    <!-- </sn-form-control>
+  </sn-form-item>
+  <sn-form-item>
+    <sn-form-control [snSpan]="12" [snOffset]="5">
+      <button sn-button snType="primary">Submit</button>
+    </sn-form-control>
+  </sn-form-item> -->
 <!-- </form> -->
 
 <!-- horizontal -->

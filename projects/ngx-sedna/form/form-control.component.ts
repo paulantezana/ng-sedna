@@ -28,12 +28,12 @@ import { BooleanInput, SnSafeAny } from 'ngx-sedna/core/types';
 import { toBoolean } from 'ngx-sedna/core/util';
 import { SnI18nService } from 'ngx-sedna/i18n';
 
-import { NzFormControlStatusType, NzFormItemComponent } from './form-item.component';
-import { NzFormDirective } from './form.directive';
+import { SnFormControlStatusType, SnFormItemComponent } from './form-item.component';
+import { SnFormDirective } from './form.directive';
 
 @Component({
-  selector: 'nz-form-control',
-  exportAs: 'nzFormControl',
+  selector: 'sn-form-control',
+  exportAs: 'snFormControl',
   preserveWhitespaces: false,
   animations: [helpMotion],
   encapsulation: ViewEncapsulation.None,
@@ -47,16 +47,16 @@ import { NzFormDirective } from './form.directive';
     @if (innerTip) {
       <div @helpMotion class="ant-form-item-explain ant-form-item-explain-connected">
         <div role="alert" [ngClass]="['ant-form-item-explain-' + status]">
-          <ng-container *nzStringTemplateOutlet="innerTip; context: { $implicit: validateControl }">{{
+          <ng-container *snStringTemplateOutlet="innerTip; context: { $implicit: validateControl }">{{
             innerTip
           }}</ng-container>
         </div>
       </div>
     }
 
-    @if (nzExtra) {
+    @if (snExtra) {
       <div class="ant-form-item-extra">
-        <ng-container *nzStringTemplateOutlet="nzExtra">{{ nzExtra }}</ng-container>
+        <ng-container *snStringTemplateOutlet="snExtra">{{ snExtra }}</ng-container>
       </div>
     }
   `,
@@ -67,11 +67,11 @@ import { NzFormDirective } from './form.directive';
   imports: [NgClass, SnOutletModule],
   standalone: true
 })
-export class NzFormControlComponent implements OnChanges, OnDestroy, OnInit, AfterContentInit, OnDestroy {
-  static ngAcceptInputType_nzHasFeedback: BooleanInput;
-  static ngAcceptInputType_nzRequired: BooleanInput;
-  static ngAcceptInputType_nzNoColon: BooleanInput;
-  static ngAcceptInputType_nzDisableAutoTips: BooleanInput;
+export class SnFormControlComponent implements OnChanges, OnDestroy, OnInit, AfterContentInit, OnDestroy {
+  static ngAcceptInputType_snHasFeedback: BooleanInput;
+  static ngAcceptInputType_snRequired: BooleanInput;
+  static ngAcceptInputType_snNoColon: BooleanInput;
+  static ngAcceptInputType_snDisableAutoTips: BooleanInput;
 
   private _hasFeedback = false;
   private validateChanges: Subscription = Subscription.EMPTY;
@@ -81,39 +81,39 @@ export class NzFormControlComponent implements OnChanges, OnDestroy, OnInit, Aft
   private autoErrorTip?: string;
 
   private get disableAutoTips(): boolean {
-    return this.nzDisableAutoTips !== 'default'
-      ? toBoolean(this.nzDisableAutoTips)
-      : this.nzFormDirective?.nzDisableAutoTips;
+    return this.snDisableAutoTips !== 'default'
+      ? toBoolean(this.snDisableAutoTips)
+      : this.snFormDirective?.snDisableAutoTips;
   }
 
-  status: NzFormControlStatusType = '';
+  status: SnFormControlStatusType = '';
   validateControl: AbstractControl | NgModel | null = null;
   innerTip: string | TemplateRef<{ $implicit: AbstractControl | NgModel }> | null = null;
 
   @ContentChild(NgControl, { static: false }) defaultValidateControl?: FormControlName | FormControlDirective;
-  @Input() nzSuccessTip?: string | TemplateRef<{ $implicit: AbstractControl | NgModel }>;
-  @Input() nzWarningTip?: string | TemplateRef<{ $implicit: AbstractControl | NgModel }>;
-  @Input() nzErrorTip?: string | TemplateRef<{ $implicit: AbstractControl | NgModel }>;
-  @Input() nzValidatingTip?: string | TemplateRef<{ $implicit: AbstractControl | NgModel }>;
-  @Input() nzExtra?: string | TemplateRef<void>;
-  @Input() nzAutoTips: Record<string, Record<string, string>> = {};
-  @Input() nzDisableAutoTips: boolean | 'default' = 'default';
+  @Input() snSuccessTip?: string | TemplateRef<{ $implicit: AbstractControl | NgModel }>;
+  @Input() snWarningTip?: string | TemplateRef<{ $implicit: AbstractControl | NgModel }>;
+  @Input() snErrorTip?: string | TemplateRef<{ $implicit: AbstractControl | NgModel }>;
+  @Input() snValidatingTip?: string | TemplateRef<{ $implicit: AbstractControl | NgModel }>;
+  @Input() snExtra?: string | TemplateRef<void>;
+  @Input() snAutoTips: Record<string, Record<string, string>> = {};
+  @Input() snDisableAutoTips: boolean | 'default' = 'default';
 
   @Input()
-  set nzHasFeedback(value: boolean) {
+  set snHasFeedback(value: boolean) {
     this._hasFeedback = toBoolean(value);
-    this.nzFormStatusService.formStatusChanges.next({ status: this.status, hasFeedback: this._hasFeedback });
-    if (this.nzFormItemComponent) {
-      this.nzFormItemComponent.setHasFeedback(this._hasFeedback);
+    this.snFormStatusService.formStatusChanges.next({ status: this.status, hasFeedback: this._hasFeedback });
+    if (this.snFormItemComponent) {
+      this.snFormItemComponent.setHasFeedback(this._hasFeedback);
     }
   }
 
-  get nzHasFeedback(): boolean {
+  get snHasFeedback(): boolean {
     return this._hasFeedback;
   }
 
   @Input()
-  set nzValidateStatus(value: string | AbstractControl | FormControlName | NgModel) {
+  set snValidateStatus(value: string | AbstractControl | FormControlName | NgModel) {
     if (value instanceof AbstractControl || value instanceof NgModel) {
       this.validateControl = value;
       this.validateString = null;
@@ -148,15 +148,15 @@ export class NzFormControlComponent implements OnChanges, OnDestroy, OnInit, Aft
   private setStatus(): void {
     this.status = this.getControlStatus(this.validateString);
     this.innerTip = this.getInnerTip(this.status);
-    this.nzFormStatusService.formStatusChanges.next({ status: this.status, hasFeedback: this.nzHasFeedback });
-    if (this.nzFormItemComponent) {
-      this.nzFormItemComponent.setWithHelpViaTips(!!this.innerTip);
-      this.nzFormItemComponent.setStatus(this.status);
+    this.snFormStatusService.formStatusChanges.next({ status: this.status, hasFeedback: this.snHasFeedback });
+    if (this.snFormItemComponent) {
+      this.snFormItemComponent.setWithHelpViaTips(!!this.innerTip);
+      this.snFormItemComponent.setStatus(this.status);
     }
   }
 
-  private getControlStatus(validateString: string | null): NzFormControlStatusType {
-    let status: NzFormControlStatusType;
+  private getControlStatus(validateString: string | null): SnFormControlStatusType {
+    let status: SnFormControlStatusType;
 
     if (validateString === 'warning' || this.validateControlStatus('INVALID', 'warning')) {
       status = 'warning';
@@ -177,7 +177,7 @@ export class NzFormControlComponent implements OnChanges, OnDestroy, OnInit, Aft
     return status;
   }
 
-  private validateControlStatus(validStatus: string, statusType?: NzFormControlStatusType): boolean {
+  private validateControlStatus(validStatus: string, statusType?: SnFormControlStatusType): boolean {
     if (!this.validateControl) {
       return false;
     } else {
@@ -189,17 +189,17 @@ export class NzFormControlComponent implements OnChanges, OnDestroy, OnInit, Aft
   }
 
   private getInnerTip(
-    status: NzFormControlStatusType
+    status: SnFormControlStatusType
   ): string | TemplateRef<{ $implicit: AbstractControl | NgModel }> | null {
     switch (status) {
       case 'error':
-        return (!this.disableAutoTips && this.autoErrorTip) || this.nzErrorTip || null;
+        return (!this.disableAutoTips && this.autoErrorTip) || this.snErrorTip || null;
       case 'validating':
-        return this.nzValidatingTip || null;
+        return this.snValidatingTip || null;
       case 'success':
-        return this.nzSuccessTip || null;
+        return this.snSuccessTip || null;
       case 'warning':
-        return this.nzWarningTip || null;
+        return this.snWarningTip || null;
       default:
         return null;
     }
@@ -213,10 +213,10 @@ export class NzFormControlComponent implements OnChanges, OnDestroy, OnInit, Aft
         if (errors.hasOwnProperty(key)) {
           autoErrorTip =
             errors[key]?.[this.localeId] ??
-            this.nzAutoTips?.[this.localeId]?.[key] ??
-            this.nzAutoTips.default?.[key] ??
-            this.nzFormDirective?.nzAutoTips?.[this.localeId]?.[key] ??
-            this.nzFormDirective?.nzAutoTips.default?.[key];
+            this.snAutoTips?.[this.localeId]?.[key] ??
+            this.snAutoTips.default?.[key] ??
+            this.snFormDirective?.snAutoTips?.[this.localeId]?.[key] ??
+            this.snFormDirective?.snAutoTips.default?.[key];
         }
         if (!!autoErrorTip) {
           break;
@@ -237,28 +237,28 @@ export class NzFormControlComponent implements OnChanges, OnDestroy, OnInit, Aft
   }
 
   constructor(
-    @Optional() @Host() private nzFormItemComponent: NzFormItemComponent,
+    @Optional() @Host() private snFormItemComponent: SnFormItemComponent,
     private cdr: ChangeDetectorRef,
     i18n: SnI18nService,
-    @Optional() private nzFormDirective: NzFormDirective,
-    private nzFormStatusService: SnFormStatusService
+    @Optional() private snFormDirective: SnFormDirective,
+    private snFormStatusService: SnFormStatusService
   ) {
     this.subscribeAutoTips(i18n.localeChange.pipe(tap(locale => (this.localeId = locale.locale))));
-    this.subscribeAutoTips(this.nzFormDirective?.getInputObservable('nzAutoTips'));
+    this.subscribeAutoTips(this.snFormDirective?.getInputObservable('snAutoTips'));
     this.subscribeAutoTips(
-      this.nzFormDirective
-        ?.getInputObservable('nzDisableAutoTips')
-        .pipe(filter(() => this.nzDisableAutoTips === 'default'))
+      this.snFormDirective
+        ?.getInputObservable('snDisableAutoTips')
+        .pipe(filter(() => this.snDisableAutoTips === 'default'))
     );
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { nzDisableAutoTips, nzAutoTips, nzSuccessTip, nzWarningTip, nzErrorTip, nzValidatingTip } = changes;
+    const { snDisableAutoTips, snAutoTips, snSuccessTip, snWarningTip, snErrorTip, snValidatingTip } = changes;
 
-    if (nzDisableAutoTips || nzAutoTips) {
+    if (snDisableAutoTips || snAutoTips) {
       this.updateAutoErrorTip();
       this.setStatus();
-    } else if (nzSuccessTip || nzWarningTip || nzErrorTip || nzValidatingTip) {
+    } else if (snSuccessTip || snWarningTip || snErrorTip || snValidatingTip) {
       this.setStatus();
     }
   }
@@ -275,9 +275,9 @@ export class NzFormControlComponent implements OnChanges, OnDestroy, OnInit, Aft
   ngAfterContentInit(): void {
     if (!this.validateControl && !this.validateString) {
       if (this.defaultValidateControl instanceof FormControlDirective) {
-        this.nzValidateStatus = this.defaultValidateControl.control;
+        this.snValidateStatus = this.defaultValidateControl.control;
       } else {
-        this.nzValidateStatus = this.defaultValidateControl!;
+        this.snValidateStatus = this.defaultValidateControl!;
       }
     }
   }

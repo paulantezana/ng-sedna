@@ -2,13 +2,13 @@
 
 import { NgModule } from '@angular/core';
 
-import { NzEmbedEmptyComponent } from './embed-empty.component';
-import { NzEmptyComponent } from './empty.component';
-import { NzEmptyDefaultComponent } from './partial/default';
-import { NzEmptySimpleComponent } from './partial/simple';
+import { SnEmbedEmptyComponent } from './embed-empty.component';
+import { SnEmptyComponent } from './empty.component';
+import { SnEmptyDefaultComponent } from './partial/default';
+import { SnEmptySimpleComponent } from './partial/simple';
 
 @NgModule({
-  imports: [NzEmptyComponent, NzEmbedEmptyComponent, NzEmptyDefaultComponent, NzEmptySimpleComponent],
-  exports: [NzEmptyComponent, NzEmbedEmptyComponent]
+  imports: [SnEmptyComponent, SnEmbedEmptyComponent, SnEmptyDefaultComponent, SnEmptySimpleComponent],
+  exports: [SnEmptyComponent, SnEmbedEmptyComponent]
 })
-export class NzEmptyModule {}
+export class SnEmptyModule {}

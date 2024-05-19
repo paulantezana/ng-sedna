@@ -4,7 +4,7 @@ import { filter, mapTo } from 'rxjs/operators';
 
 import { SnSafeAny } from 'ngx-sedna/core/types';
 
-import { SnConfig, SnConfigKey, NZ_CONFIG } from './config';
+import { SnConfig, SnConfigKey, SN_CONFIG } from './config';
 import { registerTheme } from './css-variables';
 
 const isDefined = function (value?: SnSafeAny): boolean {
@@ -25,14 +25,14 @@ export class SnConfigService {
   private readonly cspNonce?: string | null;
 
   constructor(
-    @Optional() @Inject(NZ_CONFIG) defaultConfig?: SnConfig,
+    @Optional() @Inject(SN_CONFIG) defaultConfig?: SnConfig,
     @Optional() @Inject(CSP_NONCE) cspNonce?: string | null
   ) {
     this.config = defaultConfig || {};
     this.cspNonce = cspNonce;
 
     if (this.config.theme) {
-      // If theme is set with NZ_CONFIG, register theme to make sure css variables work
+      // If theme is set with SN_CONFIG, register theme to make sure css variables work
       registerTheme(this.getConfig().prefixCls?.prefixCls || defaultPrefixCls, this.config.theme, cspNonce);
     }
   }
@@ -86,7 +86,7 @@ export function WithConfig<T>() {
       get(): T | undefined {
         const originalValue = originalDescriptor?.get ? originalDescriptor.get.bind(this)() : this[privatePropName];
         const assignedByUser = (this.propertyAssignCounter?.[propName] || 0) > 1;
-        const configValue = this.nzConfigService.getConfigForComponent(this._nzModuleName)?.[propName];
+        const configValue = this.snConfigService.getConfigForComponent(this._snModuleName)?.[propName];
         if (assignedByUser && isDefined(originalValue)) {
           return originalValue;
         } else {

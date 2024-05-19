@@ -22,10 +22,10 @@ import { startWith, takeUntil } from 'rxjs/operators';
 import { SnConfigService } from 'ngx-sedna/core/config';
 import { SnSafeAny } from 'ngx-sedna/core/types';
 
-import { NZ_EMPTY_COMPONENT_NAME, NzEmptyCustomContent, NzEmptySize } from './config';
-import { NzEmptyComponent } from './empty.component';
+import { SN_EMPTY_COMPONENT_NAME, SnEmptyCustomContent, SnEmptySize } from './config';
+import { SnEmptyComponent } from './empty.component';
 
-function getEmptySize(componentName: string): NzEmptySize {
+function getEmptySize(componentName: string): SnEmptySize {
   switch (componentName) {
     case 'table':
     case 'list':
@@ -40,13 +40,13 @@ function getEmptySize(componentName: string): NzEmptySize {
   }
 }
 
-type NzEmptyContentType = 'component' | 'template' | 'string';
+type SnEmptyContentType = 'component' | 'template' | 'string';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  selector: 'nz-embed-empty',
-  exportAs: 'nzEmbedEmpty',
+  selector: 'sn-embed-empty',
+  exportAs: 'snEmbedEmpty',
   template: `
     @if (content) {
       @if (contentType === 'string') {
@@ -58,29 +58,29 @@ type NzEmptyContentType = 'component' | 'template' | 'string';
       @if (specificContent !== null) {
         @switch (size) {
           @case ('normal') {
-            <nz-empty class="ant-empty-normal" nzNotFoundImage="simple" />
+            <sn-empty class="ant-empty-normal" snNotFoundImage="simple" />
           }
           @case ('small') {
-            <nz-empty class="ant-empty-small" nzNotFoundImage="simple" />
+            <sn-empty class="ant-empty-small" snNotFoundImage="simple" />
           }
           @default {
-            <nz-empty />
+            <sn-empty />
           }
         }
       }
     }
   `,
-  imports: [NzEmptyComponent, PortalModule],
+  imports: [SnEmptyComponent, PortalModule],
   standalone: true
 })
-export class NzEmbedEmptyComponent implements OnChanges, OnInit, OnDestroy {
-  @Input() nzComponentName?: string;
-  @Input() specificContent?: NzEmptyCustomContent;
+export class SnEmbedEmptyComponent implements OnChanges, OnInit, OnDestroy {
+  @Input() snComponentName?: string;
+  @Input() specificContent?: SnEmptyCustomContent;
 
-  content?: NzEmptyCustomContent;
-  contentType: NzEmptyContentType = 'string';
+  content?: SnEmptyCustomContent;
+  contentType: SnEmptyContentType = 'string';
   contentPortal?: Portal<SnSafeAny>;
-  size: NzEmptySize = '';
+  size: SnEmptySize = '';
 
   private destroy$ = new Subject<void>();
 
@@ -92,9 +92,9 @@ export class NzEmbedEmptyComponent implements OnChanges, OnInit, OnDestroy {
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { nzComponentName, specificContent } = changes;
-    if (nzComponentName) {
-      this.size = getEmptySize(nzComponentName.currentValue);
+    const { snComponentName, specificContent } = changes;
+    if (snComponentName) {
+      this.size = getEmptySize(snComponentName.currentValue);
     }
 
     if (specificContent && !specificContent.isFirstChange()) {
@@ -118,13 +118,13 @@ export class NzEmbedEmptyComponent implements OnChanges, OnInit, OnDestroy {
     if (typeof content === 'string') {
       this.contentType = 'string';
     } else if (content instanceof TemplateRef) {
-      const context = { $implicit: this.nzComponentName } as SnSafeAny;
+      const context = { $implicit: this.snComponentName } as SnSafeAny;
       this.contentType = 'template';
       this.contentPortal = new TemplatePortal(content, this.viewContainerRef, context);
     } else if (content instanceof Type) {
       const injector = Injector.create({
         parent: this.injector,
-        providers: [{ provide: NZ_EMPTY_COMPONENT_NAME, useValue: this.nzComponentName }]
+        providers: [{ provide: SN_EMPTY_COMPONENT_NAME, useValue: this.snComponentName }]
       });
       this.contentType = 'component';
       this.contentPortal = new ComponentPortal(content, this.viewContainerRef, injector);
@@ -147,6 +147,6 @@ export class NzEmbedEmptyComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   private getUserDefaultEmptyContent(): Type<SnSafeAny> | TemplateRef<string> | string | undefined {
-    return (this.configService.getConfigForComponent('empty') || {}).nzDefaultEmptyContent;
+    return (this.configService.getConfigForComponent('empty') || {}).snDefaultEmptyContent;
   }
 }

@@ -12,7 +12,7 @@ import { ApiService } from './services/api.service';
 // import { HttpClient } from '@angular/common/http';
 import { SnSelectModule } from 'ngx-sedna/select';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NzEmptyComponent } from 'ngx-sedna/empty';
+import { SnEmptyComponent } from 'ngx-sedna/empty';
 
 
 
@@ -33,7 +33,7 @@ import { NzEmptyComponent } from 'ngx-sedna/empty';
     // // NgForm,
     // ReactiveFormsModule,
     // BrowserAnimationsModule,
-    NzEmptyComponent,
+    SnEmptyComponent,
     // NoopAnimationsModule,
   ],
   providers: [ApiService],

@@ -3,8 +3,8 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'nz-form-split',
-  exportAs: 'nzFormSplit',
+  selector: 'sn-form-split',
+  exportAs: 'snFormSplit',
   preserveWhitespaces: false,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -14,4 +14,4 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
   },
   standalone: true
 })
-export class NzFormSplitComponent {}
+export class SnFormSplitComponent {}

@@ -7,12 +7,12 @@ import { SnSafeAny } from 'ngx-sedna/core/types';
 export type SnSelectModeType = 'default' | 'multiple' | 'tags';
 export interface SnSelectItemInterface {
   template?: TemplateRef<SnSafeAny> | null;
-  nzLabel: string | number | null;
-  nzValue: SnSafeAny | null;
-  nzTitle?: string | number | null;
-  nzDisabled?: boolean;
-  nzHide?: boolean;
-  nzCustomContent?: boolean;
+  snLabel: string | number | null;
+  snValue: SnSafeAny | null;
+  snTitle?: string | number | null;
+  snDisabled?: boolean;
+  snHide?: boolean;
+  snCustomContent?: boolean;
   groupLabel?: string | number | TemplateRef<SnSafeAny> | null;
   type?: string;
   key?: SnSafeAny;

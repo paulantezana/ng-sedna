@@ -5,8 +5,8 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  selector: 'nz-empty-default',
-  exportAs: 'nzEmptyDefault',
+  selector: 'sn-empty-default',
+  exportAs: 'snEmptyDefault',
   standalone: true,
   template: `
     <svg
@@ -49,4 +49,4 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
     </svg>
   `
 })
-export class NzEmptyDefaultComponent {}
+export class SnEmptyDefaultComponent {}

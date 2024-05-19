@@ -3,8 +3,8 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'nz-form-text',
-  exportAs: 'nzFormText',
+  selector: 'sn-form-text',
+  exportAs: 'snFormText',
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -14,4 +14,4 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
   },
   standalone: true
 })
-export class NzFormTextComponent {}
+export class SnFormTextComponent {}

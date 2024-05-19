@@ -4,23 +4,23 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ɵComponentBed as ComponentBed, ɵcreateComponentBed as createComponentBed } from 'ngx-sedna/core/testing';
 
-import { NzFormItemComponent } from './form-item.component';
-import { NzFormLabelComponent } from './form-label.component';
-import { NzFormDirective } from './form.directive';
+import { SnFormItemComponent } from './form-item.component';
+import { SnFormLabelComponent } from './form-label.component';
+import { SnFormDirective } from './form.directive';
 
 const testBedOptions = {
-  imports: [NoopAnimationsModule, NzFormLabelComponent, NzFormDirective, NzFormItemComponent]
+  imports: [NoopAnimationsModule, SnFormLabelComponent, SnFormDirective, SnFormItemComponent]
 };
 
-describe('nz-form', () => {
+describe('sn-form', () => {
   describe('default', () => {
-    let testBed: ComponentBed<NzTestFormDirectiveComponent>;
-    let testComponent: NzTestFormDirectiveComponent;
+    let testBed: ComponentBed<SnTestFormDirectiveComponent>;
+    let testComponent: SnTestFormDirectiveComponent;
     let form: DebugElement;
     beforeEach(() => {
-      testBed = createComponentBed(NzTestFormDirectiveComponent, testBedOptions);
+      testBed = createComponentBed(SnTestFormDirectiveComponent, testBedOptions);
       testComponent = testBed.component;
-      form = testBed.fixture.debugElement.query(By.directive(NzFormDirective));
+      form = testBed.fixture.debugElement.query(By.directive(SnFormDirective));
     });
     it('should className correct', () => {
       expect(form.nativeElement.classList).toContain('ant-form');
@@ -45,13 +45,13 @@ describe('nz-form', () => {
   });
 
   describe('label integrate', () => {
-    let testBed: ComponentBed<NzTestFormLabelIntegrateComponent>;
-    let testComponent: NzTestFormLabelIntegrateComponent;
+    let testBed: ComponentBed<SnTestFormLabelIntegrateComponent>;
+    let testComponent: SnTestFormLabelIntegrateComponent;
     let form: DebugElement;
     beforeEach(() => {
-      testBed = createComponentBed(NzTestFormLabelIntegrateComponent, testBedOptions);
+      testBed = createComponentBed(SnTestFormLabelIntegrateComponent, testBedOptions);
       testComponent = testBed.component;
-      form = testBed.fixture.debugElement.query(By.directive(NzFormDirective));
+      form = testBed.fixture.debugElement.query(By.directive(SnFormDirective));
     });
 
     afterEach(() => {
@@ -114,30 +114,30 @@ describe('nz-form', () => {
 });
 
 @Component({
-  template: ` <form nz-form [nzLayout]="layout"></form> `
+  template: ` <form sn-form [snLayout]="layout"></form> `
 })
-export class NzTestFormDirectiveComponent {
+export class SnTestFormDirectiveComponent {
   layout = 'horizontal';
 }
 
 @Component({
   template: `
-    <form nz-form [nzNoColon]="defaultNoColon">
-      <nz-form-item>
-        <nz-form-label>Label</nz-form-label>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label>Label</nz-form-label>
-      </nz-form-item>
+    <form sn-form [snNoColon]="defaultNoColon">
+      <sn-form-item>
+        <sn-form-label>Label</sn-form-label>
+      </sn-form-item>
+      <sn-form-item>
+        <sn-form-label>Label</sn-form-label>
+      </sn-form-item>
       @if (testPriority) {
-        <nz-form-item>
-          <nz-form-label [nzNoColon]="noColon">TEST_PRIORITY</nz-form-label>
-        </nz-form-item>
+        <sn-form-item>
+          <sn-form-label [snNoColon]="noColon">TEST_PRIORITY</sn-form-label>
+        </sn-form-item>
       }
     </form>
   `
 })
-export class NzTestFormLabelIntegrateComponent {
+export class SnTestFormLabelIntegrateComponent {
   defaultNoColon = false;
   testPriority = false;
   noColon = false;

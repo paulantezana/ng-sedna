@@ -91,6 +91,6 @@ export function registerTheme(globalPrefixCls: string, theme: Theme, cspNonce: s
   if (canUseDom()) {
     updateCSS(style, `${dynamicStyleMark}-dynamic-theme`, { cspNonce });
   } else {
-    warn(`NzConfigService: SSR do not support dynamic theme with css variables.`);
+    warn(`SnConfigService: SSR do not support dynamic theme with css variables.`);
   }
 }

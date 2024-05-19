@@ -13,14 +13,14 @@ import { IconConfig, SnConfigService } from 'ngx-sedna/core/config';
 import { warn } from 'ngx-sedna/core/logger';
 import { SnSafeAny } from 'ngx-sedna/core/types';
 
-import { NZ_ICONS_USED_BY_ZORRO } from './icons';
+import { SN_ICONS_USED_BY_ZORRO } from './icons';
 
-export interface NzIconfontOption {
+export interface SnIconfontOption {
   scriptUrl: string;
 }
 
-export const NZ_ICONS = new InjectionToken('nz_icons');
-export const NZ_ICON_DEFAULT_TWOTONE_COLOR = new InjectionToken('nz_icon_default_twotone_color');
+export const SN_ICONS = new InjectionToken('sn_icons');
+export const SN_ICON_DEFAULT_TWOTONE_COLOR = new InjectionToken('sn_icon_default_twotone_color');
 export const DEFAULT_TWOTONE_COLOR = '#1890ff';
 
 /**
@@ -29,7 +29,7 @@ export const DEFAULT_TWOTONE_COLOR = '#1890ff';
 @Injectable({
   providedIn: 'root'
 })
-export class NzIconService extends IconService implements OnDestroy {
+export class SnIconService extends IconService implements OnDestroy {
   configUpdated$ = new Subject<void>();
 
   protected override get _disableDynamicLoading(): boolean {
@@ -59,7 +59,7 @@ export class NzIconService extends IconService implements OnDestroy {
     }
   }
 
-  fetchFromIconfont(opt: NzIconfontOption): void {
+  fetchFromIconfont(opt: SnIconfontOption): void {
     const { scriptUrl } = opt;
     if (this._document && !this.iconfontCache.has(scriptUrl)) {
       const script = this._renderer.createElement('script');
@@ -77,13 +77,13 @@ export class NzIconService extends IconService implements OnDestroy {
   constructor(
     rendererFactory: RendererFactory2,
     sanitizer: DomSanitizer,
-    protected nzConfigService: SnConfigService,
+    protected snConfigService: SnConfigService,
     private platform: Platform,
     @Optional() handler: HttpBackend,
     @Optional() @Inject(DOCUMENT) _document: SnSafeAny,
-    @Optional() @Inject(NZ_ICONS) icons?: IconDefinition[]
+    @Optional() @Inject(SN_ICONS) icons?: IconDefinition[]
   ) {
-    super(rendererFactory, handler, _document, sanitizer, [...NZ_ICONS_USED_BY_ZORRO, ...(icons || [])]);
+    super(rendererFactory, handler, _document, sanitizer, [...SN_ICONS_USED_BY_ZORRO, ...(icons || [])]);
 
     this.onConfigChange();
     this.configDefaultTwotoneColor();
@@ -91,7 +91,7 @@ export class NzIconService extends IconService implements OnDestroy {
   }
 
   private onConfigChange(): void {
-    this.subscription = this.nzConfigService.getConfigChangeEventForComponent('icon').subscribe(() => {
+    this.subscription = this.snConfigService.getConfigChangeEventForComponent('icon').subscribe(() => {
       this.configDefaultTwotoneColor();
       this.configDefaultTheme();
       this.configUpdated$.next();
@@ -100,12 +100,12 @@ export class NzIconService extends IconService implements OnDestroy {
 
   private configDefaultTheme(): void {
     const iconConfig = this.getConfig();
-    this.defaultTheme = iconConfig.nzTheme || 'outline';
+    this.defaultTheme = iconConfig.snTheme || 'outline';
   }
 
   private configDefaultTwotoneColor(): void {
     const iconConfig = this.getConfig();
-    const defaultTwotoneColor = iconConfig.nzTwotoneColor || DEFAULT_TWOTONE_COLOR;
+    const defaultTwotoneColor = iconConfig.snTwotoneColor || DEFAULT_TWOTONE_COLOR;
 
     let primaryColor = DEFAULT_TWOTONE_COLOR;
 
@@ -121,19 +121,19 @@ export class NzIconService extends IconService implements OnDestroy {
   }
 
   private getConfig(): IconConfig {
-    return this.nzConfigService.getConfigForComponent('icon') || {};
+    return this.snConfigService.getConfigForComponent('icon') || {};
   }
 }
 
-export const NZ_ICONS_PATCH = new InjectionToken('nz_icons_patch');
+export const SN_ICONS_PATCH = new InjectionToken('sn_icons_patch');
 
 @Injectable()
-export class NzIconPatchService {
+export class SnIconPatchService {
   patched = false;
 
   constructor(
-    @Self() @Inject(NZ_ICONS_PATCH) private extraIcons: IconDefinition[],
-    private rootIconService: NzIconService
+    @Self() @Inject(SN_ICONS_PATCH) private extraIcons: IconDefinition[],
+    private rootIconService: SnIconService
   ) {}
 
   doPatch(): void {

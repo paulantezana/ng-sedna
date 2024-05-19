@@ -7,7 +7,7 @@ import { SnSafeAny } from 'ngx-sedna/core/types';
 
 @Component({
   selector: 'sn-option-item-group',
-  template: ` <ng-container *nzStringTemplateOutlet="nzLabel">{{ nzLabel }}</ng-container> `,
+  template: ` <ng-container *snStringTemplateOutlet="snLabel">{{ snLabel }}</ng-container> `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {
@@ -17,7 +17,7 @@ import { SnSafeAny } from 'ngx-sedna/core/types';
   standalone: true
 })
 export class SnOptionItemGroupComponent {
-  @Input() nzLabel: string | number | TemplateRef<SnSafeAny> | null = null;
+  @Input() snLabel: string | number | TemplateRef<SnSafeAny> | null = null;
 
   constructor() {}
 }

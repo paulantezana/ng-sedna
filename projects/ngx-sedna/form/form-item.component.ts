@@ -3,12 +3,12 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
 
-export type NzFormControlStatusType = 'success' | 'error' | 'warning' | 'validating' | '';
+export type SnFormControlStatusType = 'success' | 'error' | 'warning' | 'validating' | '';
 
-/** should add nz-row directive to host, track https://github.com/angular/angular/issues/8785 **/
+/** should add sn-row directive to host, track https://github.com/angular/angular/issues/8785 **/
 @Component({
-  selector: 'nz-form-item',
-  exportAs: 'nzFormItem',
+  selector: 'sn-form-item',
+  exportAs: 'snFormItem',
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -24,8 +24,8 @@ export type NzFormControlStatusType = 'success' | 'error' | 'warning' | 'validat
   template: ` <ng-content></ng-content> `,
   standalone: true
 })
-export class NzFormItemComponent implements OnDestroy, OnDestroy {
-  status: NzFormControlStatusType = '';
+export class SnFormItemComponent implements OnDestroy, OnDestroy {
+  status: SnFormControlStatusType = '';
   hasFeedback = false;
   withHelpClass = false;
 
@@ -36,7 +36,7 @@ export class NzFormItemComponent implements OnDestroy, OnDestroy {
     this.cdr.markForCheck();
   }
 
-  setStatus(status: NzFormControlStatusType): void {
+  setStatus(status: SnFormControlStatusType): void {
     this.status = status;
     this.cdr.markForCheck();
   }

@@ -72,16 +72,16 @@ import {
 } from './select.types';
 
 const defaultFilterOption: SnFilterOptionType = (searchValue: string, item: SnSelectItemInterface): boolean => {
-  if (item && item.nzLabel) {
-    return item.nzLabel.toString().toLowerCase().indexOf(searchValue.toLowerCase()) > -1;
+  if (item && item.snLabel) {
+    return item.snLabel.toString().toLowerCase().indexOf(searchValue.toLowerCase()) > -1;
   } else {
     return false;
   }
 };
 
-const NZ_CONFIG_MODULE_NAME: SnConfigKey = 'select';
+const SN_CONFIG_MODULE_NAME: SnConfigKey = 'select';
 
-export type NzSelectSizeType = 'large' | 'default' | 'small';
+export type SnSelectSizeType = 'large' | 'default' | 'small';
 
 @Component({
   selector: 'sn-select',
@@ -102,20 +102,20 @@ export type NzSelectSizeType = 'large' | 'default' | 'small';
     <sn-select-top-control
       cdkOverlayOrigin
       #origin="cdkOverlayOrigin"
-      [nzId]="nzId"
-      [open]="nzOpen"
-      [disabled]="nzDisabled"
-      [mode]="nzMode"
-      [@.disabled]="!!noAnimation?.nzNoAnimation"
-      [nzNoAnimation]="noAnimation?.nzNoAnimation"
-      [maxTagPlaceholder]="nzMaxTagPlaceholder"
-      [removeIcon]="nzRemoveIcon"
-      [placeHolder]="nzPlaceHolder"
-      [maxTagCount]="nzMaxTagCount"
-      [customTemplate]="nzCustomTemplate"
-      [tokenSeparators]="nzTokenSeparators"
-      [showSearch]="nzShowSearch"
-      [autofocus]="nzAutoFocus"
+      [snId]="snId"
+      [open]="snOpen"
+      [disabled]="snDisabled"
+      [mode]="snMode"
+      [@.disabled]="!!noAnimation?.snNoAnimation"
+      [snNoAnimation]="noAnimation?.snNoAnimation"
+      [maxTagPlaceholder]="snMaxTagPlaceholder"
+      [removeIcon]="snRemoveIcon"
+      [placeHolder]="snPlaceHolder"
+      [maxTagCount]="snMaxTagCount"
+      [customTemplate]="snCustomTemplate"
+      [tokenSeparators]="snTokenSeparators"
+      [showSearch]="snShowSearch"
+      [autofocus]="snAutoFocus"
       [listOfTopItem]="listOfTopItem"
       (inputValueChange)="onInputValueChange($event)"
       (tokenize)="onTokenSeparate($event)"
@@ -123,82 +123,82 @@ export type NzSelectSizeType = 'large' | 'default' | 'small';
       (keydown)="onKeyDown($event)"
     ></sn-select-top-control>
     <sn-select-arrow
-      *ngIf="nzShowArrow || (hasFeedback && !!status) || isMaxTagCountSet"
-      [showArrow]="nzShowArrow"
-      [loading]="nzLoading"
-      [search]="nzOpen && nzShowSearch"
-      [suffixIcon]="nzSuffixIcon"
+      *ngIf="snShowArrow || (hasFeedback && !!status) || isMaxTagCountSet"
+      [showArrow]="snShowArrow"
+      [loading]="snLoading"
+      [search]="snOpen && snShowSearch"
+      [suffixIcon]="snSuffixIcon"
       [feedbackIcon]="feedbackIconTpl"
-      [nzMaxMultipleCount]="nzMaxMultipleCount"
+      [snMaxMultipleCount]="snMaxMultipleCount"
       [listOfValue]="listOfValue"
       [isMaxTagCountSet]="isMaxTagCountSet"
     >
       <ng-template #feedbackIconTpl>
-        <nz-form-item-feedback-icon *ngIf="hasFeedback && !!status" [status]="status"></nz-form-item-feedback-icon>
+        <sn-form-item-feedback-icon *ngIf="hasFeedback && !!status" [status]="status"></sn-form-item-feedback-icon>
       </ng-template>
     </sn-select-arrow>
 
     <sn-select-clear
-      *ngIf="nzAllowClear && !nzDisabled && listOfValue.length"
-      [clearIcon]="nzClearIcon"
+      *ngIf="snAllowClear && !snDisabled && listOfValue.length"
+      [clearIcon]="snClearIcon"
       (clear)="onClearSelection()"
     ></sn-select-clear>
     <ng-template
       cdkConnectedOverlay
-      nzConnectedOverlay
-      [cdkConnectedOverlayHasBackdrop]="nzBackdrop"
-      [cdkConnectedOverlayMinWidth]="$any(nzDropdownMatchSelectWidth ? null : triggerWidth)"
-      [cdkConnectedOverlayWidth]="$any(nzDropdownMatchSelectWidth ? triggerWidth : null)"
+      snConnectedOverlay
+      [cdkConnectedOverlayHasBackdrop]="snBackdrop"
+      [cdkConnectedOverlayMinWidth]="$any(snDropdownMatchSelectWidth ? null : triggerWidth)"
+      [cdkConnectedOverlayWidth]="$any(snDropdownMatchSelectWidth ? triggerWidth : null)"
       [cdkConnectedOverlayOrigin]="origin"
       [cdkConnectedOverlayTransformOriginOn]="'.ant-select-dropdown'"
-      [cdkConnectedOverlayPanelClass]="nzDropdownClassName!"
-      [cdkConnectedOverlayOpen]="nzOpen"
+      [cdkConnectedOverlayPanelClass]="snDropdownClassName!"
+      [cdkConnectedOverlayOpen]="snOpen"
       [cdkConnectedOverlayPositions]="positions"
       (overlayOutsideClick)="onClickOutside($event)"
       (detach)="setOpenState(false)"
       (positionChange)="onPositionChange($event)"
     >
       <sn-option-container
-        [ngStyle]="nzDropdownStyle"
-        [itemSize]="nzOptionHeightPx"
-        [maxItemLength]="nzOptionOverflowSize"
-        [matchWidth]="nzDropdownMatchSelectWidth"
+        [ngStyle]="snDropdownStyle"
+        [itemSize]="snOptionHeightPx"
+        [maxItemLength]="snOptionOverflowSize"
+        [matchWidth]="snDropdownMatchSelectWidth"
         [class.ant-select-dropdown-placement-bottomLeft]="dropDownPosition === 'bottomLeft'"
         [class.ant-select-dropdown-placement-topLeft]="dropDownPosition === 'topLeft'"
         [class.ant-select-dropdown-placement-bottomRight]="dropDownPosition === 'bottomRight'"
         [class.ant-select-dropdown-placement-topRight]="dropDownPosition === 'topRight'"
         [@slideMotion]="'enter'"
-        [@.disabled]="!!noAnimation?.nzNoAnimation"
-        [nzNoAnimation]="noAnimation?.nzNoAnimation"
+        [@.disabled]="!!noAnimation?.snNoAnimation"
+        [snNoAnimation]="noAnimation?.snNoAnimation"
         [listOfContainerItem]="listOfContainerItem"
-        [menuItemSelectedIcon]="nzMenuItemSelectedIcon"
-        [notFoundContent]="nzNotFoundContent"
+        [menuItemSelectedIcon]="snMenuItemSelectedIcon"
+        [notFoundContent]="snNotFoundContent"
         [activatedValue]="activatedValue"
         [listOfSelectedValue]="listOfValue"
-        [dropdownRender]="nzDropdownRender"
+        [dropdownRender]="snDropdownRender"
         [compareWith]="compareWith"
-        [mode]="nzMode"
+        [mode]="snMode"
         [isMaxLimitReached]="isMaxLimitReached"
         (keydown)="onKeyDown($event)"
         (itemClick)="onItemClick($event)"
-        (scrollToBottom)="nzScrollToBottom.emit()"
+        (scrollToBottom)="snScrollToBottom.emit()"
       ></sn-option-container>
     </ng-template>
   `,
   host: {
     class: 'ant-select',
-    '[class.ant-select-in-form-item]': '!!nzFormStatusService',
-    '[class.ant-select-lg]': 'nzSize === "large"',
-    '[class.ant-select-sm]': 'nzSize === "small"',
-    '[class.ant-select-show-arrow]': `nzShowArrow`,
-    '[class.ant-select-disabled]': 'nzDisabled',
-    '[class.ant-select-show-search]': `(nzShowSearch || nzMode !== 'default') && !nzDisabled`,
-    '[class.ant-select-allow-clear]': 'nzAllowClear',
-    '[class.ant-select-borderless]': 'nzBorderless',
-    '[class.ant-select-open]': 'nzOpen',
-    '[class.ant-select-focused]': 'nzOpen || focused',
-    '[class.ant-select-single]': `nzMode === 'default'`,
-    '[class.ant-select-multiple]': `nzMode !== 'default'`,
+    '[class.ant-select-in-form-item]': '!!snFormStatusService',
+    '[class.ant-select-lg]': 'snSize === "large"',
+    '[class.ant-select-sm]': 'snSize === "small"',
+    '[class.ant-select-show-arrow]': `snShowArrow`,
+    '[class.ant-select-disabled]': 'snDisabled',
+    '[class.ant-select-show-search]': `(snShowSearch || snMode !== 'default') && !snDisabled`,
+    '[class.ant-select-allow-clear]': 'snAllowClear',
+    '[class.ant-select-borderless]': 'snBorderless',
+    '[class.ant-select-open]': 'snOpen',
+    '[class.ant-select-focused]': 'snOpen || focused',
+    '[class.ant-select-single]': `snMode === 'default'`,
+    '[class.ant-select-multiple]': `snMode !== 'default'`,
     '[class.ant-select-rtl]': `dir === 'rtl'`
   },
   imports: [
@@ -217,92 +217,92 @@ export type NzSelectSizeType = 'large' | 'default' | 'small';
   standalone: true
 })
 export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterContentInit, OnChanges, OnDestroy {
-  readonly _nzModuleName: SnConfigKey = NZ_CONFIG_MODULE_NAME;
+  readonly _snModuleName: SnConfigKey = SN_CONFIG_MODULE_NAME;
 
-  static ngAcceptInputType_nzAllowClear: BooleanInput;
-  static ngAcceptInputType_nzBorderless: BooleanInput;
-  static ngAcceptInputType_nzShowSearch: BooleanInput;
-  static ngAcceptInputType_nzLoading: BooleanInput;
-  static ngAcceptInputType_nzAutoFocus: BooleanInput;
-  static ngAcceptInputType_nzAutoClearSearchValue: BooleanInput;
-  static ngAcceptInputType_nzServerSearch: BooleanInput;
-  static ngAcceptInputType_nzDisabled: BooleanInput;
-  static ngAcceptInputType_nzOpen: BooleanInput;
+  static ngAcceptInputType_snAllowClear: BooleanInput;
+  static ngAcceptInputType_snBorderless: BooleanInput;
+  static ngAcceptInputType_snShowSearch: BooleanInput;
+  static ngAcceptInputType_snLoading: BooleanInput;
+  static ngAcceptInputType_snAutoFocus: BooleanInput;
+  static ngAcceptInputType_snAutoClearSearchValue: BooleanInput;
+  static ngAcceptInputType_snServerSearch: BooleanInput;
+  static ngAcceptInputType_snDisabled: BooleanInput;
+  static ngAcceptInputType_snOpen: BooleanInput;
 
-  @Input() nzId: string | null = null;
-  @Input() nzSize: NzSelectSizeType = 'default';
-  @Input() nzStatus: SnStatus = '';
-  @Input() @WithConfig<number>() nzOptionHeightPx = 32;
-  @Input() nzOptionOverflowSize = 8;
-  @Input() nzDropdownClassName: string[] | string | null = null;
-  @Input() nzDropdownMatchSelectWidth = true;
-  @Input() nzDropdownStyle: { [key: string]: string } | null = null;
-  @Input() nzNotFoundContent: string | TemplateRef<SnSafeAny> | undefined = undefined;
-  @Input() nzPlaceHolder: string | TemplateRef<SnSafeAny> | null = null;
-  @Input() nzPlacement: SnSelectPlacementType | null = null;
-  @Input() nzMaxTagCount = Infinity;
-  @Input() nzDropdownRender: TemplateRef<SnSafeAny> | null = null;
-  @Input() nzCustomTemplate: TemplateRef<{ $implicit: SnSelectItemInterface }> | null = null;
+  @Input() snId: string | null = null;
+  @Input() snSize: SnSelectSizeType = 'default';
+  @Input() snStatus: SnStatus = '';
+  @Input() @WithConfig<number>() snOptionHeightPx = 32;
+  @Input() snOptionOverflowSize = 8;
+  @Input() snDropdownClassName: string[] | string | null = null;
+  @Input() snDropdownMatchSelectWidth = true;
+  @Input() snDropdownStyle: { [key: string]: string } | null = null;
+  @Input() snNotFoundContent: string | TemplateRef<SnSafeAny> | undefined = undefined;
+  @Input() snPlaceHolder: string | TemplateRef<SnSafeAny> | null = null;
+  @Input() snPlacement: SnSelectPlacementType | null = null;
+  @Input() snMaxTagCount = Infinity;
+  @Input() snDropdownRender: TemplateRef<SnSafeAny> | null = null;
+  @Input() snCustomTemplate: TemplateRef<{ $implicit: SnSelectItemInterface }> | null = null;
   @Input()
   @WithConfig<TemplateRef<SnSafeAny> | string | null>()
-  nzSuffixIcon: TemplateRef<SnSafeAny> | string | null = null;
-  @Input() nzClearIcon: TemplateRef<SnSafeAny> | null = null;
-  @Input() nzRemoveIcon: TemplateRef<SnSafeAny> | null = null;
-  @Input() nzMenuItemSelectedIcon: TemplateRef<SnSafeAny> | null = null;
-  @Input() nzTokenSeparators: string[] = [];
-  @Input() nzMaxTagPlaceholder: TemplateRef<{ $implicit: SnSafeAny[] }> | null = null;
-  @Input() nzMaxMultipleCount = Infinity;
-  @Input() nzMode: SnSelectModeType = 'default';
-  @Input() nzFilterOption: SnFilterOptionType = defaultFilterOption;
+  snSuffixIcon: TemplateRef<SnSafeAny> | string | null = null;
+  @Input() snClearIcon: TemplateRef<SnSafeAny> | null = null;
+  @Input() snRemoveIcon: TemplateRef<SnSafeAny> | null = null;
+  @Input() snMenuItemSelectedIcon: TemplateRef<SnSafeAny> | null = null;
+  @Input() snTokenSeparators: string[] = [];
+  @Input() snMaxTagPlaceholder: TemplateRef<{ $implicit: SnSafeAny[] }> | null = null;
+  @Input() snMaxMultipleCount = Infinity;
+  @Input() snMode: SnSelectModeType = 'default';
+  @Input() snFilterOption: SnFilterOptionType = defaultFilterOption;
   @Input() compareWith: (o1: SnSafeAny, o2: SnSafeAny) => boolean = (o1: SnSafeAny, o2: SnSafeAny) => o1 === o2;
-  @Input() @InputBoolean() nzAllowClear = false;
-  @Input() @WithConfig<boolean>() @InputBoolean() nzBorderless = false;
-  @Input() @InputBoolean() nzShowSearch = false;
-  @Input() @InputBoolean() nzLoading = false;
-  @Input() @InputBoolean() nzAutoFocus = false;
-  @Input() @InputBoolean() nzAutoClearSearchValue = true;
-  @Input() @InputBoolean() nzServerSearch = false;
-  @Input() @InputBoolean() nzDisabled = false;
-  @Input() @InputBoolean() nzOpen = false;
-  @Input() @InputBoolean() nzSelectOnTab = false;
-  @Input() @WithConfig<boolean>() @InputBoolean() nzBackdrop = false;
-  @Input() nzOptions: SnSelectOptionInterface[] = [];
+  @Input() @InputBoolean() snAllowClear = false;
+  @Input() @WithConfig<boolean>() @InputBoolean() snBorderless = false;
+  @Input() @InputBoolean() snShowSearch = false;
+  @Input() @InputBoolean() snLoading = false;
+  @Input() @InputBoolean() snAutoFocus = false;
+  @Input() @InputBoolean() snAutoClearSearchValue = true;
+  @Input() @InputBoolean() snServerSearch = false;
+  @Input() @InputBoolean() snDisabled = false;
+  @Input() @InputBoolean() snOpen = false;
+  @Input() @InputBoolean() snSelectOnTab = false;
+  @Input() @WithConfig<boolean>() @InputBoolean() snBackdrop = false;
+  @Input() snOptions: SnSelectOptionInterface[] = [];
 
   @Input()
-  set nzShowArrow(value: boolean) {
-    this._nzShowArrow = value;
+  set snShowArrow(value: boolean) {
+    this._snShowArrow = value;
   }
-  get nzShowArrow(): boolean {
-    return this._nzShowArrow === undefined ? this.nzMode === 'default' : this._nzShowArrow;
+  get snShowArrow(): boolean {
+    return this._snShowArrow === undefined ? this.snMode === 'default' : this._snShowArrow;
   }
 
   get isMaxTagCountSet(): boolean {
-    return this.nzMaxMultipleCount !== Infinity;
+    return this.snMaxMultipleCount !== Infinity;
   }
 
-  @Output() readonly nzOnSearch = new EventEmitter<string>();
-  @Output() readonly nzScrollToBottom = new EventEmitter<void>();
-  @Output() readonly nzOpenChange = new EventEmitter<boolean>();
-  @Output() readonly nzBlur = new EventEmitter<void>();
-  @Output() readonly nzFocus = new EventEmitter<void>();
+  @Output() readonly snOnSearch = new EventEmitter<string>();
+  @Output() readonly snScrollToBottom = new EventEmitter<void>();
+  @Output() readonly snOpenChange = new EventEmitter<boolean>();
+  @Output() readonly snBlur = new EventEmitter<void>();
+  @Output() readonly snFocus = new EventEmitter<void>();
   @ViewChild(CdkOverlayOrigin, { static: true, read: ElementRef }) originElement!: ElementRef;
   @ViewChild(CdkConnectedOverlay, { static: true }) cdkConnectedOverlay!: CdkConnectedOverlay;
-  @ViewChild(SnSelectTopControlComponent, { static: true }) nzSelectTopControlComponent!: SnSelectTopControlComponent;
-  @ContentChildren(SnOptionComponent, { descendants: true }) listOfNzOptionComponent!: QueryList<SnOptionComponent>;
+  @ViewChild(SnSelectTopControlComponent, { static: true }) snSelectTopControlComponent!: SnSelectTopControlComponent;
+  @ContentChildren(SnOptionComponent, { descendants: true }) listOfSnOptionComponent!: QueryList<SnOptionComponent>;
   @ContentChildren(SnOptionGroupComponent, { descendants: true })
-  listOfNzOptionGroupComponent!: QueryList<SnOptionGroupComponent>;
-  @ViewChild(SnOptionGroupComponent, { static: true, read: ElementRef }) nzOptionGroupComponentElement!: ElementRef;
+  listOfSnOptionGroupComponent!: QueryList<SnOptionGroupComponent>;
+  @ViewChild(SnOptionGroupComponent, { static: true, read: ElementRef }) snOptionGroupComponentElement!: ElementRef;
   @ViewChild(SnSelectTopControlComponent, { static: true, read: ElementRef })
-  nzSelectTopControlComponentElement!: ElementRef;
+  snSelectTopControlComponentElement!: ElementRef;
   private listOfValue$ = new BehaviorSubject<SnSafeAny[]>([]);
   private listOfTemplateItem$ = new BehaviorSubject<SnSelectItemInterface[]>([]);
   private listOfTagAndTemplateItem: SnSelectItemInterface[] = [];
   private searchValue: string = '';
   private isReactiveDriven = false;
   private value: SnSafeAny | SnSafeAny[];
-  private _nzShowArrow: boolean | undefined;
+  private _snShowArrow: boolean | undefined;
   private requestId: number = -1;
-  private isNzDisableFirstChange: boolean = true;
+  private isSnDisableFirstChange: boolean = true;
   onChange: OnChangeType = () => {};
   onTouched: OnTouchedType = () => {};
   dropDownPosition: SnSelectPlacementType = 'bottomLeft';
@@ -324,15 +324,15 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
 
   generateTagItem(value: string): SnSelectItemInterface {
     return {
-      nzValue: value,
-      nzLabel: value,
+      snValue: value,
+      snLabel: value,
       type: 'item'
     };
   }
 
   onItemClick(value: SnSafeAny): void {
     this.activatedValue = value;
-    if (this.nzMode === 'default') {
+    if (this.snMode === 'default') {
       if (this.listOfValue.length === 0 || !this.compareWith(this.listOfValue[0], value)) {
         this.updateListOfValue([value]);
       }
@@ -342,55 +342,55 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
       if (targetIndex !== -1) {
         const listOfValueAfterRemoved = this.listOfValue.filter((_, i) => i !== targetIndex);
         this.updateListOfValue(listOfValueAfterRemoved);
-      } else if (this.listOfValue.length < this.nzMaxMultipleCount) {
+      } else if (this.listOfValue.length < this.snMaxMultipleCount) {
         const listOfValueAfterAdded = [...this.listOfValue, value];
         this.updateListOfValue(listOfValueAfterAdded);
       }
       this.focus();
-      if (this.nzAutoClearSearchValue) {
+      if (this.snAutoClearSearchValue) {
         this.clearInput();
       }
     }
   }
 
   onItemDelete(item: SnSelectItemInterface): void {
-    const listOfSelectedValue = this.listOfValue.filter(v => !this.compareWith(v, item.nzValue));
+    const listOfSelectedValue = this.listOfValue.filter(v => !this.compareWith(v, item.snValue));
     this.updateListOfValue(listOfSelectedValue);
     this.clearInput();
   }
 
   updateListOfContainerItem(): void {
     let listOfContainerItem = this.listOfTagAndTemplateItem
-      .filter(item => !item.nzHide)
+      .filter(item => !item.snHide)
       .filter(item => {
-        if (!this.nzServerSearch && this.searchValue) {
-          return this.nzFilterOption(this.searchValue, item);
+        if (!this.snServerSearch && this.searchValue) {
+          return this.snFilterOption(this.searchValue, item);
         } else {
           return true;
         }
       });
-    if (this.nzMode === 'tags' && this.searchValue) {
-      const matchedItem = this.listOfTagAndTemplateItem.find(item => item.nzLabel === this.searchValue);
+    if (this.snMode === 'tags' && this.searchValue) {
+      const matchedItem = this.listOfTagAndTemplateItem.find(item => item.snLabel === this.searchValue);
       if (!matchedItem) {
         const tagItem = this.generateTagItem(this.searchValue);
         listOfContainerItem = [tagItem, ...listOfContainerItem];
-        this.activatedValue = tagItem.nzValue;
+        this.activatedValue = tagItem.snValue;
       } else {
-        this.activatedValue = matchedItem.nzValue;
+        this.activatedValue = matchedItem.snValue;
       }
     }
     const activatedItem =
-      listOfContainerItem.find(item => item.nzLabel === this.searchValue) ||
-      listOfContainerItem.find(item => this.compareWith(item.nzValue, this.activatedValue)) ||
-      listOfContainerItem.find(item => this.compareWith(item.nzValue, this.listOfValue[0])) ||
+      listOfContainerItem.find(item => item.snLabel === this.searchValue) ||
+      listOfContainerItem.find(item => this.compareWith(item.snValue, this.activatedValue)) ||
+      listOfContainerItem.find(item => this.compareWith(item.snValue, this.listOfValue[0])) ||
       listOfContainerItem[0];
-    this.activatedValue = (activatedItem && activatedItem.nzValue) || null;
+    this.activatedValue = (activatedItem && activatedItem.snValue) || null;
     let listOfGroupLabel: Array<string | number | TemplateRef<SnSafeAny> | null> = [];
     if (this.isReactiveDriven) {
-      listOfGroupLabel = [...new Set(this.nzOptions.filter(o => o.groupLabel).map(o => o.groupLabel!))];
+      listOfGroupLabel = [...new Set(this.snOptions.filter(o => o.groupLabel).map(o => o.groupLabel!))];
     } else {
-      if (this.listOfNzOptionGroupComponent) {
-        listOfGroupLabel = this.listOfNzOptionGroupComponent.map(o => o.nzLabel);
+      if (this.listOfSnOptionGroupComponent) {
+        listOfGroupLabel = this.listOfSnOptionGroupComponent.map(o => o.snLabel);
       }
     }
     /** insert group item **/
@@ -406,7 +406,7 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
   }
 
   clearInput(): void {
-    this.nzSelectTopControlComponent.clearInputValue();
+    this.snSelectTopControlComponent.clearInputValue();
   }
 
   updateListOfValue(listOfValue: SnSafeAny[]): void {
@@ -421,7 +421,7 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
         return list;
       }
     };
-    const model = covertListToModel(listOfValue, this.nzMode);
+    const model = covertListToModel(listOfValue, this.snMode);
     if (this.value !== model) {
       this.listOfValue = listOfValue;
       this.listOfValue$.next(listOfValue);
@@ -430,19 +430,19 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
     }
 
     this.isMaxLimitReached =
-      this.nzMaxMultipleCount !== Infinity && this.listOfValue.length === this.nzMaxMultipleCount;
+      this.snMaxMultipleCount !== Infinity && this.listOfValue.length === this.snMaxMultipleCount;
   }
 
   onTokenSeparate(listOfLabel: string[]): void {
     const listOfMatchedValue = this.listOfTagAndTemplateItem
-      .filter(item => listOfLabel.findIndex(label => label === item.nzLabel) !== -1)
-      .map(item => item.nzValue)
+      .filter(item => listOfLabel.findIndex(label => label === item.snLabel) !== -1)
+      .map(item => item.snValue)
       .filter(item => this.listOfValue.findIndex(v => this.compareWith(v, item)) === -1);
-    if (this.nzMode === 'multiple') {
+    if (this.snMode === 'multiple') {
       this.updateListOfValue([...this.listOfValue, ...listOfMatchedValue]);
-    } else if (this.nzMode === 'tags') {
+    } else if (this.snMode === 'tags') {
       const listOfUnMatchedLabel = listOfLabel.filter(
-        label => this.listOfTagAndTemplateItem.findIndex(item => item.nzLabel === label) === -1
+        label => this.listOfTagAndTemplateItem.findIndex(item => item.snLabel === label) === -1
       );
       this.updateListOfValue([...this.listOfValue, ...listOfMatchedValue, ...listOfUnMatchedLabel]);
     }
@@ -450,35 +450,35 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
   }
 
   onKeyDown(e: KeyboardEvent): void {
-    if (this.nzDisabled) {
+    if (this.snDisabled) {
       return;
     }
     const listOfFilteredOptionNotDisabled = this.listOfContainerItem
       .filter(item => item.type === 'item')
-      .filter(item => !item.nzDisabled);
+      .filter(item => !item.snDisabled);
     const activatedIndex = listOfFilteredOptionNotDisabled.findIndex(item =>
-      this.compareWith(item.nzValue, this.activatedValue)
+      this.compareWith(item.snValue, this.activatedValue)
     );
     switch (e.keyCode) {
       case UP_ARROW:
         e.preventDefault();
-        if (this.nzOpen && listOfFilteredOptionNotDisabled.length > 0) {
+        if (this.snOpen && listOfFilteredOptionNotDisabled.length > 0) {
           const preIndex = activatedIndex > 0 ? activatedIndex - 1 : listOfFilteredOptionNotDisabled.length - 1;
-          this.activatedValue = listOfFilteredOptionNotDisabled[preIndex].nzValue;
+          this.activatedValue = listOfFilteredOptionNotDisabled[preIndex].snValue;
         }
         break;
       case DOWN_ARROW:
         e.preventDefault();
-        if (this.nzOpen && listOfFilteredOptionNotDisabled.length > 0) {
+        if (this.snOpen && listOfFilteredOptionNotDisabled.length > 0) {
           const nextIndex = activatedIndex < listOfFilteredOptionNotDisabled.length - 1 ? activatedIndex + 1 : 0;
-          this.activatedValue = listOfFilteredOptionNotDisabled[nextIndex].nzValue;
+          this.activatedValue = listOfFilteredOptionNotDisabled[nextIndex].snValue;
         } else {
           this.setOpenState(true);
         }
         break;
       case ENTER:
         e.preventDefault();
-        if (this.nzOpen) {
+        if (this.snOpen) {
           if (isNotNil(this.activatedValue) && activatedIndex !== -1) {
             this.onItemClick(this.activatedValue);
           }
@@ -487,14 +487,14 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
         }
         break;
       case SPACE:
-        if (!this.nzOpen) {
+        if (!this.snOpen) {
           this.setOpenState(true);
           e.preventDefault();
         }
         break;
       case TAB:
-        if (this.nzSelectOnTab) {
-          if (this.nzOpen) {
+        if (this.snSelectOnTab) {
+          if (this.snOpen) {
             e.preventDefault();
             if (isNotNil(this.activatedValue)) {
               this.onItemClick(this.activatedValue);
@@ -510,16 +510,16 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
          */
         break;
       default:
-        if (!this.nzOpen) {
+        if (!this.snOpen) {
           this.setOpenState(true);
         }
     }
   }
 
   setOpenState(value: boolean): void {
-    if (this.nzOpen !== value) {
-      this.nzOpen = value;
-      this.nzOpenChange.emit(value);
+    if (this.snOpen !== value) {
+      this.snOpen = value;
+      this.snOpenChange.emit(value);
       this.onOpenChange();
       this.cdr.markForCheck();
     }
@@ -527,7 +527,7 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
 
   onOpenChange(): void {
     this.updateCdkConnectedOverlayStatus();
-    if (this.nzAutoClearSearchValue) {
+    if (this.snAutoClearSearchValue) {
       this.clearInput();
     }
   }
@@ -535,7 +535,7 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
   onInputValueChange(value: string): void {
     this.searchValue = value;
     this.updateListOfContainerItem();
-    this.nzOnSearch.emit(value);
+    this.snOnSearch.emit(value);
     this.updateCdkConnectedOverlayPositions();
   }
 
@@ -550,11 +550,11 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
   }
 
   focus(): void {
-    this.nzSelectTopControlComponent.focus();
+    this.snSelectTopControlComponent.focus();
   }
 
   blur(): void {
-    this.nzSelectTopControlComponent.blur();
+    this.snSelectTopControlComponent.blur();
   }
 
   onPositionChange(position: ConnectedOverlayPositionChange): void {
@@ -589,7 +589,7 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
   constructor(
     private ngZone: NgZone,
     private destroy$: SnDestroyService,
-    public nzConfigService: SnConfigService,
+    public snConfigService: SnConfigService,
     private cdr: ChangeDetectorRef,
     private host: ElementRef<HTMLElement>,
     private renderer: Renderer2,
@@ -597,8 +597,8 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
     private focusMonitor: FocusMonitor,
     @Optional() private directionality: Directionality,
     @Host() @Optional() public noAnimation?: SnNoAnimationDirective,
-    @Optional() public nzFormStatusService?: SnFormStatusService,
-    @Optional() private nzFormNoStatusService?: SnFormNoStatusService
+    @Optional() public snFormStatusService?: SnFormStatusService,
+    @Optional() private snFormNoStatusService?: SnFormNoStatusService
   ) {}
 
   writeValue(modelValue: SnSafeAny | SnSafeAny[]): void {
@@ -614,7 +614,7 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
           return model;
         }
       };
-      const listOfValue = covertModelToList(modelValue, this.nzMode);
+      const listOfValue = covertModelToList(modelValue, this.snMode);
       this.listOfValue = listOfValue;
       this.listOfValue$.next(listOfValue);
       this.cdr.markForCheck();
@@ -630,34 +630,34 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
   }
 
   setDisabledState(disabled: boolean): void {
-    this.nzDisabled = (this.isNzDisableFirstChange && this.nzDisabled) || disabled;
-    this.isNzDisableFirstChange = false;
-    if (this.nzDisabled) {
+    this.snDisabled = (this.isSnDisableFirstChange && this.snDisabled) || disabled;
+    this.isSnDisableFirstChange = false;
+    if (this.snDisabled) {
       this.setOpenState(false);
     }
     this.cdr.markForCheck();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { nzOpen, nzDisabled, nzOptions, nzStatus, nzPlacement } = changes;
-    if (nzOpen) {
+    const { snOpen, snDisabled, snOptions, snStatus, snPlacement } = changes;
+    if (snOpen) {
       this.onOpenChange();
     }
-    if (nzDisabled && this.nzDisabled) {
+    if (snDisabled && this.snDisabled) {
       this.setOpenState(false);
     }
-    if (nzOptions) {
+    if (snOptions) {
       this.isReactiveDriven = true;
-      const listOfOptions = this.nzOptions || [];
+      const listOfOptions = this.snOptions || [];
       const listOfTransformedItem = listOfOptions.map(item => {
         return {
           template: item.label instanceof TemplateRef ? item.label : null,
-          nzTitle: this.getTitle(item.title, item.label),
-          nzLabel: typeof item.label === 'string' || typeof item.label === 'number' ? item.label : null,
-          nzValue: item.value,
-          nzDisabled: item.disabled || false,
-          nzHide: item.hide || false,
-          nzCustomContent: item.label instanceof TemplateRef,
+          snTitle: this.getTitle(item.title, item.label),
+          snLabel: typeof item.label === 'string' || typeof item.label === 'number' ? item.label : null,
+          snValue: item.value,
+          snDisabled: item.disabled || false,
+          snHide: item.hide || false,
+          snCustomContent: item.label instanceof TemplateRef,
           groupLabel: item.groupLabel || null,
           type: 'item',
           key: item.key === undefined ? item.value : item.key
@@ -665,11 +665,11 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
       });
       this.listOfTemplateItem$.next(listOfTransformedItem);
     }
-    if (nzStatus) {
-      this.setStatusStyles(this.nzStatus, this.hasFeedback);
+    if (snStatus) {
+      this.setStatusStyles(this.snStatus, this.hasFeedback);
     }
-    if (nzPlacement) {
-      const { currentValue } = nzPlacement;
+    if (snPlacement) {
+      const { currentValue } = snPlacement;
       this.dropDownPosition = currentValue as SnSelectPlacementType;
       const listOfPlacement = ['bottomLeft', 'topLeft', 'bottomRight', 'topRight'];
       if (currentValue && listOfPlacement.includes(currentValue)) {
@@ -681,12 +681,12 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
   }
 
   ngOnInit(): void {
-    this.nzFormStatusService?.formStatusChanges
+    this.snFormStatusService?.formStatusChanges
       .pipe(
         distinctUntilChanged((pre, cur) => {
           return pre.status === cur.status && pre.hasFeedback === cur.hasFeedback;
         }),
-        withLatestFrom(this.nzFormNoStatusService ? this.nzFormNoStatusService.noFormStatus : observableOf(false)),
+        withLatestFrom(this.snFormNoStatusService ? this.snFormNoStatusService.noFormStatus : observableOf(false)),
         map(([{ status, hasFeedback }, noStatus]) => ({ status: noStatus ? '' : status, hasFeedback })),
         takeUntil(this.destroy$)
       )
@@ -701,30 +701,30 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
         if (!focusOrigin) {
           this.focused = false;
           this.cdr.markForCheck();
-          this.nzBlur.emit();
+          this.snBlur.emit();
           Promise.resolve().then(() => {
             this.onTouched();
           });
         } else {
           this.focused = true;
           this.cdr.markForCheck();
-          this.nzFocus.emit();
+          this.snFocus.emit();
         }
       });
     combineLatest([this.listOfValue$, this.listOfTemplateItem$])
       .pipe(takeUntil(this.destroy$))
       .subscribe(([listOfSelectedValue, listOfTemplateItem]) => {
         const listOfTagItem = listOfSelectedValue
-          .filter(() => this.nzMode === 'tags')
-          .filter(value => listOfTemplateItem.findIndex(o => this.compareWith(o.nzValue, value)) === -1)
+          .filter(() => this.snMode === 'tags')
+          .filter(value => listOfTemplateItem.findIndex(o => this.compareWith(o.snValue, value)) === -1)
           .map(
-            value => this.listOfTopItem.find(o => this.compareWith(o.nzValue, value)) || this.generateTagItem(value)
+            value => this.listOfTopItem.find(o => this.compareWith(o.snValue, value)) || this.generateTagItem(value)
           );
         this.listOfTagAndTemplateItem = [...listOfTemplateItem, ...listOfTagItem];
         this.listOfTopItem = this.listOfValue
           .map(
             v =>
-              [...this.listOfTagAndTemplateItem, ...this.listOfTopItem].find(item => this.compareWith(v, item.nzValue))!
+              [...this.listOfTagAndTemplateItem, ...this.listOfTopItem].find(item => this.compareWith(v, item.snValue))!
           )
           .filter(item => !!item);
         this.updateListOfContainerItem();
@@ -735,7 +735,7 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
       this.cdr.detectChanges();
     });
 
-    this.nzConfigService
+    this.snConfigService
       .getConfigChangeEventForComponent('select')
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
@@ -748,11 +748,11 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
       fromEvent(this.host.nativeElement, 'click')
         .pipe(takeUntil(this.destroy$))
         .subscribe(() => {
-          if ((this.nzOpen && this.nzShowSearch) || this.nzDisabled) {
+          if ((this.snOpen && this.snShowSearch) || this.snDisabled) {
             return;
           }
 
-          this.ngZone.run(() => this.setOpenState(!this.nzOpen));
+          this.ngZone.run(() => this.setOpenState(!this.snOpen));
         })
     );
 
@@ -770,35 +770,35 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
 
   ngAfterContentInit(): void {
     if (!this.isReactiveDriven) {
-      merge(this.listOfNzOptionGroupComponent.changes, this.listOfNzOptionComponent.changes)
+      merge(this.listOfSnOptionGroupComponent.changes, this.listOfSnOptionComponent.changes)
         .pipe(
           startWith(true),
           switchMap(() =>
             merge(
               ...[
-                this.listOfNzOptionComponent.changes,
-                this.listOfNzOptionGroupComponent.changes,
-                ...this.listOfNzOptionComponent.map(option => option.changes),
-                ...this.listOfNzOptionGroupComponent.map(option => option.changes)
+                this.listOfSnOptionComponent.changes,
+                this.listOfSnOptionGroupComponent.changes,
+                ...this.listOfSnOptionComponent.map(option => option.changes),
+                ...this.listOfSnOptionGroupComponent.map(option => option.changes)
               ]
             ).pipe(startWith(true))
           ),
           takeUntil(this.destroy$)
         )
         .subscribe(() => {
-          const listOfOptionInterface = this.listOfNzOptionComponent.toArray().map(item => {
-            const { template, nzLabel, nzValue, nzKey, nzDisabled, nzHide, nzCustomContent, groupLabel } = item;
+          const listOfOptionInterface = this.listOfSnOptionComponent.toArray().map(item => {
+            const { template, snLabel, snValue, snKey, snDisabled, snHide, snCustomContent, groupLabel } = item;
             return {
               template,
-              nzLabel,
-              nzValue,
-              nzDisabled,
-              nzHide,
-              nzCustomContent,
+              snLabel,
+              snValue,
+              snDisabled,
+              snHide,
+              snCustomContent,
               groupLabel,
-              nzTitle: this.getTitle(item.nzTitle, item.nzLabel),
+              snTitle: this.getTitle(item.snTitle, item.snLabel),
               type: 'item',
-              key: nzKey === undefined ? nzValue : nzKey
+              key: snKey === undefined ? snValue : snKey
             };
           });
           this.listOfTemplateItem$.next(listOfOptionInterface);
@@ -816,7 +816,7 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
     this.status = status;
     this.hasFeedback = hasFeedback;
     this.cdr.markForCheck();
-    // render status if nzStatus is set
+    // render status if snStatus is set
     this.statusCls = getStatusClassNames(this.prefixCls, status, hasFeedback);
     Object.keys(this.statusCls).forEach(status => {
       if (this.statusCls[status]) {

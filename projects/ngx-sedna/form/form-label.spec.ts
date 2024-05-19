@@ -4,19 +4,19 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ɵComponentBed as ComponentBed, ɵcreateComponentBed as createComponentBed } from 'ngx-sedna/core/testing';
 
-import { NzFormLabelComponent, NzFormTooltipIcon } from './form-label.component';
+import { SnFormLabelComponent, SnFormTooltipIcon } from './form-label.component';
 
-const testBedOptions = { imports: [NoopAnimationsModule, NzFormLabelComponent] };
+const testBedOptions = { imports: [NoopAnimationsModule, SnFormLabelComponent] };
 
-describe('nz-form-label', () => {
+describe('sn-form-label', () => {
   describe('default', () => {
-    let testBed: ComponentBed<NzTestFormLabelComponent>;
-    let testComponent: NzTestFormLabelComponent;
+    let testBed: ComponentBed<SnTestFormLabelComponent>;
+    let testComponent: SnTestFormLabelComponent;
     let label: DebugElement;
     beforeEach(() => {
-      testBed = createComponentBed(NzTestFormLabelComponent, testBedOptions);
+      testBed = createComponentBed(SnTestFormLabelComponent, testBedOptions);
       testComponent = testBed.component;
-      label = testBed.fixture.debugElement.query(By.directive(NzFormLabelComponent));
+      label = testBed.fixture.debugElement.query(By.directive(SnFormLabelComponent));
     });
     it('should className correct', () => {
       expect(label.nativeElement.classList).toContain('ant-form-item-label');
@@ -82,23 +82,23 @@ describe('nz-form-label', () => {
 
 @Component({
   template: `
-    <nz-form-label
-      [nzFor]="forValue"
-      [nzNoColon]="noColon"
-      [nzRequired]="required"
-      [nzTooltipTitle]="tooltipTitle"
-      [nzTooltipIcon]="tooltipIcon"
-      [nzLabelAlign]="align"
-      [nzLabelWrap]="labelWrap"
-    ></nz-form-label>
+    <sn-form-label
+      [snFor]="forValue"
+      [snNoColon]="noColon"
+      [snRequired]="required"
+      [snTooltipTitle]="tooltipTitle"
+      [snTooltipIcon]="tooltipIcon"
+      [snLabelAlign]="align"
+      [snLabelWrap]="labelWrap"
+    ></sn-form-label>
   `
 })
-export class NzTestFormLabelComponent {
+export class SnTestFormLabelComponent {
   forValue = 'test';
   required = false;
   noColon = false;
   tooltipTitle?: string;
-  tooltipIcon?: string | NzFormTooltipIcon;
+  tooltipIcon?: string | SnFormTooltipIcon;
   align = 'right';
   labelWrap = false;
 }

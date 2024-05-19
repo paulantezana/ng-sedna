@@ -18,43 +18,43 @@ import { takeUntil } from 'rxjs/operators';
 import { SnOutletModule } from 'ngx-sedna/core/outlet';
 import { SnEmptyI18nInterface, SnI18nService } from 'ngx-sedna/i18n';
 
-import { NzEmptyDefaultComponent } from './partial/default';
-import { NzEmptySimpleComponent } from './partial/simple';
+import { SnEmptyDefaultComponent } from './partial/default';
+import { SnEmptySimpleComponent } from './partial/simple';
 
-const NzEmptyDefaultImages = ['default', 'simple'] as const;
-type NzEmptyNotFoundImageType = (typeof NzEmptyDefaultImages)[number] | null | string | TemplateRef<void>;
+const SnEmptyDefaultImages = ['default', 'simple'] as const;
+type SnEmptyNotFoundImageType = (typeof SnEmptyDefaultImages)[number] | null | string | TemplateRef<void>;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  selector: 'nz-empty',
-  exportAs: 'nzEmpty',
+  selector: 'sn-empty',
+  exportAs: 'snEmpty',
   template: `
     <div class="ant-empty-image">
       @if (!isImageBuildIn) {
-        <ng-container *nzStringTemplateOutlet="nzNotFoundImage">
-          <img [src]="nzNotFoundImage" [alt]="isContentString ? nzNotFoundContent : 'empty'" />
+        <ng-container *snStringTemplateOutlet="snNotFoundImage">
+          <img [src]="snNotFoundImage" [alt]="isContentString ? snNotFoundContent : 'empty'" />
         </ng-container>
       } @else {
-        @if (nzNotFoundImage === 'simple') {
-          <nz-empty-simple />
+        @if (snNotFoundImage === 'simple') {
+          <sn-empty-simple />
         } @else {
-          <nz-empty-default />
+          <sn-empty-default />
         }
       }
     </div>
-    @if (nzNotFoundContent !== null) {
+    @if (snNotFoundContent !== null) {
       <p class="ant-empty-description">
-        <ng-container *nzStringTemplateOutlet="nzNotFoundContent">
-          {{ isContentString ? nzNotFoundContent : locale['description'] }}
+        <ng-container *snStringTemplateOutlet="snNotFoundContent">
+          {{ isContentString ? snNotFoundContent : locale['description'] }}
         </ng-container>
       </p>
     }
 
-    @if (nzNotFoundFooter) {
+    @if (snNotFoundFooter) {
       <div class="ant-empty-footer">
-        <ng-container *nzStringTemplateOutlet="nzNotFoundFooter">
-          {{ nzNotFoundFooter }}
+        <ng-container *snStringTemplateOutlet="snNotFoundFooter">
+          {{ snNotFoundFooter }}
         </ng-container>
       </div>
     }
@@ -62,13 +62,13 @@ type NzEmptyNotFoundImageType = (typeof NzEmptyDefaultImages)[number] | null | s
   host: {
     class: 'ant-empty'
   },
-  imports: [SnOutletModule, NzEmptyDefaultComponent, NzEmptySimpleComponent],
+  imports: [SnOutletModule, SnEmptyDefaultComponent, SnEmptySimpleComponent],
   standalone: true
 })
-export class NzEmptyComponent implements OnChanges, OnInit, OnDestroy {
-  @Input() nzNotFoundImage: NzEmptyNotFoundImageType = 'default';
-  @Input() nzNotFoundContent?: string | TemplateRef<void> | null;
-  @Input() nzNotFoundFooter?: string | TemplateRef<void>;
+export class SnEmptyComponent implements OnChanges, OnInit, OnDestroy {
+  @Input() snNotFoundImage: SnEmptyNotFoundImageType = 'default';
+  @Input() snNotFoundContent?: string | TemplateRef<void> | null;
+  @Input() snNotFoundFooter?: string | TemplateRef<void>;
 
   isContentString = false;
   isImageBuildIn = true;
@@ -82,16 +82,16 @@ export class NzEmptyComponent implements OnChanges, OnInit, OnDestroy {
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { nzNotFoundContent, nzNotFoundImage } = changes;
+    const { snNotFoundContent, snNotFoundImage } = changes;
 
-    if (nzNotFoundContent) {
-      const content = nzNotFoundContent.currentValue;
+    if (snNotFoundContent) {
+      const content = snNotFoundContent.currentValue;
       this.isContentString = typeof content === 'string';
     }
 
-    if (nzNotFoundImage) {
-      const image = nzNotFoundImage.currentValue || 'default';
-      this.isImageBuildIn = NzEmptyDefaultImages.findIndex(i => i === image) > -1;
+    if (snNotFoundImage) {
+      const image = snNotFoundImage.currentValue || 'default';
+      this.isImageBuildIn = SnEmptyDefaultImages.findIndex(i => i === image) > -1;
     }
   }
 

@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 
-import { NzIconModule, NZ_ICONS } from 'ngx-sedna/icon';
+import { SnIconModule, SN_ICONS } from 'ngx-sedna/icon';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -21,12 +21,12 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => {
  */
 // @dynamic
 @NgModule({
-  exports: [NzIconModule],
+  exports: [SnIconModule],
   providers: [
     {
-      provide: NZ_ICONS,
+      provide: SN_ICONS,
       useValue: icons
     }
   ]
 })
-export class NzIconTestModule {}
+export class SnIconTestModule {}

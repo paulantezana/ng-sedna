@@ -4,17 +4,17 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ɵComponentBed as ComponentBed, ɵcreateComponentBed as createComponentBed } from 'ngx-sedna/core/testing';
 
-import { NzFormTextComponent } from './form-text.component';
+import { SnFormTextComponent } from './form-text.component';
 
-const testBedOptions = { imports: [NoopAnimationsModule, NzFormTextComponent] };
+const testBedOptions = { imports: [NoopAnimationsModule, SnFormTextComponent] };
 
-describe('nz-form-text', () => {
+describe('sn-form-text', () => {
   describe('default', () => {
-    let testBed: ComponentBed<NzTestFormTextComponent>;
+    let testBed: ComponentBed<SnTestFormTextComponent>;
     let text: DebugElement;
     beforeEach(() => {
-      testBed = createComponentBed(NzTestFormTextComponent, testBedOptions);
-      text = testBed.fixture.debugElement.query(By.directive(NzFormTextComponent));
+      testBed = createComponentBed(SnTestFormTextComponent, testBedOptions);
+      text = testBed.fixture.debugElement.query(By.directive(SnFormTextComponent));
     });
     it('should className correct', () => {
       expect(text.nativeElement.classList).toContain('ant-form-text');
@@ -23,6 +23,6 @@ describe('nz-form-text', () => {
 });
 
 @Component({
-  template: ` <nz-form-text></nz-form-text> `
+  template: ` <sn-form-text></sn-form-text> `
 })
-export class NzTestFormTextComponent {}
+export class SnTestFormTextComponent {}

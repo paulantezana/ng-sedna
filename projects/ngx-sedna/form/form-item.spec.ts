@@ -4,18 +4,18 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ɵComponentBed as ComponentBed, ɵcreateComponentBed as createComponentBed } from 'ngx-sedna/core/testing';
 
-import { NzFormItemComponent } from './form-item.component';
-import { NzFormModule } from './form.module';
+import { SnFormItemComponent } from './form-item.component';
+import { SnFormModule } from './form.module';
 
-const testBedOptions = { imports: [NzFormModule, NoopAnimationsModule] };
+const testBedOptions = { imports: [SnFormModule, NoopAnimationsModule] };
 
-describe('nz-form-item', () => {
+describe('sn-form-item', () => {
   describe('default', () => {
-    let testBed: ComponentBed<NzTestFormItemComponent>;
+    let testBed: ComponentBed<SnTestFormItemComponent>;
     let formItem: DebugElement;
     beforeEach(() => {
-      testBed = createComponentBed(NzTestFormItemComponent, testBedOptions);
-      formItem = testBed.fixture.debugElement.query(By.directive(NzFormItemComponent));
+      testBed = createComponentBed(SnTestFormItemComponent, testBedOptions);
+      formItem = testBed.fixture.debugElement.query(By.directive(SnFormItemComponent));
     });
     it('should className correct', () => {
       expect(formItem.nativeElement.classList).toContain('ant-form-item');
@@ -24,6 +24,6 @@ describe('nz-form-item', () => {
 });
 
 @Component({
-  template: ` <nz-form-item></nz-form-item> `
+  template: ` <sn-form-item></sn-form-item> `
 })
-export class NzTestFormItemComponent {}
+export class SnTestFormItemComponent {}

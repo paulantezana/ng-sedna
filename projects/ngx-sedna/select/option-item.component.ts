@@ -20,7 +20,7 @@ import { takeUntil } from 'rxjs/operators';
 
 import { SnDestroyService } from 'ngx-sedna/core/services';
 import { SnSafeAny } from 'ngx-sedna/core/types';
-import { NzIconModule } from 'ngx-sedna/icon';
+import { SnIconModule } from 'ngx-sedna/icon';
 
 @Component({
   selector: 'sn-option-item',
@@ -32,7 +32,7 @@ import { NzIconModule } from 'ngx-sedna/icon';
       <ng-template #noCustomContent>{{ label }}</ng-template>
     </div>
     <div *ngIf="showState && selected" class="ant-select-item-option-state" style="user-select: none" unselectable="on">
-      <span nz-icon nzType="check" class="ant-select-selected-icon" *ngIf="!icon; else icon"></span>
+      <span sn-icon snType="check" class="ant-select-selected-icon" *ngIf="!icon; else icon"></span>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -46,7 +46,7 @@ import { NzIconModule } from 'ngx-sedna/icon';
     '[class.ant-select-item-option-active]': 'activated && !disabled'
   },
   providers: [SnDestroyService],
-  imports: [NgIf, NgTemplateOutlet, NzIconModule],
+  imports: [NgIf, NgTemplateOutlet, SnIconModule],
   standalone: true
 })
 export class SnOptionItemComponent implements OnChanges, OnInit {

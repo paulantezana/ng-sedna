@@ -74,7 +74,7 @@ export interface SnTimePickerI18nInterface {
 
 export type ValidateMessage = string | (() => string);
 
-export type NzCascaderI18nInterface = SnGlobalI18nInterface;
+export type SnCascaderI18nInterface = SnGlobalI18nInterface;
 
 export interface SnTableI18nInterface {
   filterTitle?: string;
@@ -128,7 +128,7 @@ export interface SnTextI18nInterface {
   expand: string;
 }
 
-export interface NzCronExpressionLabelI18n {
+export interface SnCronExpressionLabelI18n {
   second?: string;
   minute?: string;
   hour?: string;
@@ -137,13 +137,13 @@ export interface NzCronExpressionLabelI18n {
   week?: string;
 }
 
-export interface NzCronExpressionCronErrorI18n {
+export interface SnCronExpressionCronErrorI18n {
   cronError?: string;
 }
 
-export type NzCronExpressionI18nInterface = NzCronExpressionCronErrorI18n & NzCronExpressionLabelI18n;
+export type SnCronExpressionI18nInterface = SnCronExpressionCronErrorI18n & SnCronExpressionLabelI18n;
 
-export interface NzQRCodeI18nInterface {
+export interface SnQRCodeI18nInterface {
   expired: string;
   refresh: string;
 }
@@ -162,8 +162,8 @@ export interface SnI18nInterface {
   Upload: SnUploadI18nInterface;
   Empty: SnEmptyI18nInterface;
   Text?: SnTextI18nInterface;
-  CronExpression?: NzCronExpressionI18nInterface;
-  QRCode?: NzQRCodeI18nInterface;
+  CronExpression?: SnCronExpressionI18nInterface;
+  QRCode?: SnQRCodeI18nInterface;
 }
 
 export type DateLocale = Locale;

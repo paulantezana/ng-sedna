@@ -20,12 +20,12 @@ const iconTypeMap = {
 } as const;
 
 @Component({
-  selector: 'nz-form-item-feedback-icon',
-  exportAs: 'nzFormFeedbackIcon',
+  selector: 'sn-form-item-feedback-icon',
+  exportAs: 'snFormFeedbackIcon',
   preserveWhitespaces: false,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: ` <span *ngIf="iconType" nz-icon [nzType]="iconType"></span> `,
+  template: ` <span *ngIf="iconType" sn-icon [snType]="iconType"></span> `,
   host: {
     class: 'ant-form-item-feedback-icon',
     '[class.ant-form-item-feedback-icon-error]': 'status==="error"',

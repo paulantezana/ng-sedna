@@ -4,17 +4,17 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ɵComponentBed as ComponentBed, ɵcreateComponentBed as createComponentBed } from 'ngx-sedna/core/testing';
 
-import { NzFormSplitComponent } from './form-split.component';
+import { SnFormSplitComponent } from './form-split.component';
 
-const testBedOptions = { imports: [NoopAnimationsModule, NzFormSplitComponent] };
+const testBedOptions = { imports: [NoopAnimationsModule, SnFormSplitComponent] };
 
-describe('nz-form-split', () => {
+describe('sn-form-split', () => {
   describe('default', () => {
-    let testBed: ComponentBed<NzTestFormSplitComponent>;
+    let testBed: ComponentBed<SnTestFormSplitComponent>;
     let split: DebugElement;
     beforeEach(() => {
-      testBed = createComponentBed(NzTestFormSplitComponent, testBedOptions);
-      split = testBed.fixture.debugElement.query(By.directive(NzFormSplitComponent));
+      testBed = createComponentBed(SnTestFormSplitComponent, testBedOptions);
+      split = testBed.fixture.debugElement.query(By.directive(SnFormSplitComponent));
     });
     it('should className correct', () => {
       expect(split.nativeElement.classList).toContain('ant-form-split');
@@ -23,6 +23,6 @@ describe('nz-form-split', () => {
 });
 
 @Component({
-  template: ` <nz-form-split></nz-form-split> `
+  template: ` <sn-form-split></sn-form-split> `
 })
-export class NzTestFormSplitComponent {}
+export class SnTestFormSplitComponent {}

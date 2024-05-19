@@ -42,7 +42,7 @@ import { SnSelectItemInterface, SnSelectModeType, SnSelectTopControlItemType } f
     <ng-container [ngSwitch]="mode">
       <ng-container *ngSwitchCase="'default'">
         <sn-select-search
-          [nzId]="nzId"
+          [snId]="snId"
           [disabled]="disabled"
           [value]="inputValue!"
           [showInput]="showSearch"
@@ -57,7 +57,7 @@ import { SnSelectItemInterface, SnSelectModeType, SnSelectTopControlItemType } f
           [deletable]="false"
           [disabled]="false"
           [removeIcon]="removeIcon"
-          [label]="listOfTopItem[0].nzLabel"
+          [label]="listOfTopItem[0].snLabel"
           [contentTemplateOutlet]="customTemplate"
           [contentTemplateOutletContext]="listOfTopItem[0]"
         ></sn-select-item>
@@ -67,15 +67,15 @@ import { SnSelectItemInterface, SnSelectModeType, SnSelectTopControlItemType } f
         <sn-select-item
           *ngFor="let item of listOfSlicedItem; trackBy: trackValue"
           [removeIcon]="removeIcon"
-          [label]="item.nzLabel"
-          [disabled]="item.nzDisabled || disabled"
+          [label]="item.snLabel"
+          [disabled]="item.snDisabled || disabled"
           [contentTemplateOutlet]="item.contentTemplateOutlet"
           [deletable]="true"
           [contentTemplateOutletContext]="item.contentTemplateOutletContext"
           (delete)="onDeleteItem(item.contentTemplateOutletContext)"
         ></sn-select-item>
         <sn-select-search
-          [nzId]="nzId"
+          [snId]="snId"
           [disabled]="disabled"
           [value]="inputValue!"
           [autofocus]="autofocus"
@@ -103,7 +103,7 @@ import { SnSelectItemInterface, SnSelectModeType, SnSelectTopControlItemType } f
   standalone: true
 })
 export class SnSelectTopControlComponent implements OnChanges, OnInit, OnDestroy {
-  @Input() nzId: string | null = null;
+  @Input() snId: string | null = null;
   @Input() showSearch = false;
   @Input() placeHolder: string | TemplateRef<SnSafeAny> | null = null;
   @Input() open = false;
@@ -119,7 +119,7 @@ export class SnSelectTopControlComponent implements OnChanges, OnInit, OnDestroy
   @Output() readonly tokenize = new EventEmitter<string[]>();
   @Output() readonly inputValueChange = new EventEmitter<string>();
   @Output() readonly deleteItem = new EventEmitter<SnSelectItemInterface>();
-  @ViewChild(SnSelectSearchComponent) nzSelectSearchComponent!: SnSelectSearchComponent;
+  @ViewChild(SnSelectSearchComponent) snSelectSearchComponent!: SnSelectSearchComponent;
   listOfSlicedItem: SnSelectTopControlItemType[] = [];
   isShowPlaceholder = true;
   isShowSingleLabel = false;
@@ -176,29 +176,29 @@ export class SnSelectTopControlComponent implements OnChanges, OnInit, OnDestroy
   }
 
   clearInputValue(): void {
-    if (this.nzSelectSearchComponent) {
-      this.nzSelectSearchComponent.clearInputValue();
+    if (this.snSelectSearchComponent) {
+      this.snSelectSearchComponent.clearInputValue();
     }
   }
 
   focus(): void {
-    if (this.nzSelectSearchComponent) {
-      this.nzSelectSearchComponent.focus();
+    if (this.snSelectSearchComponent) {
+      this.snSelectSearchComponent.focus();
     }
   }
 
   blur(): void {
-    if (this.nzSelectSearchComponent) {
-      this.nzSelectSearchComponent.blur();
+    if (this.snSelectSearchComponent) {
+      this.snSelectSearchComponent.blur();
     }
   }
 
   trackValue(_index: number, option: SnSelectTopControlItemType): SnSafeAny {
-    return option.nzValue;
+    return option.snValue;
   }
 
   onDeleteItem(item: SnSelectItemInterface): void {
-    if (!this.disabled && !item.nzDisabled) {
+    if (!this.disabled && !item.snDisabled) {
       this.deleteItem.next(item);
     }
   }
@@ -216,19 +216,19 @@ export class SnSelectTopControlComponent implements OnChanges, OnInit, OnDestroy
     }
     if (listOfTopItem || maxTagCount || customTemplate || maxTagPlaceholder) {
       const listOfSlicedItem: SnSelectTopControlItemType[] = this.listOfTopItem.slice(0, this.maxTagCount).map(o => ({
-        nzLabel: o.nzLabel,
-        nzValue: o.nzValue,
-        nzDisabled: o.nzDisabled,
+        snLabel: o.snLabel,
+        snValue: o.snValue,
+        snDisabled: o.snDisabled,
         contentTemplateOutlet: this.customTemplate,
         contentTemplateOutletContext: o
       }));
       if (this.listOfTopItem.length > this.maxTagCount) {
         const exceededLabel = `+ ${this.listOfTopItem.length - this.maxTagCount} ...`;
-        const listOfSelectedValue = this.listOfTopItem.map(item => item.nzValue);
+        const listOfSelectedValue = this.listOfTopItem.map(item => item.snValue);
         const exceededItem = {
-          nzLabel: exceededLabel,
-          nzValue: '$$__nz_exceeded_item',
-          nzDisabled: true,
+          snLabel: exceededLabel,
+          snValue: '$$__sn_exceeded_item',
+          snDisabled: true,
           contentTemplateOutlet: this.maxTagPlaceholder,
           contentTemplateOutletContext: listOfSelectedValue.slice(this.maxTagCount)
         };
@@ -244,8 +244,8 @@ export class SnSelectTopControlComponent implements OnChanges, OnInit, OnDestroy
         .pipe(takeUntil(this.destroy$))
         .subscribe(event => {
           // `HTMLElement.focus()` is a native DOM API which doesn't require Angular to run change detection.
-          if (event.target !== this.nzSelectSearchComponent.inputElement.nativeElement) {
-            this.nzSelectSearchComponent.focus();
+          if (event.target !== this.snSelectSearchComponent.inputElement.nativeElement) {
+            this.snSelectSearchComponent.focus();
           }
         });
 

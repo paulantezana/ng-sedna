@@ -68,11 +68,11 @@ describe('string template outlet', () => {
       const testBed = createComponentBed(StringTemplateOutletTestComponent, { imports: [SnOutletModule] });
       testBed.component.stringTemplateOutlet = testBed.component.dataTimeTpl;
       const spyOnUpdateContext = spyOn(
-        testBed.component.nzStringTemplateOutletDirective as SnSafeAny,
+        testBed.component.snStringTemplateOutletDirective as SnSafeAny,
         'updateContext'
       ).and.callThrough();
       const spyOnRecreateView = spyOn(
-        testBed.component.nzStringTemplateOutletDirective as SnSafeAny,
+        testBed.component.snStringTemplateOutletDirective as SnSafeAny,
         'recreateView'
       ).and.callThrough();
       testBed.fixture.detectChanges();
@@ -89,11 +89,11 @@ describe('string template outlet', () => {
       const testBed = createComponentBed(StringTemplateOutletTestComponent, { imports: [SnOutletModule] });
       testBed.component.stringTemplateOutlet = testBed.component.stringTpl;
       const spyOnUpdateContext = spyOn(
-        testBed.component.nzStringTemplateOutletDirective as SnSafeAny,
+        testBed.component.snStringTemplateOutletDirective as SnSafeAny,
         'updateContext'
       ).and.callThrough();
       const spyOnRecreateView = spyOn(
-        testBed.component.nzStringTemplateOutletDirective as SnSafeAny,
+        testBed.component.snStringTemplateOutletDirective as SnSafeAny,
         'recreateView'
       ).and.callThrough();
       testBed.fixture.detectChanges();
@@ -110,7 +110,7 @@ describe('string template outlet', () => {
 @Component({
   template: `
     TargetText
-    <ng-container *nzStringTemplateOutlet="stringTemplateOutlet; context: context; let stringTemplateOutlet">
+    <ng-container *snStringTemplateOutlet="stringTemplateOutlet; context: context; let stringTemplateOutlet">
       {{ stringTemplateOutlet }}
     </ng-container>
     <ng-template #stringTpl let-data>The data is {{ data }}</ng-template>
@@ -122,7 +122,7 @@ export class StringTemplateOutletTestComponent {
   @ViewChild('stringTpl') stringTpl!: TemplateRef<SnSafeAny>;
   @ViewChild('emptyTpl') emptyTpl!: TemplateRef<SnSafeAny>;
   @ViewChild('dataTimeTpl') dataTimeTpl!: TemplateRef<SnSafeAny>;
-  @ViewChild(SnStringTemplateOutletDirective) nzStringTemplateOutletDirective!: SnStringTemplateOutletDirective;
+  @ViewChild(SnStringTemplateOutletDirective) snStringTemplateOutletDirective!: SnStringTemplateOutletDirective;
   stringTemplateOutlet: TemplateRef<SnSafeAny> | string | null = null;
   context: SnSafeAny = { $implicit: '' };
 }

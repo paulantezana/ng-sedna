@@ -4,17 +4,17 @@ import { InjectionToken } from '@angular/core';
 
 import { WeekDayIndex } from 'ngx-sedna/core/time';
 
-export interface NzDateConfig {
+export interface SnDateConfig {
   /** Customize the first day of a week */
   firstDayOfWeek?: WeekDayIndex;
 }
 
-export const NZ_DATE_CONFIG = new InjectionToken<NzDateConfig>('date-config');
+export const SN_DATE_CONFIG = new InjectionToken<SnDateConfig>('date-config');
 
-export const NZ_DATE_CONFIG_DEFAULT: NzDateConfig = {
+export const SN_DATE_CONFIG_DEFAULT: SnDateConfig = {
   firstDayOfWeek: undefined
 };
 
-export function mergeDateConfig(config: NzDateConfig | null): NzDateConfig {
-  return { ...NZ_DATE_CONFIG_DEFAULT, ...config };
+export function mergeDateConfig(config: SnDateConfig | null): SnDateConfig {
+  return { ...SN_DATE_CONFIG_DEFAULT, ...config };
 }

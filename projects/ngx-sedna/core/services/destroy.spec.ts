@@ -5,7 +5,7 @@ import { delay, finalize, takeUntil } from 'rxjs/operators';
 
 import { SnDestroyService } from './destroy';
 
-describe('NzDestroy service', () => {
+describe('SnDestroy service', () => {
   let destroyService: SnDestroyService;
   const initObservable = of('done');
 

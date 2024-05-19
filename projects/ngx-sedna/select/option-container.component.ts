@@ -22,7 +22,7 @@ import {
 
 import { SnOverlayModule } from 'ngx-sedna/core/overlay';
 import { SnSafeAny } from 'ngx-sedna/core/types';
-import { NzEmptyModule } from 'ngx-sedna/empty';
+import { SnEmptyModule } from 'ngx-sedna/empty';
 
 import { SnOptionItemGroupComponent } from './option-item-group.component';
 import { SnOptionItemComponent } from './option-item.component';
@@ -37,7 +37,7 @@ import { SnSelectItemInterface, SnSelectModeType } from './select.types';
   template: `
     <div>
       <div *ngIf="listOfContainerItem.length === 0" class="ant-select-item-empty">
-        <nz-embed-empty nzComponentName="select" [specificContent]="notFoundContent!"></nz-embed-empty>
+        <sn-embed-empty snComponentName="select" [specificContent]="notFoundContent!"></sn-embed-empty>
       </div>
       <cdk-virtual-scroll-viewport
         [class.full-width]="!matchWidth"
@@ -56,21 +56,21 @@ import { SnSelectItemInterface, SnSelectModeType } from './select.types';
           let-item
         >
           <ng-container [ngSwitch]="item.type">
-            <sn-option-item-group *ngSwitchCase="'group'" [nzLabel]="item.groupLabel"></sn-option-item-group>
+            <sn-option-item-group *ngSwitchCase="'group'" [snLabel]="item.groupLabel"></sn-option-item-group>
             <sn-option-item
               *ngSwitchCase="'item'"
               [icon]="menuItemSelectedIcon"
-              [customContent]="item.nzCustomContent"
+              [customContent]="item.snCustomContent"
               [template]="item.template"
               [grouped]="!!item.groupLabel"
-              [disabled]="item.nzDisabled || (isMaxLimitReached && !listOfSelectedValue.includes(item['nzValue']))"
+              [disabled]="item.snDisabled || (isMaxLimitReached && !listOfSelectedValue.includes(item['snValue']))"
               [showState]="mode === 'tags' || mode === 'multiple'"
-              [title]="item.nzTitle"
-              [label]="item.nzLabel"
+              [title]="item.snTitle"
+              [label]="item.snLabel"
               [compareWith]="compareWith"
               [activatedValue]="activatedValue"
               [listOfSelectedValue]="listOfSelectedValue"
-              [value]="item.nzValue"
+              [value]="item.snValue"
               (itemHover)="onItemHover($event)"
               (itemClick)="onItemClick($event)"
             ></sn-option-item>
@@ -82,7 +82,7 @@ import { SnSelectItemInterface, SnSelectModeType } from './select.types';
   `,
   host: { class: 'ant-select-dropdown' },
   imports: [
-    NzEmptyModule,
+    SnEmptyModule,
     NgIf,
     NgSwitch,
     SnOptionItemGroupComponent,

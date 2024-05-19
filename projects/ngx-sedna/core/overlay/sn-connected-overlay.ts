@@ -18,23 +18,23 @@ import { getPlacementName } from './overlay-position';
 type Dimensions = Omit<ClientRect, 'x' | 'y' | 'toJSON'>;
 
 @Directive({
-  selector: '[cdkConnectedOverlay][nzConnectedOverlay]',
-  exportAs: 'nzConnectedOverlay',
+  selector: '[cdkConnectedOverlay][snConnectedOverlay]',
+  exportAs: 'snConnectedOverlay',
   providers: [SnDestroyService]
 })
 export class SnConnectedOverlayDirective {
-  @Input() @InputBoolean() nzArrowPointAtCenter: boolean = false;
+  @Input() @InputBoolean() snArrowPointAtCenter: boolean = false;
 
   constructor(
     private readonly cdkConnectedOverlay: CdkConnectedOverlay,
-    private readonly nzDestroyService: SnDestroyService
+    private readonly snDestroyService: SnDestroyService
   ) {
-    this.cdkConnectedOverlay.backdropClass = 'nz-overlay-transparent-backdrop';
+    this.cdkConnectedOverlay.backdropClass = 'sn-overlay-transparent-backdrop';
 
     this.cdkConnectedOverlay.positionChange
-      .pipe(takeUntil(this.nzDestroyService))
+      .pipe(takeUntil(this.snDestroyService))
       .subscribe((position: ConnectedOverlayPositionChange) => {
-        if (this.nzArrowPointAtCenter) {
+        if (this.snArrowPointAtCenter) {
           this.updateArrowPosition(position);
         }
       });

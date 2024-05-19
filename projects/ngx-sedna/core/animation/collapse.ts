@@ -24,7 +24,7 @@ export const collapseMotion: AnimationTriggerMetadata = trigger('collapseMotion'
 export const treeCollapseMotion: AnimationTriggerMetadata = trigger('treeCollapseMotion', [
   transition('* => *', [
     query(
-      'nz-tree-node:leave,nz-tree-builtin-node:leave',
+      'sn-tree-node:leave,sn-tree-builtin-node:leave',
       [
         style({ overflow: 'hidden' }),
         stagger(0, [
@@ -36,7 +36,7 @@ export const treeCollapseMotion: AnimationTriggerMetadata = trigger('treeCollaps
       }
     ),
     query(
-      'nz-tree-node:enter,nz-tree-builtin-node:enter',
+      'sn-tree-node:enter,sn-tree-builtin-node:enter',
       [
         style({ overflow: 'hidden', height: 0, opacity: 0, 'padding-bottom': 0 }),
         stagger(0, [

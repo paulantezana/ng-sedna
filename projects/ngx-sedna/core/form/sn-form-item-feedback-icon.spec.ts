@@ -2,15 +2,15 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NzFormPatchModule } from 'ngx-sedna/core/form/nz-form-patch.module';
+import { SnFormPatchModule } from 'ngx-sedna/core/form/sn-form-patch.module';
 import { ɵComponentBed as ComponentBed, ɵcreateComponentBed as createComponentBed } from 'ngx-sedna/core/testing';
 import { SnValidateStatus } from 'ngx-sedna/core/types';
 
 import { SnFormItemFeedbackIconComponent } from './sn-form-item-feedback-icon.component';
 
-const testBedOptions = { imports: [NzFormPatchModule, NoopAnimationsModule] };
+const testBedOptions = { imports: [SnFormPatchModule, NoopAnimationsModule] };
 
-describe('nz-form-item-feedback-icon', () => {
+describe('sn-form-item-feedback-icon', () => {
   describe('default', () => {
     let testBed: ComponentBed<SnTestFormItemFeedbackIconComponent>;
     let fixtureInstance: SnTestFormItemFeedbackIconComponent;
@@ -47,7 +47,7 @@ describe('nz-form-item-feedback-icon', () => {
 });
 
 @Component({
-  template: ` <nz-form-item-feedback-icon [status]="status"></nz-form-item-feedback-icon> `
+  template: ` <sn-form-item-feedback-icon [status]="status"></sn-form-item-feedback-icon> `
 })
 export class SnTestFormItemFeedbackIconComponent {
   status: SnValidateStatus = '';

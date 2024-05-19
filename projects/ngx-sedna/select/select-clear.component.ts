@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 
 import { SnSafeAny } from 'ngx-sedna/core/types';
-import { NzIconModule } from 'ngx-sedna/icon';
+import { SnIconModule } from 'ngx-sedna/icon';
 
 @Component({
   selector: 'sn-select-clear',
@@ -20,9 +20,9 @@ import { NzIconModule } from 'ngx-sedna/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <span
-      nz-icon
-      nzType="close-circle"
-      nzTheme="fill"
+      sn-icon
+      snType="close-circle"
+      snTheme="fill"
       *ngIf="!clearIcon; else clearIcon"
       class="ant-select-close-icon"
     ></span>
@@ -31,7 +31,7 @@ import { NzIconModule } from 'ngx-sedna/icon';
     class: 'ant-select-clear',
     '(click)': 'onClick($event)'
   },
-  imports: [NzIconModule, NgIf],
+  imports: [SnIconModule, NgIf],
   standalone: true
 })
 export class SnSelectClearComponent {

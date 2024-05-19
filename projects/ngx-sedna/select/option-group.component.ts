@@ -14,7 +14,7 @@ import { SnSafeAny } from 'ngx-sedna/core/types';
   standalone: true
 })
 export class SnOptionGroupComponent implements OnChanges {
-  @Input() nzLabel: string | number | TemplateRef<SnSafeAny> | null = null;
+  @Input() snLabel: string | number | TemplateRef<SnSafeAny> | null = null;
   changes = new Subject<void>();
   ngOnChanges(): void {
     this.changes.next();

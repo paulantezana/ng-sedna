@@ -1,3 +1,3 @@
 
 
-export * from './nz-icon-test.module';
+export * from './sn-icon-test.module';

@@ -4,33 +4,33 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { IconDefinition } from '@ant-design/icons-angular';
 
-import { NzIconDirective } from './icon.directive';
-import { NZ_ICONS, NZ_ICONS_PATCH, NzIconPatchService } from './icon.service';
+import { SnIconDirective } from './icon.directive';
+import { SN_ICONS, SN_ICONS_PATCH, SnIconPatchService } from './icon.service';
 
 @NgModule({
-  imports: [NzIconDirective],
-  exports: [NzIconDirective]
+  imports: [SnIconDirective],
+  exports: [SnIconDirective]
 })
-export class NzIconModule {
-  static forRoot(icons: IconDefinition[]): ModuleWithProviders<NzIconModule> {
+export class SnIconModule {
+  static forRoot(icons: IconDefinition[]): ModuleWithProviders<SnIconModule> {
     return {
-      ngModule: NzIconModule,
+      ngModule: SnIconModule,
       providers: [
         {
-          provide: NZ_ICONS,
+          provide: SN_ICONS,
           useValue: icons
         }
       ]
     };
   }
 
-  static forChild(icons: IconDefinition[]): ModuleWithProviders<NzIconModule> {
+  static forChild(icons: IconDefinition[]): ModuleWithProviders<SnIconModule> {
     return {
-      ngModule: NzIconModule,
+      ngModule: SnIconModule,
       providers: [
-        NzIconPatchService,
+        SnIconPatchService,
         {
-          provide: NZ_ICONS_PATCH,
+          provide: SN_ICONS_PATCH,
           useValue: icons
         }
       ]

@@ -33,7 +33,7 @@ export class SnResizeService implements OnDestroy {
 
   ngOnDestroy(): void {
     // Caretaker note: the `handler` is an instance property (it's not defined on the class prototype).
-    // The `handler` captures `this` and prevents the `NzResizeService` from being GC'd.
+    // The `handler` captures `this` and prevents the `SnResizeService` from being GC'd.
     this.handler = NOOP;
   }
 

@@ -23,10 +23,10 @@ import { filterTableParentId } from '../constants';
   templateUrl: './th-addon.component.html',
   styleUrl: './th-addon.component.scss',
   // host: {
-  //   '[class.ant-table-column-has-sorters]': 'nzShowSort',
+  //   '[class.ant-table-column-has-sorters]': 'snShowSort',
   //   '[class.ant-table-column-sort]': `sortOrder === 'descend' || sortOrder === 'ascend'`
   // },
-  // providers: [NzDestroyService],
+  // providers: [SnDestroyService],
   imports: [CommonModule, CdkMenuModule, FontAwesomeModule],
   standalone: true
 })
@@ -44,13 +44,13 @@ export class anthAddOnComponent<T> {
   faFilter = faFilter;
   faFilterCircleXmark = faFilterCircleXmark;
 
-  // static ngAcceptInputType_nzShowSort: BooleanInput;
-  // static ngAcceptInputType_nzShowFilter: BooleanInput;
-  // static ngAcceptInputType_nzCustomFilter: BooleanInput;
+  // static ngAcceptInputType_snShowSort: BooleanInput;
+  // static ngAcceptInputType_snShowFilter: BooleanInput;
+  // static ngAcceptInputType_snCustomFilter: BooleanInput;
 
-  // manualClickOrder$ = new Subject<NzThAddOnComponent<T>>();
+  // manualClickOrder$ = new Subject<SnThAddOnComponent<T>>();
   // calcOperatorChange$ = new Subject<void>();
-  // nzFilterValue: NzTableFilterValue = null;
+  // snFilterValue: SnTableFilterValue = null;
   sortOrder: SnDataTableSortOrder = null;
   sortDirections: SnDataTableSortOrder[] = ['asc', 'desc', null];
   filterEvaluation?: SnFilterEvaluation;
@@ -59,9 +59,9 @@ export class anthAddOnComponent<T> {
   // filterValue: string = '';
   // filterValue: string = '';
 
-  // private sortOrderChange$ = new Subject<NzTableSortOrder>();
-  // private isNzShowSortChanged = false;
-  // private isNzShowFilterChanged = false;
+  // private sortOrderChange$ = new Subject<SnTableSortOrder>();
+  // private isSnShowSortChanged = false;
+  // private isSnShowFilterChanged = false;
 
 
   // selector: 'th[snFilterable], th[snSortable]',
@@ -69,18 +69,18 @@ export class anthAddOnComponent<T> {
   @Input() snFilterable?: boolean = true;
   @Input() snSortable?: boolean = true;
   @Input() snColumnField?: string;
-  // @Input() nzSortOrder: NzTableSortOrder = null;
-  // @Input() nzSortPriority: number | boolean = false;
-  // @Input() nzSortDirections: NzTableSortOrder[] = ['ascend', 'descend', null];
-  // @Input() nzFilters: NzTableFilterList = [];
-  // @Input() nzSortFn: NzTableSortFn<T> | boolean | null = null;
-  // @Input() nzFilterFn: NzTableFilterFn<T> | boolean | null = null;
-  // @Input() @InputBoolean() nzShowSort = false;
-  // @Input() @InputBoolean() nzShowFilter = false;
-  // @Input() @InputBoolean() nzCustomFilter = false;
-  // @Output() readonly nzCheckedChange = new EventEmitter<boolean>();
-  // @Output() readonly nzSortOrderChange = new EventEmitter<string | null>();
-  // @Output() readonly nzFilterChange = new EventEmitter<NzTableFilterValue>();
+  // @Input() snSortOrder: SnTableSortOrder = null;
+  // @Input() snSortPriority: number | boolean = false;
+  // @Input() snSortDirections: SnTableSortOrder[] = ['ascend', 'descend', null];
+  // @Input() snFilters: SnTableFilterList = [];
+  // @Input() snSortFn: SnTableSortFn<T> | boolean | null = null;
+  // @Input() snFilterFn: SnTableFilterFn<T> | boolean | null = null;
+  // @Input() @InputBoolean() snShowSort = false;
+  // @Input() @InputBoolean() snShowFilter = false;
+  // @Input() @InputBoolean() snCustomFilter = false;
+  // @Output() readonly snCheckedChange = new EventEmitter<boolean>();
+  // @Output() readonly snSortOrderChange = new EventEmitter<string | null>();
+  // @Output() readonly snFilterChange = new EventEmitter<SnTableFilterValue>();
 
 
   ngOnInit(): void {

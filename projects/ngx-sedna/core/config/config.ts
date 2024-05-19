@@ -85,47 +85,47 @@ export interface Theme {
 }
 
 export interface SelectConfig {
-  nzBorderless?: boolean;
-  nzSuffixIcon?: TemplateRef<SnSafeAny> | string | null;
-  nzBackdrop?: boolean;
-  nzOptionHeightPx?: number;
+  snBorderless?: boolean;
+  snSuffixIcon?: TemplateRef<SnSafeAny> | string | null;
+  snBackdrop?: boolean;
+  snOptionHeightPx?: number;
 }
 
 export interface AffixConfig {
-  nzOffsetBottom?: number;
-  nzOffsetTop?: number;
+  snOffsetBottom?: number;
+  snOffsetTop?: number;
 }
 
 export interface AlertConfig {
-  nzCloseable?: boolean;
-  nzShowIcon?: boolean;
+  snCloseable?: boolean;
+  snShowIcon?: boolean;
 }
 
 export interface AvatarConfig {
-  nzShape?: SnShapeSCType;
-  nzSize?: SnSizeLDSType | number;
-  nzGap?: number;
+  snShape?: SnShapeSCType;
+  snSize?: SnSizeLDSType | number;
+  snGap?: number;
 }
 
 export interface AnchorConfig {
-  nzBounds?: number;
-  nzOffsetBottom?: number;
-  nzOffsetTop?: number;
-  nzShowInkInFixed?: boolean;
+  snBounds?: number;
+  snOffsetBottom?: number;
+  snOffsetTop?: number;
+  snShowInkInFixed?: boolean;
 }
 
 export interface BackTopConfig {
-  nzVisibilityHeight?: number;
+  snVisibilityHeight?: number;
 }
 
 export interface BadgeConfig {
-  nzColor?: number;
-  nzOverflowCount?: number;
-  nzShowZero?: number;
+  snColor?: number;
+  snOverflowCount?: number;
+  snShowZero?: number;
 }
 
 export interface ButtonConfig {
-  nzSize?: 'large' | 'default' | 'small';
+  snSize?: 'large' | 'default' | 'small';
 }
 
 export interface CodeEditorConfig {
@@ -143,233 +143,233 @@ export interface CodeEditorConfig {
 }
 
 export interface CardConfig {
-  nzSize?: SnSizeDSType;
-  nzHoverable?: boolean;
-  nzBordered?: boolean;
-  nzBorderless?: boolean;
+  snSize?: SnSizeDSType;
+  snHoverable?: boolean;
+  snBordered?: boolean;
+  snBorderless?: boolean;
 }
 
 export interface CarouselConfig {
-  nzAutoPlay?: boolean;
-  nzAutoPlaySpeed?: boolean;
-  nzDots?: boolean;
-  nzEffect?: 'scrollx' | 'fade' | string;
-  nzEnableSwipe?: boolean;
-  nzVertical?: boolean;
-  nzLoop?: boolean;
+  snAutoPlay?: boolean;
+  snAutoPlaySpeed?: boolean;
+  snDots?: boolean;
+  snEffect?: 'scrollx' | 'fade' | string;
+  snEnableSwipe?: boolean;
+  snVertical?: boolean;
+  snLoop?: boolean;
 }
 
 export interface CascaderConfig {
-  nzSize?: string;
-  nzBackdrop?: boolean;
+  snSize?: string;
+  snBackdrop?: boolean;
 }
 
 export interface CollapseConfig {
-  nzAccordion?: boolean;
-  nzBordered?: boolean;
-  nzGhost?: boolean;
+  snAccordion?: boolean;
+  snBordered?: boolean;
+  snGhost?: boolean;
 }
 
 export interface CollapsePanelConfig {
-  nzShowArrow?: boolean;
+  snShowArrow?: boolean;
 }
 
 export interface DatePickerConfig {
-  nzSeparator?: string;
-  nzSuffixIcon?: string | TemplateRef<SnSafeAny>;
-  nzBackdrop?: boolean;
+  snSeparator?: string;
+  snSuffixIcon?: string | TemplateRef<SnSafeAny>;
+  snBackdrop?: boolean;
 }
 
 export interface DescriptionsConfig {
-  nzBordered?: boolean;
-  nzColumn?: { [key in SnBreakpointEnum]?: number } | number;
-  nzSize?: 'default' | 'middle' | 'small';
-  nzColon?: boolean;
+  snBordered?: boolean;
+  snColumn?: { [key in SnBreakpointEnum]?: number } | number;
+  snSize?: 'default' | 'middle' | 'small';
+  snColon?: boolean;
 }
 
 export interface DrawerConfig {
-  nzMask?: boolean;
-  nzMaskClosable?: boolean;
-  nzCloseOnNavigation?: boolean;
-  nzDirection?: Direction;
+  snMask?: boolean;
+  snMaskClosable?: boolean;
+  snCloseOnNavigation?: boolean;
+  snDirection?: Direction;
 }
 
 export interface DropDownConfig {
-  nzBackdrop?: boolean;
+  snBackdrop?: boolean;
 }
 
 export interface EmptyConfig {
-  nzDefaultEmptyContent?: Type<SnSafeAny> | TemplateRef<string> | string | undefined;
+  snDefaultEmptyContent?: Type<SnSafeAny> | TemplateRef<string> | string | undefined;
 }
 
 export interface FilterTriggerConfig {
-  nzBackdrop?: boolean;
+  snBackdrop?: boolean;
 }
 
 export interface FormConfig {
-  nzNoColon?: boolean;
-  nzAutoTips?: Record<string, Record<string, string>>;
-  nzTooltipIcon?: string | { type: string; theme: ThemeType };
+  snNoColon?: boolean;
+  snAutoTips?: Record<string, Record<string, string>>;
+  snTooltipIcon?: string | { type: string; theme: ThemeType };
 }
 
 export interface IconConfig {
-  nzTheme?: 'fill' | 'outline' | 'twotone';
-  nzTwotoneColor?: string;
+  snTheme?: 'fill' | 'outline' | 'twotone';
+  snTwotoneColor?: string;
 }
 
 export interface MessageConfig {
-  nzAnimate?: boolean;
-  nzDuration?: number;
-  nzMaxStack?: number;
-  nzPauseOnHover?: boolean;
-  nzTop?: number | string;
-  nzDirection?: Direction;
+  snAnimate?: boolean;
+  snDuration?: number;
+  snMaxStack?: number;
+  snPauseOnHover?: boolean;
+  snTop?: number | string;
+  snDirection?: Direction;
 }
 
 export interface ModalConfig {
-  nzMask?: boolean;
-  nzMaskClosable?: boolean;
-  nzCloseOnNavigation?: boolean;
-  nzDirection?: Direction;
+  snMask?: boolean;
+  snMaskClosable?: boolean;
+  snCloseOnNavigation?: boolean;
+  snDirection?: Direction;
 }
 
 export interface NotificationConfig extends MessageConfig {
-  nzTop?: string | number;
-  nzBottom?: string | number;
-  nzPlacement?: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'top' | 'bottom';
+  snTop?: string | number;
+  snBottom?: string | number;
+  snPlacement?: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'top' | 'bottom';
 }
 
 export interface PageHeaderConfig {
-  nzGhost: boolean;
+  snGhost: boolean;
 }
 
 export interface PaginationConfig {
-  nzSize?: 'default' | 'small';
-  nzPageSizeOptions?: number[];
-  nzShowSizeChanger?: boolean;
-  nzShowQuickJumper?: boolean;
-  nzSimple?: boolean;
+  snSize?: 'default' | 'small';
+  snPageSizeOptions?: number[];
+  snShowSizeChanger?: boolean;
+  snShowQuickJumper?: boolean;
+  snSimple?: boolean;
 }
 
 export interface ProgressConfig {
-  nzGapDegree?: number;
-  nzGapPosition?: 'top' | 'right' | 'bottom' | 'left';
-  nzShowInfo?: boolean;
-  nzStrokeSwitch?: number;
-  nzStrokeWidth?: number;
-  nzSize?: 'default' | 'small';
-  nzStrokeLinecap?: 'round' | 'square';
-  nzStrokeColor?: string;
+  snGapDegree?: number;
+  snGapPosition?: 'top' | 'right' | 'bottom' | 'left';
+  snShowInfo?: boolean;
+  snStrokeSwitch?: number;
+  snStrokeWidth?: number;
+  snSize?: 'default' | 'small';
+  snStrokeLinecap?: 'round' | 'square';
+  snStrokeColor?: string;
 }
 
 export interface RateConfig {
-  nzAllowClear?: boolean;
-  nzAllowHalf?: boolean;
+  snAllowClear?: boolean;
+  snAllowHalf?: boolean;
 }
 
 export interface SegmentedConfig {
-  nzSize?: SnSizeLDSType;
+  snSize?: SnSizeLDSType;
 }
 
 export interface SpaceConfig {
-  nzSize?: 'small' | 'middle' | 'large' | number;
+  snSize?: 'small' | 'middle' | 'large' | number;
 }
 
 export interface SpinConfig {
-  nzIndicator?: TemplateRef<SnSafeAny>;
+  snIndicator?: TemplateRef<SnSafeAny>;
 }
 
 export interface SwitchConfig {
-  nzSize: SnSizeDSType;
+  snSize: SnSizeDSType;
 }
 
 export interface TableConfig {
-  nzBordered?: boolean;
-  nzSize?: SnSizeMDSType;
-  nzShowQuickJumper?: boolean;
-  nzLoadingIndicator?: TemplateRef<SnSafeAny>;
-  nzShowSizeChanger?: boolean;
-  nzSimple?: boolean;
-  nzHideOnSinglePage?: boolean;
+  snBordered?: boolean;
+  snSize?: SnSizeMDSType;
+  snShowQuickJumper?: boolean;
+  snLoadingIndicator?: TemplateRef<SnSafeAny>;
+  snShowSizeChanger?: boolean;
+  snSimple?: boolean;
+  snHideOnSinglePage?: boolean;
 }
 
 export interface TabsConfig {
-  nzAnimated?:
+  snAnimated?:
     | boolean
     | {
         inkBar: boolean;
         tabPane: boolean;
       };
-  nzSize?: SnSizeLDSType;
-  nzType?: 'line' | 'card';
-  nzTabBarGutter?: number;
-  nzShowPagination?: boolean;
+  snSize?: SnSizeLDSType;
+  snType?: 'line' | 'card';
+  snTabBarGutter?: number;
+  snShowPagination?: boolean;
 }
 
 export interface TimePickerConfig {
-  nzAllowEmpty?: boolean;
-  nzClearText?: string;
-  nzNowText?: string;
-  nzOkText?: string;
-  nzFormat?: string;
-  nzHourStep?: number;
-  nzMinuteStep?: number;
-  nzSecondStep?: number;
-  nzPopupClassName?: string;
-  nzUse12Hours?: string;
-  nzSuffixIcon?: string | TemplateRef<SnSafeAny>;
-  nzBackdrop?: boolean;
+  snAllowEmpty?: boolean;
+  snClearText?: string;
+  snNowText?: string;
+  snOkText?: string;
+  snFormat?: string;
+  snHourStep?: number;
+  snMinuteStep?: number;
+  snSecondStep?: number;
+  snPopupClassName?: string;
+  snUse12Hours?: string;
+  snSuffixIcon?: string | TemplateRef<SnSafeAny>;
+  snBackdrop?: boolean;
 }
 
 export interface TreeConfig {
-  nzBlockNode?: boolean;
-  nzShowIcon?: boolean;
-  nzHideUnMatched?: boolean;
+  snBlockNode?: boolean;
+  snShowIcon?: boolean;
+  snHideUnMatched?: boolean;
 }
 
 export interface TreeSelectConfig {
-  nzShowIcon?: string;
-  nzShowLine?: boolean;
-  nzDropdownMatchSelectWidth?: boolean;
-  nzHideUnMatched?: boolean;
-  nzSize?: 'large' | 'small' | 'default';
-  nzBackdrop?: boolean;
+  snShowIcon?: string;
+  snShowLine?: boolean;
+  snDropdownMatchSelectWidth?: boolean;
+  snHideUnMatched?: boolean;
+  snSize?: 'large' | 'small' | 'default';
+  snBackdrop?: boolean;
 }
 
 export interface TypographyConfig {
-  nzEllipsisRows?: number;
-  nzCopyTooltips?: [SnTSType, SnTSType] | null;
-  nzCopyIcons: [SnTSType, SnTSType];
-  nzEditTooltip?: null | SnTSType;
-  nzEditIcon: SnTSType;
+  snEllipsisRows?: number;
+  snCopyTooltips?: [SnTSType, SnTSType] | null;
+  snCopyIcons: [SnTSType, SnTSType];
+  snEditTooltip?: null | SnTSType;
+  snEditIcon: SnTSType;
 }
 
 export interface ImageConfig {
-  nzFallback?: string;
-  nzPlaceholder?: string;
-  nzDisablePreview?: string;
-  nzCloseOnNavigation?: boolean;
-  nzDirection?: Direction;
-  nzScaleStep?: number;
+  snFallback?: string;
+  snPlaceholder?: string;
+  snDisablePreview?: string;
+  snCloseOnNavigation?: boolean;
+  snDirection?: Direction;
+  snScaleStep?: number;
 }
 
 export interface ImageExperimentalConfig {
-  nzFallback?: string;
-  nzPlaceholder?: string;
-  nzDisablePreview?: string;
-  nzCloseOnNavigation?: boolean;
-  nzDirection?: Direction;
-  nzAutoSrcset?: boolean;
-  nzSrcLoader?(params: { src: string; width: number }): string;
+  snFallback?: string;
+  snPlaceholder?: string;
+  snDisablePreview?: string;
+  snCloseOnNavigation?: boolean;
+  snDirection?: Direction;
+  snAutoSrcset?: boolean;
+  snSrcLoader?(params: { src: string; width: number }): string;
 }
 
 export interface PopConfirmConfig {
-  nzPopconfirmBackdrop?: boolean;
-  nzAutofocus?: null | 'ok' | 'cancel';
+  snPopconfirmBackdrop?: boolean;
+  snAutofocus?: null | 'ok' | 'cancel';
 }
 
 export interface PopoverConfig {
-  nzPopoverBackdrop?: boolean;
+  snPopoverBackdrop?: boolean;
 }
 
 export type SnConfigKey = keyof SnConfig;
@@ -377,8 +377,8 @@ export type SnConfigKey = keyof SnConfig;
 /**
  * User should provide an object implements this interface to set global configurations.
  */
-export const NZ_CONFIG = new InjectionToken<SnConfig>('nz-config');
+export const SN_CONFIG = new InjectionToken<SnConfig>('sn-config');
 
-export function provideNzConfig(config: SnConfig): EnvironmentProviders {
-  return makeEnvironmentProviders([{ provide: NZ_CONFIG, useValue: config }]);
+export function provideSnConfig(config: SnConfig): EnvironmentProviders {
+  return makeEnvironmentProviders([{ provide: SN_CONFIG, useValue: config }]);
 }

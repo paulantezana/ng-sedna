@@ -10,7 +10,7 @@ import { SnSafeAny } from 'ngx-sedna/core/types';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <ng-container *nzStringTemplateOutlet="placeholder">
+    <ng-container *snStringTemplateOutlet="placeholder">
       {{ placeholder }}
     </ng-container>
   `,

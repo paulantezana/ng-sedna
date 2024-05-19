@@ -18,11 +18,11 @@ import { ɵComponentBed as ComponentBed, ɵcreateComponentBed as createComponent
 import { SnSafeAny } from 'ngx-sedna/core/types';
 import { en_US, SnI18nService } from 'ngx-sedna/i18n';
 
-import { NzFormControlComponent } from './form-control.component';
-import { NzFormItemComponent } from './form-item.component';
-import { NzFormModule } from './form.module';
+import { SnFormControlComponent } from './form-control.component';
+import { SnFormItemComponent } from './form-item.component';
+import { SnFormModule } from './form.module';
 
-const testBedOptions = { imports: [NzFormModule, NoopAnimationsModule, ReactiveFormsModule, FormsModule] };
+const testBedOptions = { imports: [SnFormModule, NoopAnimationsModule, ReactiveFormsModule, FormsModule] };
 const statusMap = {
   warning: 'ant-form-item-has-warning',
   validating: 'ant-form-item-is-validating',
@@ -31,17 +31,17 @@ const statusMap = {
   success: 'ant-form-item-has-success'
 };
 
-describe('nz-form-control', () => {
+describe('sn-form-control', () => {
   describe('static status', () => {
-    let testBed: ComponentBed<NzTestStaticFormControlComponent>;
-    let testComponent: NzTestStaticFormControlComponent;
+    let testBed: ComponentBed<SnTestStaticFormControlComponent>;
+    let testComponent: SnTestStaticFormControlComponent;
     let formItem: DebugElement;
     let formControl: DebugElement;
     beforeEach(() => {
-      testBed = createComponentBed(NzTestStaticFormControlComponent, testBedOptions);
+      testBed = createComponentBed(SnTestStaticFormControlComponent, testBedOptions);
       testComponent = testBed.component;
-      formItem = testBed.fixture.debugElement.query(By.directive(NzFormItemComponent));
-      formControl = testBed.fixture.debugElement.query(By.directive(NzFormControlComponent));
+      formItem = testBed.fixture.debugElement.query(By.directive(SnFormItemComponent));
+      formControl = testBed.fixture.debugElement.query(By.directive(SnFormControlComponent));
     });
     it('should className correct', () => {
       expect(formControl.nativeElement.classList).toContain('ant-form-item-control');
@@ -56,7 +56,7 @@ describe('nz-form-control', () => {
     });
   });
   describe('reactive status', () => {
-    let testBed: ComponentBed<NzTestReactiveFormControlComponent>;
+    let testBed: ComponentBed<SnTestReactiveFormControlComponent>;
     let formGroup: FormGroup<{
       input: FormControl<string | null>;
       input2: FormControl<string | null>;
@@ -65,10 +65,10 @@ describe('nz-form-control', () => {
     let formItems: DebugElement[];
     let formControls: DebugElement[];
     beforeEach(() => {
-      testBed = createComponentBed(NzTestReactiveFormControlComponent, testBedOptions);
+      testBed = createComponentBed(SnTestReactiveFormControlComponent, testBedOptions);
       formGroup = testBed.component.formGroup;
-      formItems = testBed.fixture.debugElement.queryAll(By.directive(NzFormItemComponent));
-      formControls = testBed.fixture.debugElement.queryAll(By.directive(NzFormControlComponent));
+      formItems = testBed.fixture.debugElement.queryAll(By.directive(SnFormItemComponent));
+      formControls = testBed.fixture.debugElement.queryAll(By.directive(SnFormControlComponent));
     });
     it('should init status correct', () => {
       expect(formItems[0].nativeElement.classList).toContain('ant-form-item');
@@ -136,13 +136,13 @@ describe('nz-form-control', () => {
     });
   });
   describe('reactive init status', () => {
-    let testBed: ComponentBed<NzTestReactiveFormControlInitStatusComponent>;
-    let testComponent: NzTestReactiveFormControlInitStatusComponent;
+    let testBed: ComponentBed<SnTestReactiveFormControlInitStatusComponent>;
+    let testComponent: SnTestReactiveFormControlInitStatusComponent;
     let formItem: DebugElement;
     beforeEach(() => {
-      testBed = createComponentBed(NzTestReactiveFormControlInitStatusComponent, testBedOptions);
+      testBed = createComponentBed(SnTestReactiveFormControlInitStatusComponent, testBedOptions);
       testComponent = testBed.component;
-      formItem = testBed.fixture.debugElement.query(By.directive(NzFormItemComponent));
+      formItem = testBed.fixture.debugElement.query(By.directive(SnFormItemComponent));
     });
     it('should init status correct', () => {
       expect(formItem.nativeElement.classList).toContain(statusMap.error);
@@ -157,8 +157,8 @@ describe('nz-form-control', () => {
   });
 
   describe('auto tips', () => {
-    let testBed: ComponentBed<NzTestReactiveFormAutoTipsComponent>;
-    let testComponent: NzTestReactiveFormAutoTipsComponent;
+    let testBed: ComponentBed<SnTestReactiveFormAutoTipsComponent>;
+    let testComponent: SnTestReactiveFormAutoTipsComponent;
     let formGroup: FormGroup<{
       userName: FormControl<string | null>;
       mobile: FormControl<string | null>;
@@ -169,10 +169,10 @@ describe('nz-form-control', () => {
     let formControls: DebugElement[];
 
     beforeEach(() => {
-      testBed = createComponentBed(NzTestReactiveFormAutoTipsComponent, testBedOptions);
+      testBed = createComponentBed(SnTestReactiveFormAutoTipsComponent, testBedOptions);
       testComponent = testBed.component;
       formGroup = testComponent.formGroup;
-      formControls = testBed.fixture.debugElement.queryAll(By.directive(NzFormControlComponent));
+      formControls = testBed.fixture.debugElement.queryAll(By.directive(SnFormControlComponent));
     });
     it('should default work ', () => {
       formGroup.get('userName')!.markAsDirty();
@@ -248,7 +248,7 @@ describe('nz-form-control', () => {
       formGroup.get('email')!.setValue('');
       testBed.fixture.detectChanges();
 
-      formControls = testBed.fixture.debugElement.queryAll(By.directive(NzFormControlComponent));
+      formControls = testBed.fixture.debugElement.queryAll(By.directive(SnFormControlComponent));
 
       expect(formControls[0].nativeElement.querySelector('.ant-form-item-explain').textContent).toEqual('请输入');
       expect(formControls[1].nativeElement.querySelector('.ant-form-item-explain').textContent).toEqual('请输入');
@@ -302,7 +302,7 @@ describe('nz-form-control', () => {
         'Please input valid email'
       );
     });
-    it('should nzDisableAutoTips work ', fakeAsync(() => {
+    it('should snDisableAutoTips work ', fakeAsync(() => {
       formGroup.get('userName')!.markAsDirty();
       formGroup.get('mobile')!.markAsDirty();
       formGroup.get('email')!.markAsDirty();
@@ -339,7 +339,7 @@ describe('nz-form-control', () => {
       expect(formControls[1].nativeElement.querySelector('.ant-form-item-explain')).toBeNull();
       expect(formControls[2].nativeElement.querySelector('.ant-form-item-explain')).toBeNull();
     }));
-    it('should nzErrorTip change work', () => {
+    it('should snErrorTip change work', () => {
       testComponent.passwordDisableAutoTips = true;
 
       formGroup.get('password')!.markAsDirty();
@@ -365,12 +365,12 @@ describe('nz-form-control', () => {
 
 @Component({
   template: `
-    <nz-form-item>
-      <nz-form-control [nzHasFeedback]="hasFeedback" [nzValidateStatus]="status"></nz-form-control>
-    </nz-form-item>
+    <sn-form-item>
+      <sn-form-control [snHasFeedback]="hasFeedback" [snValidateStatus]="status"></sn-form-control>
+    </sn-form-item>
   `
 })
-export class NzTestStaticFormControlComponent {
+export class SnTestStaticFormControlComponent {
   hasFeedback = false;
   status = 'success';
 }
@@ -378,23 +378,23 @@ export class NzTestStaticFormControlComponent {
 @Component({
   template: `
     <form [formGroup]="formGroup">
-      <nz-form-item>
-        <nz-form-control>
+      <sn-form-item>
+        <sn-form-control>
           <input formControlName="input" />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control [nzValidateStatus]="validateStatus">
+        </sn-form-control>
+      </sn-form-item>
+      <sn-form-item>
+        <sn-form-control [snValidateStatus]="validateStatus">
           <input formControlName="input3" />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-control>
+        </sn-form-control>
+      </sn-form-item>
+      <sn-form-control>
         <input formControlName="input2" />
-      </nz-form-control>
+      </sn-form-control>
     </form>
   `
 })
-export class NzTestReactiveFormControlComponent {
+export class SnTestReactiveFormControlComponent {
   formGroup = this.formBuilder.group({
     input: ['', [Validators.required]],
     input2: ['', [Validators.required]],
@@ -411,15 +411,15 @@ export class NzTestReactiveFormControlComponent {
 @Component({
   template: `
     <form [formGroup]="formGroup">
-      <nz-form-item>
-        <nz-form-control>
+      <sn-form-item>
+        <sn-form-control>
           <input formControlName="input" />
-        </nz-form-control>
-      </nz-form-item>
+        </sn-form-control>
+      </sn-form-item>
     </form>
   `
 })
-export class NzTestReactiveFormControlInitStatusComponent {
+export class SnTestReactiveFormControlInitStatusComponent {
   formGroup = this.formBuilder.group({
     input: ['', [Validators.required]]
   });
@@ -431,38 +431,38 @@ export class NzTestReactiveFormControlInitStatusComponent {
 
 @Component({
   template: `
-    <form [formGroup]="formGroup" nz-form [nzAutoTips]="formAutoTips" [nzDisableAutoTips]="formDisableAutoTips">
-      <nz-form-item>
-        <nz-form-control #control>
-          <input nz-input formControlName="userName" />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <input nz-input formControlName="mobile" />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control [nzAutoTips]="emailAutoTips">
-          <input nz-input formControlName="email" type="email" />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control [nzDisableAutoTips]="passwordDisableAutoTips" [nzErrorTip]="passwordErrorTip">
-          <input nz-input type="password" formControlName="password" />
-        </nz-form-control>
-      </nz-form-item>
+    <form [formGroup]="formGroup" sn-form [snAutoTips]="formAutoTips" [snDisableAutoTips]="formDisableAutoTips">
+      <sn-form-item>
+        <sn-form-control #control>
+          <input sn-input formControlName="userName" />
+        </sn-form-control>
+      </sn-form-item>
+      <sn-form-item>
+        <sn-form-control>
+          <input sn-input formControlName="mobile" />
+        </sn-form-control>
+      </sn-form-item>
+      <sn-form-item>
+        <sn-form-control [snAutoTips]="emailAutoTips">
+          <input sn-input formControlName="email" type="email" />
+        </sn-form-control>
+      </sn-form-item>
+      <sn-form-item>
+        <sn-form-control [snDisableAutoTips]="passwordDisableAutoTips" [snErrorTip]="passwordErrorTip">
+          <input sn-input type="password" formControlName="password" />
+        </sn-form-control>
+      </sn-form-item>
       @if (showConfirmPassword) {
-        <nz-form-item>
-          <nz-form-control>
-            <input nz-input type="password" formControlName="confirmPassword" />
-          </nz-form-control>
-        </nz-form-item>
+        <sn-form-item>
+          <sn-form-control>
+            <input sn-input type="password" formControlName="confirmPassword" />
+          </sn-form-control>
+        </sn-form-item>
       }
     </form>
   `
 })
-export class NzTestReactiveFormAutoTipsComponent {
+export class SnTestReactiveFormAutoTipsComponent {
   formGroup: FormGroup<{
     userName: FormControl<string | null>;
     mobile: FormControl<string | null>;

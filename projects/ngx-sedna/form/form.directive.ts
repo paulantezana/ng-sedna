@@ -11,11 +11,11 @@ import { SnConfigKey, SnConfigService, WithConfig } from 'ngx-sedna/core/config'
 import { BooleanInput, InputObservable } from 'ngx-sedna/core/types';
 import { InputBoolean } from 'ngx-sedna/core/util';
 
-const NZ_CONFIG_MODULE_NAME: SnConfigKey = 'form';
+const SN_CONFIG_MODULE_NAME: SnConfigKey = 'form';
 
-export type NzFormLayoutType = 'horizontal' | 'vertical' | 'inline';
+export type SnFormLayoutType = 'horizontal' | 'vertical' | 'inline';
 
-export type NzLabelAlignType = 'left' | 'right';
+export type SnLabelAlignType = 'left' | 'right';
 
 export const DefaultTooltipIcon = {
   type: 'question-circle',
@@ -23,30 +23,30 @@ export const DefaultTooltipIcon = {
 } as const;
 
 @Directive({
-  selector: '[nz-form]',
-  exportAs: 'nzForm',
+  selector: '[sn-form]',
+  exportAs: 'snForm',
   host: {
     class: 'ant-form',
-    '[class.ant-form-horizontal]': `nzLayout === 'horizontal'`,
-    '[class.ant-form-vertical]': `nzLayout === 'vertical'`,
-    '[class.ant-form-inline]': `nzLayout === 'inline'`,
+    '[class.ant-form-horizontal]': `snLayout === 'horizontal'`,
+    '[class.ant-form-vertical]': `snLayout === 'vertical'`,
+    '[class.ant-form-inline]': `snLayout === 'inline'`,
     '[class.ant-form-rtl]': `dir === 'rtl'`
   },
   standalone: true
 })
-export class NzFormDirective implements OnChanges, OnDestroy, InputObservable {
-  readonly _nzModuleName: SnConfigKey = NZ_CONFIG_MODULE_NAME;
-  static ngAcceptInputType_nzNoColon: BooleanInput;
-  static ngAcceptInputType_nzDisableAutoTips: BooleanInput;
-  static ngAcceptInputType_nzLabelWrap: BooleanInput;
+export class SnFormDirective implements OnChanges, OnDestroy, InputObservable {
+  readonly _snModuleName: SnConfigKey = SN_CONFIG_MODULE_NAME;
+  static ngAcceptInputType_snNoColon: BooleanInput;
+  static ngAcceptInputType_snDisableAutoTips: BooleanInput;
+  static ngAcceptInputType_snLabelWrap: BooleanInput;
 
-  @Input() nzLayout: NzFormLayoutType = 'horizontal';
-  @Input() @WithConfig() @InputBoolean() nzNoColon: boolean = false;
-  @Input() @WithConfig() nzAutoTips: Record<string, Record<string, string>> = {};
-  @Input() @InputBoolean() nzDisableAutoTips = false;
-  @Input() @WithConfig() nzTooltipIcon: string | { type: string; theme: ThemeType } = DefaultTooltipIcon;
-  @Input() nzLabelAlign: NzLabelAlignType = 'right';
-  @Input() @WithConfig() @InputBoolean() nzLabelWrap: boolean = false;
+  @Input() snLayout: SnFormLayoutType = 'horizontal';
+  @Input() @WithConfig() @InputBoolean() snNoColon: boolean = false;
+  @Input() @WithConfig() snAutoTips: Record<string, Record<string, string>> = {};
+  @Input() @InputBoolean() snDisableAutoTips = false;
+  @Input() @WithConfig() snTooltipIcon: string | { type: string; theme: ThemeType } = DefaultTooltipIcon;
+  @Input() snLabelAlign: SnLabelAlignType = 'right';
+  @Input() @WithConfig() @InputBoolean() snLabelWrap: boolean = false;
 
   dir: Direction = 'ltr';
   destroy$ = new Subject<boolean>();
@@ -60,7 +60,7 @@ export class NzFormDirective implements OnChanges, OnDestroy, InputObservable {
   }
 
   constructor(
-    public nzConfigService: SnConfigService,
+    public snConfigService: SnConfigService,
     @Optional() private directionality: Directionality
   ) {
     this.dir = this.directionality.value;
