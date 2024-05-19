@@ -32,7 +32,7 @@ import { SnSelectSearchComponent } from './select-search.component';
 import { SnSelectItemInterface, SnSelectModeType, SnSelectTopControlItemType } from './select.types';
 
 @Component({
-  selector: 'nz-select-top-control',
+  selector: 'sn-select-top-control',
   exportAs: 'nzSelectTopControl',
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -41,7 +41,7 @@ import { SnSelectItemInterface, SnSelectModeType, SnSelectTopControlItemType } f
     <!--single mode-->
     <ng-container [ngSwitch]="mode">
       <ng-container *ngSwitchCase="'default'">
-        <nz-select-search
+        <sn-select-search
           [nzId]="nzId"
           [disabled]="disabled"
           [value]="inputValue!"
@@ -51,8 +51,8 @@ import { SnSelectItemInterface, SnSelectModeType, SnSelectTopControlItemType } f
           [focusTrigger]="open"
           (isComposingChange)="isComposingChange($event)"
           (valueChange)="onInputValueChange($event)"
-        ></nz-select-search>
-        <nz-select-item
+        ></sn-select-search>
+        <sn-select-item
           *ngIf="isShowSingleLabel"
           [deletable]="false"
           [disabled]="false"
@@ -60,11 +60,11 @@ import { SnSelectItemInterface, SnSelectModeType, SnSelectTopControlItemType } f
           [label]="listOfTopItem[0].nzLabel"
           [contentTemplateOutlet]="customTemplate"
           [contentTemplateOutletContext]="listOfTopItem[0]"
-        ></nz-select-item>
+        ></sn-select-item>
       </ng-container>
       <ng-container *ngSwitchDefault>
         <!--multiple or tags mode-->
-        <nz-select-item
+        <sn-select-item
           *ngFor="let item of listOfSlicedItem; trackBy: trackValue"
           [removeIcon]="removeIcon"
           [label]="item.nzLabel"
@@ -73,8 +73,8 @@ import { SnSelectItemInterface, SnSelectModeType, SnSelectTopControlItemType } f
           [deletable]="true"
           [contentTemplateOutletContext]="item.contentTemplateOutletContext"
           (delete)="onDeleteItem(item.contentTemplateOutletContext)"
-        ></nz-select-item>
-        <nz-select-search
+        ></sn-select-item>
+        <sn-select-search
           [nzId]="nzId"
           [disabled]="disabled"
           [value]="inputValue!"
@@ -84,10 +84,10 @@ import { SnSelectItemInterface, SnSelectModeType, SnSelectTopControlItemType } f
           [focusTrigger]="open"
           (isComposingChange)="isComposingChange($event)"
           (valueChange)="onInputValueChange($event)"
-        ></nz-select-search>
+        ></sn-select-search>
       </ng-container>
     </ng-container>
-    <nz-select-placeholder *ngIf="isShowPlaceholder" [placeholder]="placeHolder"></nz-select-placeholder>
+    <sn-select-placeholder *ngIf="isShowPlaceholder" [placeholder]="placeHolder"></sn-select-placeholder>
   `,
   host: { class: 'ant-select-selector' },
   imports: [

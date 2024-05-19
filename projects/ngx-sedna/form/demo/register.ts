@@ -70,10 +70,10 @@ import { NzFormTooltipIcon } from 'ngx-sedna/form';
         >
           <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
             <ng-template #addOnBeforeTemplate>
-              <nz-select formControlName="phoneNumberPrefix" class="phone-select">
+              <sn-select formControlName="phoneNumberPrefix" class="phone-select">
                 <nz-option nzLabel="+86" nzValue="+86"></nz-option>
                 <nz-option nzLabel="+87" nzValue="+87"></nz-option>
-              </nz-select>
+              </sn-select>
             </ng-template>
             <input formControlName="phoneNumber" id="'phoneNumber'" nz-input />
           </nz-input-group>

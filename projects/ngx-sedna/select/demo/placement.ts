@@ -13,15 +13,15 @@ import { SnSelectPlacementType } from 'ngx-sedna/select';
     </nz-radio-group>
     <br />
     <br />
-    <nz-select [(ngModel)]="selectedValue" [nzDropdownMatchSelectWidth]="false" [nzPlacement]="placement">
+    <sn-select [(ngModel)]="selectedValue" [nzDropdownMatchSelectWidth]="false" [nzPlacement]="placement">
       <nz-option nzValue="HangZhou" nzLabel="HangZhou #310000"></nz-option>
       <nz-option nzValue="NingBo" nzLabel="NingBo #315000"></nz-option>
       <nz-option nzValue="WenZhou" nzLabel="WenZhou #325000"></nz-option>
-    </nz-select>
+    </sn-select>
   `,
   styles: [
     `
-      nz-select {
+      sn-select {
         width: 120px;
       }
     `

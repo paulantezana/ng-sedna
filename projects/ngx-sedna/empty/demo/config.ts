@@ -15,7 +15,7 @@ import { SnConfigService } from 'ngx-sedna/core/config';
     <nz-divider></nz-divider>
 
     <h3>Select</h3>
-    <nz-select style="width: 200px"></nz-select>
+    <sn-select style="width: 200px"></sn-select>
 
     <h3>TreeSelect</h3>
     <nz-tree-select style="width: 200px;"></nz-tree-select>

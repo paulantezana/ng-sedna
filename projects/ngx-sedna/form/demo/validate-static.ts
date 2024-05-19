@@ -74,19 +74,19 @@ import { Component } from '@angular/core';
       <nz-form-item>
         <nz-form-label [nzSpan]="5">Error</nz-form-label>
         <nz-form-control [nzSpan]="12" nzValidateStatus="error" nzHasFeedback>
-          <nz-select name="select-error" [ngModel]="'Option 1'">
+          <sn-select name="select-error" [ngModel]="'Option 1'">
             <nz-option nzValue="Option 1" nzLabel="Option 1"></nz-option>
             <nz-option nzValue="Option 2" nzLabel="Option 2"></nz-option>
-          </nz-select>
+          </sn-select>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-label [nzSpan]="5">Validating</nz-form-label>
         <nz-form-control [nzSpan]="12" nzValidateStatus="validating" nzHasFeedback>
-          <nz-select name="select-validate" [ngModel]="'Option 2'">
+          <sn-select name="select-validate" [ngModel]="'Option 2'">
             <nz-option nzValue="Option 1" nzLabel="Option 1"></nz-option>
             <nz-option nzValue="Option 2" nzLabel="Option 2"></nz-option>
-          </nz-select>
+          </sn-select>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>

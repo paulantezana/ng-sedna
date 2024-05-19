@@ -3,9 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'nz-demo-select-custom-dropdown-menu',
   template: `
-    <nz-select nzShowSearch nzAllowClear [nzDropdownRender]="renderTemplate" nzPlaceHolder="custom dropdown render">
+    <sn-select nzShowSearch nzAllowClear [nzDropdownRender]="renderTemplate" nzPlaceHolder="custom dropdown render">
       <nz-option *ngFor="let item of listOfItem" [nzLabel]="item" [nzValue]="item"></nz-option>
-    </nz-select>
+    </sn-select>
     <ng-template #renderTemplate>
       <nz-divider></nz-divider>
       <div class="container">
@@ -19,7 +19,7 @@ import { Component } from '@angular/core';
   `,
   styles: [
     `
-      nz-select {
+      sn-select {
         width: 240px;
       }
       nz-divider {

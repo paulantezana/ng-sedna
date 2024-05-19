@@ -84,7 +84,7 @@ const NZ_CONFIG_MODULE_NAME: SnConfigKey = 'select';
 export type NzSelectSizeType = 'large' | 'default' | 'small';
 
 @Component({
-  selector: 'nz-select',
+  selector: 'sn-select',
   exportAs: 'nzSelect',
   preserveWhitespaces: false,
   providers: [
@@ -99,7 +99,7 @@ export type NzSelectSizeType = 'large' | 'default' | 'small';
   encapsulation: ViewEncapsulation.None,
   animations: [slideMotion],
   template: `
-    <nz-select-top-control
+    <sn-select-top-control
       cdkOverlayOrigin
       #origin="cdkOverlayOrigin"
       [nzId]="nzId"
@@ -121,8 +121,8 @@ export type NzSelectSizeType = 'large' | 'default' | 'small';
       (tokenize)="onTokenSeparate($event)"
       (deleteItem)="onItemDelete($event)"
       (keydown)="onKeyDown($event)"
-    ></nz-select-top-control>
-    <nz-select-arrow
+    ></sn-select-top-control>
+    <sn-select-arrow
       *ngIf="nzShowArrow || (hasFeedback && !!status) || isMaxTagCountSet"
       [showArrow]="nzShowArrow"
       [loading]="nzLoading"
@@ -136,13 +136,13 @@ export type NzSelectSizeType = 'large' | 'default' | 'small';
       <ng-template #feedbackIconTpl>
         <nz-form-item-feedback-icon *ngIf="hasFeedback && !!status" [status]="status"></nz-form-item-feedback-icon>
       </ng-template>
-    </nz-select-arrow>
+    </sn-select-arrow>
 
-    <nz-select-clear
+    <sn-select-clear
       *ngIf="nzAllowClear && !nzDisabled && listOfValue.length"
       [clearIcon]="nzClearIcon"
       (clear)="onClearSelection()"
-    ></nz-select-clear>
+    ></sn-select-clear>
     <ng-template
       cdkConnectedOverlay
       nzConnectedOverlay
@@ -573,7 +573,7 @@ export class SnSelectComponent implements ControlValueAccessor, OnInit, AfterCon
         if (triggerWidth !== this.triggerWidth) {
           // The `requestAnimationFrame` will trigger change detection, but we're inside an `OnPush` component which won't have
           // the `ChecksEnabled` state. Calling `markForCheck()` will allow Angular to run the change detection from the root component
-          // down to the `nz-select`. But we'll trigger only local change detection if the `triggerWidth` has been changed.
+          // down to the `sn-select`. But we'll trigger only local change detection if the `triggerWidth` has been changed.
           this.cdr.detectChanges();
         }
       });

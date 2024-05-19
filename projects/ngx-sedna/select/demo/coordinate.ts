@@ -4,17 +4,17 @@ import { Component } from '@angular/core';
   selector: 'nz-demo-select-coordinate',
   template: `
     <div>
-      <nz-select [(ngModel)]="selectedProvince" (ngModelChange)="provinceChange($event)">
+      <sn-select [(ngModel)]="selectedProvince" (ngModelChange)="provinceChange($event)">
         <nz-option *ngFor="let p of provinceData" [nzValue]="p" [nzLabel]="p"></nz-option>
-      </nz-select>
-      <nz-select [(ngModel)]="selectedCity">
+      </sn-select>
+      <sn-select [(ngModel)]="selectedCity">
         <nz-option *ngFor="let c of cityData[selectedProvince]" [nzValue]="c" [nzLabel]="c"></nz-option>
-      </nz-select>
+      </sn-select>
     </div>
   `,
   styles: [
     `
-      nz-select {
+      sn-select {
         margin-right: 8px;
         width: 120px;
       }

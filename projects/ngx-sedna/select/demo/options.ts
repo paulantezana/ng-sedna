@@ -3,17 +3,17 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'nz-demo-select-options',
   template: `
-    <nz-select ngModel="lucy" [nzOptions]="listOfOption"></nz-select>
-    <nz-select
+    <sn-select ngModel="lucy" [nzOptions]="listOfOption"></sn-select>
+    <sn-select
       [(ngModel)]="selectedValue"
       nzAllowClear
       nzPlaceHolder="Choose"
       [nzOptions]="listOfGroupOption"
-    ></nz-select>
+    ></sn-select>
   `,
   styles: [
     `
-      nz-select {
+      sn-select {
         margin: 0 8px 10px 0;
         width: 120px;
       }

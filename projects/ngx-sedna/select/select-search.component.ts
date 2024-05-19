@@ -19,7 +19,7 @@ import {
 import { COMPOSITION_BUFFER_MODE, FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'nz-select-search',
+  selector: 'sn-select-search',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `

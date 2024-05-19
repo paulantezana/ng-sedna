@@ -6,7 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 @Component({
   selector: 'nz-demo-select-scroll-load',
   template: `
-    <nz-select
+    <sn-select
       [(ngModel)]="selectedUser"
       (nzScrollToBottom)="loadMore()"
       nzPlaceHolder="Select users"
@@ -14,14 +14,14 @@ import { catchError, map } from 'rxjs/operators';
       [nzDropdownRender]="renderTemplate"
     >
       <nz-option *ngFor="let o of optionList" [nzValue]="o" [nzLabel]="o"></nz-option>
-    </nz-select>
+    </sn-select>
     <ng-template #renderTemplate>
       <nz-spin *ngIf="isLoading"></nz-spin>
     </ng-template>
   `,
   styles: [
     `
-      nz-select {
+      sn-select {
         width: 100%;
       }
     `

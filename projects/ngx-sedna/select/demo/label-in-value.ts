@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <p>The selected option's age is {{ selectedValue?.age }}</p>
     <br />
-    <nz-select
+    <sn-select
       [(ngModel)]="selectedValue"
       [compareWith]="compareFn"
       (ngModelChange)="log($event)"
@@ -13,11 +13,11 @@ import { Component } from '@angular/core';
       nzPlaceHolder="Choose"
     >
       <nz-option *ngFor="let option of optionList" [nzValue]="option" [nzLabel]="option.label"></nz-option>
-    </nz-select>
+    </sn-select>
   `,
   styles: [
     `
-      nz-select {
+      sn-select {
         width: 120px;
       }
     `

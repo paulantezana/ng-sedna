@@ -77,15 +77,15 @@ describe('select', () => {
     it('should ngModel match nzLabel', fakeAsync(() => {
       component.listOfOption = [{ nzValue: 'test_value', nzLabel: 'test_label' }];
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-item')).toBeFalsy();
+      expect(selectElement.querySelector('sn-select-item')).toBeFalsy();
       component.value = 'test_value';
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-item')!.textContent).toBe('test_label');
+      expect(selectElement.querySelector('sn-select-item')!.textContent).toBe('test_label');
       component.listOfOption = [];
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-item')!.textContent).toBe('test_label');
+      expect(selectElement.querySelector('sn-select-item')!.textContent).toBe('test_label');
       expect(component.valueChange).not.toHaveBeenCalled();
     }));
     it('should ngModelChange trigger when click option', fakeAsync(() => {
@@ -114,10 +114,10 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-clear')).toBeFalsy();
+      expect(selectElement.querySelector('sn-select-clear')).toBeFalsy();
       component.nzAllowClear = true;
       fixture.detectChanges();
-      dispatchMouseEvent(selectElement.querySelector('nz-select-clear')!, 'click');
+      dispatchMouseEvent(selectElement.querySelector('sn-select-clear')!, 'click');
       fixture.detectChanges();
       expect(component.valueChange).toHaveBeenCalledTimes(1);
       expect(component.valueChange).toHaveBeenCalledWith(null);
@@ -151,25 +151,25 @@ describe('select', () => {
     it('should nzCustomTemplate works', fakeAsync(() => {
       component.listOfOption = [{ nzValue: 'value', nzLabel: 'label' }];
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-item')).toBeFalsy();
+      expect(selectElement.querySelector('sn-select-item')).toBeFalsy();
       component.value = 'value';
       component.nzCustomTemplate = component.customTemplate;
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-item')!.textContent).toBe('selected: label');
+      expect(selectElement.querySelector('sn-select-item')!.textContent).toBe('selected: label');
     }));
     it('should nzShowArrow works', () => {
-      expect(selectElement.querySelector('nz-select-arrow')).toBeTruthy();
+      expect(selectElement.querySelector('sn-select-arrow')).toBeTruthy();
       component.nzShowArrow = false;
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-arrow')).toBeFalsy();
+      expect(selectElement.querySelector('sn-select-arrow')).toBeFalsy();
     });
     it('should nzSuffixIcon works', () => {
       expect(selectElement.querySelector('.anticon-down')).toBeTruthy();
       component.nzSuffixIcon = component.suffixIconTemplate;
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-arrow')!.textContent).toBe('icon');
+      expect(selectElement.querySelector('sn-select-arrow')!.textContent).toBe('icon');
     });
     it('should nzClearIcon works', fakeAsync(() => {
       component.nzAllowClear = true;
@@ -181,7 +181,7 @@ describe('select', () => {
       expect(selectElement.querySelector('.anticon-close-circle')).toBeTruthy();
       component.nzClearIcon = component.suffixIconTemplate;
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-clear')!.textContent).toBe('icon');
+      expect(selectElement.querySelector('sn-select-clear')!.textContent).toBe('icon');
     }));
     it('should nzShowSearch works', fakeAsync(() => {
       component.listOfOption = [
@@ -227,13 +227,13 @@ describe('select', () => {
     it('should compareWith works', fakeAsync(() => {
       component.listOfOption = [{ nzValue: { value: 'test_value' }, nzLabel: 'test_label' }];
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-item')).toBeFalsy();
+      expect(selectElement.querySelector('sn-select-item')).toBeFalsy();
       component.value = { value: 'test_value' };
       component.compareWith = (o1: SnSafeAny, o2: SnSafeAny) => (o1 && o2 ? o1.value === o2.value : o1 === o2);
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-item')!.textContent).toBe('test_label');
+      expect(selectElement.querySelector('sn-select-item')!.textContent).toBe('test_label');
     }));
     it('should nzBorderless works', () => {
       expect(selectElement.classList).not.toContain('ant-select-borderless');
@@ -609,13 +609,13 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      let listOfSelectItem = selectElement.querySelectorAll('nz-select-item')!;
+      let listOfSelectItem = selectElement.querySelectorAll('sn-select-item')!;
       expect(listOfSelectItem.length).toBe(2);
       expect(listOfSelectItem[0].textContent).toBe('label_01');
       expect(listOfSelectItem[1].textContent).toBe('label_02');
       component.listOfOption = [{ nzValue: 'value_01', nzLabel: 'label_01' }];
       fixture.detectChanges();
-      listOfSelectItem = selectElement.querySelectorAll('nz-select-item')!;
+      listOfSelectItem = selectElement.querySelectorAll('sn-select-item')!;
       expect(listOfSelectItem.length).toBe(2);
       expect(listOfSelectItem[0].textContent).toBe('label_01');
       expect(listOfSelectItem[1].textContent).toBe('label_02');
@@ -649,14 +649,14 @@ describe('select', () => {
     it('should compareWith works', fakeAsync(() => {
       component.listOfOption = [{ nzValue: { value: 'value' }, nzLabel: 'label' }];
       fixture.detectChanges();
-      expect(selectElement.querySelectorAll('nz-select-item').length).toBe(0);
+      expect(selectElement.querySelectorAll('sn-select-item').length).toBe(0);
       component.value = [{ value: 'value' }];
       component.compareWith = (o1: SnSafeAny, o2: SnSafeAny) => (o1 && o2 ? o1.value === o2.value : o1 === o2);
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(selectElement.querySelectorAll('nz-select-item').length).toBe(1);
-      expect(selectElement.querySelectorAll('nz-select-item')[0].textContent).toBe('label');
+      expect(selectElement.querySelectorAll('sn-select-item').length).toBe(1);
+      expect(selectElement.querySelectorAll('sn-select-item')[0].textContent).toBe('label');
     }));
     it('should nzMenuItemSelectedIcon works', fakeAsync(() => {
       component.listOfOption = [{ nzValue: 'value', nzLabel: 'label' }];
@@ -854,7 +854,7 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      const listOfItem = selectElement.querySelectorAll('nz-select-item');
+      const listOfItem = selectElement.querySelectorAll('sn-select-item');
       expect(listOfItem.length).toBe(3);
       expect(listOfItem[2].querySelector('.ant-select-selection-item-content')!.textContent).toBe('+ 2 ...');
       component.nzMaxTagPlaceholder = component.tagTemplate;
@@ -878,15 +878,15 @@ describe('select', () => {
     it('should ngModel match nzLabel', fakeAsync(() => {
       component.listOfOption = [{ value: 'test_value', label: 'test_label' }];
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-item')).toBeFalsy();
+      expect(selectElement.querySelector('sn-select-item')).toBeFalsy();
       component.value = 'test_value';
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-item')!.textContent).toBe('test_label');
+      expect(selectElement.querySelector('sn-select-item')!.textContent).toBe('test_label');
       component.listOfOption = [];
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-item')!.textContent).toBe('test_label');
+      expect(selectElement.querySelector('sn-select-item')!.textContent).toBe('test_label');
       expect(component.valueChange).not.toHaveBeenCalled();
     }));
     it('should ngModelChange trigger when click option', fakeAsync(() => {
@@ -915,10 +915,10 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-clear')).toBeFalsy();
+      expect(selectElement.querySelector('sn-select-clear')).toBeFalsy();
       component.nzAllowClear = true;
       fixture.detectChanges();
-      dispatchMouseEvent(selectElement.querySelector('nz-select-clear')!, 'click');
+      dispatchMouseEvent(selectElement.querySelector('sn-select-clear')!, 'click');
       fixture.detectChanges();
       expect(component.valueChange).toHaveBeenCalledTimes(1);
       expect(component.valueChange).toHaveBeenCalledWith(null);
@@ -926,13 +926,13 @@ describe('select', () => {
     it('should nzCustomTemplate works', fakeAsync(() => {
       component.listOfOption = [{ value: 'value', label: 'label' }];
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-item')).toBeFalsy();
+      expect(selectElement.querySelector('sn-select-item')).toBeFalsy();
       component.value = 'value';
       component.nzCustomTemplate = component.customTemplate;
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-item')!.textContent).toBe('selected: label');
+      expect(selectElement.querySelector('sn-select-item')!.textContent).toBe('selected: label');
     }));
     it('should nzShowSearch works', fakeAsync(() => {
       component.listOfOption = [
@@ -978,13 +978,13 @@ describe('select', () => {
     it('should compareWith works', fakeAsync(() => {
       component.listOfOption = [{ value: { value: 'test_value' }, label: 'test_label' }];
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-item')).toBeFalsy();
+      expect(selectElement.querySelector('sn-select-item')).toBeFalsy();
       component.value = { value: 'test_value' };
       component.compareWith = (o1: SnSafeAny, o2: SnSafeAny) => (o1 && o2 ? o1.value === o2.value : o1 === o2);
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-item')!.textContent).toBe('test_label');
+      expect(selectElement.querySelector('sn-select-item')!.textContent).toBe('test_label');
     }));
     it('should nzServerSearch works', fakeAsync(() => {
       component.listOfOption = [
@@ -1131,13 +1131,13 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      let listOfSelectItem = selectElement.querySelectorAll('nz-select-item')!;
+      let listOfSelectItem = selectElement.querySelectorAll('sn-select-item')!;
       expect(listOfSelectItem.length).toBe(2);
       expect(listOfSelectItem[0].textContent).toBe('label_01');
       expect(listOfSelectItem[1].textContent).toBe('label_02');
       component.listOfOption = [{ value: 'value_01', label: 'label_01' }];
       fixture.detectChanges();
-      listOfSelectItem = selectElement.querySelectorAll('nz-select-item')!;
+      listOfSelectItem = selectElement.querySelectorAll('sn-select-item')!;
       expect(listOfSelectItem.length).toBe(2);
       expect(listOfSelectItem[0].textContent).toBe('label_01');
       expect(listOfSelectItem[1].textContent).toBe('label_02');
@@ -1171,14 +1171,14 @@ describe('select', () => {
     it('should compareWith works', fakeAsync(() => {
       component.listOfOption = [{ value: { value: 'value' }, label: 'label' }];
       fixture.detectChanges();
-      expect(selectElement.querySelectorAll('nz-select-item').length).toBe(0);
+      expect(selectElement.querySelectorAll('sn-select-item').length).toBe(0);
       component.value = [{ value: 'value' }];
       component.compareWith = (o1: SnSafeAny, o2: SnSafeAny) => (o1 && o2 ? o1.value === o2.value : o1 === o2);
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(selectElement.querySelectorAll('nz-select-item').length).toBe(1);
-      expect(selectElement.querySelectorAll('nz-select-item')[0].textContent).toBe('label');
+      expect(selectElement.querySelectorAll('sn-select-item').length).toBe(1);
+      expect(selectElement.querySelectorAll('sn-select-item')[0].textContent).toBe('label');
     }));
     it('should nzMenuItemSelectedIcon works', fakeAsync(() => {
       component.listOfOption = [{ value: 'value', label: 'label' }];
@@ -1274,10 +1274,10 @@ describe('select', () => {
     }));
     it('should show nzShowArrow component when having nzMaxMultipleCount', () => {
       component.nzMaxMultipleCount = 0;
-      expect(selectElement.querySelector('nz-select-arrow')).toBeFalsy();
+      expect(selectElement.querySelector('sn-select-arrow')).toBeFalsy();
       component.nzMaxMultipleCount = 1;
       fixture.detectChanges();
-      expect(selectElement.querySelector('nz-select-arrow')).toBeTruthy();
+      expect(selectElement.querySelector('sn-select-arrow')).toBeTruthy();
     });
     it('should nzAutoClearSearchValue work', fakeAsync(() => {
       const flushRefresh = (): void => {
@@ -1381,7 +1381,7 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      const listOfItem = selectElement.querySelectorAll('nz-select-item');
+      const listOfItem = selectElement.querySelectorAll('sn-select-item');
       expect(listOfItem.length).toBe(3);
       expect(listOfItem[2].querySelector('.ant-select-selection-item-content')!.textContent).toBe('+ 2 ...');
       component.nzMaxTagPlaceholder = component.tagTemplate;
@@ -1460,7 +1460,7 @@ describe('select', () => {
       expect(selectComponent.isMaxLimitReached).toBeFalsy();
     });
 
-    it('should not run change detection when `nz-select-top-control` is clicked and should focus the `nz-select-search`', () => {
+    it('should not run change detection when `sn-select-top-control` is clicked and should focus the `sn-select-search`', () => {
       const appRef = TestBed.inject(ApplicationRef);
       spyOn(appRef, 'tick');
 
@@ -1474,7 +1474,7 @@ describe('select', () => {
       expect(nzSelectSearch.componentInstance.focus).toHaveBeenCalled();
     });
 
-    it('should not run change detection when non-backspace button is pressed on the `nz-select-top-control`', () => {
+    it('should not run change detection when non-backspace button is pressed on the `sn-select-top-control`', () => {
       const appRef = TestBed.inject(ApplicationRef);
       spyOn(appRef, 'tick');
 
@@ -1636,7 +1636,7 @@ describe('select', () => {
 
 @Component({
   template: `
-    <nz-select
+    <sn-select
       nzMode="default"
       [(ngModel)]="value"
       [nzSize]="nzSize"
@@ -1683,7 +1683,7 @@ describe('select', () => {
           [nzHide]="o.nzHide"
         ></nz-option>
       </nz-option-group>
-    </nz-select>
+    </sn-select>
     <ng-template #dropdownTemplate><div class="dropdown-render">dropdownRender</div></ng-template>
     <ng-template #customTemplate let-selected>selected: {{ selected.nzLabel }}</ng-template>
     <ng-template #suffixIconTemplate>icon</ng-template>
@@ -1731,7 +1731,7 @@ export class TestSelectTemplateDefaultComponent {
 
 @Component({
   template: `
-    <nz-select
+    <sn-select
       nzMode="multiple"
       [(ngModel)]="value"
       [nzMenuItemSelectedIcon]="nzMenuItemSelectedIcon"
@@ -1751,7 +1751,7 @@ export class TestSelectTemplateDefaultComponent {
         [nzDisabled]="o.nzDisabled"
         [nzHide]="o.nzHide"
       ></nz-option>
-    </nz-select>
+    </sn-select>
     <ng-template #iconTemplate>icon</ng-template>
   `
 })
@@ -1772,7 +1772,7 @@ export class TestSelectTemplateMultipleComponent {
 
 @Component({
   template: `
-    <nz-select
+    <sn-select
       nzMode="tags"
       [(ngModel)]="value"
       [nzSize]="nzSize"
@@ -1788,7 +1788,7 @@ export class TestSelectTemplateMultipleComponent {
         [nzDisabled]="o.nzDisabled"
         [nzHide]="o.nzHide"
       ></nz-option>
-    </nz-select>
+    </sn-select>
     <ng-template #tagTemplate let-selectedList>and {{ selectedList.length }} more selected</ng-template>
   `
 })
@@ -1805,7 +1805,7 @@ export class TestSelectTemplateTagsComponent {
 
 @Component({
   template: `
-    <nz-select
+    <sn-select
       nzMode="default"
       [(ngModel)]="value"
       [nzOptions]="listOfOption"
@@ -1830,7 +1830,7 @@ export class TestSelectTemplateTagsComponent {
       (ngModelChange)="valueChange($event)"
       (nzOnSearch)="searchValueChange($event)"
       (nzOpenChange)="openChange($event)"
-    ></nz-select>
+    ></sn-select>
     <ng-template #dropdownTemplate><div class="dropdown-render">dropdownRender</div></ng-template>
     <ng-template #customTemplate let-selected>selected: {{ selected.nzLabel }}</ng-template>
     <ng-template #suffixIconTemplate>icon</ng-template>
@@ -1873,7 +1873,7 @@ export class TestSelectReactiveDefaultComponent {
 
 @Component({
   template: `
-    <nz-select
+    <sn-select
       nzMode="multiple"
       [(ngModel)]="value"
       [nzOptions]="listOfOption"
@@ -1886,7 +1886,7 @@ export class TestSelectReactiveDefaultComponent {
       [(nzOpen)]="nzOpen"
       (ngModelChange)="valueChange($event)"
       (nzOpenChange)="valueChange($event)"
-    ></nz-select>
+    ></sn-select>
     <ng-template #iconTemplate>icon</ng-template>
   `
 })
@@ -1907,7 +1907,7 @@ export class TestSelectReactiveMultipleComponent {
 
 @Component({
   template: `
-    <nz-select
+    <sn-select
       nzMode="tags"
       [(ngModel)]="value"
       [nzOptions]="listOfOption"
@@ -1916,7 +1916,7 @@ export class TestSelectReactiveMultipleComponent {
       [nzTokenSeparators]="nzTokenSeparators"
       [nzMaxTagPlaceholder]="nzMaxTagPlaceholder"
       (ngModelChange)="valueChange($event)"
-    ></nz-select>
+    ></sn-select>
     <ng-template #tagTemplate let-selectedList>and {{ selectedList.length }} more selected</ng-template>
   `
 })
@@ -1932,7 +1932,7 @@ export class TestSelectReactiveTagsComponent {
 }
 
 @Component({
-  template: ` <nz-select [nzStatus]="status"></nz-select> `
+  template: ` <sn-select [nzStatus]="status"></sn-select> `
 })
 export class TestSelectStatusComponent {
   status: SnStatus = 'error';
@@ -1943,7 +1943,7 @@ export class TestSelectStatusComponent {
     <form nz-form [formGroup]="selectForm">
       <nz-form-item>
         <nz-form-control [nzHasFeedback]="feedback" [nzValidateStatus]="status">
-          <nz-select formControlName="selectControl" [nzOptions]="[]" [nzDisabled]="disabled"></nz-select>
+          <sn-select formControlName="selectControl" [nzOptions]="[]" [nzDisabled]="disabled"></sn-select>
         </nz-form-control>
       </nz-form-item>
     </form>

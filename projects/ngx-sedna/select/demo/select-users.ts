@@ -6,7 +6,7 @@ import { catchError, debounceTime, map, switchMap } from 'rxjs/operators';
 @Component({
   selector: 'nz-demo-select-select-users',
   template: `
-    <nz-select
+    <sn-select
       nzMode="multiple"
       nzPlaceHolder="Select users"
       nzAllowClear
@@ -22,11 +22,11 @@ import { catchError, debounceTime, map, switchMap } from 'rxjs/operators';
         <span nz-icon nzType="loading" class="loading-icon"></span>
         Loading Data...
       </nz-option>
-    </nz-select>
+    </sn-select>
   `,
   styles: [
     `
-      nz-select {
+      sn-select {
         width: 100%;
       }
 

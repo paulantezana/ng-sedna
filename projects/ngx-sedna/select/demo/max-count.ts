@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'nz-demo-select-max-count',
   template: `
-    <nz-select
+    <sn-select
       [nzMaxMultipleCount]="3"
       nzMode="multiple"
       nzPlaceHolder="Please select"
@@ -12,11 +12,11 @@ import { Component, OnInit } from '@angular/core';
       [(ngModel)]="listOfSelectedValue"
     >
       <nz-option *ngFor="let item of listOfOption" [nzLabel]="item" [nzValue]="item"></nz-option>
-    </nz-select>
+    </sn-select>
   `,
   styles: [
     `
-      nz-select {
+      sn-select {
         width: 100%;
       }
     `

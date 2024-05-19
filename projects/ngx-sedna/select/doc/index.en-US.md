@@ -19,12 +19,12 @@ import { NzSelectModule } from 'ngx-sedna/select';
 ## API
 
 ```html
-<nz-select>
+<sn-select>
   <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
-</nz-select>
+</sn-select>
 ```
 
-### nz-select:standalone
+### sn-select:standalone
 
 | Property                       | Description                                                                                                                                                                                                     | Type                                                                                                                                                                      | Default                                                 | Global Config |
 | ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | ------------- |
@@ -77,8 +77,8 @@ import { NzSelectModule } from 'ngx-sedna/select';
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------- | ------- |
 | `[nzDisabled]`      | Disable this option                                                                                                        | `boolean`           | `false` |
 | `[nzTitle]`         | Native title hint on this option                                                                                           | `string \| number`  | -       |
-| `[nzLabel]`         | The text show in nz-select and dropdown menu                                                                               | `string \| number`  | -       |
-| `[nzValue]`         | The value passed to ngModel of nz-select                                                                                   | `any `              | -       |
+| `[nzLabel]`         | The text show in sn-select and dropdown menu                                                                               | `string \| number`  | -       |
+| `[nzValue]`         | The value passed to ngModel of sn-select                                                                                   | `any `              | -       |
 | `[nzKey]`           | Should be passed when typeof nzValue - Object. Key will be used for performance optimizations                              | `string \| number ` | -       |
 | `[nzHide]`          | Whether hide the option in the option list                                                                                 | `boolean`           | `false` |
 | `[nzCustomContent]` | Whether custom nz-option content in drodown menu, the ng-content in nz-option will replace nzLabel when it was set to true | `boolean`           | `false` |
@@ -91,7 +91,7 @@ import { NzSelectModule } from 'ngx-sedna/select';
 
 ## Methods
 
-### nz-select:standalone
+### sn-select:standalone
 
 | Name    | Description  |
 | ------- | ------------ |

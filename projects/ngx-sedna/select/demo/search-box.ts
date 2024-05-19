@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'nz-demo-select-search-box',
   template: `
-    <nz-select
+    <sn-select
       nzShowSearch
       nzServerSearch
       nzPlaceHolder="input search text"
@@ -14,11 +14,11 @@ import { Component } from '@angular/core';
       (nzOnSearch)="search($event)"
     >
       <nz-option *ngFor="let o of listOfOption" [nzLabel]="o.text" [nzValue]="o.value"></nz-option>
-    </nz-select>
+    </sn-select>
   `,
   styles: [
     `
-      nz-select {
+      sn-select {
         width: 200px;
       }
     `

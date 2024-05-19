@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'nz-demo-select-multiple',
   template: `
-    <nz-select
+    <sn-select
       [nzMaxTagCount]="3"
       [nzMaxTagPlaceholder]="tagPlaceHolder"
       nzMode="multiple"
@@ -11,12 +11,12 @@ import { Component, OnInit } from '@angular/core';
       [(ngModel)]="listOfSelectedValue"
     >
       <nz-option *ngFor="let item of listOfOption" [nzLabel]="item" [nzValue]="item"></nz-option>
-    </nz-select>
+    </sn-select>
     <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
   `,
   styles: [
     `
-      nz-select {
+      sn-select {
         width: 100%;
       }
     `

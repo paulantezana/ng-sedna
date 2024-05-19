@@ -8,7 +8,7 @@ import { SnSafeAny } from 'ngx-sedna/core/types';
 import { NzIconModule } from 'ngx-sedna/icon';
 
 @Component({
-  selector: 'nz-select-arrow',
+  selector: 'sn-select-arrow',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `

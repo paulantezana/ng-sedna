@@ -14,7 +14,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
       <nz-form-item>
         <nz-form-label [nzSpan]="5" nzFor="gender" nzRequired>Gender</nz-form-label>
         <nz-form-control [nzSpan]="12" nzErrorTip="Please select your gender!">
-          <nz-select
+          <sn-select
             id="gender"
             formControlName="gender"
             nzPlaceHolder="Select a option and change input text above"
@@ -22,7 +22,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
           >
             <nz-option nzValue="male" nzLabel="male"></nz-option>
             <nz-option nzValue="female" nzLabel="female"></nz-option>
-          </nz-select>
+          </sn-select>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>

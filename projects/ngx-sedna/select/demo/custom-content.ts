@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'nz-demo-select-custom-content',
   template: `
-    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select OS" [(ngModel)]="selectedOS">
+    <sn-select nzShowSearch nzAllowClear nzPlaceHolder="Select OS" [(ngModel)]="selectedOS">
       <nz-option nzCustomContent nzLabel="Windows" nzValue="windows">
         <span nz-icon nzType="windows"></span>
         Windows
@@ -16,11 +16,11 @@ import { Component } from '@angular/core';
         <span nz-icon nzType="android"></span>
         Android
       </nz-option>
-    </nz-select>
+    </sn-select>
   `,
   styles: [
     `
-      nz-select {
+      sn-select {
         width: 200px;
       }
     `

@@ -20,12 +20,12 @@ import { NzSelectModule } from 'ngx-sedna/select';
 ## API
 
 ```html
-<nz-select>
+<sn-select>
   <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
-</nz-select>
+</sn-select>
 ```
 
-### nz-select:standalone
+### sn-select:standalone
 
 | 参数                           | 说明                                                                                                                                             | 类型                                                                                                                                                                      | 默认值                          | 全局配置 |
 | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- | -------- |
@@ -46,7 +46,7 @@ import { NzSelectModule } from 'ngx-sedna/select';
 | `[nzServerSearch]`             | 是否使用服务端搜索，当为 true 时，将不再在前端对 nz-option 进行过滤                                                                              | `boolean`                                                                                                                                                                 | `false`                         |
 | `[nzFilterOption]`             | 是否根据输入项进行筛选。当其为一个函数时，会接收 `inputValue` `option` 两个参数，当 `option` 符合筛选条件时，应返回 `true`，反之则返回 `false`。 | `(input?: string, option?: NzOptionComponent) => boolean;`                                                                                                                | -                               |
 | `[nzMaxMultipleCount]`         | 最多选中多少个标签                                                                                                                               | `number`                                                                                                                                                                  | `Infinity`                      |
-| `[nzMode]`                     | 设置 nz-select 的模式                                                                                                                            | `'multiple' \| 'tags' \| 'default'`                                                                                                                                       | `'default'`                     |
+| `[nzMode]`                     | 设置 sn-select 的模式                                                                                                                            | `'multiple' \| 'tags' \| 'default'`                                                                                                                                       | `'default'`                     |
 | `[nzNotFoundContent]`          | 当下拉列表为空时显示的内容                                                                                                                       | `string \| TemplateRef<void>`                                                                                                                                             | -                               |
 | `[nzPlaceHolder]`              | 选择框默认文字                                                                                                                                   | `string`                                                                                                                                                                  | -                               |
 | `[nzShowArrow]`                | 是否显示下拉小箭头                                                                                                                               | `boolean`                                                                                                                                                                 | 单选为 `true`，多选为 `false`   |
@@ -78,9 +78,9 @@ import { NzSelectModule } from 'ngx-sedna/select';
 | ------------------- | ------------------------------------------------------------------------------------------------ | ------------------ | ------- |
 | `[nzDisabled]`      | 是否禁用                                                                                         | `boolean`          | `false` |
 | `[nzTitle]`         | 选项上的原生 title 提示                                                                          | `string \| number` | -       |
-| `[nzLabel]`         | 选中该 nz-option 后，nz-select 中显示的文字                                                      | `string \| number` | -       |
-| `[nzValue]`         | nz-select 中 ngModel 的值                                                                        | `any`              | -       |
-| `[nzKey]`           | nz-select 中 ngModel 的值                                                                        | `string \| number` | -       |
+| `[nzLabel]`         | 选中该 nz-option 后，sn-select 中显示的文字                                                      | `string \| number` | -       |
+| `[nzValue]`         | sn-select 中 ngModel 的值                                                                        | `any`              | -       |
+| `[nzKey]`           | sn-select 中 ngModel 的值                                                                        | `string \| number` | -       |
 | `[nzHide]`          | 是否在选项列表中隐藏该选项                                                                       | `boolean`          | `false` |
 | `[nzCustomContent]` | 是否自定义在下拉菜单中的 Template 内容，当为 true 时，nz-option 包裹的内容将直接渲染在下拉菜单中 | `boolean`          | `false` |
 
@@ -92,7 +92,7 @@ import { NzSelectModule } from 'ngx-sedna/select';
 
 ## 方法
 
-### nz-select:standalone
+### sn-select:standalone
 
 | 名称    | 说明     |
 | ------- | -------- |
