@@ -1,22 +1,17 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
-
 import { Direction } from '@angular/cdk/bidi';
 import { EnvironmentProviders, InjectionToken, makeEnvironmentProviders, TemplateRef, Type } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 
 import { ThemeType } from '@ant-design/icons-angular';
 
-import { NzBreakpointEnum } from 'ngx-sedna/core/services';
+import { SnBreakpointEnum } from 'ngx-sedna/core/services';
 import {
-  NzSafeAny,
-  NzShapeSCType,
-  NzSizeDSType,
-  NzSizeLDSType,
-  NzSizeMDSType,
-  NzTSType
+  SnSafeAny,
+  SnShapeSCType,
+  SnSizeDSType,
+  SnSizeLDSType,
+  SnSizeMDSType,
+  SnTSType
 } from 'ngx-sedna/core/types';
 
 interface MonacoEnvironment {
@@ -26,7 +21,7 @@ interface MonacoEnvironment {
   getWorkerUrl?(workerId: string, label: string): string;
 }
 
-export interface NzConfig {
+export interface SnConfig {
   affix?: AffixConfig;
   select?: SelectConfig;
   alert?: AlertConfig;
@@ -91,7 +86,7 @@ export interface Theme {
 
 export interface SelectConfig {
   nzBorderless?: boolean;
-  nzSuffixIcon?: TemplateRef<NzSafeAny> | string | null;
+  nzSuffixIcon?: TemplateRef<SnSafeAny> | string | null;
   nzBackdrop?: boolean;
   nzOptionHeightPx?: number;
 }
@@ -107,8 +102,8 @@ export interface AlertConfig {
 }
 
 export interface AvatarConfig {
-  nzShape?: NzShapeSCType;
-  nzSize?: NzSizeLDSType | number;
+  nzShape?: SnShapeSCType;
+  nzSize?: SnSizeLDSType | number;
   nzGap?: number;
 }
 
@@ -135,8 +130,8 @@ export interface ButtonConfig {
 
 export interface CodeEditorConfig {
   assetsRoot?: string | SafeUrl;
-  extraConfig?: NzSafeAny;
-  defaultEditorOption?: NzSafeAny;
+  extraConfig?: SnSafeAny;
+  defaultEditorOption?: SnSafeAny;
   useStaticLoading?: boolean;
   monacoEnvironment?: MonacoEnvironment;
 
@@ -148,7 +143,7 @@ export interface CodeEditorConfig {
 }
 
 export interface CardConfig {
-  nzSize?: NzSizeDSType;
+  nzSize?: SnSizeDSType;
   nzHoverable?: boolean;
   nzBordered?: boolean;
   nzBorderless?: boolean;
@@ -181,13 +176,13 @@ export interface CollapsePanelConfig {
 
 export interface DatePickerConfig {
   nzSeparator?: string;
-  nzSuffixIcon?: string | TemplateRef<NzSafeAny>;
+  nzSuffixIcon?: string | TemplateRef<SnSafeAny>;
   nzBackdrop?: boolean;
 }
 
 export interface DescriptionsConfig {
   nzBordered?: boolean;
-  nzColumn?: { [key in NzBreakpointEnum]?: number } | number;
+  nzColumn?: { [key in SnBreakpointEnum]?: number } | number;
   nzSize?: 'default' | 'middle' | 'small';
   nzColon?: boolean;
 }
@@ -204,7 +199,7 @@ export interface DropDownConfig {
 }
 
 export interface EmptyConfig {
-  nzDefaultEmptyContent?: Type<NzSafeAny> | TemplateRef<string> | string | undefined;
+  nzDefaultEmptyContent?: Type<SnSafeAny> | TemplateRef<string> | string | undefined;
 }
 
 export interface FilterTriggerConfig {
@@ -273,7 +268,7 @@ export interface RateConfig {
 }
 
 export interface SegmentedConfig {
-  nzSize?: NzSizeLDSType;
+  nzSize?: SnSizeLDSType;
 }
 
 export interface SpaceConfig {
@@ -281,18 +276,18 @@ export interface SpaceConfig {
 }
 
 export interface SpinConfig {
-  nzIndicator?: TemplateRef<NzSafeAny>;
+  nzIndicator?: TemplateRef<SnSafeAny>;
 }
 
 export interface SwitchConfig {
-  nzSize: NzSizeDSType;
+  nzSize: SnSizeDSType;
 }
 
 export interface TableConfig {
   nzBordered?: boolean;
-  nzSize?: NzSizeMDSType;
+  nzSize?: SnSizeMDSType;
   nzShowQuickJumper?: boolean;
-  nzLoadingIndicator?: TemplateRef<NzSafeAny>;
+  nzLoadingIndicator?: TemplateRef<SnSafeAny>;
   nzShowSizeChanger?: boolean;
   nzSimple?: boolean;
   nzHideOnSinglePage?: boolean;
@@ -305,7 +300,7 @@ export interface TabsConfig {
         inkBar: boolean;
         tabPane: boolean;
       };
-  nzSize?: NzSizeLDSType;
+  nzSize?: SnSizeLDSType;
   nzType?: 'line' | 'card';
   nzTabBarGutter?: number;
   nzShowPagination?: boolean;
@@ -322,7 +317,7 @@ export interface TimePickerConfig {
   nzSecondStep?: number;
   nzPopupClassName?: string;
   nzUse12Hours?: string;
-  nzSuffixIcon?: string | TemplateRef<NzSafeAny>;
+  nzSuffixIcon?: string | TemplateRef<SnSafeAny>;
   nzBackdrop?: boolean;
 }
 
@@ -343,10 +338,10 @@ export interface TreeSelectConfig {
 
 export interface TypographyConfig {
   nzEllipsisRows?: number;
-  nzCopyTooltips?: [NzTSType, NzTSType] | null;
-  nzCopyIcons: [NzTSType, NzTSType];
-  nzEditTooltip?: null | NzTSType;
-  nzEditIcon: NzTSType;
+  nzCopyTooltips?: [SnTSType, SnTSType] | null;
+  nzCopyIcons: [SnTSType, SnTSType];
+  nzEditTooltip?: null | SnTSType;
+  nzEditIcon: SnTSType;
 }
 
 export interface ImageConfig {
@@ -377,13 +372,13 @@ export interface PopoverConfig {
   nzPopoverBackdrop?: boolean;
 }
 
-export type NzConfigKey = keyof NzConfig;
+export type SnConfigKey = keyof SnConfig;
 
 /**
  * User should provide an object implements this interface to set global configurations.
  */
-export const NZ_CONFIG = new InjectionToken<NzConfig>('nz-config');
+export const NZ_CONFIG = new InjectionToken<SnConfig>('nz-config');
 
-export function provideNzConfig(config: NzConfig): EnvironmentProviders {
+export function provideNzConfig(config: SnConfig): EnvironmentProviders {
   return makeEnvironmentProviders([{ provide: NZ_CONFIG, useValue: config }]);
 }

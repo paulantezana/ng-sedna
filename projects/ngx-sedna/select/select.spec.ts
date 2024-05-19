@@ -12,7 +12,7 @@ import {
   ɵComponentBed as ComponentBed,
   ɵcreateComponentBed as createComponentBed
 } from 'ngx-sedna/core/testing';
-import { NzSafeAny, NzStatus } from 'ngx-sedna/core/types';
+import { SnSafeAny, SnStatus } from 'ngx-sedna/core/types';
 import { NzFormControlStatusType, NzFormModule } from 'ngx-sedna/form';
 import { NzIconTestModule } from 'ngx-sedna/icon/testing';
 
@@ -229,7 +229,7 @@ describe('select', () => {
       fixture.detectChanges();
       expect(selectElement.querySelector('nz-select-item')).toBeFalsy();
       component.value = { value: 'test_value' };
-      component.compareWith = (o1: NzSafeAny, o2: NzSafeAny) => (o1 && o2 ? o1.value === o2.value : o1 === o2);
+      component.compareWith = (o1: SnSafeAny, o2: SnSafeAny) => (o1 && o2 ? o1.value === o2.value : o1 === o2);
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
@@ -651,7 +651,7 @@ describe('select', () => {
       fixture.detectChanges();
       expect(selectElement.querySelectorAll('nz-select-item').length).toBe(0);
       component.value = [{ value: 'value' }];
-      component.compareWith = (o1: NzSafeAny, o2: NzSafeAny) => (o1 && o2 ? o1.value === o2.value : o1 === o2);
+      component.compareWith = (o1: SnSafeAny, o2: SnSafeAny) => (o1 && o2 ? o1.value === o2.value : o1 === o2);
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
@@ -980,7 +980,7 @@ describe('select', () => {
       fixture.detectChanges();
       expect(selectElement.querySelector('nz-select-item')).toBeFalsy();
       component.value = { value: 'test_value' };
-      component.compareWith = (o1: NzSafeAny, o2: NzSafeAny) => (o1 && o2 ? o1.value === o2.value : o1 === o2);
+      component.compareWith = (o1: SnSafeAny, o2: SnSafeAny) => (o1 && o2 ? o1.value === o2.value : o1 === o2);
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
@@ -1173,7 +1173,7 @@ describe('select', () => {
       fixture.detectChanges();
       expect(selectElement.querySelectorAll('nz-select-item').length).toBe(0);
       component.value = [{ value: 'value' }];
-      component.compareWith = (o1: NzSafeAny, o2: NzSafeAny) => (o1 && o2 ? o1.value === o2.value : o1 === o2);
+      component.compareWith = (o1: SnSafeAny, o2: SnSafeAny) => (o1 && o2 ? o1.value === o2.value : o1 === o2);
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
@@ -1690,22 +1690,22 @@ describe('select', () => {
   `
 })
 export class TestSelectTemplateDefaultComponent {
-  @ViewChild('dropdownTemplate') dropdownTemplate!: TemplateRef<NzSafeAny>;
-  @ViewChild('customTemplate') customTemplate!: TemplateRef<NzSafeAny>;
-  @ViewChild('suffixIconTemplate') suffixIconTemplate!: TemplateRef<NzSafeAny>;
-  value: NzSafeAny | null = null;
+  @ViewChild('dropdownTemplate') dropdownTemplate!: TemplateRef<SnSafeAny>;
+  @ViewChild('customTemplate') customTemplate!: TemplateRef<SnSafeAny>;
+  @ViewChild('suffixIconTemplate') suffixIconTemplate!: TemplateRef<SnSafeAny>;
+  value: SnSafeAny | null = null;
   valueChange = jasmine.createSpy('valueChange');
   openChange = jasmine.createSpy('openChange');
   searchValueChange = jasmine.createSpy('searchValueChange');
-  listOfGroup: Array<{ nzLabel: string | TemplateRef<NzSafeAny> | null; children: NzSelectItemInterface[] }> = [];
+  listOfGroup: Array<{ nzLabel: string | TemplateRef<SnSafeAny> | null; children: NzSelectItemInterface[] }> = [];
   listOfOption: NzSelectItemInterface[] = [];
   nzSize: NzSelectSizeType = 'default';
   nzDropdownMatchSelectWidth = true;
-  nzPlaceHolder: string | TemplateRef<NzSafeAny> | null = null;
-  nzDropdownRender: TemplateRef<NzSafeAny> | null = null;
+  nzPlaceHolder: string | TemplateRef<SnSafeAny> | null = null;
+  nzDropdownRender: TemplateRef<SnSafeAny> | null = null;
   nzCustomTemplate?: TemplateRef<{ $implicit: NzSelectItemInterface }>;
-  nzSuffixIcon: TemplateRef<NzSafeAny> | null = null;
-  nzClearIcon: TemplateRef<NzSafeAny> | null = null;
+  nzSuffixIcon: TemplateRef<SnSafeAny> | null = null;
+  nzClearIcon: TemplateRef<SnSafeAny> | null = null;
   nzShowArrow = true;
   nzMaxMultipleCount: number = Infinity;
   nzFilterOption: NzFilterOptionType = (searchValue: string, item: NzSelectItemInterface): boolean => {
@@ -1715,7 +1715,7 @@ export class TestSelectTemplateDefaultComponent {
       return false;
     }
   };
-  compareWith: (o1: NzSafeAny, o2: NzSafeAny) => boolean = (o1: NzSafeAny, o2: NzSafeAny) => o1 === o2;
+  compareWith: (o1: SnSafeAny, o2: SnSafeAny) => boolean = (o1: SnSafeAny, o2: SnSafeAny) => o1 === o2;
   nzAllowClear = false;
   nzBorderless = false;
   nzShowSearch = false;
@@ -1756,17 +1756,17 @@ export class TestSelectTemplateDefaultComponent {
   `
 })
 export class TestSelectTemplateMultipleComponent {
-  @ViewChild('iconTemplate') iconTemplate!: TemplateRef<NzSafeAny>;
+  @ViewChild('iconTemplate') iconTemplate!: TemplateRef<SnSafeAny>;
   listOfOption: NzSelectItemInterface[] = [];
-  value: NzSafeAny[] = [];
+  value: SnSafeAny[] = [];
   nzOpen = false;
   valueChange = jasmine.createSpy('valueChange');
   openChange = jasmine.createSpy('openChange');
-  nzMenuItemSelectedIcon: TemplateRef<NzSafeAny> | null = null;
-  nzRemoveIcon: TemplateRef<NzSafeAny> | null = null;
+  nzMenuItemSelectedIcon: TemplateRef<SnSafeAny> | null = null;
+  nzRemoveIcon: TemplateRef<SnSafeAny> | null = null;
   nzTokenSeparators: string[] = [];
   nzMaxMultipleCount = Infinity;
-  compareWith: (o1: NzSafeAny, o2: NzSafeAny) => boolean = (o1: NzSafeAny, o2: NzSafeAny) => o1 === o2;
+  compareWith: (o1: SnSafeAny, o2: SnSafeAny) => boolean = (o1: SnSafeAny, o2: SnSafeAny) => o1 === o2;
   nzAutoClearSearchValue = true;
 }
 
@@ -1793,14 +1793,14 @@ export class TestSelectTemplateMultipleComponent {
   `
 })
 export class TestSelectTemplateTagsComponent {
-  @ViewChild('tagTemplate') tagTemplate!: TemplateRef<NzSafeAny>;
+  @ViewChild('tagTemplate') tagTemplate!: TemplateRef<SnSafeAny>;
   nzSize: NzSelectSizeType = 'default';
   nzMaxTagCount = Infinity;
-  value: NzSafeAny[] = [];
+  value: SnSafeAny[] = [];
   listOfOption: NzSelectItemInterface[] = [];
   valueChange = jasmine.createSpy('valueChange');
   nzTokenSeparators: string[] = [];
-  nzMaxTagPlaceholder!: TemplateRef<{ $implicit: NzSafeAny[] }>;
+  nzMaxTagPlaceholder!: TemplateRef<{ $implicit: SnSafeAny[] }>;
 }
 
 @Component({
@@ -1837,21 +1837,21 @@ export class TestSelectTemplateTagsComponent {
   `
 })
 export class TestSelectReactiveDefaultComponent {
-  @ViewChild('dropdownTemplate') dropdownTemplate!: TemplateRef<NzSafeAny>;
-  @ViewChild('customTemplate') customTemplate!: TemplateRef<NzSafeAny>;
-  @ViewChild('suffixIconTemplate') suffixIconTemplate!: TemplateRef<NzSafeAny>;
-  value: NzSafeAny | null = null;
+  @ViewChild('dropdownTemplate') dropdownTemplate!: TemplateRef<SnSafeAny>;
+  @ViewChild('customTemplate') customTemplate!: TemplateRef<SnSafeAny>;
+  @ViewChild('suffixIconTemplate') suffixIconTemplate!: TemplateRef<SnSafeAny>;
+  value: SnSafeAny | null = null;
   valueChange = jasmine.createSpy('valueChange');
   openChange = jasmine.createSpy('openChange');
   searchValueChange = jasmine.createSpy('searchValueChange');
   listOfOption: NzSelectOptionInterface[] = [];
   nzSize: NzSelectSizeType = 'default';
   nzDropdownMatchSelectWidth = true;
-  nzPlaceHolder: string | TemplateRef<NzSafeAny> | null = null;
-  nzDropdownRender: TemplateRef<NzSafeAny> | null = null;
+  nzPlaceHolder: string | TemplateRef<SnSafeAny> | null = null;
+  nzDropdownRender: TemplateRef<SnSafeAny> | null = null;
   nzCustomTemplate?: TemplateRef<{ $implicit: NzSelectItemInterface }>;
-  nzSuffixIcon: TemplateRef<NzSafeAny> | null = null;
-  nzClearIcon: TemplateRef<NzSafeAny> | null = null;
+  nzSuffixIcon: TemplateRef<SnSafeAny> | null = null;
+  nzClearIcon: TemplateRef<SnSafeAny> | null = null;
   nzShowArrow = true;
   nzFilterOption: NzFilterOptionType = (searchValue: string, item: NzSelectItemInterface): boolean => {
     if (item && item.nzLabel) {
@@ -1860,7 +1860,7 @@ export class TestSelectReactiveDefaultComponent {
       return false;
     }
   };
-  compareWith: (o1: NzSafeAny, o2: NzSafeAny) => boolean = (o1: NzSafeAny, o2: NzSafeAny) => o1 === o2;
+  compareWith: (o1: SnSafeAny, o2: SnSafeAny) => boolean = (o1: SnSafeAny, o2: SnSafeAny) => o1 === o2;
   nzAllowClear = false;
   nzBorderless = false;
   nzShowSearch = false;
@@ -1891,17 +1891,17 @@ export class TestSelectReactiveDefaultComponent {
   `
 })
 export class TestSelectReactiveMultipleComponent {
-  @ViewChild('iconTemplate') iconTemplate!: TemplateRef<NzSafeAny>;
+  @ViewChild('iconTemplate') iconTemplate!: TemplateRef<SnSafeAny>;
   listOfOption: NzSelectOptionInterface[] = [];
-  value: NzSafeAny[] = [];
+  value: SnSafeAny[] = [];
   nzOpen = false;
   valueChange = jasmine.createSpy('valueChange');
   openChange = jasmine.createSpy('openChange');
-  nzMenuItemSelectedIcon: TemplateRef<NzSafeAny> | null = null;
-  nzRemoveIcon: TemplateRef<NzSafeAny> | null = null;
+  nzMenuItemSelectedIcon: TemplateRef<SnSafeAny> | null = null;
+  nzRemoveIcon: TemplateRef<SnSafeAny> | null = null;
   nzTokenSeparators: string[] = [];
   nzMaxMultipleCount = Infinity;
-  compareWith: (o1: NzSafeAny, o2: NzSafeAny) => boolean = (o1: NzSafeAny, o2: NzSafeAny) => o1 === o2;
+  compareWith: (o1: SnSafeAny, o2: SnSafeAny) => boolean = (o1: SnSafeAny, o2: SnSafeAny) => o1 === o2;
   nzAutoClearSearchValue = true;
 }
 
@@ -1921,21 +1921,21 @@ export class TestSelectReactiveMultipleComponent {
   `
 })
 export class TestSelectReactiveTagsComponent {
-  @ViewChild('tagTemplate') tagTemplate?: TemplateRef<NzSafeAny>;
+  @ViewChild('tagTemplate') tagTemplate?: TemplateRef<SnSafeAny>;
   nzSize: NzSelectSizeType = 'default';
   nzMaxTagCount = Infinity;
-  value: NzSafeAny[] = [];
+  value: SnSafeAny[] = [];
   listOfOption: NzSelectOptionInterface[] = [];
   valueChange = jasmine.createSpy('valueChange');
   nzTokenSeparators: string[] = [];
-  nzMaxTagPlaceholder?: TemplateRef<{ $implicit: NzSafeAny[] }>;
+  nzMaxTagPlaceholder?: TemplateRef<{ $implicit: SnSafeAny[] }>;
 }
 
 @Component({
   template: ` <nz-select [nzStatus]="status"></nz-select> `
 })
 export class TestSelectStatusComponent {
-  status: NzStatus = 'error';
+  status: SnStatus = 'error';
 }
 
 @Component({

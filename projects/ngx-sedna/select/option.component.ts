@@ -1,7 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import {
   ChangeDetectionStrategy,
@@ -17,8 +14,8 @@ import {
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
-import { NzDestroyService } from 'ngx-sedna/core/services';
-import { BooleanInput, NzSafeAny } from 'ngx-sedna/core/types';
+import { SnDestroyService } from 'ngx-sedna/core/services';
+import { BooleanInput, SnSafeAny } from 'ngx-sedna/core/types';
 import { InputBoolean } from 'ngx-sedna/core/util';
 
 import { NzOptionGroupComponent } from './option-group.component';
@@ -28,7 +25,7 @@ import { NzOptionGroupComponent } from './option-group.component';
   exportAs: 'nzOption',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [NzDestroyService],
+  providers: [SnDestroyService],
   template: `
     <ng-template>
       <ng-content></ng-content>
@@ -42,11 +39,11 @@ export class NzOptionComponent implements OnChanges, OnInit {
   static ngAcceptInputType_nzCustomContent: BooleanInput;
 
   changes = new Subject<void>();
-  groupLabel: string | number | TemplateRef<NzSafeAny> | null = null;
-  @ViewChild(TemplateRef, { static: true }) template!: TemplateRef<NzSafeAny>;
+  groupLabel: string | number | TemplateRef<SnSafeAny> | null = null;
+  @ViewChild(TemplateRef, { static: true }) template!: TemplateRef<SnSafeAny>;
   @Input() nzTitle?: string | number | null;
   @Input() nzLabel: string | number | null = null;
-  @Input() nzValue: NzSafeAny | null = null;
+  @Input() nzValue: SnSafeAny | null = null;
   @Input() nzKey?: string | number;
   @Input() @InputBoolean() nzDisabled = false;
   @Input() @InputBoolean() nzHide = false;
@@ -54,7 +51,7 @@ export class NzOptionComponent implements OnChanges, OnInit {
 
   constructor(
     @Optional() private nzOptionGroupComponent: NzOptionGroupComponent,
-    private destroy$: NzDestroyService
+    private destroy$: SnDestroyService
   ) {}
 
   ngOnInit(): void {

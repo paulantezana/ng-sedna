@@ -1,18 +1,13 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
-
 import { CSP_NONCE, Inject, Injectable, Optional } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { filter, mapTo } from 'rxjs/operators';
 
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 
-import { NzConfig, NzConfigKey, NZ_CONFIG } from './config';
+import { SnConfig, SnConfigKey, NZ_CONFIG } from './config';
 import { registerTheme } from './css-variables';
 
-const isDefined = function (value?: NzSafeAny): boolean {
+const isDefined = function (value?: SnSafeAny): boolean {
   return value !== undefined;
 };
 
@@ -21,16 +16,16 @@ const defaultPrefixCls = 'ant';
 @Injectable({
   providedIn: 'root'
 })
-export class NzConfigService {
-  private configUpdated$ = new Subject<keyof NzConfig>();
+export class SnConfigService {
+  private configUpdated$ = new Subject<keyof SnConfig>();
 
   /** Global config holding property. */
-  private readonly config: NzConfig;
+  private readonly config: SnConfig;
 
   private readonly cspNonce?: string | null;
 
   constructor(
-    @Optional() @Inject(NZ_CONFIG) defaultConfig?: NzConfig,
+    @Optional() @Inject(NZ_CONFIG) defaultConfig?: SnConfig,
     @Optional() @Inject(CSP_NONCE) cspNonce?: string | null
   ) {
     this.config = defaultConfig || {};
@@ -42,22 +37,22 @@ export class NzConfigService {
     }
   }
 
-  getConfig(): NzConfig {
+  getConfig(): SnConfig {
     return this.config;
   }
 
-  getConfigForComponent<T extends NzConfigKey>(componentName: T): NzConfig[T] {
+  getConfigForComponent<T extends SnConfigKey>(componentName: T): SnConfig[T] {
     return this.config[componentName];
   }
 
-  getConfigChangeEventForComponent(componentName: NzConfigKey): Observable<void> {
+  getConfigChangeEventForComponent(componentName: SnConfigKey): Observable<void> {
     return this.configUpdated$.pipe(
       filter(n => n === componentName),
       mapTo(undefined)
     );
   }
 
-  set<T extends NzConfigKey>(componentName: T, value: NzConfig[T]): void {
+  set<T extends SnConfigKey>(componentName: T, value: SnConfig[T]): void {
     this.config[componentName] = { ...this.config[componentName], ...value };
     if (componentName === 'theme' && this.config.theme) {
       registerTheme(this.getConfig().prefixCls?.prefixCls || defaultPrefixCls, this.config.theme, this.cspNonce);
@@ -75,10 +70,10 @@ export class NzConfigService {
 // eslint-disable-next-line
 export function WithConfig<T>() {
   return function ConfigDecorator(
-    target: NzSafeAny,
-    propName: NzSafeAny,
+    target: SnSafeAny,
+    propName: SnSafeAny,
     originalDescriptor?: TypedPropertyDescriptor<T>
-  ): NzSafeAny {
+  ): SnSafeAny {
     const privatePropName = `$$__zorroConfigDecorator__${propName}`;
 
     Object.defineProperty(target, privatePropName, {

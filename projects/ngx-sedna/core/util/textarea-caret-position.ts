@@ -1,9 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
-
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 
 // from https://github.com/component/textarea-caret-position
 
@@ -54,7 +49,7 @@ export const properties = [
 
 const isBrowser = typeof window !== 'undefined';
 
-const isFirefox = isBrowser && (window as NzSafeAny).mozInnerScreenX != null;
+const isFirefox = isBrowser && (window as SnSafeAny).mozInnerScreenX != null;
 
 const _parseInt = (str: string): number => parseInt(str, 10);
 
@@ -88,7 +83,7 @@ export function getCaretCoordinates(
 
   const style = div.style;
 
-  const computed = window.getComputedStyle ? window.getComputedStyle(element) : (element as NzSafeAny).currentStyle; // currentStyle for IE < 9
+  const computed = window.getComputedStyle ? window.getComputedStyle(element) : (element as SnSafeAny).currentStyle; // currentStyle for IE < 9
   const isInput = element.nodeName === 'INPUT';
 
   // Default textarea styles

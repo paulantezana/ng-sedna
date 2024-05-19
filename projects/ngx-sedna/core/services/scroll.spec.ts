@@ -3,13 +3,13 @@ import { DOCUMENT, PlatformLocation } from '@angular/common';
 import { ApplicationRef, Injector, NgZone } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
-import { NzScrollService } from './scroll';
+import { SnScrollService } from './scroll';
 
 describe('NzScrollService', () => {
   const TOP: number = 10;
   let injector: Injector;
   let document: MockDocument;
-  let scrollService: NzScrollService;
+  let scrollService: SnScrollService;
 
   class MockDocument {
     body = new MockElement();
@@ -35,14 +35,14 @@ describe('NzScrollService', () => {
   beforeEach(() => {
     injector = TestBed.configureTestingModule({
       providers: [
-        NzScrollService,
+        SnScrollService,
         { provide: DOCUMENT, useClass: MockDocument },
         { provide: PlatformLocation, useClass: MockPlatformLocation }
       ]
     });
 
     document = injector.get<MockDocument>(DOCUMENT);
-    scrollService = injector.get(NzScrollService);
+    scrollService = injector.get(SnScrollService);
   });
 
   describe('#setScrollTop', () => {

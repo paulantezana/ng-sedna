@@ -3,7 +3,7 @@ import { Component, DebugElement, Inject, NgModule, TemplateRef, ViewChild } fro
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { NzConfigService, NZ_CONFIG } from 'ngx-sedna/core/config';
+import { SnConfigService, NZ_CONFIG } from 'ngx-sedna/core/config';
 
 import { ComponentBed, createComponentBed } from '../core/testing/component-bed';
 import { NzI18nService } from '../i18n';
@@ -295,7 +295,7 @@ export class NzEmptyTestServiceComponent {
 
   noResult?: string | null;
 
-  constructor(public configService: NzConfigService) {}
+  constructor(public configService: SnConfigService) {}
 
   reset(): void {
     this.configService.set('empty', { nzDefaultEmptyContent: undefined });

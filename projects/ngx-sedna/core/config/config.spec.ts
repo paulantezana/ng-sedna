@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { NzButtonComponent, NzButtonModule } from 'ngx-sedna/button';
 
 import { provideNzConfig } from './config';
-import { NzConfigService } from './config.service';
+import { SnConfigService } from './config.service';
 
 @Component({
   template: ` <button nz-button nzType="primary" [nzSize]="size">Global Config</button> `
@@ -13,7 +13,7 @@ import { NzConfigService } from './config.service';
 export class NzGlobalConfigTestBasicComponent {
   size?: 'large' | 'default' | 'small';
 
-  constructor(public nzConfigService: NzConfigService) {}
+  constructor(public nzConfigService: SnConfigService) {}
 }
 
 describe('nz global config', () => {

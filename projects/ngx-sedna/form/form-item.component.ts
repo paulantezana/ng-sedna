@@ -1,23 +1,55 @@
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
 
-export type SnFormItemStatus = 'success' | 'danger' | 'warning' | 'validating' | '';
-export type SnFormItemType = 'outlined' | 'floating' | '';
 
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Subject } from 'rxjs';
+
+export type NzFormControlStatusType = 'success' | 'error' | 'warning' | 'validating' | '';
+
+/** should add nz-row directive to host, track https://github.com/angular/angular/issues/8785 **/
 @Component({
-  selector: 'sn-form-item',
-  exportAs: 'snFormItem',
-  templateUrl: './form-item.component.html',
+  selector: 'nz-form-item',
+  exportAs: 'nzFormItem',
+  preserveWhitespaces: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'ant-form-item',
+    '[class.ant-form-item-has-success]': 'status === "success"',
+    '[class.ant-form-item-has-warning]': 'status === "warning"',
+    '[class.ant-form-item-has-error]': 'status === "error"',
+    '[class.ant-form-item-is-validating]': 'status === "validating"',
+    '[class.ant-form-item-has-feedback]': 'hasFeedback && status',
+    '[class.ant-form-item-with-help]': 'withHelpClass'
+  },
+  template: ` <ng-content></ng-content> `,
+  standalone: true
 })
-export class SnFormItemComponent {
-  status: SnFormItemStatus = '';
-  @Input() antype: SnFormItemType = '';
-  // hasFeedback = false;
-  // withHelpClass = false;
+export class NzFormItemComponent implements OnDestroy, OnDestroy {
+  status: NzFormControlStatusType = '';
+  hasFeedback = false;
+  withHelpClass = false;
+
+  private destroy$ = new Subject<boolean>();
+
+  setWithHelpViaTips(value: boolean): void {
+    this.withHelpClass = value;
+    this.cdr.markForCheck();
+  }
+
+  setStatus(status: NzFormControlStatusType): void {
+    this.status = status;
+    this.cdr.markForCheck();
+  }
+
+  setHasFeedback(hasFeedback: boolean): void {
+    this.hasFeedback = hasFeedback;
+    this.cdr.markForCheck();
+  }
 
   constructor(private cdr: ChangeDetectorRef) {}
 
-  setStatus(status: SnFormItemStatus): void {
-    this.status = status;
-    this.cdr.markForCheck();
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

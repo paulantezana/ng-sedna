@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Subject, Subscription } from 'rxjs';
 
-import { NzDragService } from 'ngx-sedna/core/services';
+import { SnDragService } from 'ngx-sedna/core/services';
 import { createMouseEvent, createTouchEvent, dispatchMouseEvent, dispatchTouchEvent } from 'ngx-sedna/core/testing';
 
 @Component({
@@ -12,7 +12,7 @@ export class NzTestDragServiceComponent {
   drag$ = new Subject<void>();
   complete$ = new Subject<void>();
 
-  constructor(public readonly nzDragService: NzDragService) {}
+  constructor(public readonly nzDragService: SnDragService) {}
 
   drag(event: MouseEvent | TouchEvent): void {
     this.nzDragService.requestDraggingSequence(event).subscribe({

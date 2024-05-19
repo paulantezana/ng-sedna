@@ -1,7 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import {
   ChangeDetectionStrategy,
@@ -13,7 +10,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { NzValidateStatus } from 'ngx-sedna/core/types';
+import { SnValidateStatus } from 'ngx-sedna/core/types';
 
 const iconTypeMap = {
   error: 'close-circle-fill',
@@ -37,8 +34,8 @@ const iconTypeMap = {
     '[class.ant-form-item-feedback-icon-validating]': 'status==="validating"'
   }
 })
-export class NzFormItemFeedbackIconComponent implements OnChanges {
-  @Input() status: NzValidateStatus = '';
+export class SnFormItemFeedbackIconComponent implements OnChanges {
+  @Input() status: SnValidateStatus = '';
   constructor(public cdr: ChangeDetectorRef) {}
 
   iconType: (typeof iconTypeMap)[keyof typeof iconTypeMap] | null = null;

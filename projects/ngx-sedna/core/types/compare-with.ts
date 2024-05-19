@@ -1,8 +1,3 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+import { SnSafeAny } from './any';
 
-import { NzSafeAny } from './any';
-
-export type CompareWith = (o1: NzSafeAny, o2: NzSafeAny) => boolean;
+export type CompareWith = (o1: SnSafeAny, o2: SnSafeAny) => boolean;

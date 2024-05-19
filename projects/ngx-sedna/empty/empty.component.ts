@@ -1,7 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import {
   ChangeDetectionStrategy,
@@ -18,7 +15,7 @@ import {
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { NzOutletModule } from 'ngx-sedna/core/outlet';
+import { SnOutletModule } from 'ngx-sedna/core/outlet';
 import { NzEmptyI18nInterface, NzI18nService } from 'ngx-sedna/i18n';
 
 import { NzEmptyDefaultComponent } from './partial/default';
@@ -65,7 +62,7 @@ type NzEmptyNotFoundImageType = (typeof NzEmptyDefaultImages)[number] | null | s
   host: {
     class: 'ant-empty'
   },
-  imports: [NzOutletModule, NzEmptyDefaultComponent, NzEmptySimpleComponent],
+  imports: [SnOutletModule, NzEmptyDefaultComponent, NzEmptySimpleComponent],
   standalone: true
 })
 export class NzEmptyComponent implements OnChanges, OnInit, OnDestroy {

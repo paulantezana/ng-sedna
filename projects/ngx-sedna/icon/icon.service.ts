@@ -1,7 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT } from '@angular/common';
@@ -12,9 +9,9 @@ import { Subject, Subscription } from 'rxjs';
 
 import { IconDefinition, IconService } from '@ant-design/icons-angular';
 
-import { IconConfig, NzConfigService } from 'ngx-sedna/core/config';
+import { IconConfig, SnConfigService } from 'ngx-sedna/core/config';
 import { warn } from 'ngx-sedna/core/logger';
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 
 import { NZ_ICONS_USED_BY_ZORRO } from './icons';
 
@@ -80,10 +77,10 @@ export class NzIconService extends IconService implements OnDestroy {
   constructor(
     rendererFactory: RendererFactory2,
     sanitizer: DomSanitizer,
-    protected nzConfigService: NzConfigService,
+    protected nzConfigService: SnConfigService,
     private platform: Platform,
     @Optional() handler: HttpBackend,
-    @Optional() @Inject(DOCUMENT) _document: NzSafeAny,
+    @Optional() @Inject(DOCUMENT) _document: SnSafeAny,
     @Optional() @Inject(NZ_ICONS) icons?: IconDefinition[]
   ) {
     super(rendererFactory, handler, _document, sanitizer, [...NZ_ICONS_USED_BY_ZORRO, ...(icons || [])]);

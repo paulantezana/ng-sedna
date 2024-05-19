@@ -1,7 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import { BACKSPACE } from '@angular/cdk/keycodes';
 import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
@@ -26,8 +23,8 @@ import {
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { NzNoAnimationDirective } from 'ngx-sedna/core/no-animation';
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnNoAnimationDirective } from 'ngx-sedna/core/no-animation';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 
 import { NzSelectItemComponent } from './select-item.component';
 import { NzSelectPlaceholderComponent } from './select-placeholder.component';
@@ -108,15 +105,15 @@ import { NzSelectItemInterface, NzSelectModeType, NzSelectTopControlItemType } f
 export class NzSelectTopControlComponent implements OnChanges, OnInit, OnDestroy {
   @Input() nzId: string | null = null;
   @Input() showSearch = false;
-  @Input() placeHolder: string | TemplateRef<NzSafeAny> | null = null;
+  @Input() placeHolder: string | TemplateRef<SnSafeAny> | null = null;
   @Input() open = false;
   @Input() maxTagCount: number = Infinity;
   @Input() autofocus = false;
   @Input() disabled = false;
   @Input() mode: NzSelectModeType = 'default';
   @Input() customTemplate: TemplateRef<{ $implicit: NzSelectItemInterface }> | null = null;
-  @Input() maxTagPlaceholder: TemplateRef<{ $implicit: NzSafeAny[] }> | null = null;
-  @Input() removeIcon: TemplateRef<NzSafeAny> | null = null;
+  @Input() maxTagPlaceholder: TemplateRef<{ $implicit: SnSafeAny[] }> | null = null;
+  @Input() removeIcon: TemplateRef<SnSafeAny> | null = null;
   @Input() listOfTopItem: NzSelectItemInterface[] = [];
   @Input() tokenSeparators: string[] = [];
   @Output() readonly tokenize = new EventEmitter<string[]>();
@@ -196,7 +193,7 @@ export class NzSelectTopControlComponent implements OnChanges, OnInit, OnDestroy
     }
   }
 
-  trackValue(_index: number, option: NzSelectTopControlItemType): NzSafeAny {
+  trackValue(_index: number, option: NzSelectTopControlItemType): SnSafeAny {
     return option.nzValue;
   }
 
@@ -209,7 +206,7 @@ export class NzSelectTopControlComponent implements OnChanges, OnInit, OnDestroy
   constructor(
     private elementRef: ElementRef<HTMLElement>,
     private ngZone: NgZone,
-    @Host() @Optional() public noAnimation: NzNoAnimationDirective | null
+    @Host() @Optional() public noAnimation: SnNoAnimationDirective | null
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {

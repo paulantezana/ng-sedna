@@ -1,12 +1,7 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
-
 import { coerceBooleanProperty, coerceCssPixelValue, _isNumberValue } from '@angular/cdk/coercion';
 
 import { warn } from 'ngx-sedna/core/logger';
-import { FunctionProp, NzSafeAny } from 'ngx-sedna/core/types';
+import { FunctionProp, SnSafeAny } from 'ngx-sedna/core/types';
 
 export function toBoolean(value: boolean | string): boolean {
   return coerceBooleanProperty(value);
@@ -27,19 +22,19 @@ export function toCssPixel(value: number | string): string {
 /**
  * Get the function-property type's value
  */
-export function valueFunctionProp<T>(prop: FunctionProp<T> | T, ...args: NzSafeAny[]): T {
+export function valueFunctionProp<T>(prop: FunctionProp<T> | T, ...args: SnSafeAny[]): T {
   return typeof prop === 'function' ? (prop as FunctionProp<T>)(...args) : prop;
 }
 
 function propDecoratorFactory<T, D>(
   name: string,
   fallback: (v: T) => D
-): (target: NzSafeAny, propName: string) => void {
+): (target: SnSafeAny, propName: string) => void {
   function propDecorator(
-    target: NzSafeAny,
+    target: SnSafeAny,
     propName: string,
-    originalDescriptor?: TypedPropertyDescriptor<NzSafeAny>
-  ): NzSafeAny {
+    originalDescriptor?: TypedPropertyDescriptor<SnSafeAny>
+  ): SnSafeAny {
     const privatePropName = `$$__zorroPropDecorator__${propName}`;
 
     if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
@@ -85,14 +80,14 @@ function propDecoratorFactory<T, D>(
  * // __visible = false;
  * ```
  */
-export function InputBoolean(): NzSafeAny {
+export function InputBoolean(): SnSafeAny {
   return propDecoratorFactory('InputBoolean', toBoolean);
 }
 
-export function InputCssPixel(): NzSafeAny {
+export function InputCssPixel(): SnSafeAny {
   return propDecoratorFactory('InputCssPixel', toCssPixel);
 }
 
-export function InputNumber(fallbackValue?: NzSafeAny): NzSafeAny {
+export function InputNumber(fallbackValue?: SnSafeAny): SnSafeAny {
   return propDecoratorFactory('InputNumber', (value: string | number) => toNumber(value, fallbackValue));
 }

@@ -1,10 +1,5 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+import { SnSafeAny } from 'ngx-sedna/core/types';
 
-import { NzSafeAny } from 'ngx-sedna/core/types';
-
-export function isPromise<T>(obj: NzSafeAny): obj is Promise<T> {
+export function isPromise<T>(obj: SnSafeAny): obj is Promise<T> {
   return !!obj && typeof obj.then === 'function' && typeof obj.catch === 'function';
 }

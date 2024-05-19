@@ -1,7 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
 
-export { NzOutletModule } from './outlet.module';
-export { NzStringTemplateOutletDirective } from './string_template_outlet.directive';
+
+export { SnOutletModule } from './outlet.module';
+export { SnStringTemplateOutletDirective } from './string_template_outlet.directive';

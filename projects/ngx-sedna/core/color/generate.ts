@@ -1,12 +1,3 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
-
-/**
- * Sync from @ant-design/colors(https://github.com/ant-design/ant-design-colors)
- */
-
 import { rgbToHsv, rgbToHex, inputToRGB } from '@ctrl/tinycolor';
 
 const hueStep = 2; // 色相阶梯

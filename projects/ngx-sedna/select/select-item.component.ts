@@ -1,7 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import { NgIf } from '@angular/common';
 import {
@@ -14,8 +11,8 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { NzOutletModule } from 'ngx-sedna/core/outlet';
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnOutletModule } from 'ngx-sedna/core/outlet';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 import { NzIconModule } from 'ngx-sedna/icon';
 
 @Component({
@@ -36,16 +33,16 @@ import { NzIconModule } from 'ngx-sedna/icon';
     '[attr.title]': 'label',
     '[class.ant-select-selection-item-disabled]': 'disabled'
   },
-  imports: [NzOutletModule, NgIf, NzIconModule],
+  imports: [SnOutletModule, NgIf, NzIconModule],
   standalone: true
 })
 export class NzSelectItemComponent {
   @Input() disabled = false;
   @Input() label: string | number | null | undefined = null;
   @Input() deletable = false;
-  @Input() removeIcon: TemplateRef<NzSafeAny> | null = null;
-  @Input() contentTemplateOutletContext: NzSafeAny | null = null;
-  @Input() contentTemplateOutlet: string | TemplateRef<NzSafeAny> | null = null;
+  @Input() removeIcon: TemplateRef<SnSafeAny> | null = null;
+  @Input() contentTemplateOutletContext: SnSafeAny | null = null;
+  @Input() contentTemplateOutlet: string | TemplateRef<SnSafeAny> | null = null;
   @Output() readonly delete = new EventEmitter<MouseEvent>();
 
   constructor() {}

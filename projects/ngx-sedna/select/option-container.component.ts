@@ -1,7 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
@@ -23,8 +20,8 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { NzOverlayModule } from 'ngx-sedna/core/overlay';
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnOverlayModule } from 'ngx-sedna/core/overlay';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 import { NzEmptyModule } from 'ngx-sedna/empty';
 
 import { NzOptionItemGroupComponent } from './option-item-group.component';
@@ -93,40 +90,40 @@ import { NzSelectItemInterface, NzSelectModeType } from './select.types';
     NzOptionItemComponent,
     NgTemplateOutlet,
     OverlayModule,
-    NzOverlayModule
+    SnOverlayModule
   ],
   standalone: true
 })
 export class NzOptionContainerComponent implements OnChanges, AfterViewInit {
-  @Input() notFoundContent: string | TemplateRef<NzSafeAny> | undefined = undefined;
-  @Input() menuItemSelectedIcon: TemplateRef<NzSafeAny> | null = null;
-  @Input() dropdownRender: TemplateRef<NzSafeAny> | null = null;
-  @Input() activatedValue: NzSafeAny | null = null;
-  @Input() listOfSelectedValue: NzSafeAny[] = [];
-  @Input() compareWith!: (o1: NzSafeAny, o2: NzSafeAny) => boolean;
+  @Input() notFoundContent: string | TemplateRef<SnSafeAny> | undefined = undefined;
+  @Input() menuItemSelectedIcon: TemplateRef<SnSafeAny> | null = null;
+  @Input() dropdownRender: TemplateRef<SnSafeAny> | null = null;
+  @Input() activatedValue: SnSafeAny | null = null;
+  @Input() listOfSelectedValue: SnSafeAny[] = [];
+  @Input() compareWith!: (o1: SnSafeAny, o2: SnSafeAny) => boolean;
   @Input() mode: NzSelectModeType = 'default';
   @Input() matchWidth = true;
   @Input() itemSize = 32;
   @Input() maxItemLength = 8;
   @Input() isMaxLimitReached = false;
   @Input() listOfContainerItem: NzSelectItemInterface[] = [];
-  @Output() readonly itemClick = new EventEmitter<NzSafeAny>();
+  @Output() readonly itemClick = new EventEmitter<SnSafeAny>();
   @Output() readonly scrollToBottom = new EventEmitter<void>();
   @ViewChild(CdkVirtualScrollViewport, { static: true }) cdkVirtualScrollViewport!: CdkVirtualScrollViewport;
   private scrolledIndex = 0;
   private ngZone = inject(NgZone);
   private platformId = inject(PLATFORM_ID);
 
-  onItemClick(value: NzSafeAny): void {
+  onItemClick(value: SnSafeAny): void {
     this.itemClick.emit(value);
   }
 
-  onItemHover(value: NzSafeAny): void {
+  onItemHover(value: SnSafeAny): void {
     // TODO: keydown.enter won't activate this value
     this.activatedValue = value;
   }
 
-  trackValue(_index: number, option: NzSelectItemInterface): NzSafeAny {
+  trackValue(_index: number, option: NzSelectItemInterface): SnSafeAny {
     return option.key;
   }
 

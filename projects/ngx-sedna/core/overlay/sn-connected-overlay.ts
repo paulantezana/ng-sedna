@@ -1,7 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import {
   CdkConnectedOverlay,
@@ -12,7 +9,7 @@ import {
 import { Directive, ElementRef, Input } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 
-import { NzDestroyService } from 'ngx-sedna/core/services';
+import { SnDestroyService } from 'ngx-sedna/core/services';
 import { InputBoolean } from 'ngx-sedna/core/util';
 
 import { getPlacementName } from './overlay-position';
@@ -23,14 +20,14 @@ type Dimensions = Omit<ClientRect, 'x' | 'y' | 'toJSON'>;
 @Directive({
   selector: '[cdkConnectedOverlay][nzConnectedOverlay]',
   exportAs: 'nzConnectedOverlay',
-  providers: [NzDestroyService]
+  providers: [SnDestroyService]
 })
-export class NzConnectedOverlayDirective {
+export class SnConnectedOverlayDirective {
   @Input() @InputBoolean() nzArrowPointAtCenter: boolean = false;
 
   constructor(
     private readonly cdkConnectedOverlay: CdkConnectedOverlay,
-    private readonly nzDestroyService: NzDestroyService
+    private readonly nzDestroyService: SnDestroyService
   ) {
     this.cdkConnectedOverlay.backdropClass = 'nz-overlay-transparent-backdrop';
 

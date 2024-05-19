@@ -1,13 +1,8 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
-
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 
 interface PreloadOption {
   src: string;
@@ -24,7 +19,7 @@ export class ImagePreloadService {
   private linkRefs = new Map<string, HTMLLinkElement>();
 
   constructor(
-    @Inject(DOCUMENT) private document: NzSafeAny,
+    @Inject(DOCUMENT) private document: SnSafeAny,
     private platform: Platform
   ) {}
 

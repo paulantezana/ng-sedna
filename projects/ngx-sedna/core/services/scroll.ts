@@ -1,13 +1,10 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable, NgZone } from '@angular/core';
 
 import { reqAnimFrame } from 'ngx-sedna/core/polyfill';
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 
 export type EasyingFn = (t: number, b: number, c: number, d: number) => number;
 
@@ -21,7 +18,7 @@ function easeInOutCubic(t: number, b: number, c: number, d: number): number {
   }
 }
 
-export interface NzScrollToOptions {
+export interface SnScrollToOptions {
   /** Scroll container, default as window */
   easing?: EasyingFn;
   /** Scroll end callback */
@@ -33,12 +30,12 @@ export interface NzScrollToOptions {
 @Injectable({
   providedIn: 'root'
 })
-export class NzScrollService {
+export class SnScrollService {
   private doc: Document;
 
   constructor(
     private ngZone: NgZone,
-    @Inject(DOCUMENT) doc: NzSafeAny
+    @Inject(DOCUMENT) doc: SnSafeAny
   ) {
     this.doc = doc;
   }
@@ -97,7 +94,7 @@ export class NzScrollService {
     return result;
   }
 
-  isWindow(obj: NzSafeAny): boolean {
+  isWindow(obj: SnSafeAny): boolean {
     return obj !== null && obj !== undefined && obj === obj.window;
   }
 
@@ -110,7 +107,7 @@ export class NzScrollService {
   scrollTo(
     containerEl?: Element | HTMLElement | Window | Document | null,
     y: number = 0,
-    options: NzScrollToOptions = {}
+    options: SnScrollToOptions = {}
   ): void {
     const target = containerEl ? containerEl : window;
     const scrollTop = this.getScroll(target);

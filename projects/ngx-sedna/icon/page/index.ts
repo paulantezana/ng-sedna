@@ -1,7 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import {
@@ -21,7 +18,7 @@ import { manifest, ThemeType } from '@ant-design/icons-angular';
 import { AccountBookFill } from '@ant-design/icons-angular/icons';
 
 import { PREFIX } from 'ngx-sedna/core/logger';
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 import { NzIconService } from 'ngx-sedna/icon';
 import { NzMessageService } from 'ngx-sedna/message';
 import { NzUploadChangeParam, NzUploadFile, NzUploadXHRArgs } from 'ngx-sedna/upload';
@@ -278,7 +275,7 @@ const newIconNames: string[] = [
   'code-sandbox-circle'
 ];
 
-declare const locale: NzSafeAny;
+declare const locale: SnSafeAny;
 
 @Component({
   selector: 'nz-page-demo-icon',

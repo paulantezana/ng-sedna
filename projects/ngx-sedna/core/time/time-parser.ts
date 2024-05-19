@@ -1,7 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 // from https://github.com/hsuanxyz/ng-time-parser
 import { FormStyle, getLocaleDayPeriods, TranslationWidth } from '@angular/common';

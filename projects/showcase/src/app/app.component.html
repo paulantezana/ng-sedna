@@ -23,6 +23,17 @@
   </nz-option-group>
 </nz-select>
 
+
+<nz-select
+  [nzMaxMultipleCount]="3"
+  nzMode="multiple"
+  nzPlaceHolder="Please select"
+  nzAllowClear
+  [nzShowArrow]="true"
+>
+  <nz-option *ngFor="let item of listOfOption" [nzLabel]="item" [nzValue]="item"></nz-option>
+</nz-select>
+
 <!-- <nz-select>
   <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
   <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>

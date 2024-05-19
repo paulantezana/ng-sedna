@@ -1,39 +1,36 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import { TemplateRef } from '@angular/core';
 
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 
 export type NzSelectModeType = 'default' | 'multiple' | 'tags';
 export interface NzSelectItemInterface {
-  template?: TemplateRef<NzSafeAny> | null;
+  template?: TemplateRef<SnSafeAny> | null;
   nzLabel: string | number | null;
-  nzValue: NzSafeAny | null;
+  nzValue: SnSafeAny | null;
   nzTitle?: string | number | null;
   nzDisabled?: boolean;
   nzHide?: boolean;
   nzCustomContent?: boolean;
-  groupLabel?: string | number | TemplateRef<NzSafeAny> | null;
+  groupLabel?: string | number | TemplateRef<SnSafeAny> | null;
   type?: string;
-  key?: NzSafeAny;
+  key?: SnSafeAny;
 }
 
 export interface NzSelectOptionInterface {
-  label: string | number | null | TemplateRef<NzSafeAny>;
-  value: NzSafeAny | null;
+  label: string | number | null | TemplateRef<SnSafeAny>;
+  value: SnSafeAny | null;
   title?: string | number | null;
   disabled?: boolean;
   hide?: boolean;
-  groupLabel?: string | number | TemplateRef<NzSafeAny> | null;
+  groupLabel?: string | number | TemplateRef<SnSafeAny> | null;
   key?: string | number;
 }
 
 export type NzSelectTopControlItemType = Partial<NzSelectItemInterface> & {
-  contentTemplateOutlet: TemplateRef<NzSafeAny> | null;
-  contentTemplateOutletContext: NzSafeAny;
+  contentTemplateOutlet: TemplateRef<SnSafeAny> | null;
+  contentTemplateOutletContext: SnSafeAny;
 };
 
 export type NzFilterOptionType = (input: string, option: NzSelectItemInterface) => boolean;

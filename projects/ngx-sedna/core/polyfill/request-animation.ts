@@ -1,9 +1,6 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
 
-import { NzSafeAny } from 'ngx-sedna/core/types';
+
+import { SnSafeAny } from 'ngx-sedna/core/types';
 
 /* eslint-disable no-invalid-this */
 const availablePrefixes = ['moz', 'ms', 'webkit'];
@@ -32,9 +29,9 @@ function getRequestAnimationFrame(): typeof requestAnimationFrame {
 
   const prefix = availablePrefixes.filter(key => `${key}RequestAnimationFrame` in window)[0];
 
-  return prefix ? (window as NzSafeAny)[`${prefix}RequestAnimationFrame`] : requestAnimationFramePolyfill();
+  return prefix ? (window as SnSafeAny)[`${prefix}RequestAnimationFrame`] : requestAnimationFramePolyfill();
 }
-export function cancelRequestAnimationFrame(id: number): NzSafeAny {
+export function cancelRequestAnimationFrame(id: number): SnSafeAny {
   if (typeof window === 'undefined') {
     return null;
   }
@@ -47,8 +44,8 @@ export function cancelRequestAnimationFrame(id: number): NzSafeAny {
 
   return prefix
     ? (
-        (window as NzSafeAny)[`${prefix}CancelAnimationFrame`] ||
-        (window as NzSafeAny)[`${prefix}CancelRequestAnimationFrame`]
+        (window as SnSafeAny)[`${prefix}CancelAnimationFrame`] ||
+        (window as SnSafeAny)[`${prefix}CancelRequestAnimationFrame`]
       )
         // @ts-ignore
         .call(this, id)

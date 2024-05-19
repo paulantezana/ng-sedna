@@ -1,8 +1,3 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
-
 export function getRegExp(prefix: string | string[]): RegExp {
   const prefixArray = Array.isArray(prefix) ? prefix : [prefix];
   let prefixToken = prefixArray.join('').replace(/(\$|\^)/g, '\\$1');

@@ -1,21 +1,21 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 
 import { ɵcreateComponentBed as createComponentBed } from 'ngx-sedna/core/testing';
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 
-import { NzOutletModule } from './outlet.module';
-import { NzStringTemplateOutletDirective } from './string_template_outlet.directive';
+import { SnOutletModule } from './outlet.module';
+import { SnStringTemplateOutletDirective } from './string_template_outlet.directive';
 
 describe('string template outlet', () => {
   describe('null', () => {
     it('should no error when null', () => {
-      const testBed = createComponentBed(StringTemplateOutletTestComponent, { imports: [NzOutletModule] });
+      const testBed = createComponentBed(StringTemplateOutletTestComponent, { imports: [SnOutletModule] });
       expect(testBed.nativeElement.innerText).toBe('TargetText');
     });
   });
   describe('outlet change', () => {
     it('should work when switch between null and string', () => {
-      const testBed = createComponentBed(StringTemplateOutletTestComponent, { imports: [NzOutletModule] });
+      const testBed = createComponentBed(StringTemplateOutletTestComponent, { imports: [SnOutletModule] });
       testBed.component.stringTemplateOutlet = 'String Testing';
       testBed.fixture.detectChanges();
       expect(testBed.nativeElement.innerText).toBe('TargetText String Testing');
@@ -24,7 +24,7 @@ describe('string template outlet', () => {
       expect(testBed.nativeElement.innerText).toBe('TargetText');
     });
     it('should work when switch between null and template', () => {
-      const testBed = createComponentBed(StringTemplateOutletTestComponent, { imports: [NzOutletModule] });
+      const testBed = createComponentBed(StringTemplateOutletTestComponent, { imports: [SnOutletModule] });
       testBed.component.stringTemplateOutlet = testBed.component.stringTpl;
       testBed.fixture.detectChanges();
       expect(testBed.nativeElement.innerText).toBe('TargetText The data is');
@@ -33,7 +33,7 @@ describe('string template outlet', () => {
       expect(testBed.nativeElement.innerText).toBe('TargetText');
     });
     it('should work when switch between string', () => {
-      const testBed = createComponentBed(StringTemplateOutletTestComponent, { imports: [NzOutletModule] });
+      const testBed = createComponentBed(StringTemplateOutletTestComponent, { imports: [SnOutletModule] });
       testBed.component.stringTemplateOutlet = 'String Testing';
       testBed.fixture.detectChanges();
       expect(testBed.nativeElement.innerText).toBe('TargetText String Testing');
@@ -42,7 +42,7 @@ describe('string template outlet', () => {
       expect(testBed.nativeElement.innerText).toBe('TargetText String String');
     });
     it('should work when switch between string and template', () => {
-      const testBed = createComponentBed(StringTemplateOutletTestComponent, { imports: [NzOutletModule] });
+      const testBed = createComponentBed(StringTemplateOutletTestComponent, { imports: [SnOutletModule] });
       testBed.component.stringTemplateOutlet = 'String Testing';
       testBed.fixture.detectChanges();
       expect(testBed.nativeElement.innerText).toBe('TargetText String Testing');
@@ -54,7 +54,7 @@ describe('string template outlet', () => {
       expect(testBed.nativeElement.innerText).toBe('TargetText String Testing');
     });
     it('should work when switch between template', () => {
-      const testBed = createComponentBed(StringTemplateOutletTestComponent, { imports: [NzOutletModule] });
+      const testBed = createComponentBed(StringTemplateOutletTestComponent, { imports: [SnOutletModule] });
       testBed.component.stringTemplateOutlet = testBed.component.stringTpl;
       testBed.fixture.detectChanges();
       expect(testBed.nativeElement.innerText).toBe('TargetText The data is');
@@ -65,14 +65,14 @@ describe('string template outlet', () => {
   });
   describe('context shape change', () => {
     it('should work when context shape change', () => {
-      const testBed = createComponentBed(StringTemplateOutletTestComponent, { imports: [NzOutletModule] });
+      const testBed = createComponentBed(StringTemplateOutletTestComponent, { imports: [SnOutletModule] });
       testBed.component.stringTemplateOutlet = testBed.component.dataTimeTpl;
       const spyOnUpdateContext = spyOn(
-        testBed.component.nzStringTemplateOutletDirective as NzSafeAny,
+        testBed.component.nzStringTemplateOutletDirective as SnSafeAny,
         'updateContext'
       ).and.callThrough();
       const spyOnRecreateView = spyOn(
-        testBed.component.nzStringTemplateOutletDirective as NzSafeAny,
+        testBed.component.nzStringTemplateOutletDirective as SnSafeAny,
         'recreateView'
       ).and.callThrough();
       testBed.fixture.detectChanges();
@@ -86,14 +86,14 @@ describe('string template outlet', () => {
   });
   describe('context data change', () => {
     it('should work when context implicit change', () => {
-      const testBed = createComponentBed(StringTemplateOutletTestComponent, { imports: [NzOutletModule] });
+      const testBed = createComponentBed(StringTemplateOutletTestComponent, { imports: [SnOutletModule] });
       testBed.component.stringTemplateOutlet = testBed.component.stringTpl;
       const spyOnUpdateContext = spyOn(
-        testBed.component.nzStringTemplateOutletDirective as NzSafeAny,
+        testBed.component.nzStringTemplateOutletDirective as SnSafeAny,
         'updateContext'
       ).and.callThrough();
       const spyOnRecreateView = spyOn(
-        testBed.component.nzStringTemplateOutletDirective as NzSafeAny,
+        testBed.component.nzStringTemplateOutletDirective as SnSafeAny,
         'recreateView'
       ).and.callThrough();
       testBed.fixture.detectChanges();
@@ -119,10 +119,10 @@ describe('string template outlet', () => {
   `
 })
 export class StringTemplateOutletTestComponent {
-  @ViewChild('stringTpl') stringTpl!: TemplateRef<NzSafeAny>;
-  @ViewChild('emptyTpl') emptyTpl!: TemplateRef<NzSafeAny>;
-  @ViewChild('dataTimeTpl') dataTimeTpl!: TemplateRef<NzSafeAny>;
-  @ViewChild(NzStringTemplateOutletDirective) nzStringTemplateOutletDirective!: NzStringTemplateOutletDirective;
-  stringTemplateOutlet: TemplateRef<NzSafeAny> | string | null = null;
-  context: NzSafeAny = { $implicit: '' };
+  @ViewChild('stringTpl') stringTpl!: TemplateRef<SnSafeAny>;
+  @ViewChild('emptyTpl') emptyTpl!: TemplateRef<SnSafeAny>;
+  @ViewChild('dataTimeTpl') dataTimeTpl!: TemplateRef<SnSafeAny>;
+  @ViewChild(SnStringTemplateOutletDirective) nzStringTemplateOutletDirective!: SnStringTemplateOutletDirective;
+  stringTemplateOutlet: TemplateRef<SnSafeAny> | string | null = null;
+  context: SnSafeAny = { $implicit: '' };
 }

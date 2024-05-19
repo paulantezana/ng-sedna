@@ -1,13 +1,10 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import { Inject, Injectable, Optional } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { warn } from 'ngx-sedna/core/logger';
-import { IndexableObject, NzSafeAny } from 'ngx-sedna/core/types';
+import { IndexableObject, SnSafeAny } from 'ngx-sedna/core/types';
 
 import en_US from './languages/en_US';
 import zh_CN from './languages/zh_CN';
@@ -36,7 +33,7 @@ export class NzI18nService {
 
   // [NOTE] Performance issue: this method may called by every change detections
   // TODO: cache more deeply paths for performance
-  translate(path: string, data?: NzSafeAny): string {
+  translate(path: string, data?: SnSafeAny): string {
     // this._logger.debug(`[NzI18nService] Translating(${this._locale.locale}): ${path}`);
     let content = this._getObjectPath(this._locale, path) as string;
     if (typeof content === 'string') {
@@ -85,7 +82,7 @@ export class NzI18nService {
    * @param path dot paths for finding exist value from locale data, eg. "a.b.c"
    * @param defaultValue default value if the result is not "truthy"
    */
-  getLocaleData(path: string, defaultValue?: NzSafeAny): NzSafeAny {
+  getLocaleData(path: string, defaultValue?: SnSafeAny): SnSafeAny {
     const result = path ? this._getObjectPath(this._locale, path) : this._locale;
 
     if (!result && !defaultValue) {
@@ -98,7 +95,7 @@ https://github.com/NG-ZORRO/ngx-sedna/blob/master/CONTRIBUTING.md`);
     return result || defaultValue || this._getObjectPath(en_US, path) || {};
   }
 
-  private _getObjectPath(obj: IndexableObject, path: string): string | object | NzSafeAny {
+  private _getObjectPath(obj: IndexableObject, path: string): string | object | SnSafeAny {
     let res = obj;
     const paths = path.split('.');
     const depth = paths.length;

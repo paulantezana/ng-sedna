@@ -1,15 +1,12 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import { Injectable } from '@angular/core';
 
 import { environment } from 'ngx-sedna/core/environments';
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 
 interface SingletonRegistryItem {
-  target: NzSafeAny;
+  target: SnSafeAny;
 }
 
 /**
@@ -25,7 +22,7 @@ const testSingleRegistry = new Map<string, SingletonRegistryItem>();
 @Injectable({
   providedIn: 'root'
 })
-export class NzSingletonService {
+export class SnSingletonService {
   private get singletonRegistry(): Map<string, SingletonRegistryItem> {
     return environment.isTestMode ? testSingleRegistry : this._singletonRegistry;
   }
@@ -38,7 +35,7 @@ export class NzSingletonService {
    */
   private _singletonRegistry = new Map<string, SingletonRegistryItem>();
 
-  registerSingletonWithKey(key: string, target: NzSafeAny): void {
+  registerSingletonWithKey(key: string, target: SnSafeAny): void {
     const alreadyHave = this.singletonRegistry.has(key);
     const item: SingletonRegistryItem = alreadyHave ? this.singletonRegistry.get(key)! : this.withNewTarget(target);
 
@@ -57,7 +54,7 @@ export class NzSingletonService {
     return this.singletonRegistry.has(key) ? (this.singletonRegistry.get(key)!.target as T) : null;
   }
 
-  private withNewTarget(target: NzSafeAny): SingletonRegistryItem {
+  private withNewTarget(target: SnSafeAny): SingletonRegistryItem {
     return {
       target
     };

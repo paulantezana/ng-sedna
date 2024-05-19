@@ -1,9 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
-
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 
 export interface MeasureResult {
   finished: boolean;
@@ -90,7 +85,7 @@ export function measure(
   // clean up css overflow
   ellipsisContainer.style.textOverflow = 'clip';
   ellipsisContainer.style.whiteSpace = 'normal';
-  (ellipsisContainer.style as NzSafeAny).webkitLineClamp = 'none';
+  (ellipsisContainer.style as SnSafeAny).webkitLineClamp = 'none';
 
   const contentList = mergeChildren(contentNodes);
   const container = document.createElement('div');

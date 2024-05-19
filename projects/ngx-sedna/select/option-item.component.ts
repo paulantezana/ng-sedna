@@ -1,7 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import { NgIf, NgTemplateOutlet } from '@angular/common';
 import {
@@ -21,8 +18,8 @@ import {
 import { fromEvent } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { NzDestroyService } from 'ngx-sedna/core/services';
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnDestroyService } from 'ngx-sedna/core/services';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 import { NzIconModule } from 'ngx-sedna/icon';
 
 @Component({
@@ -48,7 +45,7 @@ import { NzIconModule } from 'ngx-sedna/icon';
     '[class.ant-select-item-option-disabled]': 'disabled',
     '[class.ant-select-item-option-active]': 'activated && !disabled'
   },
-  providers: [NzDestroyService],
+  providers: [SnDestroyService],
   imports: [NgIf, NgTemplateOutlet, NzIconModule],
   standalone: true
 })
@@ -57,23 +54,23 @@ export class NzOptionItemComponent implements OnChanges, OnInit {
   activated = false;
   @Input() grouped = false;
   @Input() customContent = false;
-  @Input() template: TemplateRef<NzSafeAny> | null = null;
+  @Input() template: TemplateRef<SnSafeAny> | null = null;
   @Input() disabled = false;
   @Input() showState = false;
   @Input() title?: string | number | null;
   @Input() label: string | number | null = null;
-  @Input() value: NzSafeAny | null = null;
-  @Input() activatedValue: NzSafeAny | null = null;
-  @Input() listOfSelectedValue: NzSafeAny[] = [];
-  @Input() icon: TemplateRef<NzSafeAny> | null = null;
-  @Input() compareWith!: (o1: NzSafeAny, o2: NzSafeAny) => boolean;
-  @Output() readonly itemClick = new EventEmitter<NzSafeAny>();
-  @Output() readonly itemHover = new EventEmitter<NzSafeAny>();
+  @Input() value: SnSafeAny | null = null;
+  @Input() activatedValue: SnSafeAny | null = null;
+  @Input() listOfSelectedValue: SnSafeAny[] = [];
+  @Input() icon: TemplateRef<SnSafeAny> | null = null;
+  @Input() compareWith!: (o1: SnSafeAny, o2: SnSafeAny) => boolean;
+  @Output() readonly itemClick = new EventEmitter<SnSafeAny>();
+  @Output() readonly itemHover = new EventEmitter<SnSafeAny>();
 
   constructor(
     private elementRef: ElementRef<HTMLElement>,
     private ngZone: NgZone,
-    private destroy$: NzDestroyService
+    private destroy$: SnDestroyService
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {

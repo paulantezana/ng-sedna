@@ -1,13 +1,10 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, TemplateRef, ViewEncapsulation } from '@angular/core';
 
-import { NzOutletModule } from 'ngx-sedna/core/outlet';
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnOutletModule } from 'ngx-sedna/core/outlet';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 import { NzIconModule } from 'ngx-sedna/icon';
 
 @Component({
@@ -36,17 +33,17 @@ import { NzIconModule } from 'ngx-sedna/icon';
     class: 'ant-select-arrow',
     '[class.ant-select-arrow-loading]': 'loading'
   },
-  imports: [NzIconModule, NgIf, NzOutletModule],
+  imports: [NzIconModule, NgIf, SnOutletModule],
   standalone: true
 })
 export class NzSelectArrowComponent {
-  @Input() listOfValue: NzSafeAny[] = [];
+  @Input() listOfValue: SnSafeAny[] = [];
   @Input() loading = false;
   @Input() search = false;
   @Input() showArrow = false;
   @Input() isMaxTagCountSet = false;
-  @Input() suffixIcon: TemplateRef<NzSafeAny> | string | null = null;
-  @Input() feedbackIcon: TemplateRef<NzSafeAny> | string | null = null;
+  @Input() suffixIcon: TemplateRef<SnSafeAny> | string | null = null;
+  @Input() feedbackIcon: TemplateRef<SnSafeAny> | string | null = null;
   @Input() nzMaxMultipleCount: number = Infinity;
 
   constructor() {}

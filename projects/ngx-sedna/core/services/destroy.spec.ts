@@ -1,19 +1,16 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import { of } from 'rxjs';
 import { delay, finalize, takeUntil } from 'rxjs/operators';
 
-import { NzDestroyService } from './destroy';
+import { SnDestroyService } from './destroy';
 
 describe('NzDestroy service', () => {
-  let destroyService: NzDestroyService;
+  let destroyService: SnDestroyService;
   const initObservable = of('done');
 
   beforeEach(() => {
-    destroyService = new NzDestroyService();
+    destroyService = new SnDestroyService();
   });
 
   it('should subscribe work normal', () => {

@@ -78,16 +78,16 @@ export class AppComponent {
 
 
 
-  // listOfOption: string[] = [];
-  // listOfSelectedValue = ['a10', 'c12'];
+  listOfOption: string[] = [];
+  listOfSelectedValue = ['a10', 'c12'];
 
-  // ngOnInit(): void {
-  //   const children: string[] = [];
-  //   for (let i = 10; i < 36; i++) {
-  //     children.push(`${i.toString(36)}${i}`);
-  //   }
-  //   this.listOfOption = children;
-  // }
+  ngOnInit(): void {
+    const children: string[] = [];
+    for (let i = 10; i < 36; i++) {
+      children.push(`${i.toString(36)}${i}`);
+    }
+    this.listOfOption = children;
+  }
 
 
 

@@ -1,6 +1,6 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 
-import { NzConfigService } from 'ngx-sedna/core/config';
+import { SnConfigService } from 'ngx-sedna/core/config';
 
 @Component({
   selector: 'nz-demo-empty-config',
@@ -61,7 +61,7 @@ export class NzDemoEmptyConfigComponent {
 
   customize = false;
 
-  constructor(private nzConfigService: NzConfigService) {}
+  constructor(private nzConfigService: SnConfigService) {}
 
   onConfigChange(): void {
     if (this.customize) {

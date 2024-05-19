@@ -12,7 +12,7 @@ import {
   RightOutline
 } from '@ant-design/icons-angular/icons';
 
-import { NzConfigService } from 'ngx-sedna/core/config';
+import { SnConfigService } from 'ngx-sedna/core/config';
 import { ComponentBed, createComponentBed } from 'ngx-sedna/core/testing/component-bed';
 
 import { NzIconDirective } from './icon.directive';
@@ -183,7 +183,7 @@ describe('nz-icon', () => {
   describe('config service', () => {
     let testBed: ComponentBed<NzTestIconExtensionsComponent>;
     let fixture: ComponentFixture<NzTestIconExtensionsComponent>;
-    let nzConfigService: NzConfigService;
+    let nzConfigService: SnConfigService;
     let icons: DebugElement[];
 
     beforeEach(() => {
@@ -202,7 +202,7 @@ describe('nz-icon', () => {
       icons = fixture.debugElement.queryAll(By.directive(NzIconDirective));
     });
 
-    beforeEach(inject([NzConfigService], (c: NzConfigService) => {
+    beforeEach(inject([SnConfigService], (c: SnConfigService) => {
       nzConfigService = c;
     }));
 

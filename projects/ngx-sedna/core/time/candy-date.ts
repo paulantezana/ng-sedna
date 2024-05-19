@@ -1,7 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import {
   addMonths,
@@ -30,7 +27,7 @@ import {
 } from 'date-fns';
 
 import { warn } from 'ngx-sedna/core/logger';
-import { IndexableObject, NzSafeAny } from 'ngx-sedna/core/types';
+import { IndexableObject, SnSafeAny } from 'ngx-sedna/core/types';
 
 export type CandyDateMode = 'decade' | 'year' | 'month' | 'day' | 'hour' | 'minute' | 'second';
 export type NormalizedMode = 'decade' | 'year' | 'month';
@@ -324,7 +321,7 @@ export class CandyDate implements IndexableObject {
     return isLastDayOfMonth(this.nativeDate);
   }
 
-  private toNativeDate(date: NzSafeAny): Date {
+  private toNativeDate(date: SnSafeAny): Date {
     return date instanceof CandyDate ? date.nativeDate : date;
   }
 }

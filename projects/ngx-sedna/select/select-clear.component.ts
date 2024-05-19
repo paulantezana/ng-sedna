@@ -1,7 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import { NgIf } from '@angular/common';
 import {
@@ -14,7 +11,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 import { NzIconModule } from 'ngx-sedna/icon';
 
 @Component({
@@ -38,7 +35,7 @@ import { NzIconModule } from 'ngx-sedna/icon';
   standalone: true
 })
 export class NzSelectClearComponent {
-  @Input() clearIcon: TemplateRef<NzSafeAny> | null = null;
+  @Input() clearIcon: TemplateRef<SnSafeAny> | null = null;
   @Output() readonly clear = new EventEmitter<MouseEvent>();
 
   constructor() {}

@@ -1,7 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import {
   Directive,
@@ -14,22 +11,22 @@ import {
   ViewContainerRef
 } from '@angular/core';
 
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 
 @Directive({
   selector: '[nzStringTemplateOutlet]',
   exportAs: 'nzStringTemplateOutlet',
   standalone: true
 })
-export class NzStringTemplateOutletDirective<_T = unknown> implements OnChanges {
-  private embeddedViewRef: EmbeddedViewRef<NzSafeAny> | null = null;
+export class SnStringTemplateOutletDirective<_T = unknown> implements OnChanges {
+  private embeddedViewRef: EmbeddedViewRef<SnSafeAny> | null = null;
   private context = new NzStringTemplateOutletContext();
-  @Input() nzStringTemplateOutletContext: NzSafeAny | null = null;
-  @Input() nzStringTemplateOutlet: NzSafeAny | TemplateRef<NzSafeAny> = null;
+  @Input() nzStringTemplateOutletContext: SnSafeAny | null = null;
+  @Input() nzStringTemplateOutlet: SnSafeAny | TemplateRef<SnSafeAny> = null;
 
   static ngTemplateContextGuard<T>(
-    _dir: NzStringTemplateOutletDirective<T>,
-    _ctx: NzSafeAny
+    _dir: SnStringTemplateOutletDirective<T>,
+    _ctx: SnSafeAny
   ): _ctx is NzStringTemplateOutletContext {
     return true;
   }
@@ -37,7 +34,7 @@ export class NzStringTemplateOutletDirective<_T = unknown> implements OnChanges 
   private recreateView(): void {
     this.viewContainer.clear();
     const isTemplateRef = this.nzStringTemplateOutlet instanceof TemplateRef;
-    const templateRef = (isTemplateRef ? this.nzStringTemplateOutlet : this.templateRef) as NzSafeAny;
+    const templateRef = (isTemplateRef ? this.nzStringTemplateOutlet : this.templateRef) as SnSafeAny;
     this.embeddedViewRef = this.viewContainer.createEmbeddedView(
       templateRef,
       isTemplateRef ? this.nzStringTemplateOutletContext : this.context
@@ -47,7 +44,7 @@ export class NzStringTemplateOutletDirective<_T = unknown> implements OnChanges 
   private updateContext(): void {
     const isTemplateRef = this.nzStringTemplateOutlet instanceof TemplateRef;
     const newCtx = isTemplateRef ? this.nzStringTemplateOutletContext : this.context;
-    const oldCtx = this.embeddedViewRef!.context as NzSafeAny;
+    const oldCtx = this.embeddedViewRef!.context as SnSafeAny;
     if (newCtx) {
       for (const propName of Object.keys(newCtx)) {
         oldCtx[propName] = newCtx[propName];
@@ -57,7 +54,7 @@ export class NzStringTemplateOutletDirective<_T = unknown> implements OnChanges 
 
   constructor(
     private viewContainer: ViewContainerRef,
-    private templateRef: TemplateRef<NzSafeAny>
+    private templateRef: TemplateRef<SnSafeAny>
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -108,5 +105,5 @@ export class NzStringTemplateOutletDirective<_T = unknown> implements OnChanges 
 }
 
 export class NzStringTemplateOutletContext {
-  public $implicit: NzSafeAny;
+  public $implicit: SnSafeAny;
 }

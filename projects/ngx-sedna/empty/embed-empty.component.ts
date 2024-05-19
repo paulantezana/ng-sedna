@@ -1,7 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import { ComponentPortal, Portal, PortalModule, TemplatePortal } from '@angular/cdk/portal';
 import {
@@ -22,8 +19,8 @@ import {
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
-import { NzConfigService } from 'ngx-sedna/core/config';
-import { NzSafeAny } from 'ngx-sedna/core/types';
+import { SnConfigService } from 'ngx-sedna/core/config';
+import { SnSafeAny } from 'ngx-sedna/core/types';
 
 import { NZ_EMPTY_COMPONENT_NAME, NzEmptyCustomContent, NzEmptySize } from './config';
 import { NzEmptyComponent } from './empty.component';
@@ -82,13 +79,13 @@ export class NzEmbedEmptyComponent implements OnChanges, OnInit, OnDestroy {
 
   content?: NzEmptyCustomContent;
   contentType: NzEmptyContentType = 'string';
-  contentPortal?: Portal<NzSafeAny>;
+  contentPortal?: Portal<SnSafeAny>;
   size: NzEmptySize = '';
 
   private destroy$ = new Subject<void>();
 
   constructor(
-    private configService: NzConfigService,
+    private configService: SnConfigService,
     private viewContainerRef: ViewContainerRef,
     private cdr: ChangeDetectorRef,
     private injector: Injector
@@ -121,7 +118,7 @@ export class NzEmbedEmptyComponent implements OnChanges, OnInit, OnDestroy {
     if (typeof content === 'string') {
       this.contentType = 'string';
     } else if (content instanceof TemplateRef) {
-      const context = { $implicit: this.nzComponentName } as NzSafeAny;
+      const context = { $implicit: this.nzComponentName } as SnSafeAny;
       this.contentType = 'template';
       this.contentPortal = new TemplatePortal(content, this.viewContainerRef, context);
     } else if (content instanceof Type) {
@@ -149,7 +146,7 @@ export class NzEmbedEmptyComponent implements OnChanges, OnInit, OnDestroy {
       });
   }
 
-  private getUserDefaultEmptyContent(): Type<NzSafeAny> | TemplateRef<string> | string | undefined {
+  private getUserDefaultEmptyContent(): Type<SnSafeAny> | TemplateRef<string> | string | undefined {
     return (this.configService.getConfigForComponent('empty') || {}).nzDefaultEmptyContent;
   }
 }

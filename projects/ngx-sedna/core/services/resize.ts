@@ -1,7 +1,4 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import { Injectable, NgZone, OnDestroy, Renderer2, RendererFactory2 } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
@@ -12,7 +9,7 @@ const NOOP = (): void => {};
 @Injectable({
   providedIn: 'root'
 })
-export class NzResizeService implements OnDestroy {
+export class SnResizeService implements OnDestroy {
   private readonly resizeSource$ = new Subject<void>();
 
   private listeners = 0;

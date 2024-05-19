@@ -4,21 +4,21 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NzFormPatchModule } from 'ngx-sedna/core/form/nz-form-patch.module';
 import { ɵComponentBed as ComponentBed, ɵcreateComponentBed as createComponentBed } from 'ngx-sedna/core/testing';
-import { NzValidateStatus } from 'ngx-sedna/core/types';
+import { SnValidateStatus } from 'ngx-sedna/core/types';
 
-import { NzFormItemFeedbackIconComponent } from './nz-form-item-feedback-icon.component';
+import { SnFormItemFeedbackIconComponent } from './sn-form-item-feedback-icon.component';
 
 const testBedOptions = { imports: [NzFormPatchModule, NoopAnimationsModule] };
 
 describe('nz-form-item-feedback-icon', () => {
   describe('default', () => {
-    let testBed: ComponentBed<NzTestFormItemFeedbackIconComponent>;
-    let fixtureInstance: NzTestFormItemFeedbackIconComponent;
+    let testBed: ComponentBed<SnTestFormItemFeedbackIconComponent>;
+    let fixtureInstance: SnTestFormItemFeedbackIconComponent;
     let feedback: DebugElement;
     beforeEach(() => {
-      testBed = createComponentBed(NzTestFormItemFeedbackIconComponent, testBedOptions);
+      testBed = createComponentBed(SnTestFormItemFeedbackIconComponent, testBedOptions);
       fixtureInstance = testBed.fixture.componentInstance;
-      feedback = testBed.fixture.debugElement.query(By.directive(NzFormItemFeedbackIconComponent));
+      feedback = testBed.fixture.debugElement.query(By.directive(SnFormItemFeedbackIconComponent));
       testBed.fixture.detectChanges();
     });
     it('should className correct', () => {
@@ -49,6 +49,6 @@ describe('nz-form-item-feedback-icon', () => {
 @Component({
   template: ` <nz-form-item-feedback-icon [status]="status"></nz-form-item-feedback-icon> `
 })
-export class NzTestFormItemFeedbackIconComponent {
-  status: NzValidateStatus = '';
+export class SnTestFormItemFeedbackIconComponent {
+  status: SnValidateStatus = '';
 }

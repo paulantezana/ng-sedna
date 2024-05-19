@@ -1,16 +1,13 @@
-/**
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
- */
+
 
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, map, startWith, takeUntil } from 'rxjs/operators';
 
-import { NzResizeService } from './resize';
+import { SnResizeService } from './resize';
 
-export enum NzBreakpointEnum {
+export enum SnBreakpointEnum {
   xxl = 'xxl',
   xl = 'xl',
   lg = 'lg',
@@ -19,9 +16,9 @@ export enum NzBreakpointEnum {
   xs = 'xs'
 }
 
-export type BreakpointMap = { [key in NzBreakpointEnum]: string };
-export type BreakpointBooleanMap = { [key in NzBreakpointEnum]: boolean };
-export type NzBreakpointKey = keyof typeof NzBreakpointEnum;
+export type BreakpointMap = { [key in SnBreakpointEnum]: string };
+export type BreakpointBooleanMap = { [key in SnBreakpointEnum]: boolean };
+export type NzBreakpointKey = keyof typeof SnBreakpointEnum;
 
 export const gridResponsiveMap: BreakpointMap = {
   xs: '(max-width: 575px)',
@@ -44,11 +41,11 @@ export const siderResponsiveMap: BreakpointMap = {
 @Injectable({
   providedIn: 'root'
 })
-export class NzBreakpointService implements OnDestroy {
+export class SnBreakpointService implements OnDestroy {
   private destroy$ = new Subject<void>();
 
   constructor(
-    private resizeService: NzResizeService,
+    private resizeService: SnResizeService,
     private mediaMatcher: MediaMatcher
   ) {
     this.resizeService
@@ -61,9 +58,9 @@ export class NzBreakpointService implements OnDestroy {
     this.destroy$.next();
   }
 
-  subscribe(breakpointMap: BreakpointMap): Observable<NzBreakpointEnum>;
+  subscribe(breakpointMap: BreakpointMap): Observable<SnBreakpointEnum>;
   subscribe(breakpointMap: BreakpointMap, fullMap: true): Observable<BreakpointBooleanMap>;
-  subscribe(breakpointMap: BreakpointMap, fullMap?: true): Observable<NzBreakpointEnum | BreakpointBooleanMap> {
+  subscribe(breakpointMap: BreakpointMap, fullMap?: true): Observable<SnBreakpointEnum | BreakpointBooleanMap> {
     if (fullMap) {
       // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
       const get = () => this.matchMedia(breakpointMap, true);
@@ -71,7 +68,7 @@ export class NzBreakpointService implements OnDestroy {
         map(get),
         startWith(get()),
         distinctUntilChanged(
-          (x: [NzBreakpointEnum, BreakpointBooleanMap], y: [NzBreakpointEnum, BreakpointBooleanMap]) => x[0] === y[0]
+          (x: [SnBreakpointEnum, BreakpointBooleanMap], y: [SnBreakpointEnum, BreakpointBooleanMap]) => x[0] === y[0]
         ),
         map(x => x[1])
       );
@@ -82,21 +79,21 @@ export class NzBreakpointService implements OnDestroy {
     }
   }
 
-  private matchMedia(breakpointMap: BreakpointMap): NzBreakpointEnum;
-  private matchMedia(breakpointMap: BreakpointMap, fullMap: true): [NzBreakpointEnum, BreakpointBooleanMap];
+  private matchMedia(breakpointMap: BreakpointMap): SnBreakpointEnum;
+  private matchMedia(breakpointMap: BreakpointMap, fullMap: true): [SnBreakpointEnum, BreakpointBooleanMap];
   private matchMedia(
     breakpointMap: BreakpointMap,
     fullMap?: true
-  ): NzBreakpointEnum | [NzBreakpointEnum, BreakpointBooleanMap] {
-    let bp = NzBreakpointEnum.md;
+  ): SnBreakpointEnum | [SnBreakpointEnum, BreakpointBooleanMap] {
+    let bp = SnBreakpointEnum.md;
 
     const breakpointBooleanMap: Partial<BreakpointBooleanMap> = {};
 
     Object.keys(breakpointMap).map(breakpoint => {
-      const castBP = breakpoint as NzBreakpointEnum;
+      const castBP = breakpoint as SnBreakpointEnum;
       const matched = this.mediaMatcher.matchMedia(gridResponsiveMap[castBP]).matches;
 
-      breakpointBooleanMap[breakpoint as NzBreakpointEnum] = matched;
+      breakpointBooleanMap[breakpoint as SnBreakpointEnum] = matched;
 
       if (matched) {
         bp = castBP;
