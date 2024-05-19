@@ -16,15 +16,15 @@ import { SnSafeAny, SnStatus } from 'ngx-sedna/core/types';
 import { NzFormControlStatusType, NzFormModule } from 'ngx-sedna/form';
 import { NzIconTestModule } from 'ngx-sedna/icon/testing';
 
-import { NzSelectSearchComponent } from './select-search.component';
-import { NzSelectTopControlComponent } from './select-top-control.component';
-import { NzSelectComponent, NzSelectSizeType } from './select.component';
-import { NzSelectModule } from './select.module';
+import { SnSelectSearchComponent } from './select-search.component';
+import { SnSelectTopControlComponent } from './select-top-control.component';
+import { SnSelectComponent, NzSelectSizeType } from './select.component';
+import { SnSelectModule } from './select.module';
 import {
-  NzFilterOptionType,
-  NzSelectItemInterface,
-  NzSelectOptionInterface,
-  NzSelectPlacementType
+  SnFilterOptionType,
+  SnSelectItemInterface,
+  SnSelectOptionInterface,
+  SnSelectPlacementType
 } from './select.types';
 
 describe('select', () => {
@@ -37,11 +37,11 @@ describe('select', () => {
 
     beforeEach(() => {
       testBed = createComponentBed(TestSelectTemplateDefaultComponent, {
-        imports: [NzSelectModule, NzIconTestModule, FormsModule]
+        imports: [SnSelectModule, NzIconTestModule, FormsModule]
       });
       component = testBed.component;
       fixture = testBed.fixture;
-      selectElement = testBed.debugElement.query(By.directive(NzSelectComponent)).nativeElement;
+      selectElement = testBed.debugElement.query(By.directive(SnSelectComponent)).nativeElement;
     });
 
     beforeEach(inject([OverlayContainer], (oc: OverlayContainer) => {
@@ -590,11 +590,11 @@ describe('select', () => {
 
     beforeEach(() => {
       testBed = createComponentBed(TestSelectTemplateMultipleComponent, {
-        imports: [NzSelectModule, NzIconTestModule, FormsModule]
+        imports: [SnSelectModule, NzIconTestModule, FormsModule]
       });
       component = testBed.component;
       fixture = testBed.fixture;
-      selectElement = testBed.debugElement.query(By.directive(NzSelectComponent)).nativeElement;
+      selectElement = testBed.debugElement.query(By.directive(SnSelectComponent)).nativeElement;
       overlayContainerElement = TestBed.inject(OverlayContainer).getContainerElement();
     });
     it('should classname correct', () => {
@@ -813,11 +813,11 @@ describe('select', () => {
     let selectElement!: HTMLElement;
     beforeEach(() => {
       testBed = createComponentBed(TestSelectTemplateTagsComponent, {
-        imports: [NzSelectModule, NzIconTestModule, FormsModule]
+        imports: [SnSelectModule, NzIconTestModule, FormsModule]
       });
       component = testBed.component;
       fixture = testBed.fixture;
-      selectElement = testBed.debugElement.query(By.directive(NzSelectComponent)).nativeElement;
+      selectElement = testBed.debugElement.query(By.directive(SnSelectComponent)).nativeElement;
     });
     it('should classname correct', () => {
       expect(selectElement.classList).toContain('ant-select-multiple');
@@ -869,11 +869,11 @@ describe('select', () => {
     let selectElement!: HTMLElement;
     beforeEach(() => {
       testBed = createComponentBed(TestSelectReactiveDefaultComponent, {
-        imports: [NzSelectModule, NzIconTestModule, FormsModule]
+        imports: [SnSelectModule, NzIconTestModule, FormsModule]
       });
       component = testBed.component;
       fixture = testBed.fixture;
-      selectElement = testBed.debugElement.query(By.directive(NzSelectComponent)).nativeElement;
+      selectElement = testBed.debugElement.query(By.directive(SnSelectComponent)).nativeElement;
     });
     it('should ngModel match nzLabel', fakeAsync(() => {
       component.listOfOption = [{ value: 'test_value', label: 'test_label' }];
@@ -1115,11 +1115,11 @@ describe('select', () => {
 
     beforeEach(() => {
       testBed = createComponentBed(TestSelectReactiveMultipleComponent, {
-        imports: [NzSelectModule, NzIconTestModule, FormsModule]
+        imports: [SnSelectModule, NzIconTestModule, FormsModule]
       });
       component = testBed.component;
       fixture = testBed.fixture;
-      selectElement = testBed.debugElement.query(By.directive(NzSelectComponent)).nativeElement;
+      selectElement = testBed.debugElement.query(By.directive(SnSelectComponent)).nativeElement;
       overlayContainerElement = TestBed.inject(OverlayContainer).getContainerElement();
     });
     it('should ngModel works', fakeAsync(() => {
@@ -1343,11 +1343,11 @@ describe('select', () => {
     let selectElement!: HTMLElement;
     beforeEach(() => {
       testBed = createComponentBed(TestSelectReactiveTagsComponent, {
-        imports: [NzSelectModule, NzIconTestModule, FormsModule]
+        imports: [SnSelectModule, NzIconTestModule, FormsModule]
       });
       component = testBed.component;
       fixture = testBed.fixture;
-      selectElement = testBed.debugElement.query(By.directive(NzSelectComponent)).nativeElement;
+      selectElement = testBed.debugElement.query(By.directive(SnSelectComponent)).nativeElement;
     });
     it('should nzTokenSeparators works', fakeAsync(() => {
       component.listOfOption = [
@@ -1393,16 +1393,16 @@ describe('select', () => {
     let testBed: ComponentBed<TestSelectTemplateDefaultComponent>;
     let component: TestSelectTemplateDefaultComponent;
     let fixture: ComponentFixture<TestSelectTemplateDefaultComponent>;
-    let selectComponent: NzSelectComponent;
+    let selectComponent: SnSelectComponent;
     let overlayContainerElement: HTMLElement;
 
     beforeEach(() => {
       testBed = createComponentBed(TestSelectTemplateDefaultComponent, {
-        imports: [NzSelectModule, NzIconTestModule, FormsModule]
+        imports: [SnSelectModule, NzIconTestModule, FormsModule]
       });
       component = testBed.component;
       fixture = testBed.fixture;
-      selectComponent = testBed.debugElement.query(By.directive(NzSelectComponent)).componentInstance;
+      selectComponent = testBed.debugElement.query(By.directive(SnSelectComponent)).componentInstance;
     });
 
     beforeEach(inject([OverlayContainer], (oc: OverlayContainer) => {
@@ -1464,10 +1464,10 @@ describe('select', () => {
       const appRef = TestBed.inject(ApplicationRef);
       spyOn(appRef, 'tick');
 
-      const nzSelectSearch = fixture.debugElement.query(By.directive(NzSelectSearchComponent));
+      const nzSelectSearch = fixture.debugElement.query(By.directive(SnSelectSearchComponent));
       spyOn(nzSelectSearch.componentInstance, 'focus');
 
-      const nzSelectTopControl = fixture.debugElement.query(By.directive(NzSelectTopControlComponent));
+      const nzSelectTopControl = fixture.debugElement.query(By.directive(SnSelectTopControlComponent));
       dispatchMouseEvent(nzSelectTopControl.nativeElement, 'click');
 
       expect(appRef.tick).toHaveBeenCalledTimes(0);
@@ -1478,7 +1478,7 @@ describe('select', () => {
       const appRef = TestBed.inject(ApplicationRef);
       spyOn(appRef, 'tick');
 
-      const nzSelectTopControl = fixture.debugElement.query(By.directive(NzSelectTopControlComponent));
+      const nzSelectTopControl = fixture.debugElement.query(By.directive(SnSelectTopControlComponent));
       dispatchKeyboardEvent(nzSelectTopControl.nativeElement, 'keydown', TAB, nzSelectTopControl.nativeElement);
 
       expect(appRef.tick).toHaveBeenCalledTimes(0);
@@ -1492,11 +1492,11 @@ describe('select', () => {
 
     beforeEach(() => {
       testBed = createComponentBed(TestSelectStatusComponent, {
-        imports: [NzSelectModule, NzIconTestModule]
+        imports: [SnSelectModule, NzIconTestModule]
       });
       component = testBed.component;
       fixture = testBed.fixture;
-      selectElement = testBed.debugElement.query(By.directive(NzSelectComponent)).nativeElement;
+      selectElement = testBed.debugElement.query(By.directive(SnSelectComponent)).nativeElement;
     });
 
     it('should classname correct', () => {
@@ -1519,14 +1519,14 @@ describe('select', () => {
 
     beforeEach(() => {
       testBed = createComponentBed(TestSelectInFormComponent, {
-        imports: [NzSelectModule, NzIconTestModule, NzFormModule, ReactiveFormsModule]
+        imports: [SnSelectModule, NzIconTestModule, NzFormModule, ReactiveFormsModule]
       });
       component = testBed.component;
       fixture = testBed.fixture;
     });
     it('should classname correct and be disable initially', () => {
       fixture.detectChanges();
-      const selectElement = testBed.debugElement.query(By.directive(NzSelectComponent)).nativeElement;
+      const selectElement = testBed.debugElement.query(By.directive(SnSelectComponent)).nativeElement;
       const inputElement = testBed.debugElement.query(By.css('input')).nativeElement as HTMLInputElement;
 
       expect(inputElement.disabled).toBeFalsy();
@@ -1552,7 +1552,7 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      const selectElement = testBed.debugElement.query(By.directive(NzSelectComponent)).nativeElement;
+      const selectElement = testBed.debugElement.query(By.directive(SnSelectComponent)).nativeElement;
       const inputElement = testBed.debugElement.query(By.css('input')).nativeElement as HTMLInputElement;
       expect(inputElement.disabled).toBeTruthy();
       expect(selectElement.classList).toContain('ant-select-disabled');
@@ -1562,7 +1562,7 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      const selectElement = testBed.debugElement.query(By.directive(NzSelectComponent)).nativeElement;
+      const selectElement = testBed.debugElement.query(By.directive(SnSelectComponent)).nativeElement;
       const inputElement = testBed.debugElement.query(By.css('input')).nativeElement as HTMLInputElement;
       expect(inputElement.disabled).toBeTruthy();
       expect(selectElement.classList).toContain('ant-select-disabled');
@@ -1576,7 +1576,7 @@ describe('select', () => {
 
     beforeEach(() => {
       testBed = createComponentBed(TestSelectTemplateDefaultComponent, {
-        imports: [NzSelectModule, NzIconTestModule, FormsModule]
+        imports: [SnSelectModule, NzIconTestModule, FormsModule]
       });
       component = testBed.component;
       fixture = testBed.fixture;
@@ -1697,18 +1697,18 @@ export class TestSelectTemplateDefaultComponent {
   valueChange = jasmine.createSpy('valueChange');
   openChange = jasmine.createSpy('openChange');
   searchValueChange = jasmine.createSpy('searchValueChange');
-  listOfGroup: Array<{ nzLabel: string | TemplateRef<SnSafeAny> | null; children: NzSelectItemInterface[] }> = [];
-  listOfOption: NzSelectItemInterface[] = [];
+  listOfGroup: Array<{ nzLabel: string | TemplateRef<SnSafeAny> | null; children: SnSelectItemInterface[] }> = [];
+  listOfOption: SnSelectItemInterface[] = [];
   nzSize: NzSelectSizeType = 'default';
   nzDropdownMatchSelectWidth = true;
   nzPlaceHolder: string | TemplateRef<SnSafeAny> | null = null;
   nzDropdownRender: TemplateRef<SnSafeAny> | null = null;
-  nzCustomTemplate?: TemplateRef<{ $implicit: NzSelectItemInterface }>;
+  nzCustomTemplate?: TemplateRef<{ $implicit: SnSelectItemInterface }>;
   nzSuffixIcon: TemplateRef<SnSafeAny> | null = null;
   nzClearIcon: TemplateRef<SnSafeAny> | null = null;
   nzShowArrow = true;
   nzMaxMultipleCount: number = Infinity;
-  nzFilterOption: NzFilterOptionType = (searchValue: string, item: NzSelectItemInterface): boolean => {
+  nzFilterOption: SnFilterOptionType = (searchValue: string, item: SnSelectItemInterface): boolean => {
     if (item && item.nzLabel) {
       return item.nzLabel.toString().toLowerCase().indexOf(searchValue.toLowerCase()) > -1;
     } else {
@@ -1726,7 +1726,7 @@ export class TestSelectTemplateDefaultComponent {
   nzOpen = false;
   nzBackdrop = false;
   nzSelectOnTab = false;
-  nzPlacement: NzSelectPlacementType | null = 'bottomLeft';
+  nzPlacement: SnSelectPlacementType | null = 'bottomLeft';
 }
 
 @Component({
@@ -1757,7 +1757,7 @@ export class TestSelectTemplateDefaultComponent {
 })
 export class TestSelectTemplateMultipleComponent {
   @ViewChild('iconTemplate') iconTemplate!: TemplateRef<SnSafeAny>;
-  listOfOption: NzSelectItemInterface[] = [];
+  listOfOption: SnSelectItemInterface[] = [];
   value: SnSafeAny[] = [];
   nzOpen = false;
   valueChange = jasmine.createSpy('valueChange');
@@ -1797,7 +1797,7 @@ export class TestSelectTemplateTagsComponent {
   nzSize: NzSelectSizeType = 'default';
   nzMaxTagCount = Infinity;
   value: SnSafeAny[] = [];
-  listOfOption: NzSelectItemInterface[] = [];
+  listOfOption: SnSelectItemInterface[] = [];
   valueChange = jasmine.createSpy('valueChange');
   nzTokenSeparators: string[] = [];
   nzMaxTagPlaceholder!: TemplateRef<{ $implicit: SnSafeAny[] }>;
@@ -1844,16 +1844,16 @@ export class TestSelectReactiveDefaultComponent {
   valueChange = jasmine.createSpy('valueChange');
   openChange = jasmine.createSpy('openChange');
   searchValueChange = jasmine.createSpy('searchValueChange');
-  listOfOption: NzSelectOptionInterface[] = [];
+  listOfOption: SnSelectOptionInterface[] = [];
   nzSize: NzSelectSizeType = 'default';
   nzDropdownMatchSelectWidth = true;
   nzPlaceHolder: string | TemplateRef<SnSafeAny> | null = null;
   nzDropdownRender: TemplateRef<SnSafeAny> | null = null;
-  nzCustomTemplate?: TemplateRef<{ $implicit: NzSelectItemInterface }>;
+  nzCustomTemplate?: TemplateRef<{ $implicit: SnSelectItemInterface }>;
   nzSuffixIcon: TemplateRef<SnSafeAny> | null = null;
   nzClearIcon: TemplateRef<SnSafeAny> | null = null;
   nzShowArrow = true;
-  nzFilterOption: NzFilterOptionType = (searchValue: string, item: NzSelectItemInterface): boolean => {
+  nzFilterOption: SnFilterOptionType = (searchValue: string, item: SnSelectItemInterface): boolean => {
     if (item && item.nzLabel) {
       return item.nzLabel.toString().toLowerCase().indexOf(searchValue.toLowerCase()) > -1;
     } else {
@@ -1892,7 +1892,7 @@ export class TestSelectReactiveDefaultComponent {
 })
 export class TestSelectReactiveMultipleComponent {
   @ViewChild('iconTemplate') iconTemplate!: TemplateRef<SnSafeAny>;
-  listOfOption: NzSelectOptionInterface[] = [];
+  listOfOption: SnSelectOptionInterface[] = [];
   value: SnSafeAny[] = [];
   nzOpen = false;
   valueChange = jasmine.createSpy('valueChange');
@@ -1925,7 +1925,7 @@ export class TestSelectReactiveTagsComponent {
   nzSize: NzSelectSizeType = 'default';
   nzMaxTagCount = Infinity;
   value: SnSafeAny[] = [];
-  listOfOption: NzSelectOptionInterface[] = [];
+  listOfOption: SnSelectOptionInterface[] = [];
   valueChange = jasmine.createSpy('valueChange');
   nzTokenSeparators: string[] = [];
   nzMaxTagPlaceholder?: TemplateRef<{ $implicit: SnSafeAny[] }>;

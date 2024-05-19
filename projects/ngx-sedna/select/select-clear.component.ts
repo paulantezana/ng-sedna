@@ -34,7 +34,7 @@ import { NzIconModule } from 'ngx-sedna/icon';
   imports: [NzIconModule, NgIf],
   standalone: true
 })
-export class NzSelectClearComponent {
+export class SnSelectClearComponent {
   @Input() clearIcon: TemplateRef<SnSafeAny> | null = null;
   @Output() readonly clear = new EventEmitter<MouseEvent>();
 

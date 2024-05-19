@@ -18,7 +18,7 @@ import { SnSafeAny } from 'ngx-sedna/core/types';
   imports: [SnOutletModule],
   standalone: true
 })
-export class NzSelectPlaceholderComponent {
+export class SnSelectPlaceholderComponent {
   @Input() placeholder: TemplateRef<SnSafeAny> | string | null = null;
 
   constructor() {}

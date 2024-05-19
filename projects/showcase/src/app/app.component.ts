@@ -10,7 +10,7 @@ import { RouterOutlet } from '@angular/router';
 // import { SnFilter, SnFilterColumn, SnFilterModule } from 'ngx-sedna/filter';
 import { ApiService } from './services/api.service';
 // import { HttpClient } from '@angular/common/http';
-import { NzSelectModule } from 'ngx-sedna/select';
+import { SnSelectModule } from 'ngx-sedna/select';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzEmptyComponent } from 'ngx-sedna/empty';
 
@@ -29,7 +29,7 @@ import { NzEmptyComponent } from 'ngx-sedna/empty';
     // anthAddOnComponent,
     // CdkMenuModule,
     // SnFilterModule,
-    NzSelectModule,
+    SnSelectModule,
     // // NgForm,
     // ReactiveFormsModule,
     // BrowserAnimationsModule,

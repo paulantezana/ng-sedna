@@ -18,7 +18,7 @@ import { SnDestroyService } from 'ngx-sedna/core/services';
 import { BooleanInput, SnSafeAny } from 'ngx-sedna/core/types';
 import { InputBoolean } from 'ngx-sedna/core/util';
 
-import { NzOptionGroupComponent } from './option-group.component';
+import { SnOptionGroupComponent } from './option-group.component';
 
 @Component({
   selector: 'nz-option',
@@ -33,7 +33,7 @@ import { NzOptionGroupComponent } from './option-group.component';
   `,
   standalone: true
 })
-export class NzOptionComponent implements OnChanges, OnInit {
+export class SnOptionComponent implements OnChanges, OnInit {
   static ngAcceptInputType_nzDisabled: BooleanInput;
   static ngAcceptInputType_nzHide: BooleanInput;
   static ngAcceptInputType_nzCustomContent: BooleanInput;
@@ -50,7 +50,7 @@ export class NzOptionComponent implements OnChanges, OnInit {
   @Input() @InputBoolean() nzCustomContent = false;
 
   constructor(
-    @Optional() private nzOptionGroupComponent: NzOptionGroupComponent,
+    @Optional() private nzOptionGroupComponent: SnOptionGroupComponent,
     private destroy$: SnDestroyService
   ) {}
 

@@ -24,9 +24,9 @@ import { SnOverlayModule } from 'ngx-sedna/core/overlay';
 import { SnSafeAny } from 'ngx-sedna/core/types';
 import { NzEmptyModule } from 'ngx-sedna/empty';
 
-import { NzOptionItemGroupComponent } from './option-item-group.component';
-import { NzOptionItemComponent } from './option-item.component';
-import { NzSelectItemInterface, NzSelectModeType } from './select.types';
+import { SnOptionItemGroupComponent } from './option-item-group.component';
+import { SnOptionItemComponent } from './option-item.component';
+import { SnSelectItemInterface, SnSelectModeType } from './select.types';
 
 @Component({
   selector: 'nz-option-container',
@@ -85,28 +85,28 @@ import { NzSelectItemInterface, NzSelectModeType } from './select.types';
     NzEmptyModule,
     NgIf,
     NgSwitch,
-    NzOptionItemGroupComponent,
+    SnOptionItemGroupComponent,
     NgSwitchCase,
-    NzOptionItemComponent,
+    SnOptionItemComponent,
     NgTemplateOutlet,
     OverlayModule,
     SnOverlayModule
   ],
   standalone: true
 })
-export class NzOptionContainerComponent implements OnChanges, AfterViewInit {
+export class SnOptionContainerComponent implements OnChanges, AfterViewInit {
   @Input() notFoundContent: string | TemplateRef<SnSafeAny> | undefined = undefined;
   @Input() menuItemSelectedIcon: TemplateRef<SnSafeAny> | null = null;
   @Input() dropdownRender: TemplateRef<SnSafeAny> | null = null;
   @Input() activatedValue: SnSafeAny | null = null;
   @Input() listOfSelectedValue: SnSafeAny[] = [];
   @Input() compareWith!: (o1: SnSafeAny, o2: SnSafeAny) => boolean;
-  @Input() mode: NzSelectModeType = 'default';
+  @Input() mode: SnSelectModeType = 'default';
   @Input() matchWidth = true;
   @Input() itemSize = 32;
   @Input() maxItemLength = 8;
   @Input() isMaxLimitReached = false;
-  @Input() listOfContainerItem: NzSelectItemInterface[] = [];
+  @Input() listOfContainerItem: SnSelectItemInterface[] = [];
   @Output() readonly itemClick = new EventEmitter<SnSafeAny>();
   @Output() readonly scrollToBottom = new EventEmitter<void>();
   @ViewChild(CdkVirtualScrollViewport, { static: true }) cdkVirtualScrollViewport!: CdkVirtualScrollViewport;
@@ -123,7 +123,7 @@ export class NzOptionContainerComponent implements OnChanges, AfterViewInit {
     this.activatedValue = value;
   }
 
-  trackValue(_index: number, option: NzSelectItemInterface): SnSafeAny {
+  trackValue(_index: number, option: SnSelectItemInterface): SnSafeAny {
     return option.key;
   }
 

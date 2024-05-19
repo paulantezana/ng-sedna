@@ -49,7 +49,7 @@ import { NzIconModule } from 'ngx-sedna/icon';
   imports: [NgIf, NgTemplateOutlet, NzIconModule],
   standalone: true
 })
-export class NzOptionItemComponent implements OnChanges, OnInit {
+export class SnOptionItemComponent implements OnChanges, OnInit {
   selected = false;
   activated = false;
   @Input() grouped = false;

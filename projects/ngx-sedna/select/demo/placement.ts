@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NzSelectPlacementType } from 'ngx-sedna/select';
+import { SnSelectPlacementType } from 'ngx-sedna/select';
 
 @Component({
   selector: 'nz-demo-select-placement',
@@ -28,6 +28,6 @@ import { NzSelectPlacementType } from 'ngx-sedna/select';
   ]
 })
 export class NzDemoSelectPlacementComponent {
-  placement: NzSelectPlacementType = 'topLeft';
+  placement: SnSelectPlacementType = 'topLeft';
   selectedValue = 'HangZhou';
 }

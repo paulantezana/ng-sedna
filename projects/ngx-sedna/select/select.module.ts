@@ -2,43 +2,43 @@
 
 import { NgModule } from '@angular/core';
 
-import { NzOptionContainerComponent } from './option-container.component';
-import { NzOptionGroupComponent } from './option-group.component';
-import { NzOptionItemGroupComponent } from './option-item-group.component';
-import { NzOptionItemComponent } from './option-item.component';
-import { NzOptionComponent } from './option.component';
-import { NzSelectArrowComponent } from './select-arrow.component';
-import { NzSelectClearComponent } from './select-clear.component';
-import { NzSelectItemComponent } from './select-item.component';
-import { NzSelectPlaceholderComponent } from './select-placeholder.component';
-import { NzSelectSearchComponent } from './select-search.component';
-import { NzSelectTopControlComponent } from './select-top-control.component';
-import { NzSelectComponent } from './select.component';
+import { SnOptionContainerComponent } from './option-container.component';
+import { SnOptionGroupComponent } from './option-group.component';
+import { SnOptionItemGroupComponent } from './option-item-group.component';
+import { SnOptionItemComponent } from './option-item.component';
+import { SnOptionComponent } from './option.component';
+import { SnSelectArrowComponent } from './select-arrow.component';
+import { SnSelectClearComponent } from './select-clear.component';
+import { SnSelectItemComponent } from './select-item.component';
+import { SnSelectPlaceholderComponent } from './select-placeholder.component';
+import { SnSelectSearchComponent } from './select-search.component';
+import { SnSelectTopControlComponent } from './select-top-control.component';
+import { SnSelectComponent } from './select.component';
 
 @NgModule({
   imports: [
-    NzOptionComponent,
-    NzSelectComponent,
-    NzOptionContainerComponent,
-    NzOptionGroupComponent,
-    NzOptionItemComponent,
-    NzSelectTopControlComponent,
-    NzSelectSearchComponent,
-    NzSelectItemComponent,
-    NzSelectClearComponent,
-    NzSelectArrowComponent,
-    NzSelectPlaceholderComponent,
-    NzOptionItemGroupComponent
+    SnOptionComponent,
+    SnSelectComponent,
+    SnOptionContainerComponent,
+    SnOptionGroupComponent,
+    SnOptionItemComponent,
+    SnSelectTopControlComponent,
+    SnSelectSearchComponent,
+    SnSelectItemComponent,
+    SnSelectClearComponent,
+    SnSelectArrowComponent,
+    SnSelectPlaceholderComponent,
+    SnOptionItemGroupComponent
   ],
   exports: [
-    NzOptionComponent,
-    NzSelectComponent,
-    NzOptionGroupComponent,
-    NzSelectArrowComponent,
-    NzSelectClearComponent,
-    NzSelectItemComponent,
-    NzSelectPlaceholderComponent,
-    NzSelectSearchComponent
+    SnOptionComponent,
+    SnSelectComponent,
+    SnOptionGroupComponent,
+    SnSelectArrowComponent,
+    SnSelectClearComponent,
+    SnSelectItemComponent,
+    SnSelectPlaceholderComponent,
+    SnSelectSearchComponent
   ]
 })
-export class NzSelectModule {}
+export class SnSelectModule {}

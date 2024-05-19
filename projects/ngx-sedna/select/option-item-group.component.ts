@@ -16,7 +16,7 @@ import { SnSafeAny } from 'ngx-sedna/core/types';
   imports: [SnOutletModule],
   standalone: true
 })
-export class NzOptionItemGroupComponent {
+export class SnOptionItemGroupComponent {
   @Input() nzLabel: string | number | TemplateRef<SnSafeAny> | null = null;
 
   constructor() {}

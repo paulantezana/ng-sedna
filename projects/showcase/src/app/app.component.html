@@ -1,6 +1,20 @@
 <nz-empty></nz-empty>
 
 
+<nz-select>
+  <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+  <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+  <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
+</nz-select>
+<nz-select nzDisabled>
+  <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+</nz-select>
+<nz-select nzLoading>
+  <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+</nz-select>
+<nz-select nzAllowClear nzPlaceHolder="Choose">
+  <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+</nz-select>
 
 <nz-select nzAllowClear nzPlaceHolder="Choose" nzShowSearch>
   <nz-option-group nzLabel="Manager">
@@ -33,6 +47,19 @@
 >
   <nz-option *ngFor="let item of listOfOption" [nzLabel]="item" [nzValue]="item"></nz-option>
 </nz-select>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- <nz-select>
   <nz-option nzValue="jack" nzLabel="Jack"></nz-option>

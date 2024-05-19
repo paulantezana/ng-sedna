@@ -43,7 +43,7 @@ import { COMPOSITION_BUFFER_MODE, FormsModule } from '@angular/forms';
   imports: [FormsModule, NgIf],
   standalone: true
 })
-export class NzSelectSearchComponent implements AfterViewInit, OnChanges {
+export class SnSelectSearchComponent implements AfterViewInit, OnChanges {
   @Input() nzId: string | null = null;
   @Input() disabled = false;
   @Input() mirrorSync = false;

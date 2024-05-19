@@ -26,10 +26,10 @@ import { takeUntil } from 'rxjs/operators';
 import { SnNoAnimationDirective } from 'ngx-sedna/core/no-animation';
 import { SnSafeAny } from 'ngx-sedna/core/types';
 
-import { NzSelectItemComponent } from './select-item.component';
-import { NzSelectPlaceholderComponent } from './select-placeholder.component';
-import { NzSelectSearchComponent } from './select-search.component';
-import { NzSelectItemInterface, NzSelectModeType, NzSelectTopControlItemType } from './select.types';
+import { SnSelectItemComponent } from './select-item.component';
+import { SnSelectPlaceholderComponent } from './select-placeholder.component';
+import { SnSelectSearchComponent } from './select-search.component';
+import { SnSelectItemInterface, SnSelectModeType, SnSelectTopControlItemType } from './select.types';
 
 @Component({
   selector: 'nz-select-top-control',
@@ -92,17 +92,17 @@ import { NzSelectItemInterface, NzSelectModeType, NzSelectTopControlItemType } f
   host: { class: 'ant-select-selector' },
   imports: [
     NgSwitch,
-    NzSelectSearchComponent,
+    SnSelectSearchComponent,
     NgSwitchCase,
-    NzSelectItemComponent,
+    SnSelectItemComponent,
     NgIf,
     NgSwitchDefault,
     NgFor,
-    NzSelectPlaceholderComponent
+    SnSelectPlaceholderComponent
   ],
   standalone: true
 })
-export class NzSelectTopControlComponent implements OnChanges, OnInit, OnDestroy {
+export class SnSelectTopControlComponent implements OnChanges, OnInit, OnDestroy {
   @Input() nzId: string | null = null;
   @Input() showSearch = false;
   @Input() placeHolder: string | TemplateRef<SnSafeAny> | null = null;
@@ -110,17 +110,17 @@ export class NzSelectTopControlComponent implements OnChanges, OnInit, OnDestroy
   @Input() maxTagCount: number = Infinity;
   @Input() autofocus = false;
   @Input() disabled = false;
-  @Input() mode: NzSelectModeType = 'default';
-  @Input() customTemplate: TemplateRef<{ $implicit: NzSelectItemInterface }> | null = null;
+  @Input() mode: SnSelectModeType = 'default';
+  @Input() customTemplate: TemplateRef<{ $implicit: SnSelectItemInterface }> | null = null;
   @Input() maxTagPlaceholder: TemplateRef<{ $implicit: SnSafeAny[] }> | null = null;
   @Input() removeIcon: TemplateRef<SnSafeAny> | null = null;
-  @Input() listOfTopItem: NzSelectItemInterface[] = [];
+  @Input() listOfTopItem: SnSelectItemInterface[] = [];
   @Input() tokenSeparators: string[] = [];
   @Output() readonly tokenize = new EventEmitter<string[]>();
   @Output() readonly inputValueChange = new EventEmitter<string>();
-  @Output() readonly deleteItem = new EventEmitter<NzSelectItemInterface>();
-  @ViewChild(NzSelectSearchComponent) nzSelectSearchComponent!: NzSelectSearchComponent;
-  listOfSlicedItem: NzSelectTopControlItemType[] = [];
+  @Output() readonly deleteItem = new EventEmitter<SnSelectItemInterface>();
+  @ViewChild(SnSelectSearchComponent) nzSelectSearchComponent!: SnSelectSearchComponent;
+  listOfSlicedItem: SnSelectTopControlItemType[] = [];
   isShowPlaceholder = true;
   isShowSingleLabel = false;
   isComposing = false;
@@ -193,11 +193,11 @@ export class NzSelectTopControlComponent implements OnChanges, OnInit, OnDestroy
     }
   }
 
-  trackValue(_index: number, option: NzSelectTopControlItemType): SnSafeAny {
+  trackValue(_index: number, option: SnSelectTopControlItemType): SnSafeAny {
     return option.nzValue;
   }
 
-  onDeleteItem(item: NzSelectItemInterface): void {
+  onDeleteItem(item: SnSelectItemInterface): void {
     if (!this.disabled && !item.nzDisabled) {
       this.deleteItem.next(item);
     }
@@ -215,7 +215,7 @@ export class NzSelectTopControlComponent implements OnChanges, OnInit, OnDestroy
       this.updateTemplateVariable();
     }
     if (listOfTopItem || maxTagCount || customTemplate || maxTagPlaceholder) {
-      const listOfSlicedItem: NzSelectTopControlItemType[] = this.listOfTopItem.slice(0, this.maxTagCount).map(o => ({
+      const listOfSlicedItem: SnSelectTopControlItemType[] = this.listOfTopItem.slice(0, this.maxTagCount).map(o => ({
         nzLabel: o.nzLabel,
         nzValue: o.nzValue,
         nzDisabled: o.nzDisabled,

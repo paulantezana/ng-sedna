@@ -36,7 +36,7 @@ import { NzIconModule } from 'ngx-sedna/icon';
   imports: [NzIconModule, NgIf, SnOutletModule],
   standalone: true
 })
-export class NzSelectArrowComponent {
+export class SnSelectArrowComponent {
   @Input() listOfValue: SnSafeAny[] = [];
   @Input() loading = false;
   @Input() search = false;

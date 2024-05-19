@@ -13,7 +13,7 @@ import { SnSafeAny } from 'ngx-sedna/core/types';
   template: ` <ng-content></ng-content> `,
   standalone: true
 })
-export class NzOptionGroupComponent implements OnChanges {
+export class SnOptionGroupComponent implements OnChanges {
   @Input() nzLabel: string | number | TemplateRef<SnSafeAny> | null = null;
   changes = new Subject<void>();
   ngOnChanges(): void {

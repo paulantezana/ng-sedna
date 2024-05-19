@@ -36,7 +36,7 @@ import { NzIconModule } from 'ngx-sedna/icon';
   imports: [SnOutletModule, NgIf, NzIconModule],
   standalone: true
 })
-export class NzSelectItemComponent {
+export class SnSelectItemComponent {
   @Input() disabled = false;
   @Input() label: string | number | null | undefined = null;
   @Input() deletable = false;

@@ -4,8 +4,8 @@ import { TemplateRef } from '@angular/core';
 
 import { SnSafeAny } from 'ngx-sedna/core/types';
 
-export type NzSelectModeType = 'default' | 'multiple' | 'tags';
-export interface NzSelectItemInterface {
+export type SnSelectModeType = 'default' | 'multiple' | 'tags';
+export interface SnSelectItemInterface {
   template?: TemplateRef<SnSafeAny> | null;
   nzLabel: string | number | null;
   nzValue: SnSafeAny | null;
@@ -18,7 +18,7 @@ export interface NzSelectItemInterface {
   key?: SnSafeAny;
 }
 
-export interface NzSelectOptionInterface {
+export interface SnSelectOptionInterface {
   label: string | number | null | TemplateRef<SnSafeAny>;
   value: SnSafeAny | null;
   title?: string | number | null;
@@ -28,11 +28,11 @@ export interface NzSelectOptionInterface {
   key?: string | number;
 }
 
-export type NzSelectTopControlItemType = Partial<NzSelectItemInterface> & {
+export type SnSelectTopControlItemType = Partial<SnSelectItemInterface> & {
   contentTemplateOutlet: TemplateRef<SnSafeAny> | null;
   contentTemplateOutletContext: SnSafeAny;
 };
 
-export type NzFilterOptionType = (input: string, option: NzSelectItemInterface) => boolean;
+export type SnFilterOptionType = (input: string, option: SnSelectItemInterface) => boolean;
 
-export type NzSelectPlacementType = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
+export type SnSelectPlacementType = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
