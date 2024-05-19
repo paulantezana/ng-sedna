@@ -21,7 +21,7 @@ import { InputBoolean } from 'ngx-sedna/core/util';
 import { SnOptionGroupComponent } from './option-group.component';
 
 @Component({
-  selector: 'nz-option',
+  selector: 'sn-option',
   exportAs: 'nzOption',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,

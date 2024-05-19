@@ -158,7 +158,7 @@ export type NzSelectSizeType = 'large' | 'default' | 'small';
       (detach)="setOpenState(false)"
       (positionChange)="onPositionChange($event)"
     >
-      <nz-option-container
+      <sn-option-container
         [ngStyle]="nzDropdownStyle"
         [itemSize]="nzOptionHeightPx"
         [maxItemLength]="nzOptionOverflowSize"
@@ -182,7 +182,7 @@ export type NzSelectSizeType = 'large' | 'default' | 'small';
         (keydown)="onKeyDown($event)"
         (itemClick)="onItemClick($event)"
         (scrollToBottom)="nzScrollToBottom.emit()"
-      ></nz-option-container>
+      ></sn-option-container>
     </ng-template>
   `,
   host: {

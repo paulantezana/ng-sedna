@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
       nzPlaceHolder="Please select"
       [(ngModel)]="listOfSelectedValue"
     >
-      <nz-option *ngFor="let item of listOfOption" [nzLabel]="item" [nzValue]="item"></nz-option>
+      <sn-option *ngFor="let item of listOfOption" [nzLabel]="item" [nzValue]="item"></sn-option>
     </sn-select>
     <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
   `,

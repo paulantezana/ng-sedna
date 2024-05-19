@@ -20,8 +20,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
             nzPlaceHolder="Select a option and change input text above"
             (ngModelChange)="genderChange($event)"
           >
-            <nz-option nzValue="male" nzLabel="male"></nz-option>
-            <nz-option nzValue="female" nzLabel="female"></nz-option>
+            <sn-option nzValue="male" nzLabel="male"></sn-option>
+            <sn-option nzValue="female" nzLabel="female"></sn-option>
           </sn-select>
         </nz-form-control>
       </nz-form-item>

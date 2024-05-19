@@ -14,9 +14,9 @@ import { SnSelectPlacementType } from 'ngx-sedna/select';
     <br />
     <br />
     <sn-select [(ngModel)]="selectedValue" [nzDropdownMatchSelectWidth]="false" [nzPlacement]="placement">
-      <nz-option nzValue="HangZhou" nzLabel="HangZhou #310000"></nz-option>
-      <nz-option nzValue="NingBo" nzLabel="NingBo #315000"></nz-option>
-      <nz-option nzValue="WenZhou" nzLabel="WenZhou #325000"></nz-option>
+      <sn-option nzValue="HangZhou" nzLabel="HangZhou #310000"></sn-option>
+      <sn-option nzValue="NingBo" nzLabel="NingBo #315000"></sn-option>
+      <sn-option nzValue="WenZhou" nzLabel="WenZhou #325000"></sn-option>
     </sn-select>
   `,
   styles: [

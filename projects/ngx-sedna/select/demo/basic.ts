@@ -4,18 +4,18 @@ import { Component } from '@angular/core';
   selector: 'nz-demo-select-basic',
   template: `
     <sn-select ngModel="lucy">
-      <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-      <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
-      <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
+      <sn-option nzValue="jack" nzLabel="Jack"></sn-option>
+      <sn-option nzValue="lucy" nzLabel="Lucy"></sn-option>
+      <sn-option nzValue="disabled" nzLabel="Disabled" nzDisabled></sn-option>
     </sn-select>
     <sn-select ngModel="lucy" nzDisabled>
-      <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+      <sn-option nzValue="lucy" nzLabel="Lucy"></sn-option>
     </sn-select>
     <sn-select ngModel="lucy" nzLoading>
-      <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+      <sn-option nzValue="lucy" nzLabel="Lucy"></sn-option>
     </sn-select>
     <sn-select ngModel="lucy" nzAllowClear nzPlaceHolder="Choose">
-      <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+      <sn-option nzValue="lucy" nzLabel="Lucy"></sn-option>
     </sn-select>
   `,
   styles: [

@@ -13,22 +13,22 @@ import { NzSelectSizeType } from 'ngx-sedna/select';
     <br />
     <br />
     <sn-select [(ngModel)]="singleValue" [nzSize]="size">
-      <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+      <sn-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></sn-option>
     </sn-select>
     <br />
     <br />
     <sn-select [(ngModel)]="singleValue" [nzSize]="size" nzShowSearch>
-      <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+      <sn-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></sn-option>
     </sn-select>
     <br />
     <br />
     <sn-select [(ngModel)]="multipleValue" [nzSize]="size" nzMode="multiple" nzPlaceHolder="Please select">
-      <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+      <sn-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></sn-option>
     </sn-select>
     <br />
     <br />
     <sn-select [(ngModel)]="tagValue" [nzSize]="size" nzMode="tags" nzPlaceHolder="Please select">
-      <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+      <sn-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></sn-option>
     </sn-select>
   `,
   styles: [

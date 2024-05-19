@@ -4,9 +4,9 @@ import { Component } from '@angular/core';
   selector: 'nz-demo-select-search',
   template: `
     <sn-select nzShowSearch nzAllowClear nzPlaceHolder="Select a person" [(ngModel)]="selectedValue">
-      <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
-      <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
-      <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
+      <sn-option nzLabel="Jack" nzValue="jack"></sn-option>
+      <sn-option nzLabel="Lucy" nzValue="lucy"></sn-option>
+      <sn-option nzLabel="Tom" nzValue="tom"></sn-option>
     </sn-select>
   `,
   styles: [

@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 import { SnSafeAny } from 'ngx-sedna/core/types';
 
 @Component({
-  selector: 'nz-option-group',
+  selector: 'sn-option-group',
   exportAs: 'nzOptionGroup',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,

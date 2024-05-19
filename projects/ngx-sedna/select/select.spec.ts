@@ -98,7 +98,7 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      const listOfContainerItem = document.querySelectorAll('nz-option-item');
+      const listOfContainerItem = document.querySelectorAll('sn-option-item');
       dispatchMouseEvent(listOfContainerItem[1], 'click');
       fixture.detectChanges();
       flush();
@@ -198,13 +198,13 @@ describe('select', () => {
       flush();
       fixture.detectChanges();
       expect(component.searchValueChange).toHaveBeenCalledWith('test');
-      expect(document.querySelectorAll('nz-option-item').length).toBe(2);
+      expect(document.querySelectorAll('sn-option-item').length).toBe(2);
       inputElement.value = '02';
       dispatchFakeEvent(inputElement, 'input');
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(document.querySelectorAll('nz-option-item').length).toBe(1);
+      expect(document.querySelectorAll('sn-option-item').length).toBe(1);
     }));
     it('should nzFilterOption works', fakeAsync(() => {
       component.listOfOption = [
@@ -222,7 +222,7 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(document.querySelectorAll('nz-option-item').length).toBe(3);
+      expect(document.querySelectorAll('sn-option-item').length).toBe(3);
     }));
     it('should compareWith works', fakeAsync(() => {
       component.listOfOption = [{ nzValue: { value: 'test_value' }, nzLabel: 'test_label' }];
@@ -265,7 +265,7 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(document.querySelectorAll('nz-option-item').length).toBe(3);
+      expect(document.querySelectorAll('sn-option-item').length).toBe(3);
     }));
     it('should nzDisabled works', fakeAsync(() => {
       component.nzDisabled = true;
@@ -285,10 +285,10 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      console.log(document.querySelectorAll('nz-option-item'));
-      expect((document.querySelectorAll('nz-option-item')[0] as HTMLElement)?.title).toBe('1');
-      expect((document.querySelectorAll('nz-option-item')[1] as HTMLElement)?.title).toBe('-');
-      expect((document.querySelectorAll('nz-option-item')[2] as HTMLElement)?.title).toBeFalsy();
+      console.log(document.querySelectorAll('sn-option-item'));
+      expect((document.querySelectorAll('sn-option-item')[0] as HTMLElement)?.title).toBe('1');
+      expect((document.querySelectorAll('sn-option-item')[1] as HTMLElement)?.title).toBe('-');
+      expect((document.querySelectorAll('sn-option-item')[2] as HTMLElement)?.title).toBeFalsy();
     }));
 
     it('should select option by enter', fakeAsync(() => {
@@ -383,10 +383,10 @@ describe('select', () => {
       const inputElement = selectElement.querySelector('input')!;
       dispatchKeyboardEvent(inputElement, 'keydown', UP_ARROW, inputElement);
       flushChanges();
-      expect(document.querySelectorAll('nz-option-item')[2]!.classList).toContain('ant-select-item-option-active');
+      expect(document.querySelectorAll('sn-option-item')[2]!.classList).toContain('ant-select-item-option-active');
       dispatchKeyboardEvent(inputElement, 'keydown', DOWN_ARROW, inputElement);
       flushChanges();
-      expect(document.querySelectorAll('nz-option-item')[0]!.classList).toContain('ant-select-item-option-active');
+      expect(document.querySelectorAll('sn-option-item')[0]!.classList).toContain('ant-select-item-option-active');
       dispatchKeyboardEvent(inputElement, 'keydown', DOWN_ARROW, inputElement);
       flushChanges();
       dispatchKeyboardEvent(inputElement, 'keydown', ENTER, inputElement);
@@ -435,7 +435,7 @@ describe('select', () => {
       ];
       component.nzOpen = true;
       flushChanges();
-      const targetItem = document.querySelectorAll('nz-option-item')[2]!;
+      const targetItem = document.querySelectorAll('sn-option-item')[2]!;
       expect(targetItem.classList).not.toContain('ant-select-item-option-active');
       dispatchFakeEvent(targetItem, 'mouseenter');
       flushChanges();
@@ -448,8 +448,8 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(document.querySelectorAll('nz-option-item')!.length).toBe(1);
-      expect(document.querySelectorAll('nz-option-item-group')!.length).toBe(1);
+      expect(document.querySelectorAll('sn-option-item')!.length).toBe(1);
+      expect(document.querySelectorAll('sn-option-item-group')!.length).toBe(1);
       component.listOfGroup = [
         {
           nzLabel: 'group-1',
@@ -466,15 +466,15 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(document.querySelectorAll('nz-option-item')!.length).toBe(3);
-      expect(document.querySelectorAll('nz-option-item-group')!.length).toBe(2);
-      expect(document.querySelectorAll('nz-option-item-group')[0]!.textContent).toBe('group-1');
-      expect(document.querySelectorAll('nz-option-item')[0].textContent).toBe('label_01');
+      expect(document.querySelectorAll('sn-option-item')!.length).toBe(3);
+      expect(document.querySelectorAll('sn-option-item-group')!.length).toBe(2);
+      expect(document.querySelectorAll('sn-option-item-group')[0]!.textContent).toBe('group-1');
+      expect(document.querySelectorAll('sn-option-item')[0].textContent).toBe('label_01');
       component.listOfGroup[0].nzLabel = 'change-group';
       component.listOfGroup[0].children[0].nzLabel = 'change-label';
       fixture.detectChanges();
-      expect(document.querySelectorAll('nz-option-item-group')[0]!.textContent).toBe('change-group');
-      expect(document.querySelectorAll('nz-option-item')[0].textContent).toBe('change-label');
+      expect(document.querySelectorAll('sn-option-item-group')[0]!.textContent).toBe('change-group');
+      expect(document.querySelectorAll('sn-option-item')[0].textContent).toBe('change-label');
     }));
 
     it('should group item sort be right', fakeAsync(() => {
@@ -499,7 +499,7 @@ describe('select', () => {
       flush();
       fixture.detectChanges();
       expect(
-        document.querySelectorAll('nz-option-item')[0].parentElement!.querySelector('nz-option-item')!
+        document.querySelectorAll('sn-option-item')[0].parentElement!.querySelector('sn-option-item')!
           .nextElementSibling!.textContent
       ).toBe('label_02');
     }));
@@ -520,20 +520,20 @@ describe('select', () => {
       component.nzOpen = true;
       component.value = 0;
       flushChanges();
-      expect(document.querySelectorAll('nz-option-item.ant-select-item-option-selected').length).toBe(1);
-      expect(document.querySelectorAll('nz-option-item.ant-select-item-option-selected')[0].textContent).toBe(
+      expect(document.querySelectorAll('sn-option-item.ant-select-item-option-selected').length).toBe(1);
+      expect(document.querySelectorAll('sn-option-item.ant-select-item-option-selected')[0].textContent).toBe(
         'Falsy value'
       );
       component.value = 'Truthy value';
       flushChanges();
-      expect(document.querySelectorAll('nz-option-item.ant-select-item-option-selected').length).toBe(1);
-      expect(document.querySelectorAll('nz-option-item.ant-select-item-option-selected')[0].textContent).toBe(
+      expect(document.querySelectorAll('sn-option-item.ant-select-item-option-selected').length).toBe(1);
+      expect(document.querySelectorAll('sn-option-item.ant-select-item-option-selected')[0].textContent).toBe(
         'Truthy value'
       );
       ['disabled', undefined, null].forEach(value => {
         component.value = value;
         flushChanges();
-        expect(document.querySelectorAll('nz-option-item.ant-select-item-option-selected').length).toBe(0);
+        expect(document.querySelectorAll('sn-option-item.ant-select-item-option-selected').length).toBe(0);
       });
     }));
     it('should select item on TAB when nzSelectOnTab is true', fakeAsync(() => {
@@ -634,7 +634,7 @@ describe('select', () => {
       ];
       component.value = ['test_01'];
       flushRefresh();
-      const listOfContainerItem = document.querySelectorAll('nz-option-item');
+      const listOfContainerItem = document.querySelectorAll('sn-option-item');
       dispatchMouseEvent(listOfContainerItem[1], 'click');
       flushRefresh();
       expect(component.valueChange).toHaveBeenCalledTimes(1);
@@ -740,7 +740,7 @@ describe('select', () => {
       component.value = [];
       component.nzMaxMultipleCount = 1;
       flushRefresh();
-      const listOfContainerItem = document.querySelectorAll('nz-option-item');
+      const listOfContainerItem = document.querySelectorAll('sn-option-item');
       dispatchMouseEvent(listOfContainerItem[0], 'click');
       flushRefresh();
       expect(component.value.length).toBe(1);
@@ -761,7 +761,7 @@ describe('select', () => {
         { nzValue: 'test_02', nzLabel: 'test_02' }
       ];
       flushRefresh();
-      const listOfContainerItem = document.querySelectorAll('nz-option-item');
+      const listOfContainerItem = document.querySelectorAll('sn-option-item');
       const inputElement = selectElement.querySelector('input')!;
       inputElement.value = 'test';
       dispatchFakeEvent(inputElement, 'input');
@@ -788,7 +788,7 @@ describe('select', () => {
         { nzValue: 'test_02', nzLabel: 'test_02' }
       ];
       flushRefresh();
-      const listOfContainerItem = document.querySelectorAll('nz-option-item');
+      const listOfContainerItem = document.querySelectorAll('sn-option-item');
       const inputElement = selectElement.querySelector('input')!;
       inputElement.value = 'test';
       dispatchFakeEvent(inputElement, 'input');
@@ -899,7 +899,7 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      const listOfContainerItem = document.querySelectorAll('nz-option-item');
+      const listOfContainerItem = document.querySelectorAll('sn-option-item');
       dispatchMouseEvent(listOfContainerItem[1], 'click');
       fixture.detectChanges();
       flush();
@@ -949,13 +949,13 @@ describe('select', () => {
       flush();
       fixture.detectChanges();
       expect(component.searchValueChange).toHaveBeenCalledWith('test');
-      expect(document.querySelectorAll('nz-option-item').length).toBe(2);
+      expect(document.querySelectorAll('sn-option-item').length).toBe(2);
       inputElement.value = '02';
       dispatchFakeEvent(inputElement, 'input');
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(document.querySelectorAll('nz-option-item').length).toBe(1);
+      expect(document.querySelectorAll('sn-option-item').length).toBe(1);
     }));
     it('should nzFilterOption works', fakeAsync(() => {
       component.listOfOption = [
@@ -973,7 +973,7 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(document.querySelectorAll('nz-option-item').length).toBe(3);
+      expect(document.querySelectorAll('sn-option-item').length).toBe(3);
     }));
     it('should compareWith works', fakeAsync(() => {
       component.listOfOption = [{ value: { value: 'test_value' }, label: 'test_label' }];
@@ -1002,7 +1002,7 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(document.querySelectorAll('nz-option-item').length).toBe(3);
+      expect(document.querySelectorAll('sn-option-item').length).toBe(3);
     }));
     it('should keydown up arrow and down arrow', fakeAsync(() => {
       const flushChanges = (): void => {
@@ -1021,10 +1021,10 @@ describe('select', () => {
       const inputElement = selectElement.querySelector('input')!;
       dispatchKeyboardEvent(inputElement, 'keydown', UP_ARROW, inputElement);
       flushChanges();
-      expect(document.querySelectorAll('nz-option-item')[2]!.classList).toContain('ant-select-item-option-active');
+      expect(document.querySelectorAll('sn-option-item')[2]!.classList).toContain('ant-select-item-option-active');
       dispatchKeyboardEvent(inputElement, 'keydown', DOWN_ARROW, inputElement);
       flushChanges();
-      expect(document.querySelectorAll('nz-option-item')[0]!.classList).toContain('ant-select-item-option-active');
+      expect(document.querySelectorAll('sn-option-item')[0]!.classList).toContain('ant-select-item-option-active');
       dispatchKeyboardEvent(inputElement, 'keydown', DOWN_ARROW, inputElement);
       flushChanges();
       dispatchKeyboardEvent(inputElement, 'keydown', ENTER, inputElement);
@@ -1055,7 +1055,7 @@ describe('select', () => {
       ];
       component.nzOpen = true;
       flushChanges();
-      const targetItem = document.querySelectorAll('nz-option-item')[2]!;
+      const targetItem = document.querySelectorAll('sn-option-item')[2]!;
       expect(targetItem.classList).not.toContain('ant-select-item-option-active');
       dispatchFakeEvent(targetItem, 'mouseenter');
       flushChanges();
@@ -1068,8 +1068,8 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(document.querySelectorAll('nz-option-item')!.length).toBe(1);
-      expect(document.querySelectorAll('nz-option-item-group')!.length).toBe(1);
+      expect(document.querySelectorAll('sn-option-item')!.length).toBe(1);
+      expect(document.querySelectorAll('sn-option-item-group')!.length).toBe(1);
       component.listOfOption = [
         { value: 'value_01', label: 'label_01', groupLabel: 'group-1' },
         { value: 'value_02', label: 'label_02', groupLabel: 'group-1' },
@@ -1078,15 +1078,15 @@ describe('select', () => {
       fixture.detectChanges();
       flush();
       fixture.detectChanges();
-      expect(document.querySelectorAll('nz-option-item')!.length).toBe(3);
-      expect(document.querySelectorAll('nz-option-item-group')!.length).toBe(2);
-      expect(document.querySelectorAll('nz-option-item-group')[0]!.textContent).toBe('group-1');
-      expect(document.querySelectorAll('nz-option-item')[0].textContent).toBe('label_01');
+      expect(document.querySelectorAll('sn-option-item')!.length).toBe(3);
+      expect(document.querySelectorAll('sn-option-item-group')!.length).toBe(2);
+      expect(document.querySelectorAll('sn-option-item-group')[0]!.textContent).toBe('group-1');
+      expect(document.querySelectorAll('sn-option-item')[0].textContent).toBe('label_01');
       component.listOfOption = [{ groupLabel: 'change-group', value: 'value_01', label: 'change-label' }];
 
       fixture.detectChanges();
-      expect(document.querySelectorAll('nz-option-item-group')[0]!.textContent).toBe('change-group');
-      expect(document.querySelectorAll('nz-option-item')[0].textContent).toBe('change-label');
+      expect(document.querySelectorAll('sn-option-item-group')[0]!.textContent).toBe('change-group');
+      expect(document.querySelectorAll('sn-option-item')[0].textContent).toBe('change-label');
     }));
 
     it('should group item sort be right', fakeAsync(() => {
@@ -1101,7 +1101,7 @@ describe('select', () => {
       flush();
       fixture.detectChanges();
       expect(
-        document.querySelectorAll('nz-option-item')[0].parentElement!.querySelector('nz-option-item')!
+        document.querySelectorAll('sn-option-item')[0].parentElement!.querySelector('sn-option-item')!
           .nextElementSibling!.textContent
       ).toBe('label_02');
     }));
@@ -1156,7 +1156,7 @@ describe('select', () => {
       ];
       component.value = ['test_01'];
       flushRefresh();
-      const listOfContainerItem = document.querySelectorAll('nz-option-item');
+      const listOfContainerItem = document.querySelectorAll('sn-option-item');
       dispatchMouseEvent(listOfContainerItem[1], 'click');
       flushRefresh();
       expect(component.valueChange).toHaveBeenCalledTimes(1);
@@ -1262,7 +1262,7 @@ describe('select', () => {
       component.value = [];
       component.nzMaxMultipleCount = 1;
       flushRefresh();
-      const listOfContainerItem = document.querySelectorAll('nz-option-item');
+      const listOfContainerItem = document.querySelectorAll('sn-option-item');
       dispatchMouseEvent(listOfContainerItem[0], 'click');
       flushRefresh();
       expect(component.value.length).toBe(1);
@@ -1291,7 +1291,7 @@ describe('select', () => {
         { value: 'test_02', label: 'test_02' }
       ];
       flushRefresh();
-      const listOfContainerItem = document.querySelectorAll('nz-option-item');
+      const listOfContainerItem = document.querySelectorAll('sn-option-item');
       const inputElement = selectElement.querySelector('input')!;
       inputElement.value = 'test';
       dispatchFakeEvent(inputElement, 'input');
@@ -1318,7 +1318,7 @@ describe('select', () => {
         { value: 'test_02', label: 'test_02' }
       ];
       flushRefresh();
-      const listOfContainerItem = document.querySelectorAll('nz-option-item');
+      const listOfContainerItem = document.querySelectorAll('sn-option-item');
       const inputElement = selectElement.querySelector('input')!;
       inputElement.value = 'test';
       dispatchFakeEvent(inputElement, 'input');
@@ -1665,24 +1665,24 @@ describe('select', () => {
       (nzOnSearch)="searchValueChange($event)"
       (nzOpenChange)="openChange($event)"
     >
-      <nz-option
+      <sn-option
         *ngFor="let o of listOfOption"
         [nzValue]="o.nzValue"
         [nzLabel]="o.nzLabel"
         [nzTitle]="o.nzTitle"
         [nzDisabled]="o.nzDisabled"
         [nzHide]="o.nzHide"
-      ></nz-option>
-      <nz-option-group *ngFor="let group of listOfGroup" [nzLabel]="group.nzLabel">
-        <nz-option
+      ></sn-option>
+      <sn-option-group *ngFor="let group of listOfGroup" [nzLabel]="group.nzLabel">
+        <sn-option
           *ngFor="let o of group.children"
           [nzValue]="o.nzValue"
           [nzLabel]="o.nzLabel"
           [nzTitle]="o.nzTitle"
           [nzDisabled]="o.nzDisabled"
           [nzHide]="o.nzHide"
-        ></nz-option>
-      </nz-option-group>
+        ></sn-option>
+      </sn-option-group>
     </sn-select>
     <ng-template #dropdownTemplate><div class="dropdown-render">dropdownRender</div></ng-template>
     <ng-template #customTemplate let-selected>selected: {{ selected.nzLabel }}</ng-template>
@@ -1744,13 +1744,13 @@ export class TestSelectTemplateDefaultComponent {
       (ngModelChange)="valueChange($event)"
       (nzOpenChange)="valueChange($event)"
     >
-      <nz-option
+      <sn-option
         *ngFor="let o of listOfOption"
         [nzValue]="o.nzValue"
         [nzLabel]="o.nzLabel"
         [nzDisabled]="o.nzDisabled"
         [nzHide]="o.nzHide"
-      ></nz-option>
+      ></sn-option>
     </sn-select>
     <ng-template #iconTemplate>icon</ng-template>
   `
@@ -1781,13 +1781,13 @@ export class TestSelectTemplateMultipleComponent {
       [nzMaxTagPlaceholder]="nzMaxTagPlaceholder"
       (ngModelChange)="valueChange($event)"
     >
-      <nz-option
+      <sn-option
         *ngFor="let o of listOfOption"
         [nzValue]="o.nzValue"
         [nzLabel]="o.nzLabel"
         [nzDisabled]="o.nzDisabled"
         [nzHide]="o.nzHide"
-      ></nz-option>
+      ></sn-option>
     </sn-select>
     <ng-template #tagTemplate let-selectedList>and {{ selectedList.length }} more selected</ng-template>
   `

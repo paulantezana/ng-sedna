@@ -5,10 +5,10 @@ import { Component } from '@angular/core';
   template: `
     <div>
       <sn-select [(ngModel)]="selectedProvince" (ngModelChange)="provinceChange($event)">
-        <nz-option *ngFor="let p of provinceData" [nzValue]="p" [nzLabel]="p"></nz-option>
+        <sn-option *ngFor="let p of provinceData" [nzValue]="p" [nzLabel]="p"></sn-option>
       </sn-select>
       <sn-select [(ngModel)]="selectedCity">
-        <nz-option *ngFor="let c of cityData[selectedProvince]" [nzValue]="c" [nzLabel]="c"></nz-option>
+        <sn-option *ngFor="let c of cityData[selectedProvince]" [nzValue]="c" [nzLabel]="c"></sn-option>
       </sn-select>
     </div>
   `,

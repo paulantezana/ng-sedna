@@ -13,7 +13,7 @@ import { catchError, map } from 'rxjs/operators';
       nzAllowClear
       [nzDropdownRender]="renderTemplate"
     >
-      <nz-option *ngFor="let o of optionList" [nzValue]="o" [nzLabel]="o"></nz-option>
+      <sn-option *ngFor="let o of optionList" [nzValue]="o" [nzLabel]="o"></sn-option>
     </sn-select>
     <ng-template #renderTemplate>
       <nz-spin *ngIf="isLoading"></nz-spin>

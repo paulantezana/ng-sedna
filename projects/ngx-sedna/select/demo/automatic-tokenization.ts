@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
       [nzTokenSeparators]="[',']"
       nzPlaceHolder="automatic tokenization"
     >
-      <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+      <sn-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></sn-option>
     </sn-select>
   `,
   styles: [

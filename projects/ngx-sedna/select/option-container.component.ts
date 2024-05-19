@@ -29,7 +29,7 @@ import { SnOptionItemComponent } from './option-item.component';
 import { SnSelectItemInterface, SnSelectModeType } from './select.types';
 
 @Component({
-  selector: 'nz-option-container',
+  selector: 'sn-option-container',
   exportAs: 'nzOptionContainer',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -56,8 +56,8 @@ import { SnSelectItemInterface, SnSelectModeType } from './select.types';
           let-item
         >
           <ng-container [ngSwitch]="item.type">
-            <nz-option-item-group *ngSwitchCase="'group'" [nzLabel]="item.groupLabel"></nz-option-item-group>
-            <nz-option-item
+            <sn-option-item-group *ngSwitchCase="'group'" [nzLabel]="item.groupLabel"></sn-option-item-group>
+            <sn-option-item
               *ngSwitchCase="'item'"
               [icon]="menuItemSelectedIcon"
               [customContent]="item.nzCustomContent"
@@ -73,7 +73,7 @@ import { SnSelectItemInterface, SnSelectModeType } from './select.types';
               [value]="item.nzValue"
               (itemHover)="onItemHover($event)"
               (itemClick)="onItemClick($event)"
-            ></nz-option-item>
+            ></sn-option-item>
           </ng-container>
         </ng-template>
       </cdk-virtual-scroll-viewport>

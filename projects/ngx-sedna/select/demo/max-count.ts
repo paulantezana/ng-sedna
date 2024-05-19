@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
       [nzShowArrow]="true"
       [(ngModel)]="listOfSelectedValue"
     >
-      <nz-option *ngFor="let item of listOfOption" [nzLabel]="item" [nzValue]="item"></nz-option>
+      <sn-option *ngFor="let item of listOfOption" [nzLabel]="item" [nzValue]="item"></sn-option>
     </sn-select>
   `,
   styles: [

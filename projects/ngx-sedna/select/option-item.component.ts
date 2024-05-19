@@ -23,7 +23,7 @@ import { SnSafeAny } from 'ngx-sedna/core/types';
 import { NzIconModule } from 'ngx-sedna/icon';
 
 @Component({
-  selector: 'nz-option-item',
+  selector: 'sn-option-item',
   template: `
     <div class="ant-select-item-option-content">
       <ng-template [ngIf]="customContent" [ngIfElse]="noCustomContent">

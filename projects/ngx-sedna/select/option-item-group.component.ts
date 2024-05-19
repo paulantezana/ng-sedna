@@ -6,7 +6,7 @@ import { SnOutletModule } from 'ngx-sedna/core/outlet';
 import { SnSafeAny } from 'ngx-sedna/core/types';
 
 @Component({
-  selector: 'nz-option-item-group',
+  selector: 'sn-option-item-group',
   template: ` <ng-container *nzStringTemplateOutlet="nzLabel">{{ nzLabel }}</ng-container> `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

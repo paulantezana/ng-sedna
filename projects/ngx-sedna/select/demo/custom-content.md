@@ -11,5 +11,5 @@ title:
 
 ## en-US
 
-Custom the content of nz-option via `nzCustomContent`.
+Custom the content of sn-option via `nzCustomContent`.
 

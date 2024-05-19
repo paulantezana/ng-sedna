@@ -16,12 +16,12 @@ import { catchError, debounceTime, map, switchMap } from 'rxjs/operators';
       (nzOnSearch)="onSearch($event)"
     >
       <ng-container *ngFor="let o of optionList">
-        <nz-option *ngIf="!isLoading" [nzValue]="o" [nzLabel]="o"></nz-option>
+        <sn-option *ngIf="!isLoading" [nzValue]="o" [nzLabel]="o"></sn-option>
       </ng-container>
-      <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
+      <sn-option *ngIf="isLoading" nzDisabled nzCustomContent>
         <span nz-icon nzType="loading" class="loading-icon"></span>
         Loading Data...
-      </nz-option>
+      </sn-option>
     </sn-select>
   `,
   styles: [

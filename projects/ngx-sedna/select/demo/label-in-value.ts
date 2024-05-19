@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
       nzAllowClear
       nzPlaceHolder="Choose"
     >
-      <nz-option *ngFor="let option of optionList" [nzValue]="option" [nzLabel]="option.label"></nz-option>
+      <sn-option *ngFor="let option of optionList" [nzValue]="option" [nzLabel]="option.label"></sn-option>
     </sn-select>
   `,
   styles: [

@@ -7,9 +7,9 @@ title:
 
 ## zh-CN
 
-用 `nz-option-group` 进行选项分组。
+用 `sn-option-group` 进行选项分组。
 
 ## en-US
 
-Using `nz-option-group` to group the options.
+Using `sn-option-group` to group the options.
 
