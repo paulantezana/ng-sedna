@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { SnConfigService, NZ_CONFIG } from 'ngx-sedna/core/config';
 
 import { ComponentBed, createComponentBed } from '../core/testing/component-bed';
-import { NzI18nService } from '../i18n';
+import { SnI18nService } from '../i18n';
 import en_US from '../i18n/languages/en_US';
 import { NzListModule } from '../list';
 import { NZ_EMPTY_COMPONENT_NAME } from './config';
@@ -112,7 +112,7 @@ describe('nz-empty', () => {
       const contentEl = emptyComponent.nativeElement.lastElementChild;
       expect(contentEl.innerText.trim()).toBe('暂无数据');
 
-      testBed.bed.inject(NzI18nService).setLocale(en_US);
+      testBed.bed.inject(SnI18nService).setLocale(en_US);
       fixture.detectChanges();
       expect(contentEl.innerText.trim()).toBe('No Data');
     });

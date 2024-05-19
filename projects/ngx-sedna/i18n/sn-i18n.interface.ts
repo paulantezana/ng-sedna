@@ -2,7 +2,7 @@
 
 import { Locale } from 'date-fns';
 
-export interface NzPaginationI18nInterface {
+export interface SnPaginationI18nInterface {
   items_per_page: string;
   jump_to: string;
   jump_to_confirm: string;
@@ -17,16 +17,16 @@ export interface NzPaginationI18nInterface {
   next_3: string;
 }
 
-export interface NzGlobalI18nInterface {
+export interface SnGlobalI18nInterface {
   placeholder: string;
 }
 
-export interface NzDatePickerI18nInterface {
-  lang: NzDatePickerLangI18nInterface;
-  timePickerLocale: NzTimePickerI18nInterface;
+export interface SnDatePickerI18nInterface {
+  lang: SnDatePickerLangI18nInterface;
+  timePickerLocale: SnTimePickerI18nInterface;
 }
 
-export interface NzCalendarI18nInterface {
+export interface SnCalendarI18nInterface {
   today: string;
   now: string;
   backToToday: string;
@@ -55,7 +55,7 @@ export interface NzCalendarI18nInterface {
   nextCentury: string;
 }
 
-export interface NzDatePickerLangI18nInterface extends NzCalendarI18nInterface {
+export interface SnDatePickerLangI18nInterface extends SnCalendarI18nInterface {
   placeholder?: string;
   yearPlaceholder?: string;
   quarterPlaceholder?: string;
@@ -67,16 +67,16 @@ export interface NzDatePickerLangI18nInterface extends NzCalendarI18nInterface {
   rangeWeekPlaceholder?: string[];
 }
 
-export interface NzTimePickerI18nInterface {
+export interface SnTimePickerI18nInterface {
   placeholder?: string;
   rangePlaceholder?: string[];
 }
 
 export type ValidateMessage = string | (() => string);
 
-export type NzCascaderI18nInterface = NzGlobalI18nInterface;
+export type NzCascaderI18nInterface = SnGlobalI18nInterface;
 
-export interface NzTableI18nInterface {
+export interface SnTableI18nInterface {
   filterTitle?: string;
   filterConfirm?: string;
   filterReset?: string;
@@ -91,25 +91,25 @@ export interface NzTableI18nInterface {
   cancelSort?: string;
 }
 
-export interface NzModalI18nInterface {
+export interface SnModalI18nInterface {
   okText: string;
   cancelText: string;
   justOkText: string;
 }
 
-export interface NzPopconfirmI18nInterface {
+export interface SnPopconfirmI18nInterface {
   okText: string;
   cancelText: string;
 }
 
-export interface NzTransferI18nInterface {
+export interface SnTransferI18nInterface {
   titles?: string[];
   searchPlaceholder?: string;
   itemUnit?: string;
   itemsUnit?: string;
 }
 
-export interface NzUploadI18nInterface {
+export interface SnUploadI18nInterface {
   uploading?: string;
   removeFile?: string;
   uploadError?: string;
@@ -117,11 +117,11 @@ export interface NzUploadI18nInterface {
   downloadFile?: string;
 }
 
-export interface NzEmptyI18nInterface {
+export interface SnEmptyI18nInterface {
   description: string;
 }
 
-export interface NzTextI18nInterface {
+export interface SnTextI18nInterface {
   edit: string;
   copy: string;
   copied: string;
@@ -148,20 +148,20 @@ export interface NzQRCodeI18nInterface {
   refresh: string;
 }
 
-export interface NzI18nInterface {
+export interface SnI18nInterface {
   locale: string;
-  Pagination: NzPaginationI18nInterface;
-  DatePicker: NzDatePickerI18nInterface;
-  TimePicker: NzTimePickerI18nInterface;
-  Calendar: NzDatePickerI18nInterface;
-  global?: NzGlobalI18nInterface;
-  Table: NzTableI18nInterface;
-  Modal: NzModalI18nInterface;
-  Popconfirm: NzPopconfirmI18nInterface;
-  Transfer: NzTransferI18nInterface;
-  Upload: NzUploadI18nInterface;
-  Empty: NzEmptyI18nInterface;
-  Text?: NzTextI18nInterface;
+  Pagination: SnPaginationI18nInterface;
+  DatePicker: SnDatePickerI18nInterface;
+  TimePicker: SnTimePickerI18nInterface;
+  Calendar: SnDatePickerI18nInterface;
+  global?: SnGlobalI18nInterface;
+  Table: SnTableI18nInterface;
+  Modal: SnModalI18nInterface;
+  Popconfirm: SnPopconfirmI18nInterface;
+  Transfer: SnTransferI18nInterface;
+  Upload: SnUploadI18nInterface;
+  Empty: SnEmptyI18nInterface;
+  Text?: SnTextI18nInterface;
   CronExpression?: NzCronExpressionI18nInterface;
   QRCode?: NzQRCodeI18nInterface;
 }

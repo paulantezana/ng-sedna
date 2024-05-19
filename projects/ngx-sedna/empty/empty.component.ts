@@ -16,7 +16,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { SnOutletModule } from 'ngx-sedna/core/outlet';
-import { NzEmptyI18nInterface, NzI18nService } from 'ngx-sedna/i18n';
+import { SnEmptyI18nInterface, SnI18nService } from 'ngx-sedna/i18n';
 
 import { NzEmptyDefaultComponent } from './partial/default';
 import { NzEmptySimpleComponent } from './partial/simple';
@@ -72,12 +72,12 @@ export class NzEmptyComponent implements OnChanges, OnInit, OnDestroy {
 
   isContentString = false;
   isImageBuildIn = true;
-  locale!: NzEmptyI18nInterface;
+  locale!: SnEmptyI18nInterface;
 
   private readonly destroy$ = new Subject<void>();
 
   constructor(
-    private i18n: NzI18nService,
+    private i18n: SnI18nService,
     private cdr: ChangeDetectorRef
   ) {}
 

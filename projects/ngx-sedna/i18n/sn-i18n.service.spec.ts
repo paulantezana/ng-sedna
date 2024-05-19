@@ -9,12 +9,12 @@ import de_DE from './languages/de_DE';
 import en_US from './languages/en_US';
 import ka_GE from './languages/ka_GE';
 import zh_CN from './languages/zh_CN';
-import { NzI18nInterface } from './nz-i18n.interface';
-import { NzI18nModule } from './nz-i18n.module';
-import { NzI18nService } from './nz-i18n.service';
+import { SnI18nInterface } from './sn-i18n.interface';
+import { SnI18nModule } from './sn-i18n.module';
+import { SnI18nService } from './sn-i18n.service';
 
 describe('i18n service', () => {
-  let srv: NzI18nService;
+  let srv: SnI18nService;
   let fixture: ComponentFixture<NzI18nTestComponent>;
   let testComponent: NzI18nTestComponent;
   const DEFAULT_LAN = zh_CN;
@@ -22,7 +22,7 @@ describe('i18n service', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [NzI18nTestComponent],
-      imports: [NzI18nModule],
+      imports: [SnI18nModule],
       providers: [provideNzI18n(DEFAULT_LAN)]
     }).compileComponents();
   });
@@ -33,15 +33,15 @@ describe('i18n service', () => {
       testComponent = fixture.debugElement.componentInstance;
     });
 
-    beforeEach(inject([NzI18nService], (s: NzI18nService) => {
+    beforeEach(inject([SnI18nService], (s: SnI18nService) => {
       srv = s;
     }));
 
     it('should interface be right', () => {
-      const i18nEN: NzI18nInterface = en_US;
-      const i18nDE: NzI18nInterface = de_DE;
-      const i18nCS: NzI18nInterface = cs_CZ;
-      const i18nKA: NzI18nInterface = ka_GE;
+      const i18nEN: SnI18nInterface = en_US;
+      const i18nDE: SnI18nInterface = de_DE;
+      const i18nCS: SnI18nInterface = cs_CZ;
+      const i18nKA: SnI18nInterface = ka_GE;
       console.log(i18nEN, i18nDE, i18nCS, i18nKA);
     });
 
@@ -90,8 +90,8 @@ export class NzI18nTestComponent implements OnDestroy {
   private localeSubscription: Subscription;
 
   constructor(
-    private nzI18nService: NzI18nService,
-    @Inject(NZ_I18N) public locale: NzI18nInterface
+    private nzI18nService: SnI18nService,
+    @Inject(NZ_I18N) public locale: SnI18nInterface
   ) {
     this.localeSubscription = this.nzI18nService.localeChange.subscribe(locale => {
       this.updateLocale(locale);
@@ -102,7 +102,7 @@ export class NzI18nTestComponent implements OnDestroy {
     this.localeSubscription.unsubscribe();
   }
 
-  updateLocale(locale: NzI18nInterface): void {
+  updateLocale(locale: SnI18nInterface): void {
     this.locale = locale;
   }
 }

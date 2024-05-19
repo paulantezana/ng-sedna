@@ -6,8 +6,8 @@ import { enUS } from 'date-fns/locale';
 import { NZ_DATE_CONFIG } from './date-config';
 import { DateHelperByDatePipe, DateHelperService } from './date-helper.service';
 import en_US from './languages/en_US';
-import { NzI18nModule } from './nz-i18n.module';
-import { NZ_DATE_LOCALE, NZ_I18N } from './nz-i18n.token';
+import { SnI18nModule } from './sn-i18n.module';
+import { NZ_DATE_LOCALE, NZ_I18N } from './sn-i18n.token';
 
 describe('DateHelperService', () => {
   let injector: Injector;
@@ -16,7 +16,7 @@ describe('DateHelperService', () => {
   describe('Formatting with DatePipe', () => {
     beforeEach(() => {
       injector = TestBed.configureTestingModule({
-        imports: [NzI18nModule],
+        imports: [SnI18nModule],
         providers: [{ provide: NZ_I18N, useValue: en_US }]
       });
 
@@ -46,7 +46,7 @@ describe('DateHelperService', () => {
   describe('Formatting with Data-fns', () => {
     beforeEach(() => {
       injector = TestBed.configureTestingModule({
-        imports: [NzI18nModule],
+        imports: [SnI18nModule],
         providers: [{ provide: NZ_DATE_LOCALE, useValue: enUS }]
       });
 
@@ -72,7 +72,7 @@ describe('DateHelperService', () => {
   describe('Custom firstDayOfWeek', () => {
     beforeEach(() => {
       injector = TestBed.configureTestingModule({
-        imports: [NzI18nModule],
+        imports: [SnI18nModule],
         providers: [
           { provide: NZ_DATE_LOCALE, useValue: enUS },
           { provide: NZ_DATE_CONFIG, useValue: { firstDayOfWeek: 4 } }

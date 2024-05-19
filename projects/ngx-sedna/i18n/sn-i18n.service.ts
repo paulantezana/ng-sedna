@@ -8,23 +8,23 @@ import { IndexableObject, SnSafeAny } from 'ngx-sedna/core/types';
 
 import en_US from './languages/en_US';
 import zh_CN from './languages/zh_CN';
-import { DateLocale, NzI18nInterface } from './nz-i18n.interface';
-import { NZ_DATE_LOCALE, NZ_I18N } from './nz-i18n.token';
+import { DateLocale, SnI18nInterface } from './sn-i18n.interface';
+import { NZ_DATE_LOCALE, NZ_I18N } from './sn-i18n.token';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NzI18nService {
-  private _locale!: NzI18nInterface;
-  private _change = new BehaviorSubject<NzI18nInterface>(this._locale);
+export class SnI18nService {
+  private _locale!: SnI18nInterface;
+  private _change = new BehaviorSubject<SnI18nInterface>(this._locale);
   private dateLocale!: DateLocale;
 
-  get localeChange(): Observable<NzI18nInterface> {
+  get localeChange(): Observable<SnI18nInterface> {
     return this._change.asObservable();
   }
 
   constructor(
-    @Optional() @Inject(NZ_I18N) locale: NzI18nInterface,
+    @Optional() @Inject(NZ_I18N) locale: SnI18nInterface,
     @Optional() @Inject(NZ_DATE_LOCALE) dateLocale: DateLocale
   ) {
     this.setLocale(locale || zh_CN);
@@ -52,7 +52,7 @@ export class NzI18nService {
    *
    * @param locale The translating letters
    */
-  setLocale(locale: NzI18nInterface): void {
+  setLocale(locale: SnI18nInterface): void {
     if (this._locale && this._locale.locale === locale.locale) {
       return;
     }
@@ -60,7 +60,7 @@ export class NzI18nService {
     this._change.next(locale);
   }
 
-  getLocale(): NzI18nInterface {
+  getLocale(): SnI18nInterface {
     return this._locale;
   }
 

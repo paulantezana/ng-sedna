@@ -8,10 +8,10 @@ import { format as fnsFormat, getISOWeek as fnsGetISOWeek, parse as fnsParse } f
 import { WeekDayIndex, ɵNgTimeParser } from 'ngx-sedna/core/time';
 
 import { NZ_DATE_CONFIG, NzDateConfig, mergeDateConfig } from './date-config';
-import { NzI18nService } from './nz-i18n.service';
+import { SnI18nService } from './sn-i18n.service';
 
 export function DATE_HELPER_SERVICE_FACTORY(): DateHelperService {
-  const i18n = inject(NzI18nService);
+  const i18n = inject(SnI18nService);
   const config = inject(NZ_DATE_CONFIG, { optional: true });
   return i18n.getDateLocale() ? new DateHelperByDateFns(i18n, config) : new DateHelperByDatePipe(i18n, config);
 }
@@ -28,7 +28,7 @@ export abstract class DateHelperService {
   protected config: NzDateConfig;
 
   constructor(
-    protected i18n: NzI18nService,
+    protected i18n: SnI18nService,
     @Optional() @Inject(NZ_DATE_CONFIG) config: NzDateConfig | null
   ) {
     this.config = mergeDateConfig(config);

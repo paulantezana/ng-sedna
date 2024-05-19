@@ -2,11 +2,11 @@
 
 import { InjectionToken, makeEnvironmentProviders, EnvironmentProviders } from '@angular/core';
 
-import { DateLocale, NzI18nInterface } from './nz-i18n.interface';
+import { DateLocale, SnI18nInterface } from './sn-i18n.interface';
 
-export const NZ_I18N = new InjectionToken<NzI18nInterface>('nz-i18n');
+export const NZ_I18N = new InjectionToken<SnI18nInterface>('nz-i18n');
 
-export function provideNzI18n(config: NzI18nInterface): EnvironmentProviders {
+export function provideNzI18n(config: SnI18nInterface): EnvironmentProviders {
   return makeEnvironmentProviders([{ provide: NZ_I18N, useValue: config }]);
 }
 

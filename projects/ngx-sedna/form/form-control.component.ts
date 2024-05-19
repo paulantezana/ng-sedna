@@ -26,7 +26,7 @@ import { SnFormStatusService } from 'ngx-sedna/core/form';
 import { SnOutletModule } from 'ngx-sedna/core/outlet';
 import { BooleanInput, SnSafeAny } from 'ngx-sedna/core/types';
 import { toBoolean } from 'ngx-sedna/core/util';
-import { NzI18nService } from 'ngx-sedna/i18n';
+import { SnI18nService } from 'ngx-sedna/i18n';
 
 import { NzFormControlStatusType, NzFormItemComponent } from './form-item.component';
 import { NzFormDirective } from './form.directive';
@@ -239,7 +239,7 @@ export class NzFormControlComponent implements OnChanges, OnDestroy, OnInit, Aft
   constructor(
     @Optional() @Host() private nzFormItemComponent: NzFormItemComponent,
     private cdr: ChangeDetectorRef,
-    i18n: NzI18nService,
+    i18n: SnI18nService,
     @Optional() private nzFormDirective: NzFormDirective,
     private nzFormStatusService: SnFormStatusService
   ) {

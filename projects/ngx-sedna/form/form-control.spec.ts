@@ -16,7 +16,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ɵComponentBed as ComponentBed, ɵcreateComponentBed as createComponentBed } from 'ngx-sedna/core/testing';
 import { SnSafeAny } from 'ngx-sedna/core/types';
-import { en_US, NzI18nService } from 'ngx-sedna/i18n';
+import { en_US, SnI18nService } from 'ngx-sedna/i18n';
 
 import { NzFormControlComponent } from './form-control.component';
 import { NzFormItemComponent } from './form-item.component';
@@ -501,7 +501,7 @@ export class NzTestReactiveFormAutoTipsComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    public i18n: NzI18nService
+    public i18n: SnI18nService
   ) {
     const { required, minLength, email, mobile } = MyValidators;
     this.formGroup = this.formBuilder.group({
