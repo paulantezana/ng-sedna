@@ -63,7 +63,8 @@
               "projects/showcase/src/assets"
             ],
             "styles": [
-              "projects/showcase/src/styles.scss"
+              "projects/showcase/src/styles.scss",
+              "projects/showcase/src/styles.less"
             ],
             "scripts": []
           },

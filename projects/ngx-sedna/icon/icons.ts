@@ -1,3 +1,8 @@
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
+
 import { IconDefinition } from '@ant-design/icons-angular';
 import {
   BarsOutline,
@@ -46,7 +51,7 @@ import {
   ZoomOutOutline
 } from '@ant-design/icons-angular/icons';
 
-export const SN_ICONS_USED_BY_ZORRO: IconDefinition[] = [
+export const NZ_ICONS_USED_BY_ZORRO: IconDefinition[] = [
   BarsOutline,
   CalendarOutline,
   CaretUpFill,

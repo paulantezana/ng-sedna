@@ -1,12 +1,17 @@
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
+
 import { NgModule } from '@angular/core';
 
-import { SnEmbedEmptyComponent } from './embed-empty.component';
-import { SnEmptyComponent } from './empty.component';
-import { SnEmptyDefaultComponent } from './partial/default';
-import { SnEmptySimpleComponent } from './partial/simple';
+import { NzEmbedEmptyComponent } from './embed-empty.component';
+import { NzEmptyComponent } from './empty.component';
+import { NzEmptyDefaultComponent } from './partial/default';
+import { NzEmptySimpleComponent } from './partial/simple';
 
 @NgModule({
-  imports: [SnEmptyComponent, SnEmbedEmptyComponent, SnEmptyDefaultComponent, SnEmptySimpleComponent],
-  exports: [SnEmptyComponent, SnEmbedEmptyComponent]
+  imports: [NzEmptyComponent, NzEmbedEmptyComponent, NzEmptyDefaultComponent, NzEmptySimpleComponent],
+  exports: [NzEmptyComponent, NzEmbedEmptyComponent]
 })
-export class SnEmptyModule {}
+export class NzEmptyModule {}

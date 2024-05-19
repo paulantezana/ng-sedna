@@ -1,36 +1,41 @@
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
+
 import { TemplateRef } from '@angular/core';
 
-import { SnSafeAny } from 'ngx-sedna/core/types';
+import { NzSafeAny } from 'ngx-sedna/core/types';
 
-export type SnSelectModeType = 'default' | 'multiple' | 'tags';
-export interface SnSelectItemInterface {
-  template?: TemplateRef<SnSafeAny> | null;
-  snLabel: string | number | null;
-  snValue: SnSafeAny | null;
-  snTitle?: string | number | null;
-  snDisabled?: boolean;
-  snHide?: boolean;
-  snCustomContent?: boolean;
-  groupLabel?: string | number | TemplateRef<SnSafeAny> | null;
+export type NzSelectModeType = 'default' | 'multiple' | 'tags';
+export interface NzSelectItemInterface {
+  template?: TemplateRef<NzSafeAny> | null;
+  nzLabel: string | number | null;
+  nzValue: NzSafeAny | null;
+  nzTitle?: string | number | null;
+  nzDisabled?: boolean;
+  nzHide?: boolean;
+  nzCustomContent?: boolean;
+  groupLabel?: string | number | TemplateRef<NzSafeAny> | null;
   type?: string;
-  key?: SnSafeAny;
+  key?: NzSafeAny;
 }
 
-export interface SnSelectOptionInterface {
-  label: string | number | null | TemplateRef<SnSafeAny>;
-  value: SnSafeAny | null;
+export interface NzSelectOptionInterface {
+  label: string | number | null | TemplateRef<NzSafeAny>;
+  value: NzSafeAny | null;
   title?: string | number | null;
   disabled?: boolean;
   hide?: boolean;
-  groupLabel?: string | number | TemplateRef<SnSafeAny> | null;
+  groupLabel?: string | number | TemplateRef<NzSafeAny> | null;
   key?: string | number;
 }
 
-export type SnSelectTopControlItemType = Partial<SnSelectItemInterface> & {
-  contentTemplateOutlet: TemplateRef<SnSafeAny> | null;
-  contentTemplateOutletContext: SnSafeAny;
+export type NzSelectTopControlItemType = Partial<NzSelectItemInterface> & {
+  contentTemplateOutlet: TemplateRef<NzSafeAny> | null;
+  contentTemplateOutletContext: NzSafeAny;
 };
 
-export type SnFilterOptionType = (input: string, option: SnSelectItemInterface) => boolean;
+export type NzFilterOptionType = (input: string, option: NzSelectItemInterface) => boolean;
 
-export type SnSelectPlacementType = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
+export type NzSelectPlacementType = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';

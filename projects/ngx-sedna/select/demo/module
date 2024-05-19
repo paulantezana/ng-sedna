@@ -1,0 +1,11 @@
+import { NzSelectModule } from 'ngx-sedna/select';
+import { NzDividerModule } from 'ngx-sedna/divider';
+import { NzRadioModule } from 'ngx-sedna/radio';
+import { NzIconModule } from 'ngx-sedna/icon';
+import { NzSpinModule } from 'ngx-sedna/spin';
+import { NzInputModule } from 'ngx-sedna/input';
+import { FormsModule } from '@angular/forms';
+import { HttpClientJsonpModule } from '@angular/common/http';
+import { NzSpaceModule } from 'ngx-sedna/space';
+
+export const moduleList = [ FormsModule, NzSpinModule, HttpClientJsonpModule, NzSelectModule, NzDividerModule, NzRadioModule, NzIconModule, NzInputModule, NzSpaceModule ];

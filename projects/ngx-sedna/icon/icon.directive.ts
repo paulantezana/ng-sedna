@@ -1,3 +1,8 @@
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
+
 import {
   AfterContentChecked,
   ChangeDetectorRef,
@@ -15,51 +20,51 @@ import {
 import { from, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { IconDirective, ThemeType, error } from '@ant-design/icons-angular';
+import { IconDirective, ThemeType } from '@ant-design/icons-angular';
 
-// import { warn } from 'ngx-sedna/core/logger';
+import { warn } from 'ngx-sedna/core/logger';
 import { BooleanInput } from 'ngx-sedna/core/types';
 import { InputBoolean } from 'ngx-sedna/core/util';
 
-import { SnIconPatchService, SnIconService } from './icon.service';
+import { NzIconPatchService, NzIconService } from './icon.service';
 
 @Directive({
-  selector: '[sn-icon]',
-  exportAs: 'snIcon',
+  selector: '[nz-icon]',
+  exportAs: 'nzIcon',
   host: {
     '[class.anticon]': 'true'
   },
   standalone: true
 })
-export class SnIconDirective extends IconDirective implements OnInit, OnChanges, AfterContentChecked, OnDestroy {
-  static ngAcceptInputType_snSpin: BooleanInput;
+export class NzIconDirective extends IconDirective implements OnInit, OnChanges, AfterContentChecked, OnDestroy {
+  static ngAcceptInputType_nzSpin: BooleanInput;
 
   cacheClassName: string | null = null;
   @Input()
   @InputBoolean()
-  set snSpin(value: boolean) {
+  set nzSpin(value: boolean) {
     this.spin = value;
   }
 
-  @Input() snRotate: number = 0;
+  @Input() nzRotate: number = 0;
 
   @Input()
-  set snType(value: string) {
+  set nzType(value: string) {
     this.type = value;
   }
 
   @Input()
-  set snTheme(value: ThemeType) {
+  set nzTheme(value: ThemeType) {
     this.theme = value;
   }
 
   @Input()
-  set snTwotoneColor(value: string) {
+  set nzTwotoneColor(value: string) {
     this.twoToneColor = value;
   }
 
   @Input()
-  set snIconfont(value: string) {
+  set nzIconfont(value: string) {
     this.iconfont = value;
   }
 
@@ -75,9 +80,9 @@ export class SnIconDirective extends IconDirective implements OnInit, OnChanges,
     private readonly ngZone: NgZone,
     private readonly changeDetectorRef: ChangeDetectorRef,
     elementRef: ElementRef,
-    public readonly iconService: SnIconService,
+    public readonly iconService: NzIconService,
     public readonly renderer: Renderer2,
-    @Optional() iconPatch: SnIconPatchService
+    @Optional() iconPatch: NzIconPatchService
   ) {
     super(iconService, elementRef, renderer);
 
@@ -89,11 +94,11 @@ export class SnIconDirective extends IconDirective implements OnInit, OnChanges,
   }
 
   override ngOnChanges(changes: SimpleChanges): void {
-    const { snType, snTwotoneColor, snSpin, snTheme, snRotate } = changes;
+    const { nzType, nzTwotoneColor, nzSpin, nzTheme, nzRotate } = changes;
 
-    if (snType || snTwotoneColor || snSpin || snTheme) {
+    if (nzType || nzTwotoneColor || nzSpin || nzTheme) {
       this.changeIcon2();
-    } else if (snRotate) {
+    } else if (nzRotate) {
       this.handleRotate(this.el.firstChild as SVGElement);
     } else {
       this._setSVGElement(this.iconService.createIconfontIcon(`#${this.iconfont}`));
@@ -159,8 +164,7 @@ export class SnIconDirective extends IconDirective implements OnInit, OnChanges,
               }
             });
           },
-          // error: warn
-          error: () => console.warn(error)
+          error: warn
         });
     });
   }
@@ -174,8 +178,8 @@ export class SnIconDirective extends IconDirective implements OnInit, OnChanges,
   }
 
   private handleRotate(svg: SVGElement): void {
-    if (this.snRotate) {
-      this.renderer.setAttribute(svg, 'style', `transform: rotate(${this.snRotate}deg)`);
+    if (this.nzRotate) {
+      this.renderer.setAttribute(svg, 'style', `transform: rotate(${this.nzRotate}deg)`);
     } else {
       this.renderer.removeAttribute(svg, 'style');
     }

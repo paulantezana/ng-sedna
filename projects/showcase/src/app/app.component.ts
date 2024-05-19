@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SnFormModule } from 'ngx-sedna/form';
-import { SnInputDirective } from 'ngx-sedna/input';
-import { SnButtonDirective } from 'ngx-sedna/button';
-import { SnDataTableComponent, SnDataTableModule, SnDataTableColumn, SnDataTableQueryParams, SnThAddOnComponent } from 'ngx-sedna/data-table';
-import { CdkMenuModule } from '@angular/cdk/menu';
-import { SnFilter, SnFilterColumn, SnFilterModule } from 'ngx-sedna/filter';
+// import { FormBuilder, FormControl, FormGroup, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+// import { SnFormModule } from 'ngx-sedna/form';
+// import { SnInputDirective } from 'ngx-sedna/input';
+// import { SnButtonDirective } from 'ngx-sedna/button';
+// import { SnDataTableComponent, SnDataTableModule, SnDataTableColumn, SnDataTableQueryParams, anthAddOnComponent } from 'ngx-sedna/data-table';
+// import { CdkMenuModule } from '@angular/cdk/menu';
+// import { SnFilter, SnFilterColumn, SnFilterModule } from 'ngx-sedna/filter';
 import { ApiService } from './services/api.service';
-import { HttpClient } from '@angular/common/http';
-import { SnSelectModule } from 'ngx-sedna/select';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+// import { HttpClient } from '@angular/common/http';
+import { NzSelectModule } from 'ngx-sedna/select';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NzEmptyComponent } from 'ngx-sedna/empty';
 
 
 
@@ -19,16 +20,20 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule, RouterOutlet, SnButtonDirective, SnInputDirective, SnFormModule,
-    SnDataTableComponent,
-    SnDataTableModule,
-    SnThAddOnComponent,
-    CdkMenuModule,
-    SnFilterModule,
-    SnSelectModule,
-    // NgForm,
-    ReactiveFormsModule,
+    CommonModule,
+    RouterOutlet,
+    // SnButtonDirective, SnInputDirective,
+    // SnFormModule,
+    // SnDataTableComponent,
+    // SnDataTableModule,
+    // anthAddOnComponent,
+    // CdkMenuModule,
+    // SnFilterModule,
+    NzSelectModule,
+    // // NgForm,
+    // ReactiveFormsModule,
     // BrowserAnimationsModule,
+    NzEmptyComponent,
     // NoopAnimationsModule,
   ],
   providers: [ApiService],
@@ -36,32 +41,60 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  validateForm: FormGroup<{
-    note: FormControl<string | null>;
-    gender: FormControl<'male' | 'male' | null>;
-  }> = this.fb.group({
-    note: this.fb.control<string | null>(null, Validators.required),
-    gender: this.fb.control<'male' | 'male' | null>(null, Validators.required)
-  });
+  // validateForm: FormGroup<{
+  //   note: FormControl<string | null>;
+  //   gender: FormControl<'male' | 'male' | null>;
+  // }> = this.fb.group({
+  //   note: this.fb.control<string | null>(null, Validators.required),
+  //   gender: this.fb.control<'male' | 'male' | null>(null, Validators.required)
+  // });
 
-  submitForm(): void {
-    if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
-    } else {
-      Object.values(this.validateForm.controls).forEach(control => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
-    }
-  }
+  // submitForm(): void {
+  //   if (this.validateForm.valid) {
+  //     console.log('submit', this.validateForm.value);
+  //   } else {
+  //     Object.values(this.validateForm.controls).forEach(control => {
+  //       if (control.invalid) {
+  //         control.markAsDirty();
+  //         control.updateValueAndValidity({ onlySelf: true });
+  //       }
+  //     });
+  //   }
+  // }
 
-  genderChange(value: string): void {
-    this.validateForm.controls.note.setValue(value === 'male' ? 'Hi, man!' : 'Hi, lady!');
-  }
+  // genderChange(value: string): void {
+  //   this.validateForm.controls.note.setValue(value === 'male' ? 'Hi, man!' : 'Hi, lady!');
+  // }
 
-  constructor(private fb: FormBuilder) {}
+  // constructor(private fb: FormBuilder) {}
+
+
+
+
+
+
+
+
+
+
+
+  // listOfOption: string[] = [];
+  // listOfSelectedValue = ['a10', 'c12'];
+
+  // ngOnInit(): void {
+  //   const children: string[] = [];
+  //   for (let i = 10; i < 36; i++) {
+  //     children.push(`${i.toString(36)}${i}`);
+  //   }
+  //   this.listOfOption = children;
+  // }
+
+
+
+
+
+
+
 
   // title = 'showcase';
 

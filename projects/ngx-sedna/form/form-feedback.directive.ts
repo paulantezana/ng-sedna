@@ -10,14 +10,14 @@ export type SnFeedbackType = 'success' | 'danger' | 'warning' | 'validating' | '
   },
 })
 export class SnFormFeedbackDirective {
-  snType: SnFeedbackType = '';
+  antype: SnFeedbackType = '';
 
   @HostBinding('class')
   get ascClass () {
     return  {
-      ['success'] : this.snType === 'success' ,
-      ['danger'] : this.snType === 'danger' ,
-      ['warning'] : this.snType === 'warning' ,
+      ['success'] : this.antype === 'success' ,
+      ['danger'] : this.antype === 'danger' ,
+      ['warning'] : this.antype === 'warning' ,
     }
   }
 }

@@ -1,13 +1,13 @@
 /**
  * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/LICENSE
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
  */
 
 import { Inject, Injectable, Optional } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { warn } from 'ng-zorro-antd/core/logger';
-import { IndexableObject, NzSafeAny } from 'ng-zorro-antd/core/types';
+import { warn } from 'ngx-sedna/core/logger';
+import { IndexableObject, NzSafeAny } from 'ngx-sedna/core/types';
 
 import en_US from './languages/en_US';
 import zh_CN from './languages/zh_CN';
@@ -92,7 +92,7 @@ export class NzI18nService {
       warn(`Missing translations for "${path}" in language "${this._locale.locale}".
 You can use "NzI18nService.setLocale" as a temporary fix.
 Welcome to submit a pull request to help us optimize the translations!
-https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/CONTRIBUTING.md`);
+https://github.com/NG-ZORRO/ngx-sedna/blob/master/CONTRIBUTING.md`);
     }
 
     return result || defaultValue || this._getObjectPath(en_US, path) || {};

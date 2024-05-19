@@ -12,18 +12,18 @@ import { Subject, Subscription } from 'rxjs';
 
 import { IconDefinition, IconService } from '@ant-design/icons-angular';
 
-import { IconConfig, SnConfigService } from 'ngx-sedna/core/config';
-// import { warn } from 'ngx-sedna/core/logger';
-import { SnSafeAny } from 'ngx-sedna/core/types';
+import { IconConfig, NzConfigService } from 'ngx-sedna/core/config';
+import { warn } from 'ngx-sedna/core/logger';
+import { NzSafeAny } from 'ngx-sedna/core/types';
 
-import { SN_ICONS_USED_BY_ZORRO } from './icons';
+import { NZ_ICONS_USED_BY_ZORRO } from './icons';
 
-export interface SnIconfontOption {
+export interface NzIconfontOption {
   scriptUrl: string;
 }
 
-export const SN_ICONS = new InjectionToken('sn_icons');
-export const SN_ICON_DEFAULT_TWOTONE_COLOR = new InjectionToken('sn_icon_default_twotone_color');
+export const NZ_ICONS = new InjectionToken('nz_icons');
+export const NZ_ICON_DEFAULT_TWOTONE_COLOR = new InjectionToken('nz_icon_default_twotone_color');
 export const DEFAULT_TWOTONE_COLOR = '#1890ff';
 
 /**
@@ -32,7 +32,7 @@ export const DEFAULT_TWOTONE_COLOR = '#1890ff';
 @Injectable({
   providedIn: 'root'
 })
-export class SnIconService extends IconService implements OnDestroy {
+export class NzIconService extends IconService implements OnDestroy {
   configUpdated$ = new Subject<void>();
 
   protected override get _disableDynamicLoading(): boolean {
@@ -62,7 +62,7 @@ export class SnIconService extends IconService implements OnDestroy {
     }
   }
 
-  fetchFromIconfont(opt: SnIconfontOption): void {
+  fetchFromIconfont(opt: NzIconfontOption): void {
     const { scriptUrl } = opt;
     if (this._document && !this.iconfontCache.has(scriptUrl)) {
       const script = this._renderer.createElement('script');
@@ -80,13 +80,13 @@ export class SnIconService extends IconService implements OnDestroy {
   constructor(
     rendererFactory: RendererFactory2,
     sanitizer: DomSanitizer,
-    protected snConfigService: SnConfigService,
+    protected nzConfigService: NzConfigService,
     private platform: Platform,
     @Optional() handler: HttpBackend,
-    @Optional() @Inject(DOCUMENT) _document: SnSafeAny,
-    @Optional() @Inject(SN_ICONS) icons?: IconDefinition[]
+    @Optional() @Inject(DOCUMENT) _document: NzSafeAny,
+    @Optional() @Inject(NZ_ICONS) icons?: IconDefinition[]
   ) {
-    super(rendererFactory, handler, _document, sanitizer, [...SN_ICONS_USED_BY_ZORRO, ...(icons || [])]);
+    super(rendererFactory, handler, _document, sanitizer, [...NZ_ICONS_USED_BY_ZORRO, ...(icons || [])]);
 
     this.onConfigChange();
     this.configDefaultTwotoneColor();
@@ -94,7 +94,7 @@ export class SnIconService extends IconService implements OnDestroy {
   }
 
   private onConfigChange(): void {
-    this.subscription = this.snConfigService.getConfigChangeEventForComponent('icon').subscribe(() => {
+    this.subscription = this.nzConfigService.getConfigChangeEventForComponent('icon').subscribe(() => {
       this.configDefaultTwotoneColor();
       this.configDefaultTheme();
       this.configUpdated$.next();
@@ -103,12 +103,12 @@ export class SnIconService extends IconService implements OnDestroy {
 
   private configDefaultTheme(): void {
     const iconConfig = this.getConfig();
-    this.defaultTheme = iconConfig.snTheme || 'outline';
+    this.defaultTheme = iconConfig.nzTheme || 'outline';
   }
 
   private configDefaultTwotoneColor(): void {
     const iconConfig = this.getConfig();
-    const defaultTwotoneColor = iconConfig.snTwotoneColor || DEFAULT_TWOTONE_COLOR;
+    const defaultTwotoneColor = iconConfig.nzTwotoneColor || DEFAULT_TWOTONE_COLOR;
 
     let primaryColor = DEFAULT_TWOTONE_COLOR;
 
@@ -116,8 +116,7 @@ export class SnIconService extends IconService implements OnDestroy {
       if (defaultTwotoneColor.startsWith('#')) {
         primaryColor = defaultTwotoneColor;
       } else {
-        // warn('Twotone color must be a hex color!');
-        console.warn('Twotone color must be a hex color!');
+        warn('Twotone color must be a hex color!');
       }
     }
 
@@ -125,19 +124,19 @@ export class SnIconService extends IconService implements OnDestroy {
   }
 
   private getConfig(): IconConfig {
-    return this.snConfigService.getConfigForComponent('icon') || {};
+    return this.nzConfigService.getConfigForComponent('icon') || {};
   }
 }
 
-export const SN_ICONS_PATCH = new InjectionToken('sn_icons_patch');
+export const NZ_ICONS_PATCH = new InjectionToken('nz_icons_patch');
 
 @Injectable()
-export class SnIconPatchService {
+export class NzIconPatchService {
   patched = false;
 
   constructor(
-    @Self() @Inject(SN_ICONS_PATCH) private extraIcons: IconDefinition[],
-    private rootIconService: SnIconService
+    @Self() @Inject(NZ_ICONS_PATCH) private extraIcons: IconDefinition[],
+    private rootIconService: NzIconService
   ) {}
 
   doPatch(): void {

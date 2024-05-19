@@ -25,7 +25,7 @@ export class SnDataTableComponent {
 
   @Input() snPageSizeOptions = [10, 20, 30, 50, 100, 250, 500, 1000];
   @Input() snPageSize = 20;
-  @Input() snTotal = 0;
+  @Input() antotal = 0;
   @Input() snPageIndex = 1;
 
   @Input() snFilter: SnFilter[] = [];

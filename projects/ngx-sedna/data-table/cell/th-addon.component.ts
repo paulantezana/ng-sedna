@@ -30,7 +30,7 @@ import { filterTableParentId } from '../constants';
   imports: [CommonModule, CdkMenuModule, FontAwesomeModule],
   standalone: true
 })
-export class SnThAddOnComponent<T> {
+export class anthAddOnComponent<T> {
   private snDataTableService = inject(SnDataTableService);
 
   private destroy$ = new Subject<boolean>();

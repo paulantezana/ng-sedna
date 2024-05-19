@@ -22,14 +22,14 @@
 @include sedna.SnModal();
 @include sedna.SnPadding();
 @include sedna.SnPagination();
-@include sedna.SnTable();
+// @include sedna.antable();
 @include sedna.SnVideo();
 @include sedna.SnSwitch();
 @include sedna.SnFreeze();
-@include sedna.SnTab();
-@include sedna.SnTag();
+// @include sedna.antab();
+// @include sedna.antag();
 @include sedna.SnHidden();
-@include sedna.SnTooltip();
+// @include sedna.antooltip();
 @include sedna.SnCollapse();
 @include sedna.SnDivider();
 @include sedna.SnEmpty();

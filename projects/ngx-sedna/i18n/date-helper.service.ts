@@ -1,6 +1,6 @@
 /**
  * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/LICENSE
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
  */
 
 import { formatDate } from '@angular/common';
@@ -8,7 +8,7 @@ import { Inject, Injectable, Optional, inject } from '@angular/core';
 
 import { format as fnsFormat, getISOWeek as fnsGetISOWeek, parse as fnsParse } from 'date-fns';
 
-import { WeekDayIndex, ɵNgTimeParser } from 'ng-zorro-antd/core/time';
+import { WeekDayIndex, ɵNgTimeParser } from 'ngx-sedna/core/time';
 
 import { NZ_DATE_CONFIG, NzDateConfig, mergeDateConfig } from './date-config';
 import { NzI18nService } from './nz-i18n.service';
@@ -90,7 +90,7 @@ export class DateHelperByDateFns extends DateHelperService {
 /**
  * DateHelper that handles date formats with angular's date-pipe
  *
- * @see https://github.com/NG-ZORRO/ng-zorro-antd/issues/2406 - DatePipe may cause non-standard week bug, see:
+ * @see https://github.com/NG-ZORRO/ngx-sedna/issues/2406 - DatePipe may cause non-standard week bug, see:
  *
  */
 export class DateHelperByDatePipe extends DateHelperService {

@@ -1,3 +1,8 @@
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
+
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { NgIf } from '@angular/common';
 import {
@@ -17,13 +22,13 @@ import {
 import { COMPOSITION_BUFFER_MODE, FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'sn-select-search',
+  selector: 'nz-select-search',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <input
       #inputElement
-      [attr.id]="snId"
+      [attr.id]="nzId"
       autocomplete="off"
       class="ant-select-selection-search-input"
       [ngModel]="value"
@@ -41,8 +46,8 @@ import { COMPOSITION_BUFFER_MODE, FormsModule } from '@angular/forms';
   imports: [FormsModule, NgIf],
   standalone: true
 })
-export class SnSelectSearchComponent implements AfterViewInit, OnChanges {
-  @Input() snId: string | null = null;
+export class NzSelectSearchComponent implements AfterViewInit, OnChanges {
+  @Input() nzId: string | null = null;
   @Input() disabled = false;
   @Input() mirrorSync = false;
   @Input() showInput = true;

@@ -10,7 +10,7 @@ export type SnFormItemType = 'outlined' | 'floating' | '';
 })
 export class SnFormItemComponent {
   status: SnFormItemStatus = '';
-  @Input() snType: SnFormItemType = '';
+  @Input() antype: SnFormItemType = '';
   // hasFeedback = false;
   // withHelpClass = false;
 

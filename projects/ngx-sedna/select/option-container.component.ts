@@ -1,3 +1,8 @@
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
+
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { isPlatformBrowser, NgIf, NgSwitch, NgSwitchCase, NgTemplateOutlet } from '@angular/common';
@@ -18,24 +23,24 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { SnOverlayModule } from 'ngx-sedna/core/overlay';
-import { SnSafeAny } from 'ngx-sedna/core/types';
-import { SnEmptyModule } from 'ngx-sedna/empty';
+import { NzOverlayModule } from 'ngx-sedna/core/overlay';
+import { NzSafeAny } from 'ngx-sedna/core/types';
+import { NzEmptyModule } from 'ngx-sedna/empty';
 
-import { SnOptionItemGroupComponent } from './option-item-group.component';
-import { SnOptionItemComponent } from './option-item.component';
-import { SnSelectItemInterface, SnSelectModeType } from './select.types';
+import { NzOptionItemGroupComponent } from './option-item-group.component';
+import { NzOptionItemComponent } from './option-item.component';
+import { NzSelectItemInterface, NzSelectModeType } from './select.types';
 
 @Component({
-  selector: 'sn-option-container',
-  exportAs: 'snOptionContainer',
+  selector: 'nz-option-container',
+  exportAs: 'nzOptionContainer',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
   template: `
     <div>
       <div *ngIf="listOfContainerItem.length === 0" class="ant-select-item-empty">
-        <sn-embed-empty snComponentName="select" [specificContent]="notFoundContent!"></sn-embed-empty>
+        <nz-embed-empty nzComponentName="select" [specificContent]="notFoundContent!"></nz-embed-empty>
       </div>
       <cdk-virtual-scroll-viewport
         [class.full-width]="!matchWidth"
@@ -54,24 +59,24 @@ import { SnSelectItemInterface, SnSelectModeType } from './select.types';
           let-item
         >
           <ng-container [ngSwitch]="item.type">
-            <sn-option-item-group *ngSwitchCase="'group'" [snLabel]="item.groupLabel"></sn-option-item-group>
-            <sn-option-item
+            <nz-option-item-group *ngSwitchCase="'group'" [nzLabel]="item.groupLabel"></nz-option-item-group>
+            <nz-option-item
               *ngSwitchCase="'item'"
               [icon]="menuItemSelectedIcon"
-              [customContent]="item.snCustomContent"
+              [customContent]="item.nzCustomContent"
               [template]="item.template"
               [grouped]="!!item.groupLabel"
-              [disabled]="item.snDisabled || (isMaxLimitReached && !listOfSelectedValue.includes(item['snValue']))"
+              [disabled]="item.nzDisabled || (isMaxLimitReached && !listOfSelectedValue.includes(item['nzValue']))"
               [showState]="mode === 'tags' || mode === 'multiple'"
-              [title]="item.snTitle"
-              [label]="item.snLabel"
+              [title]="item.nzTitle"
+              [label]="item.nzLabel"
               [compareWith]="compareWith"
               [activatedValue]="activatedValue"
               [listOfSelectedValue]="listOfSelectedValue"
-              [value]="item.snValue"
+              [value]="item.nzValue"
               (itemHover)="onItemHover($event)"
               (itemClick)="onItemClick($event)"
-            ></sn-option-item>
+            ></nz-option-item>
           </ng-container>
         </ng-template>
       </cdk-virtual-scroll-viewport>
@@ -80,48 +85,48 @@ import { SnSelectItemInterface, SnSelectModeType } from './select.types';
   `,
   host: { class: 'ant-select-dropdown' },
   imports: [
-    SnEmptyModule,
+    NzEmptyModule,
     NgIf,
     NgSwitch,
-    SnOptionItemGroupComponent,
+    NzOptionItemGroupComponent,
     NgSwitchCase,
-    SnOptionItemComponent,
+    NzOptionItemComponent,
     NgTemplateOutlet,
     OverlayModule,
-    SnOverlayModule
+    NzOverlayModule
   ],
   standalone: true
 })
-export class SnOptionContainerComponent implements OnChanges, AfterViewInit {
-  @Input() notFoundContent: string | TemplateRef<SnSafeAny> | undefined = undefined;
-  @Input() menuItemSelectedIcon: TemplateRef<SnSafeAny> | null = null;
-  @Input() dropdownRender: TemplateRef<SnSafeAny> | null = null;
-  @Input() activatedValue: SnSafeAny | null = null;
-  @Input() listOfSelectedValue: SnSafeAny[] = [];
-  @Input() compareWith!: (o1: SnSafeAny, o2: SnSafeAny) => boolean;
-  @Input() mode: SnSelectModeType = 'default';
+export class NzOptionContainerComponent implements OnChanges, AfterViewInit {
+  @Input() notFoundContent: string | TemplateRef<NzSafeAny> | undefined = undefined;
+  @Input() menuItemSelectedIcon: TemplateRef<NzSafeAny> | null = null;
+  @Input() dropdownRender: TemplateRef<NzSafeAny> | null = null;
+  @Input() activatedValue: NzSafeAny | null = null;
+  @Input() listOfSelectedValue: NzSafeAny[] = [];
+  @Input() compareWith!: (o1: NzSafeAny, o2: NzSafeAny) => boolean;
+  @Input() mode: NzSelectModeType = 'default';
   @Input() matchWidth = true;
   @Input() itemSize = 32;
   @Input() maxItemLength = 8;
   @Input() isMaxLimitReached = false;
-  @Input() listOfContainerItem: SnSelectItemInterface[] = [];
-  @Output() readonly itemClick = new EventEmitter<SnSafeAny>();
+  @Input() listOfContainerItem: NzSelectItemInterface[] = [];
+  @Output() readonly itemClick = new EventEmitter<NzSafeAny>();
   @Output() readonly scrollToBottom = new EventEmitter<void>();
   @ViewChild(CdkVirtualScrollViewport, { static: true }) cdkVirtualScrollViewport!: CdkVirtualScrollViewport;
   private scrolledIndex = 0;
   private ngZone = inject(NgZone);
   private platformId = inject(PLATFORM_ID);
 
-  onItemClick(value: SnSafeAny): void {
+  onItemClick(value: NzSafeAny): void {
     this.itemClick.emit(value);
   }
 
-  onItemHover(value: SnSafeAny): void {
+  onItemHover(value: NzSafeAny): void {
     // TODO: keydown.enter won't activate this value
     this.activatedValue = value;
   }
 
-  trackValue(_index: number, option: SnSelectItemInterface): SnSafeAny {
+  trackValue(_index: number, option: NzSelectItemInterface): NzSafeAny {
     return option.key;
   }
 

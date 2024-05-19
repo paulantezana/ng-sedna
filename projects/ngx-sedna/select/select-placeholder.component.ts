@@ -1,23 +1,28 @@
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
+
 import { ChangeDetectionStrategy, Component, Input, TemplateRef, ViewEncapsulation } from '@angular/core';
 
-import { SnOutletModule } from 'ngx-sedna/core/outlet';
-import { SnSafeAny } from 'ngx-sedna/core/types';
+import { NzOutletModule } from 'ngx-sedna/core/outlet';
+import { NzSafeAny } from 'ngx-sedna/core/types';
 
 @Component({
-  selector: 'sn-select-placeholder',
+  selector: 'nz-select-placeholder',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <ng-container *snStringTemplateOutlet="placeholder">
+    <ng-container *nzStringTemplateOutlet="placeholder">
       {{ placeholder }}
     </ng-container>
   `,
   host: { class: 'ant-select-selection-placeholder' },
-  imports: [SnOutletModule],
+  imports: [NzOutletModule],
   standalone: true
 })
-export class SnSelectPlaceholderComponent {
-  @Input() placeholder: TemplateRef<SnSafeAny> | string | null = null;
+export class NzSelectPlaceholderComponent {
+  @Input() placeholder: TemplateRef<NzSafeAny> | string | null = null;
 
   constructor() {}
 }

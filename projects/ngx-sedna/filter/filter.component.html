@@ -15,7 +15,7 @@
   <div class="filter-row">
     <button sn-button [snIcon]="true" snShape="radio" class="filter-row-close" aria-label="Eliminar filtro"(click)="onRemoveFilter(eva.id, item.id)">X</button>
     <div class="SnGrid m-grid-2 l-grid-3 lg-grid-9 xl-grid-5 col-gap filter-row-content">
-      <sn-form-item snType="floating">
+      <sn-form-item antype="floating">
         <label sn-label>Negacion</label>
         <select sn-input snSize="small">
           @for (pre of prefixData; track pre) {
@@ -25,7 +25,7 @@
           }
         </select>
       </sn-form-item>
-      <sn-form-item snType="floating" class="lg-col-2">
+      <sn-form-item antype="floating" class="lg-col-2">
         <label sn-label>Columna</label>
         <select sn-input snSize="small" (change)="onSelectColumn($event, eva.id, item.id)">
           @for (col of snFilterColumns; track col) {
@@ -36,7 +36,7 @@
         </select>
       </sn-form-item>
       @if (isNumberOperator(eva.type)) {
-      <sn-form-item snType="floating" class="lg-col-2">
+      <sn-form-item antype="floating" class="lg-col-2">
         <label sn-label>Operador</label>
         <select sn-input snSize="small" (change)="onSelectOperator($event, eva.id, item.id)">
           @for (numberOperator of numericOperatorArray; track numberOperator) {
@@ -47,7 +47,7 @@
         </select>
       </sn-form-item>
       } @else {
-      <sn-form-item snType="floating" class="lg-col-2">
+      <sn-form-item antype="floating" class="lg-col-2">
         <label sn-label>Operador</label>
         <select sn-input snSize="small" (change)="onSelectOperator($event, eva.id, item.id)">
           @for (stringOperator of stringOperatorArray; track stringOperator) {
@@ -60,7 +60,7 @@
       }
       @if (eva.type === 'date') {
       @if (eva.operator === 'se encuentra entre (incluye)') {
-      <sn-form-item snType="floating" class="lg-col-2">
+      <sn-form-item antype="floating" class="lg-col-2">
         <label sn-label>Valor 1 - Valor 2</label>
         <sn-form-control>
           <input type="date" [value]="eva.value1" sn-input snSize="small" (change)="onChangeValue1($event, eva.id, item.id)">
@@ -78,7 +78,7 @@
         </sn-form-control>
       </sn-form-item>
       } @else {
-      <sn-form-item snType="floating" class="lg-col-2">
+      <sn-form-item antype="floating" class="lg-col-2">
         <label sn-label>Valor 1</label>
         <input type="date" [value]="eva.value1" sn-input snSize="small" (change)="onChangeValue1($event, eva.id, item.id)">
         <!-- <sn-form-control>
@@ -91,13 +91,13 @@
       </sn-form-item>
       }
       } @else {
-      <sn-form-item snType="floating" class="lg-col-2">
+      <sn-form-item antype="floating" class="lg-col-2">
         <label sn-label>Valor 1</label>
         <input sn-input snSize="small" [type]="eva.type" placeholder="Ingresa un valor" [value]="eva.value1"
           (input)="onChangeValue1($event, eva.id, item.id)">
       </sn-form-item>
       @if (eva.operator === 'se encuentra entre (incluye)') {
-      <sn-form-item snType="floating" class="lg-col-2">
+      <sn-form-item antype="floating" class="lg-col-2">
         <label sn-label>Valor 2</label>
         <input sn-input snSize="small" [type]="eva.type" placeholder="Ingresa un valor" [value]="eva.value2"
           (input)="onChangeValue2($event, eva.id, item.id)">

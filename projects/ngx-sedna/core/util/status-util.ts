@@ -1,8 +1,13 @@
-import { NgClassInterface, SnValidateStatus } from 'ngx-sedna/core/types';
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
+
+import { NgClassInterface, NzValidateStatus } from 'ngx-sedna/core/types';
 
 export function getStatusClassNames(
   prefixCls: string,
-  status?: SnValidateStatus,
+  status?: NzValidateStatus,
   hasFeedback?: boolean
 ): NgClassInterface {
   return {

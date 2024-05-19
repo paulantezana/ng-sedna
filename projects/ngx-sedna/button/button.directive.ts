@@ -16,7 +16,7 @@ export class SnButtonDirective {
   @Input() snLoading: boolean = false;
   @Input() snBlock: boolean = false;
   @Input() snIcon: boolean = false;
-  @Input() snType: SnButtonType = 'default';
+  @Input() antype: SnButtonType = 'default';
   @Input() snSize: SnButtonSize = 'default';
   @Input() snShape: SnButtonShape = 'default';
 
@@ -28,11 +28,11 @@ export class SnButtonDirective {
       ['icon'] : this.snIcon,
       ['sm'] : this.snSize === 'small',
       ['lg'] : this.snSize === 'large' ,
-      ['primary'] : this.snType === 'primary' ,
-      ['success'] : this.snType === 'success' ,
-      ['warning'] : this.snType === 'warning' ,
-      ['danger'] : this.snType === 'danger' ,
-      ['white'] : this.snType === 'white' ,
+      ['primary'] : this.antype === 'primary' ,
+      ['success'] : this.antype === 'success' ,
+      ['warning'] : this.antype === 'warning' ,
+      ['danger'] : this.antype === 'danger' ,
+      ['white'] : this.antype === 'white' ,
       ['radio'] : this.snShape === 'radio' ,
     }
   }

@@ -1,3 +1,9 @@
-import { SnSafeAny } from './any';
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
 
-export type FunctionProp<T> = (...args: SnSafeAny[]) => T;
+import { NzSafeAny } from './any';
+
+// Define a property that can also returned by called function
+export type FunctionProp<T> = (...args: NzSafeAny[]) => T;

@@ -1,3 +1,8 @@
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
+
 import { animate, AnimationTriggerMetadata, state, style, transition, trigger } from '@angular/animations';
 
 export const notificationMotion: AnimationTriggerMetadata = trigger('notificationMotion', [

@@ -1,3 +1,8 @@
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
+
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -11,49 +16,48 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { Subject } from 'rxjs';
-// import { takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
-import { SnOutletModule } from 'ngx-sedna/core/outlet';
-// import { SnEmptyI18nInterface, SnI18nService } from 'ngx-sedna/i18n';
+import { NzOutletModule } from 'ngx-sedna/core/outlet';
+import { NzEmptyI18nInterface, NzI18nService } from 'ngx-sedna/i18n';
 
-import { SnEmptyDefaultComponent } from './partial/default';
-import { SnEmptySimpleComponent } from './partial/simple';
+import { NzEmptyDefaultComponent } from './partial/default';
+import { NzEmptySimpleComponent } from './partial/simple';
 
-const SnEmptyDefaultImages = ['default', 'simple'] as const;
-type SnEmptyNotFoundImageType = (typeof SnEmptyDefaultImages)[number] | null | string | TemplateRef<void>;
+const NzEmptyDefaultImages = ['default', 'simple'] as const;
+type NzEmptyNotFoundImageType = (typeof NzEmptyDefaultImages)[number] | null | string | TemplateRef<void>;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  selector: 'sn-empty',
-  exportAs: 'snEmpty',
+  selector: 'nz-empty',
+  exportAs: 'nzEmpty',
   template: `
     <div class="ant-empty-image">
       @if (!isImageBuildIn) {
-        <ng-container *snStringTemplateOutlet="snNotFoundImage">
-          <img [src]="snNotFoundImage" [alt]="isContentString ? snNotFoundContent : 'empty'" />
+        <ng-container *nzStringTemplateOutlet="nzNotFoundImage">
+          <img [src]="nzNotFoundImage" [alt]="isContentString ? nzNotFoundContent : 'empty'" />
         </ng-container>
       } @else {
-        @if (snNotFoundImage === 'simple') {
-          <sn-empty-simple />
+        @if (nzNotFoundImage === 'simple') {
+          <nz-empty-simple />
         } @else {
-          <sn-empty-default />
+          <nz-empty-default />
         }
       }
     </div>
-    @if (snNotFoundContent !== null) {
+    @if (nzNotFoundContent !== null) {
       <p class="ant-empty-description">
-        <ng-container *snStringTemplateOutlet="snNotFoundContent">
-          <!-- {{ isContentString ? snNotFoundContent : locale['description'] }} -->
-          {{ isContentString ? snNotFoundContent : 'No hay datos' }}
+        <ng-container *nzStringTemplateOutlet="nzNotFoundContent">
+          {{ isContentString ? nzNotFoundContent : locale['description'] }}
         </ng-container>
       </p>
     }
 
-    @if (snNotFoundFooter) {
+    @if (nzNotFoundFooter) {
       <div class="ant-empty-footer">
-        <ng-container *snStringTemplateOutlet="snNotFoundFooter">
-          {{ snNotFoundFooter }}
+        <ng-container *nzStringTemplateOutlet="nzNotFoundFooter">
+          {{ nzNotFoundFooter }}
         </ng-container>
       </div>
     }
@@ -61,44 +65,44 @@ type SnEmptyNotFoundImageType = (typeof SnEmptyDefaultImages)[number] | null | s
   host: {
     class: 'ant-empty'
   },
-  imports: [SnOutletModule, SnEmptyDefaultComponent, SnEmptySimpleComponent],
+  imports: [NzOutletModule, NzEmptyDefaultComponent, NzEmptySimpleComponent],
   standalone: true
 })
-export class SnEmptyComponent implements OnChanges, OnInit, OnDestroy {
-  @Input() snNotFoundImage: SnEmptyNotFoundImageType = 'default';
-  @Input() snNotFoundContent?: string | TemplateRef<void> | null;
-  @Input() snNotFoundFooter?: string | TemplateRef<void>;
+export class NzEmptyComponent implements OnChanges, OnInit, OnDestroy {
+  @Input() nzNotFoundImage: NzEmptyNotFoundImageType = 'default';
+  @Input() nzNotFoundContent?: string | TemplateRef<void> | null;
+  @Input() nzNotFoundFooter?: string | TemplateRef<void>;
 
   isContentString = false;
   isImageBuildIn = true;
-  // locale!: SnEmptyI18nInterface;
+  locale!: NzEmptyI18nInterface;
 
   private readonly destroy$ = new Subject<void>();
 
   constructor(
-    // private i18n: SnI18nService,
+    private i18n: NzI18nService,
     private cdr: ChangeDetectorRef
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { snNotFoundContent, snNotFoundImage } = changes;
+    const { nzNotFoundContent, nzNotFoundImage } = changes;
 
-    if (snNotFoundContent) {
-      const content = snNotFoundContent.currentValue;
+    if (nzNotFoundContent) {
+      const content = nzNotFoundContent.currentValue;
       this.isContentString = typeof content === 'string';
     }
 
-    if (snNotFoundImage) {
-      const image = snNotFoundImage.currentValue || 'default';
-      this.isImageBuildIn = SnEmptyDefaultImages.findIndex(i => i === image) > -1;
+    if (nzNotFoundImage) {
+      const image = nzNotFoundImage.currentValue || 'default';
+      this.isImageBuildIn = NzEmptyDefaultImages.findIndex(i => i === image) > -1;
     }
   }
 
   ngOnInit(): void {
-    // this.i18n.localeChange.pipe(takeUntil(this.destroy$)).subscribe(() => {
-    //   this.locale = this.i18n.getLocaleData('Empty');
-    //   this.cdr.markForCheck();
-    // });
+    this.i18n.localeChange.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      this.locale = this.i18n.getLocaleData('Empty');
+      this.cdr.markForCheck();
+    });
   }
 
   ngOnDestroy(): void {

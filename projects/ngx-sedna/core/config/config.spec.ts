@@ -2,38 +2,38 @@ import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { SnButtonComponent, SnButtonModule } from 'ngx-sedna/button';
+import { NzButtonComponent, NzButtonModule } from 'ngx-sedna/button';
 
-import { provideSnConfig } from './config';
-import { SnConfigService } from './config.service';
+import { provideNzConfig } from './config';
+import { NzConfigService } from './config.service';
 
 @Component({
-  template: ` <button sn-button snType="primary" [snSize]="size">Global Config</button> `
+  template: ` <button nz-button nzType="primary" [nzSize]="size">Global Config</button> `
 })
-export class SnGlobalConfigTestBasicComponent {
+export class NzGlobalConfigTestBasicComponent {
   size?: 'large' | 'default' | 'small';
 
-  constructor(public snConfigService: SnConfigService) {}
+  constructor(public nzConfigService: NzConfigService) {}
 }
 
-describe('sn global config', () => {
-  let fixture: ComponentFixture<SnGlobalConfigTestBasicComponent>;
-  let testComponent: SnGlobalConfigTestBasicComponent;
+describe('nz global config', () => {
+  let fixture: ComponentFixture<NzGlobalConfigTestBasicComponent>;
+  let testComponent: NzGlobalConfigTestBasicComponent;
   let button: DebugElement;
   let buttonEl: HTMLButtonElement;
 
   describe('without config', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SnButtonModule],
-        declarations: [SnGlobalConfigTestBasicComponent]
+        imports: [NzButtonModule],
+        declarations: [NzGlobalConfigTestBasicComponent]
       }).compileComponents();
     }));
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(SnGlobalConfigTestBasicComponent);
+      fixture = TestBed.createComponent(NzGlobalConfigTestBasicComponent);
       testComponent = fixture.debugElement.componentInstance;
-      button = fixture.debugElement.query(By.directive(SnButtonComponent));
+      button = fixture.debugElement.query(By.directive(NzButtonComponent));
       buttonEl = button.nativeElement;
     });
 
@@ -50,12 +50,12 @@ describe('sn global config', () => {
   describe('with config', () => {
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [SnButtonModule],
-        declarations: [SnGlobalConfigTestBasicComponent],
+        imports: [NzButtonModule],
+        declarations: [NzGlobalConfigTestBasicComponent],
         providers: [
-          provideSnConfig({
+          provideNzConfig({
             button: {
-              snSize: 'large'
+              nzSize: 'large'
             }
           })
         ]
@@ -63,9 +63,9 @@ describe('sn global config', () => {
     }));
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(SnGlobalConfigTestBasicComponent);
+      fixture = TestBed.createComponent(NzGlobalConfigTestBasicComponent);
       testComponent = fixture.debugElement.componentInstance;
-      button = fixture.debugElement.query(By.directive(SnButtonComponent));
+      button = fixture.debugElement.query(By.directive(NzButtonComponent));
       buttonEl = button.nativeElement;
     });
 
@@ -82,7 +82,7 @@ describe('sn global config', () => {
       fixture.detectChanges();
       expect(buttonEl.classList).toContain('ant-btn-lg');
 
-      testComponent.snConfigService.set('button', { snSize: 'small' });
+      testComponent.nzConfigService.set('button', { nzSize: 'small' });
       fixture.detectChanges();
       expect(buttonEl.classList).toContain('ant-btn-sm');
 
@@ -94,7 +94,7 @@ describe('sn global config', () => {
 
     it('should dynamic theme colors config work', () => {
       fixture.detectChanges();
-      testComponent.snConfigService.set('theme', { primaryColor: '#0000FF' });
+      testComponent.nzConfigService.set('theme', { primaryColor: '#0000FF' });
       fixture.detectChanges();
       expect(getComputedStyle(document.documentElement).getPropertyValue('--ant-primary-color').trim()).toEqual(
         'rgb(0, 0, 255)'
@@ -103,8 +103,8 @@ describe('sn global config', () => {
 
     it('should dynamic theme colors config with custom prefix work', () => {
       fixture.detectChanges();
-      testComponent.snConfigService.set('prefixCls', { prefixCls: 'custom-variable' });
-      testComponent.snConfigService.set('theme', { primaryColor: '#0000FF' });
+      testComponent.nzConfigService.set('prefixCls', { prefixCls: 'custom-variable' });
+      testComponent.nzConfigService.set('theme', { primaryColor: '#0000FF' });
       fixture.detectChanges();
       expect(
         getComputedStyle(document.documentElement).getPropertyValue('--custom-variable-primary-color').trim()

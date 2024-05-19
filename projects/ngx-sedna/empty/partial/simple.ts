@@ -1,10 +1,15 @@
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
+
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  selector: 'sn-empty-simple',
-  exportAs: 'snEmptySimple',
+  selector: 'nz-empty-simple',
+  exportAs: 'nzEmptySimple',
   template: `
     <svg class="ant-empty-img-simple" width="64" height="41" viewBox="0 0 64 41" xmlns="http://www.w3.org/2000/svg">
       <g transform="translate(0 1)" fill="none" fill-rule="evenodd">
@@ -23,4 +28,4 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
   `,
   standalone: true
 })
-export class SnEmptySimpleComponent {}
+export class NzEmptySimpleComponent {}

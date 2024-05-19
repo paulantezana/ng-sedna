@@ -1,6 +1,11 @@
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
+
 import { tuple } from './type';
 
-export type SnStatus = '' | 'error' | 'warning';
+export type NzStatus = '' | 'error' | 'warning';
 
 const ValidateStatuses = tuple('success', 'warning', 'error', 'validating', '');
-export type SnValidateStatus = (typeof ValidateStatuses)[number];
+export type NzValidateStatus = (typeof ValidateStatuses)[number];

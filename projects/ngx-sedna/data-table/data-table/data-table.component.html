@@ -2,12 +2,12 @@
   <sn-data-table-header [snFilter]="snFilter" [snColumns]="snColumns"
     (snFilterChange)="onFilterChange($event)"></sn-data-table-header>
   <div class="SnDataTable-body">
-    <div class="SnDataTable-table SnTable-wrapper">
-      <table class="SnTable">
+    <div class="SnDataTable-table antable-wrapper">
+      <table class="antable">
         <ng-template [ngTemplateOutlet]="contentTemplate"></ng-template>
       </table>
     </div>
-    <sn-pagination [pageSizeOptions]="snPageSizeOptions" [length]="snTotal" [pageSize]="snPageSize"
+    <sn-pagination [pageSizeOptions]="snPageSizeOptions" [length]="antotal" [pageSize]="snPageSize"
       [pageIndex]="snPageIndex" (pageChange)="onPageChange($event)" />
   </div>
   <div class="SnDataTable-footer"></div>

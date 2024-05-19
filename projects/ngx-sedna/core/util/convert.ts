@@ -1,7 +1,12 @@
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
+
 import { coerceBooleanProperty, coerceCssPixelValue, _isNumberValue } from '@angular/cdk/coercion';
 
-// import { warn } from 'ng-zorro-antd/core/logger';
-import { FunctionProp, SnSafeAny } from 'ngx-sedna/core/types';
+import { warn } from 'ngx-sedna/core/logger';
+import { FunctionProp, NzSafeAny } from 'ngx-sedna/core/types';
 
 export function toBoolean(value: boolean | string): boolean {
   return coerceBooleanProperty(value);
@@ -17,27 +22,28 @@ export function toCssPixel(value: number | string): string {
   return coerceCssPixelValue(value);
 }
 
+// eslint-disable  no-invalid-this
+
 /**
  * Get the function-property type's value
  */
-export function valueFunctionProp<T>(prop: FunctionProp<T> | T, ...args: SnSafeAny[]): T {
+export function valueFunctionProp<T>(prop: FunctionProp<T> | T, ...args: NzSafeAny[]): T {
   return typeof prop === 'function' ? (prop as FunctionProp<T>)(...args) : prop;
 }
 
 function propDecoratorFactory<T, D>(
   name: string,
   fallback: (v: T) => D
-): (target: SnSafeAny, propName: string) => void {
+): (target: NzSafeAny, propName: string) => void {
   function propDecorator(
-    target: SnSafeAny,
+    target: NzSafeAny,
     propName: string,
-    originalDescriptor?: TypedPropertyDescriptor<SnSafeAny>
-  ): SnSafeAny {
+    originalDescriptor?: TypedPropertyDescriptor<NzSafeAny>
+  ): NzSafeAny {
     const privatePropName = `$$__zorroPropDecorator__${propName}`;
 
     if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
-      // warn(`The prop "${privatePropName}" is already exist, it will be overrided by ${name} decorator.`);
-      console.warn(`The prop "${privatePropName}" is already exist, it will be overrided by ${name} decorator.`);
+      warn(`The prop "${privatePropName}" is already exist, it will be overrided by ${name} decorator.`);
     }
 
     Object.defineProperty(target, privatePropName, {
@@ -79,14 +85,14 @@ function propDecoratorFactory<T, D>(
  * // __visible = false;
  * ```
  */
-export function InputBoolean(): SnSafeAny {
+export function InputBoolean(): NzSafeAny {
   return propDecoratorFactory('InputBoolean', toBoolean);
 }
 
-export function InputCssPixel(): SnSafeAny {
+export function InputCssPixel(): NzSafeAny {
   return propDecoratorFactory('InputCssPixel', toCssPixel);
 }
 
-export function InputNumber(fallbackValue?: SnSafeAny): SnSafeAny {
+export function InputNumber(fallbackValue?: NzSafeAny): NzSafeAny {
   return propDecoratorFactory('InputNumber', (value: string | number) => toNumber(value, fallbackValue));
 }

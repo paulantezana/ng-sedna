@@ -1,3 +1,8 @@
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
+
 import {
   Directive,
   EmbeddedViewRef,
@@ -9,40 +14,40 @@ import {
   ViewContainerRef
 } from '@angular/core';
 
-import { SnSafeAny } from 'ngx-sedna/core/types';
+import { NzSafeAny } from 'ngx-sedna/core/types';
 
 @Directive({
-  selector: '[snStringTemplateOutlet]',
-  exportAs: 'snStringTemplateOutlet',
+  selector: '[nzStringTemplateOutlet]',
+  exportAs: 'nzStringTemplateOutlet',
   standalone: true
 })
-export class SnStringTemplateOutletDirective<_T = unknown> implements OnChanges {
-  private embeddedViewRef: EmbeddedViewRef<SnSafeAny> | null = null;
-  private context = new SnStringTemplateOutletContext();
-  @Input() snStringTemplateOutletContext: SnSafeAny | null = null;
-  @Input() snStringTemplateOutlet: SnSafeAny | TemplateRef<SnSafeAny> = null;
+export class NzStringTemplateOutletDirective<_T = unknown> implements OnChanges {
+  private embeddedViewRef: EmbeddedViewRef<NzSafeAny> | null = null;
+  private context = new NzStringTemplateOutletContext();
+  @Input() nzStringTemplateOutletContext: NzSafeAny | null = null;
+  @Input() nzStringTemplateOutlet: NzSafeAny | TemplateRef<NzSafeAny> = null;
 
   static ngTemplateContextGuard<T>(
-    _dir: SnStringTemplateOutletDirective<T>,
-    _ctx: SnSafeAny
-  ): _ctx is SnStringTemplateOutletContext {
+    _dir: NzStringTemplateOutletDirective<T>,
+    _ctx: NzSafeAny
+  ): _ctx is NzStringTemplateOutletContext {
     return true;
   }
 
   private recreateView(): void {
     this.viewContainer.clear();
-    const isTemplateRef = this.snStringTemplateOutlet instanceof TemplateRef;
-    const templateRef = (isTemplateRef ? this.snStringTemplateOutlet : this.templateRef) as SnSafeAny;
+    const isTemplateRef = this.nzStringTemplateOutlet instanceof TemplateRef;
+    const templateRef = (isTemplateRef ? this.nzStringTemplateOutlet : this.templateRef) as NzSafeAny;
     this.embeddedViewRef = this.viewContainer.createEmbeddedView(
       templateRef,
-      isTemplateRef ? this.snStringTemplateOutletContext : this.context
+      isTemplateRef ? this.nzStringTemplateOutletContext : this.context
     );
   }
 
   private updateContext(): void {
-    const isTemplateRef = this.snStringTemplateOutlet instanceof TemplateRef;
-    const newCtx = isTemplateRef ? this.snStringTemplateOutletContext : this.context;
-    const oldCtx = this.embeddedViewRef!.context as SnSafeAny;
+    const isTemplateRef = this.nzStringTemplateOutlet instanceof TemplateRef;
+    const newCtx = isTemplateRef ? this.nzStringTemplateOutletContext : this.context;
+    const oldCtx = this.embeddedViewRef!.context as NzSafeAny;
     if (newCtx) {
       for (const propName of Object.keys(newCtx)) {
         oldCtx[propName] = newCtx[propName];
@@ -52,19 +57,19 @@ export class SnStringTemplateOutletDirective<_T = unknown> implements OnChanges 
 
   constructor(
     private viewContainer: ViewContainerRef,
-    private templateRef: TemplateRef<SnSafeAny>
+    private templateRef: TemplateRef<NzSafeAny>
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { snStringTemplateOutletContext, snStringTemplateOutlet } = changes;
+    const { nzStringTemplateOutletContext, nzStringTemplateOutlet } = changes;
     const shouldRecreateView = (): boolean => {
       let shouldOutletRecreate = false;
-      if (snStringTemplateOutlet) {
-        if (snStringTemplateOutlet.firstChange) {
+      if (nzStringTemplateOutlet) {
+        if (nzStringTemplateOutlet.firstChange) {
           shouldOutletRecreate = true;
         } else {
-          const isPreviousOutletTemplate = snStringTemplateOutlet.previousValue instanceof TemplateRef;
-          const isCurrentOutletTemplate = snStringTemplateOutlet.currentValue instanceof TemplateRef;
+          const isPreviousOutletTemplate = nzStringTemplateOutlet.previousValue instanceof TemplateRef;
+          const isCurrentOutletTemplate = nzStringTemplateOutlet.currentValue instanceof TemplateRef;
           shouldOutletRecreate = isPreviousOutletTemplate || isCurrentOutletTemplate;
         }
       }
@@ -83,12 +88,12 @@ export class SnStringTemplateOutletDirective<_T = unknown> implements OnChanges 
         }
       };
       const shouldContextRecreate =
-        snStringTemplateOutletContext && hasContextShapeChanged(snStringTemplateOutletContext);
+        nzStringTemplateOutletContext && hasContextShapeChanged(nzStringTemplateOutletContext);
       return shouldContextRecreate || shouldOutletRecreate;
     };
 
-    if (snStringTemplateOutlet) {
-      this.context.$implicit = snStringTemplateOutlet.currentValue;
+    if (nzStringTemplateOutlet) {
+      this.context.$implicit = nzStringTemplateOutlet.currentValue;
     }
 
     const recreateView = shouldRecreateView();
@@ -102,6 +107,6 @@ export class SnStringTemplateOutletDirective<_T = unknown> implements OnChanges 
   }
 }
 
-export class SnStringTemplateOutletContext {
-  public $implicit: SnSafeAny;
+export class NzStringTemplateOutletContext {
+  public $implicit: NzSafeAny;
 }

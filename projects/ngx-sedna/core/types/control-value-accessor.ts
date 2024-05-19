@@ -1,9 +1,9 @@
 /**
  * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/LICENSE
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
  */
 
-import { SnSafeAny } from './any';
+import { NzSafeAny } from './any';
 
-export type OnTouchedType = () => SnSafeAny;
-export type OnChangeType = (value: SnSafeAny) => void;
+export type OnTouchedType = () => NzSafeAny;
+export type OnChangeType = (value: NzSafeAny) => void;

@@ -1,3 +1,8 @@
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
+
 import { ComponentPortal, Portal, PortalModule, TemplatePortal } from '@angular/cdk/portal';
 import {
   ChangeDetectionStrategy,
@@ -17,13 +22,13 @@ import {
 import { Subject } from 'rxjs';
 import { startWith, takeUntil } from 'rxjs/operators';
 
-import { SnConfigService } from 'ngx-sedna/core/config';
-import { SnSafeAny } from 'ngx-sedna/core/types';
+import { NzConfigService } from 'ngx-sedna/core/config';
+import { NzSafeAny } from 'ngx-sedna/core/types';
 
-import { SN_EMPTY_COMPONENT_NAME, SnEmptyCustomContent, SnEmptySize } from './config';
-import { SnEmptyComponent } from './empty.component';
+import { NZ_EMPTY_COMPONENT_NAME, NzEmptyCustomContent, NzEmptySize } from './config';
+import { NzEmptyComponent } from './empty.component';
 
-function getEmptySize(componentName: string): SnEmptySize {
+function getEmptySize(componentName: string): NzEmptySize {
   switch (componentName) {
     case 'table':
     case 'list':
@@ -38,13 +43,13 @@ function getEmptySize(componentName: string): SnEmptySize {
   }
 }
 
-type SnEmptyContentType = 'component' | 'template' | 'string';
+type NzEmptyContentType = 'component' | 'template' | 'string';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  selector: 'sn-embed-empty',
-  exportAs: 'snEmbedEmpty',
+  selector: 'nz-embed-empty',
+  exportAs: 'nzEmbedEmpty',
   template: `
     @if (content) {
       @if (contentType === 'string') {
@@ -56,59 +61,49 @@ type SnEmptyContentType = 'component' | 'template' | 'string';
       @if (specificContent !== null) {
         @switch (size) {
           @case ('normal') {
-            <sn-empty class="ant-empty-normal" snNotFoundImage="simple" />
+            <nz-empty class="ant-empty-normal" nzNotFoundImage="simple" />
           }
           @case ('small') {
-            <sn-empty class="ant-empty-small" snNotFoundImage="simple" />
+            <nz-empty class="ant-empty-small" nzNotFoundImage="simple" />
           }
           @default {
-            <sn-empty />
+            <nz-empty />
           }
         }
       }
     }
   `,
-  imports: [SnEmptyComponent, PortalModule],
+  imports: [NzEmptyComponent, PortalModule],
   standalone: true
 })
-export class SnEmbedEmptyComponent implements OnChanges, OnInit, OnDestroy {
-  @Input() snComponentName?: string;
-  @Input() specificContent?: SnEmptyCustomContent;
+export class NzEmbedEmptyComponent implements OnChanges, OnInit, OnDestroy {
+  @Input() nzComponentName?: string;
+  @Input() specificContent?: NzEmptyCustomContent;
 
-  content?: SnEmptyCustomContent;
-  contentType: SnEmptyContentType = 'string';
-  contentPortal?: Portal<SnSafeAny>;
-  size: SnEmptySize = '';
+  content?: NzEmptyCustomContent;
+  contentType: NzEmptyContentType = 'string';
+  contentPortal?: Portal<NzSafeAny>;
+  size: NzEmptySize = '';
 
   private destroy$ = new Subject<void>();
 
   constructor(
-    private configService: SnConfigService,
+    private configService: NzConfigService,
     private viewContainerRef: ViewContainerRef,
     private cdr: ChangeDetectorRef,
     private injector: Injector
-  ) { }
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { snComponentName, specificContent } = changes;
-
-    if (snComponentName) {
-      this.size = getEmptySize(snComponentName.currentValue);
+    const { nzComponentName, specificContent } = changes;
+    if (nzComponentName) {
+      this.size = getEmptySize(nzComponentName.currentValue);
     }
 
     if (specificContent && !specificContent.isFirstChange()) {
       this.content = specificContent.currentValue;
       this.renderEmpty();
     }
-
-    // if (changes.snComponentName) {
-    //   this.size = getEmptySize(changes.snComponentName.currentValue);
-    // }
-
-    // if (changes.specificContent && !changes.specificContent.isFirstChange()) {
-    //   this.content = changes.specificContent.currentValue;
-    //   this.renderEmpty();
-    // }
   }
 
   ngOnInit(): void {
@@ -126,13 +121,13 @@ export class SnEmbedEmptyComponent implements OnChanges, OnInit, OnDestroy {
     if (typeof content === 'string') {
       this.contentType = 'string';
     } else if (content instanceof TemplateRef) {
-      const context = { $implicit: this.snComponentName } as SnSafeAny;
+      const context = { $implicit: this.nzComponentName } as NzSafeAny;
       this.contentType = 'template';
       this.contentPortal = new TemplatePortal(content, this.viewContainerRef, context);
     } else if (content instanceof Type) {
       const injector = Injector.create({
         parent: this.injector,
-        providers: [{ provide: SN_EMPTY_COMPONENT_NAME, useValue: this.snComponentName }]
+        providers: [{ provide: NZ_EMPTY_COMPONENT_NAME, useValue: this.nzComponentName }]
       });
       this.contentType = 'component';
       this.contentPortal = new ComponentPortal(content, this.viewContainerRef, injector);
@@ -154,7 +149,7 @@ export class SnEmbedEmptyComponent implements OnChanges, OnInit, OnDestroy {
       });
   }
 
-  private getUserDefaultEmptyContent(): Type<SnSafeAny> | TemplateRef<string> | string | undefined {
-    return (this.configService.getConfigForComponent('empty') || {}).snDefaultEmptyContent;
+  private getUserDefaultEmptyContent(): Type<NzSafeAny> | TemplateRef<string> | string | undefined {
+    return (this.configService.getConfigForComponent('empty') || {}).nzDefaultEmptyContent;
   }
 }

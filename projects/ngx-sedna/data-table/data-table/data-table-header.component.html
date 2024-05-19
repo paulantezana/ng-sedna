@@ -11,7 +11,7 @@
         <div>Ni tampoco</div>
       }
       @for (eva of item.eval; track eva) {
-        <span class="SnTag SnMr-2 SnMb-2" (click)="openModal()">
+        <span class="antag SnMr-2 SnMb-2" (click)="openModal()">
           <span class="SnMr-1">{{ eva.prefix }}</span>
           <span class="SnMr-1">{{ eva.title }}</span>
           <strong class="SnMr-1">{{ eva.operator }}</strong>
@@ -34,7 +34,7 @@
         <div class="SnModal-body">
           <sn-filter [snFilter]="snFilter" (snFilterChange)="onFilterChange($event)" [snFilterColumns]="getFilterColumn()"></sn-filter>
           <div class="SnMt-3">
-            <button sn-button snShape="radio" [snBlock]="true" snType="primary" (click)="closeApplyModal()"><fa-icon [icon]="faCheck" class="SnMr-2"></fa-icon>Aplicar</button>
+            <button sn-button snShape="radio" [snBlock]="true" antype="primary" (click)="closeApplyModal()"><fa-icon [icon]="faCheck" class="SnMr-2"></fa-icon>Aplicar</button>
           </div>
         </div>
       </div>

@@ -1,34 +1,39 @@
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
+
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { IconDefinition } from '@ant-design/icons-angular';
 
-import { SnIconDirective } from './icon.directive';
-import { SN_ICONS, SN_ICONS_PATCH, SnIconPatchService } from './icon.service';
+import { NzIconDirective } from './icon.directive';
+import { NZ_ICONS, NZ_ICONS_PATCH, NzIconPatchService } from './icon.service';
 
 @NgModule({
-  imports: [SnIconDirective],
-  exports: [SnIconDirective]
+  imports: [NzIconDirective],
+  exports: [NzIconDirective]
 })
-export class SnIconModule {
-  static forRoot(icons: IconDefinition[]): ModuleWithProviders<SnIconModule> {
+export class NzIconModule {
+  static forRoot(icons: IconDefinition[]): ModuleWithProviders<NzIconModule> {
     return {
-      ngModule: SnIconModule,
+      ngModule: NzIconModule,
       providers: [
         {
-          provide: SN_ICONS,
+          provide: NZ_ICONS,
           useValue: icons
         }
       ]
     };
   }
 
-  static forChild(icons: IconDefinition[]): ModuleWithProviders<SnIconModule> {
+  static forChild(icons: IconDefinition[]): ModuleWithProviders<NzIconModule> {
     return {
-      ngModule: SnIconModule,
+      ngModule: NzIconModule,
       providers: [
-        SnIconPatchService,
+        NzIconPatchService,
         {
-          provide: SN_ICONS_PATCH,
+          provide: NZ_ICONS_PATCH,
           useValue: icons
         }
       ]

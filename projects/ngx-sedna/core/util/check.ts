@@ -1,6 +1,11 @@
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
+
 import { TemplateRef } from '@angular/core';
 
-import { IndexableObject, SnSafeAny } from 'ngx-sedna/core/types';
+import { IndexableObject, NzSafeAny } from 'ngx-sedna/core/types';
 
 export function isNotNil<T>(value: T): value is NonNullable<T> {
   return typeof value !== 'undefined' && value !== null;
@@ -45,10 +50,10 @@ export function shallowEqual(objA?: IndexableObject, objB?: IndexableObject): bo
   return true;
 }
 
-export function isNonEmptyString(value: SnSafeAny): boolean {
+export function isNonEmptyString(value: NzSafeAny): boolean {
   return typeof value === 'string' && value !== '';
 }
 
-export function isTemplateRef(value: SnSafeAny): boolean {
+export function isTemplateRef(value: NzSafeAny): boolean {
   return value instanceof TemplateRef;
 }

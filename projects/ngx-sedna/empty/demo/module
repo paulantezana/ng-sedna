@@ -1,0 +1,25 @@
+import { NzEmptyModule } from 'ngx-sedna/empty';
+import { NzSwitchModule } from 'ngx-sedna/switch';
+import { NzCascaderModule } from 'ngx-sedna/cascader';
+import { NzDividerModule } from 'ngx-sedna/divider';
+import { NzTreeSelectModule } from 'ngx-sedna/tree-select';
+import { NzSelectModule } from 'ngx-sedna/select';
+import { NzTableModule } from 'ngx-sedna/table';
+import { NzListModule } from 'ngx-sedna/list';
+import { NzTransferModule } from 'ngx-sedna/transfer';
+import { NzButtonModule } from 'ngx-sedna/button';
+import { NzIconModule } from 'ngx-sedna/icon';
+
+export const moduleList = [
+  NzEmptyModule,
+  NzIconModule,
+  NzSwitchModule,
+  NzCascaderModule,
+  NzDividerModule,
+  NzTreeSelectModule,
+  NzSelectModule,
+  NzTableModule,
+  NzTransferModule,
+  NzListModule,
+  NzButtonModule
+];

@@ -1,11 +1,16 @@
-import { SnSafeAny } from 'ngx-sedna/core/types';
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ngx-sedna/blob/master/LICENSE
+ */
+
+import { NzSafeAny } from 'ngx-sedna/core/types';
 
 /**
  * Sync from rc-util [https://github.com/react-component/util]
  */
 import { canUseDom } from './can-use-dom';
 
-const MARK_KEY = `rc-util-key` as SnSafeAny;
+const MARK_KEY = `rc-util-key` as NzSafeAny;
 
 function getMark({ mark }: Options = {}): string {
   if (mark) {

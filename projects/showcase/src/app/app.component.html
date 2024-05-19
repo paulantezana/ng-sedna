@@ -1,4 +1,62 @@
-<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+<nz-empty></nz-empty>
+
+
+
+<nz-select nzAllowClear nzPlaceHolder="Choose" nzShowSearch>
+  <nz-option-group nzLabel="Manager">
+    <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+    <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+  </nz-option-group>
+  <nz-option-group nzLabel="Engineer">
+    <nz-option nzValue="tom" nzLabel="Tom"></nz-option>
+  </nz-option-group>
+</nz-select>
+
+
+<nz-select nzAllowClear nzPlaceHolder="Choose" nzShowSearch>
+  <nz-option-group nzLabel="Manager">
+    <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+    <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+  </nz-option-group>
+  <nz-option-group nzLabel="Engineer">
+    <nz-option nzValue="tom" nzLabel="Tom"></nz-option>
+  </nz-option-group>
+</nz-select>
+
+<!-- <nz-select>
+  <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+  <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+  <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
+</nz-select>
+<nz-select nzDisabled>
+  <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+</nz-select>
+<nz-select nzLoading>
+  <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+</nz-select>
+<nz-select nzAllowClear nzPlaceHolder="Choose">
+  <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+</nz-select> -->
+
+<!--
+<sn-select>
+  <sn-option snValue="lucy" snLabel="Lucy"></sn-option>
+</sn-select> -->
+
+
+<!-- <sn-select
+  [snMaxMultipleCount]="3"
+  snMode="multiple"
+  snPlaceHolder="Please select"
+  snAllowClear
+  [snShowArrow]="true"
+
+  [(ngModel)]="listOfSelectedValue"
+>
+  <sn-option *ngFor="let item of listOfOption" [snLabel]="item" [snValue]="item"></sn-option>
+</sn-select> -->
+
+<!-- <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" style="padding: 3rem;"> -->
   <!-- <nz-form-item>
     <nz-form-label [nzSpan]="5" nzRequired nzFor="note">Note</nz-form-label>
     <nz-form-control [nzSpan]="12" nzErrorTip="Please input your username!">
@@ -8,7 +66,8 @@
   <nz-form-item>
     <nz-form-label [nzSpan]="5" nzFor="gender" nzRequired>Gender</nz-form-label>
     <nz-form-control [nzSpan]="12" nzErrorTip="Please select your gender!"> -->
-      <sn-select
+
+      <!-- <sn-select
         id="gender"
         snId="gender"
         formControlName="gender"
@@ -17,7 +76,18 @@
       >
         <sn-option snValue="male" snLabel="male"></sn-option>
         <sn-option snValue="female" snLabel="female"></sn-option>
-      </sn-select>
+      </sn-select> -->
+
+      <!-- <sn-select formControlName="gender">
+        <sn-option snValue="jack" snLabel="Jack"></sn-option>
+        <sn-option snValue="lucy" snLabel="Lucy"></sn-option>
+        <sn-option snValue="disabled" snLabel="Disabled" snDisabled></sn-option>
+      </sn-select> -->
+
+
+      <!-- <sn-select *snSpaceItem snStatus="error" style="width: 100%"></sn-select>
+      <sn-select *snSpaceItem snStatus="warning" style="width: 100%"></sn-select> -->
+
     <!-- </nz-form-control>
   </nz-form-item>
   <nz-form-item>
@@ -25,13 +95,13 @@
       <button nz-button nzType="primary">Submit</button>
     </nz-form-control>
   </nz-form-item> -->
-</form>
+<!-- </form> -->
 
 <!-- horizontal -->
 <!-- <sn-filter [snFilter]="filter" [snFilterColumns]="columns"></sn-filter>
 <div class="SnDivider"></div>
 <div style="padding: 1rem;">
-  <sn-data-table (snQueryParams)="onQueryParamsChange($event)" [snPageIndex]="pageIndex" [snPageSize]="pageSize" [snTotal]="total" [snColumns]="dataColumns">
+  <sn-data-table (snQueryParams)="onQueryParamsChange($event)" [snPageIndex]="pageIndex" [snPageSize]="pageSize" [antotal]="total" [snColumns]="dataColumns">
     <thead>
       <tr>
         @for (item of dataColumns; track $index) {
@@ -60,7 +130,7 @@
 </div> -->
 
 
-<!-- <button sn-button [snLoading]="true" snType="warning">dddddd</button>
+<!-- <button sn-button [snLoading]="true" antype="warning">dddddd</button>
 <input type="text" sn-input>
 
 <sn-form-control>
@@ -76,7 +146,7 @@
         <label for="password" sn-label>Password</label>
         <input type="password" sn-input id="password">
     </sn-form-item>
-    <button sn-button type="button" [snBlock]="true" snType="primary">Login</button>
+    <button sn-button type="button" [snBlock]="true" antype="primary">Login</button>
 </div>
 
 <div class="SnForm horizontal">
