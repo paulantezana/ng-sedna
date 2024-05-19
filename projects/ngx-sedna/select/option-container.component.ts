@@ -30,7 +30,7 @@ import { SnSelectItemInterface, SnSelectModeType } from './select.types';
 
 @Component({
   selector: 'sn-option-container',
-  exportAs: 'nzOptionContainer',
+  exportAs: 'snOptionContainer',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,

@@ -85,7 +85,7 @@ export type NzSelectSizeType = 'large' | 'default' | 'small';
 
 @Component({
   selector: 'sn-select',
-  exportAs: 'nzSelect',
+  exportAs: 'snSelect',
   preserveWhitespaces: false,
   providers: [
     SnDestroyService,

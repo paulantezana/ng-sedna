@@ -7,7 +7,7 @@ import { SnSafeAny } from 'ngx-sedna/core/types';
 
 @Component({
   selector: 'sn-option-group',
-  exportAs: 'nzOptionGroup',
+  exportAs: 'snOptionGroup',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: ` <ng-content></ng-content> `,

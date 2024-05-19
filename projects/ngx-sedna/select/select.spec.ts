@@ -1467,8 +1467,8 @@ describe('select', () => {
       const nzSelectSearch = fixture.debugElement.query(By.directive(SnSelectSearchComponent));
       spyOn(nzSelectSearch.componentInstance, 'focus');
 
-      const nzSelectTopControl = fixture.debugElement.query(By.directive(SnSelectTopControlComponent));
-      dispatchMouseEvent(nzSelectTopControl.nativeElement, 'click');
+      const snSelectTopControl = fixture.debugElement.query(By.directive(SnSelectTopControlComponent));
+      dispatchMouseEvent(snSelectTopControl.nativeElement, 'click');
 
       expect(appRef.tick).toHaveBeenCalledTimes(0);
       expect(nzSelectSearch.componentInstance.focus).toHaveBeenCalled();
@@ -1478,8 +1478,8 @@ describe('select', () => {
       const appRef = TestBed.inject(ApplicationRef);
       spyOn(appRef, 'tick');
 
-      const nzSelectTopControl = fixture.debugElement.query(By.directive(SnSelectTopControlComponent));
-      dispatchKeyboardEvent(nzSelectTopControl.nativeElement, 'keydown', TAB, nzSelectTopControl.nativeElement);
+      const snSelectTopControl = fixture.debugElement.query(By.directive(SnSelectTopControlComponent));
+      dispatchKeyboardEvent(snSelectTopControl.nativeElement, 'keydown', TAB, snSelectTopControl.nativeElement);
 
       expect(appRef.tick).toHaveBeenCalledTimes(0);
     });

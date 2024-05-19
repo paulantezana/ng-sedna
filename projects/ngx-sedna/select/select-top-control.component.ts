@@ -33,7 +33,7 @@ import { SnSelectItemInterface, SnSelectModeType, SnSelectTopControlItemType } f
 
 @Component({
   selector: 'sn-select-top-control',
-  exportAs: 'nzSelectTopControl',
+  exportAs: 'snSelectTopControl',
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

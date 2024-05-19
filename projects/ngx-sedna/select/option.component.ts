@@ -22,7 +22,7 @@ import { SnOptionGroupComponent } from './option-group.component';
 
 @Component({
   selector: 'sn-option',
-  exportAs: 'nzOption',
+  exportAs: 'snOption',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [SnDestroyService],
