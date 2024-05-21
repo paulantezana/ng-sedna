@@ -1,0 +1,10 @@
+@mixin placeholder($color: $input-placeholder-color) {
+  &::placeholder {
+    color: $color;
+    user-select: none;
+  }
+
+  &:placeholder-shown {
+    text-overflow: ellipsis;
+  }
+}
