@@ -29,6 +29,7 @@ type SnEmptyNotFoundImageType = (typeof SnEmptyDefaultImages)[number] | null | s
   encapsulation: ViewEncapsulation.None,
   selector: 'sn-empty',
   exportAs: 'snEmpty',
+  // styleUrls: ['./scss/index.scss'],
   template: `
     <div class="ant-empty-image">
       @if (!isImageBuildIn) {

@@ -1,0 +1,334 @@
+@use "sass:math";
+@use '../../style/themes/default.scss' as default;
+
+@forward './patch.scss';
+@forward '../../style/patch.scss';
+
+$ant-prefix: 'ant';
+
+// Definición de variables SCSS equivalentes a las de LESS
+$select-prefix-cls: '#{$ant-prefix}-select';
+$select-height-without-border: default.$input-height-base - 2 * default.$border-width-base;
+$select-dropdown-edge-child-vertical-padding: default.$dropdown-edge-child-vertical-padding;
+
+// Mixin para el selector .select-selector()
+// @mixin select-selector() {
+//   position: relative;
+//   background-color: default.$select-background;
+//   border: default.$border-width-base default.$border-style-base default.$select-border-color;
+//   border-radius: default.$control-border-radius;
+//   transition: all 0.3s default.$ease-in-out;
+
+//   input {
+//     cursor: pointer;
+//   }
+
+//   .#{$select-prefix-cls}-show-search& {
+//     cursor: text;
+
+//     input {
+//       cursor: auto;
+//     }
+//   }
+
+//   .#{$select-prefix-cls}-focused:not(.#{$select-prefix-cls}-disabled)& {
+//     @include active();
+//   }
+
+//   .#{$select-prefix-cls}-disabled& {
+//     color: default.$disabled-color;
+//     background: default.$input-disabled-bg;
+//     cursor: not-allowed;
+
+//     .#{$select-prefix-cls}-multiple& {
+//       background: default.$select-multiple-disabled-background;
+//     }
+
+//     input {
+//       cursor: not-allowed;
+//     }
+//   }
+// }
+
+// // Mixin para resetear el estilo del input de búsqueda
+// @mixin select-search-input-without-border() {
+//   .#{$select-prefix-cls}-selection-search-input {
+//     margin: 0;
+//     padding: 0;
+//     background: transparent;
+//     border: none;
+//     outline: none;
+//     appearance: none;
+
+//     &::-webkit-search-cancel-button {
+//       display: none;
+//       /* stylelint-disable-next-line property-no-vendor-prefix */
+//       -webkit-appearance: none;
+//     }
+//   }
+// }
+
+.#{$select-prefix-cls} {
+  // @include reset-component();
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+
+  &:not(&-customize-input) &-selector {
+    // @include select-selector();
+    // @include select-search-input-without-border();
+  }
+
+  &:not(&-disabled):hover &-selector {
+    // @include hover();
+  }
+
+  // ======================== Selection ========================
+  &-selection-item {
+    flex: 1;
+    overflow: hidden;
+    font-weight: normal;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    // IE11 css hack. `*::-ms-backdrop,` is a must have
+    @media all and (-ms-high-contrast: none) {
+      *::-ms-backdrop,
+      & {
+        flex: auto;
+      }
+    }
+  }
+
+  // ======================= Placeholder =======================
+  &-selection-placeholder {
+    flex: 1;
+    overflow: hidden;
+    color: default.$input-placeholder-color;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    pointer-events: none;
+
+    // IE11 css hack. `*::-ms-backdrop,` is a must have
+    @media all and (-ms-high-contrast: none) {
+      *::-ms-backdrop,
+      & {
+        flex: auto;
+      }
+    }
+  }
+
+  // ========================== Arrow ==========================
+  &-arrow {
+    // @include iconfont-mixin();
+    position: absolute;
+    top: 50%;
+    right: default.$control-padding-horizontal - 1px;
+    display: flex;
+    align-items: center;
+    height: default.$font-size-sm;
+    margin-top: math.div(default.$font-size-sm * -1, 2);
+    color: default.$disabled-color;
+    font-size: default.$font-size-sm;
+    line-height: 1;
+    text-align: center;
+    pointer-events: none;
+
+    // .#{$iconfont-css-prefix} {
+    //   vertical-align: top;
+    //   transition: transform 0.3s;
+
+    //   > svg {
+    //     vertical-align: top;
+    //   }
+
+    //   &:not(.#{$select-prefix-cls}-suffix) {
+    //     pointer-events: auto;
+    //   }
+    // }
+
+    .#{$select-prefix-cls}-disabled & {
+      cursor: not-allowed;
+    }
+
+    > *:not(:last-child) {
+      margin-inline-end: default.$padding-xs;
+    }
+  }
+
+  // ========================== Clear ==========================
+  &-clear {
+    position: absolute;
+    top: 50%;
+    right: default.$control-padding-horizontal - 1px;
+    z-index: 1;
+    display: inline-block;
+    width: default.$font-size-sm;
+    height: default.$font-size-sm;
+    margin-top: math.div(default.$font-size-sm * -1, 2);
+    color: default.$disabled-color;
+    font-size: default.$font-size-sm;
+    font-style: normal;
+    line-height: 1;
+    text-align: center;
+    text-transform: none;
+    background: default.$select-clear-background;
+    cursor: pointer;
+    opacity: 0;
+    transition: color 0.3s ease, opacity 0.15s ease;
+    text-rendering: auto;
+
+    &::before {
+      display: block;
+    }
+
+    &:hover {
+      color: default.$text-color-secondary;
+    }
+
+    .#{$select-prefix-cls}:hover & {
+      opacity: 1;
+    }
+  }
+
+  // ========================== Popup ==========================
+  &-dropdown {
+    // @include reset-component();
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    z-index: default.$zindex-dropdown;
+    box-sizing: border-box;
+    // padding: default.$select-dropdown-edge-child-vertical-padding 0;
+    overflow: hidden;
+    font-size: default.$font-size-base;
+    // Fix select render lag of long text in chrome
+    // https://github.com/ant-design/ant-design/issues/11456
+    // https://github.com/ant-design/ant-design/issues/11843
+    font-variant: initial;
+    background-color: default.$select-dropdown-bg;
+    border-radius: default.$border-radius-base;
+    outline: none;
+    box-shadow: default.$box-shadow-base;
+
+    // &.#{$ant-prefix}-slide-up-enter.#{$ant-prefix}-slide-up-enter-active&-placement-bottomLeft,
+    // &.#{$ant-prefix}-slide-up-appear.#{$ant-prefix}-slide-up-appear-active&-placement-bottomLeft {
+    //   animation-name: antSlideUpIn;
+    // }
+
+    // &.#{$ant-prefix}-slide-up-enter.#{$ant-prefix}-slide-up-enter-active&-placement-topLeft,
+    // &.#{$ant-prefix}-slide-up-appear.#{$ant-prefix}-slide-up-appear-active&-placement-topLeft {
+    //   animation-name: antSlideDownIn;
+    // }
+
+    // &.#{$ant-prefix}-slide-up-leave.#{$ant-prefix}-slide-up-leave-active&-placement-bottomLeft {
+    //   animation-name: antSlideUpOut;
+    // }
+
+    // &.#{$ant-prefix}-slide-up-leave.#{$ant-prefix}-slide-up-leave-active&-placement-topLeft {
+    //   animation-name: antSlideDownOut;
+    // }
+
+    &-hidden {
+      display: none;
+    }
+
+    &-empty {
+      color: default.$disabled-color;
+    }
+  }
+
+  // ========================= Options =========================
+  // .item() {
+  //   position: relative;
+  //   display: block;
+  //   min-height: default.$select-dropdown-height;
+  //   padding: default.$select-dropdown-vertical-padding default.$control-padding-horizontal;
+  //   color: default.$text-color;
+  //   font-weight: normal;
+  //   font-size: default.$select-dropdown-font-size;
+  //   line-height: default.$select-dropdown-line-height;
+  // }
+
+  &-item-empty {
+    // .item();
+    color: default.$disabled-color;
+  }
+
+  &-item {
+    // .item();
+
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    // =========== Group ============
+    &-group {
+      color: default.$text-color-secondary;
+      font-size: default.$font-size-sm;
+      cursor: default;
+    }
+
+    // =========== Option ===========
+    &-option {
+      display: flex;
+
+      &-content {
+        flex: auto;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      &-state {
+        flex: none;
+      }
+
+      // &-active:not(&-disabled) {
+      //   background-color: default.$select-item-active-bg;
+      // }
+
+      // &-selected:not(&-disabled) {
+      //   color: default.$select-item-selected-color;
+      //   font-weight: default.$select-item-selected-font-weight;
+      //   background-color: default.$select-item-selected-bg;
+
+      //   .#{$select-prefix-cls}-item-option-state {
+      //     color: default.$primary-color;
+      //   }
+      // }
+
+      &-disabled {
+        &.#{$select-prefix-cls}-item-option-selected {
+          background-color: default.$select-multiple-disabled-background;
+        }
+        color: default.$disabled-color;
+        cursor: not-allowed;
+      }
+
+      &-grouped {
+        padding-left: default.$control-padding-horizontal * 2;
+      }
+    }
+  }
+
+  // ============================================================
+  // ==                          Size                          ==
+  // ============================================================
+  &-lg {
+    font-size: default.$font-size-lg;
+  }
+
+  // no border style
+  &-borderless &-selector {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  // &&-in-form-item {
+  //   width: 100%;
+  // }
+
+  // ===================== Compact Item Styles =====================
+  // @include compact-item($select-prefix-cls, '#{$select-prefix-cls}-selector', '#{$select-prefix-cls}-focused');
+}

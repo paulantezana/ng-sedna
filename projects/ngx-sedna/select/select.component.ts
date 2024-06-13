@@ -98,6 +98,7 @@ export type SnSelectSizeType = 'large' | 'default' | 'small';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   animations: [slideMotion],
+  // styleUrls: ['./scss/index.scss'],
   template: `
     <sn-select-top-control
       cdkOverlayOrigin
