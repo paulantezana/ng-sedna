@@ -1,5 +1,3 @@
-
-
 import { ComponentPortal, Portal, PortalModule, TemplatePortal } from '@angular/cdk/portal';
 import {
   ChangeDetectionStrategy,

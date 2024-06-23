@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+// /* You can add global styles to this file, and also import other style files */
 
 @use "sedna" as sedna;
 
@@ -6,33 +6,33 @@
 
 @import '@angular/cdk/overlay-prebuilt.css';
 
-// Components
-@include sedna.SnMenu();
-@include sedna.SnBtn();
-@include sedna.SnAlert();
-@include sedna.SnAvatar();
-@include sedna.SnCard();
-@include sedna.SnForm();
-@include sedna.SnControl();
-@include sedna.SnGrid();
-@include sedna.SnList();
-@include sedna.SnLoading();
-@include sedna.SnMessage();
-@include sedna.SnMargin();
-@include sedna.SnModal();
-@include sedna.SnPadding();
-@include sedna.SnPagination();
-// @include sedna.antable();
-@include sedna.SnVideo();
-@include sedna.SnSwitch();
-@include sedna.SnFreeze();
-// @include sedna.antab();
-// @include sedna.antag();
-@include sedna.SnHidden();
-// @include sedna.antooltip();
-@include sedna.SnCollapse();
-@include sedna.SnDivider();
-@include sedna.SnEmpty();
-@include sedna.SnControlGroup();
-@include sedna.SnDropdown();
-@include sedna.SnFilter();
+// // Components
+// // @include sedna.SnMenu();
+// // @include sedna.SnBtn();
+// // @include sedna.SnAlert();
+// // @include sedna.SnAvatar();
+// // @include sedna.SnCard();
+// // @include sedna.SnForm();
+// // @include sedna.SnControl();
+// // @include sedna.SnGrid();
+// // @include sedna.SnList();
+// // @include sedna.SnLoading();
+// // @include sedna.SnMessage();
+// // @include sedna.SnMargin();
+// // @include sedna.SnModal();
+// // @include sedna.SnPadding();
+// // @include sedna.SnPagination();
+// // @include sedna.antable();
+// // @include sedna.SnVideo();
+// // @include sedna.SnSwitch();
+// // @include sedna.SnFreeze();
+// // @include sedna.antab();
+// // @include sedna.antag();
+// // @include sedna.SnHidden();
+// // @include sedna.antooltip();
+// // @include sedna.SnCollapse();
+// // @include sedna.SnDivider();
+// // @include sedna.SnEmpty();
+// // @include sedna.SnControlGroup();
+// // @include sedna.SnDropdown();
+// // @include sedna.SnFilter();

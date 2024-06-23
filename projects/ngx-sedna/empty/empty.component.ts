@@ -1,22 +1,16 @@
-
-
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   Input,
   OnChanges,
   OnDestroy,
-  OnInit,
   SimpleChanges,
   TemplateRef,
   ViewEncapsulation
 } from '@angular/core';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 import { SnOutletModule } from 'ngx-sedna/core/outlet';
-import { SnEmptyI18nInterface, SnI18nService } from 'ngx-sedna/i18n';
 
 import { SnEmptyDefaultComponent } from './partial/default';
 import { SnEmptySimpleComponent } from './partial/simple';
@@ -29,7 +23,7 @@ type SnEmptyNotFoundImageType = (typeof SnEmptyDefaultImages)[number] | null | s
   encapsulation: ViewEncapsulation.None,
   selector: 'sn-empty',
   exportAs: 'snEmpty',
-  // styleUrls: ['./scss/index.scss'],
+  styleUrls: ['./scss/index.scss'],
   template: `
     <div class="ant-empty-image">
       @if (!isImageBuildIn) {
@@ -47,7 +41,7 @@ type SnEmptyNotFoundImageType = (typeof SnEmptyDefaultImages)[number] | null | s
     @if (snNotFoundContent !== null) {
       <p class="ant-empty-description">
         <ng-container *snStringTemplateOutlet="snNotFoundContent">
-          {{ isContentString ? snNotFoundContent : locale['description'] }}
+          {{ isContentString ? snNotFoundContent : 'Sin datos' }}
         </ng-container>
       </p>
     }
@@ -66,21 +60,15 @@ type SnEmptyNotFoundImageType = (typeof SnEmptyDefaultImages)[number] | null | s
   imports: [SnOutletModule, SnEmptyDefaultComponent, SnEmptySimpleComponent],
   standalone: true
 })
-export class SnEmptyComponent implements OnChanges, OnInit, OnDestroy {
+export class SnEmptyComponent implements OnChanges, OnDestroy {
   @Input() snNotFoundImage: SnEmptyNotFoundImageType = 'default';
   @Input() snNotFoundContent?: string | TemplateRef<void> | null;
   @Input() snNotFoundFooter?: string | TemplateRef<void>;
 
   isContentString = false;
   isImageBuildIn = true;
-  locale!: SnEmptyI18nInterface;
 
   private readonly destroy$ = new Subject<void>();
-
-  constructor(
-    private i18n: SnI18nService,
-    private cdr: ChangeDetectorRef
-  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     const { snNotFoundContent, snNotFoundImage } = changes;
@@ -94,13 +82,6 @@ export class SnEmptyComponent implements OnChanges, OnInit, OnDestroy {
       const image = snNotFoundImage.currentValue || 'default';
       this.isImageBuildIn = SnEmptyDefaultImages.findIndex(i => i === image) > -1;
     }
-  }
-
-  ngOnInit(): void {
-    this.i18n.localeChange.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.locale = this.i18n.getLocaleData('Empty');
-      this.cdr.markForCheck();
-    });
   }
 
   ngOnDestroy(): void {

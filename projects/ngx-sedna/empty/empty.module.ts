@@ -1,5 +1,3 @@
-
-
 import { NgModule } from '@angular/core';
 
 import { SnEmbedEmptyComponent } from './embed-empty.component';
